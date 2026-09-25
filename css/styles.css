@@ -1,0 +1,4369 @@
+/* ========================================================================= */
+/* 0. RESET Y CONFIGURACIÓN GLOBAL (ESTÉTICA DARK UNIFICADA)                 */
+/* ========================================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica World", Helvetica, Arial, sans-serif;
+    background-color: #161415;
+    color: #F4F4F4;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+body.portfolio-body-editorial {
+    background-color: #161415;
+    color: #F4F4F4;
+}
+
+section {
+    padding: 60px 20px;
+}
+
+
+/* ========================================================================= */
+/* 1. HEADER Y NAVEGACIÓN GENERAL (UNIFICADO MOBILE & PC - HAMBURGUESA APLANADA) */
+/* ========================================================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: linear-gradient(to right, #161415 0%, #231F20 15%, #9FBD2B 100%);
+    border-bottom: 1px solid #333333;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+header img.logo,
+header a.logo-link img {
+    height: 35px;
+    width: auto;
+    display: block;
+}
+
+header a.logo-link {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 0;
+}
+
+/* Botón Hamburguesa visible siempre */
+.menu-hamburguesa {
+    display: block;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 1.6rem;
+    cursor: pointer;
+    padding: 5px;
+}
+
+/* Navegación aplanada (Oculta por defecto, se despliega con la clase nav-activo) */
+header nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #231F20;
+    flex-direction: column;
+    padding: 20px;
+    border-bottom: 1px solid #333333;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+header nav.nav-activo {
+    display: flex;
+}
+
+header nav a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 1.1rem;
+    padding: 12px 15px;
+    margin: 4px 0;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+header nav a:hover,
+header nav a.active {
+    background: linear-gradient(135deg, #9FBD2B 0%, #8aa523);
+    color: #FFFFFF;
+}
+
+
+/* ========================================================================= */
+/* 2. COMPONENTES GLOBALES (Botones, WhatsApp, Modales, Sellos)              */
+/* ========================================================================= */
+.btn-cta {
+    display: inline-block;
+    background-color: #9FBD2B;
+    color: #FFFFFF;
+    padding: 12px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.6rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: #8aa523;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.btn-whatsapp {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn-whatsapp img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.btn-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+/* Ventana Modal (Pop-up) en Estética Dark */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-overlay.activo {
+    display: flex;
+}
+
+.modal-content {
+    position: relative !important;
+    background-color: #231F20;
+    padding: 40px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    border: 1px solid #333333;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h3 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #FFFFFF;
+}
+
+.modal-content p {
+    text-align: center;
+    font-size: 15px;
+    color: #CCCCCC;
+    margin-bottom: 25px;
+}
+
+.modal-cerrar {
+    position: absolute !important;
+    top: 15px !important;
+    right: 20px !important;
+    background: transparent !important;
+    border: none !important;
+    font-size: 24px !important;
+    font-weight: bold !important;
+    color: #AAAAAA !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    line-height: 1 !important;
+    transition: color 0.3s ease;
+}
+
+.modal-cerrar:hover {
+    color: #9FBD2B !important;
+}
+
+.modal-content form div {
+    margin-bottom: 18px;
+}
+
+.modal-content label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #DDDDDD;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 15px;
+    color: #FFFFFF;
+    background-color: #1a1718;
+}
+
+.modal-content input:focus,
+.modal-content select:focus,
+.modal-content textarea:focus {
+    outline: none;
+    border-color: #9FBD2B;
+}
+
+.modal-content button[type="submit"] {
+    width: 100%;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    background-color: #9FBD2B;
+    color: #FFFFFF;
+    padding: 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content button[type="submit"]:hover {
+    background-color: #8aa523;
+}
+
+/* Sellos y Tooltips IA */
+.sello-ia-advertencia-img {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 70px;
+    height: 70px;
+    cursor: help;
+    z-index: 50;
+    transition: transform 0.2s ease;
+}
+
+.sello-ia-advertencia-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+.sello-ia-advertencia-img:hover {
+    transform: scale(1.08);
+}
+
+.tooltip-ia-global {
+    position: fixed;
+    z-index: 99999;
+    width: 175px;
+    background-color: #231F20;
+    color: #FFFFFF;
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 1.4;
+    border: 2px solid #ffffff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.tooltip-ia-global.activo {
+    opacity: 1;
+}
+
+a.btn-enlace-verde,
+.blog-card-body .btn-enlace-verde {
+    background-color: #9FBD2B !important;
+    color: #161415 !important;
+    padding: 10px 18px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    display: inline-block !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 12px rgba(159, 189, 43, 0.2) !important;
+}
+
+a.btn-enlace-verde:hover,
+.blog-card-body .btn-enlace-verde:hover {
+    background-color: #b0d426 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 16px rgba(159, 189, 43, 0.4) !important;
+    color: #161415 !important;
+}
+
+
+/* ========================================================================= */
+/* 3. BLOQUE: HEROES OPTIMIZADOS PARA MOBILE (Todo dentro del banner)        */
+/* ========================================================================= */
+#inicio, 
+#inicio_ecommerce, 
+#inicio_landing, 
+#inicio_redes, 
+#inicio_dashboards {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Alinea los elementos desde arriba del contenedor */
+    align-items: flex-start;
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat;
+    padding: 320px 20px 30px 20px; /* ¡Clave! El padding superior de 130px empuja el texto hacia abajo, directo al recuadro rojo */
+    text-align: left;
+    color: #FFFFFF;
+}
+
+#inicio { background-image: url('../img/banners_mobile_1080x1350/banner_mob_inicio.jpg'); }
+#inicio_ecommerce { background-image: url('../img/banners_mobile_1080x1350/banner_mob_ecommerce.jpg'); }
+#inicio_landing { background-image: url('../img/banners_mobile_1080x1350/banner_mob_landingpage.jpg'); }
+#inicio_redes { background-image: url('../img/banners_mobile_1080x1350/banner_mob_rrss.jpg'); }
+#inicio_dashboards { background-image: url('../img/banners_mobile_1080x1350/banner_mob_dashboards.jpg'); }
+
+#inicio h1, 
+#inicio_ecommerce h1, 
+#inicio_landing h1, 
+#inicio_redes h1, 
+#inicio_dashboards h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+
+#inicio p, 
+#inicio_ecommerce p, 
+#inicio_landing p, 
+#inicio_redes p, 
+#inicio_dashboards p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    max-width: 100%;
+    margin: 0;
+}
+
+.frase-cambiante,
+.frase-resaltada {
+    display: inline-block;
+    background-color: #9FBD2B; 
+    color: #FFFFFF; 
+    padding: 4px 14px;
+    border-radius: 4px; 
+    margin-top: 8px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.frase-cambiante.fade-out {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+#servicios {
+    background-color: #161415;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#servicios h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 40px;
+    color: #FFFFFF;
+}
+
+#servicios a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.servicio-card {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background-color: #231F20;
+    border: 1px solid #333333;
+    padding: 30px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.servicio-card:hover {
+    transform: translateY(-4px);
+    background: linear-gradient(to left, #231F20 0%, #231F20 1%, #9FBD2B 15%, #A8C63B 100%);
+    border-color: #9FBD2B;
+    box-shadow: 0 10px 20px rgba(159, 189, 43, 0.3);
+    cursor: pointer;
+}
+
+.servicio-card:hover i,
+.servicio-card:hover h3,
+.servicio-card:hover p {
+    color: #FFFFFF;
+}
+
+.servicio-card i {
+    font-size: 28px;
+    color: #9FBD2B;
+    flex-shrink: 0;
+}
+
+.servicio-card h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #FFFFFF;
+}
+
+.servicio-card p {
+    font-size: 15px;
+    color: #B0B0B0;
+    margin: 0;
+}
+
+.indicador-hover {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) translateX(20px);
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(35, 31, 32, 0.95);
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1px solid #444444;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.indicador-hover span {
+    font-size: 13px;
+    font-weight: 600;
+    color: #FFFFFF;
+    white-space: nowrap;
+}
+
+.servicio-card:hover .indicador-hover {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* Extractos en el Index */
+#seccion-portfolio-home {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    background-color: #161415;
+}
+
+.contenedor-titulo-centro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contenedor-titulo-centro h2 {
+    font-size: 28px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.contenedor-titulo-centro p {
+    color: #AAAAAA;
+    font-size: 16px;
+}
+
+.grid-portfolio-home {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.card-portfolio-preview {
+    background: #231F20;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-portfolio-preview:hover {
+    transform: translateY(-5px);
+    border-color: #9FBD2B;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.card-portfolio-preview img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.info-preview {
+    padding: 20px;
+}
+
+.info-preview h3 {
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-bottom: 8px;
+}
+
+.info-preview p {
+    font-size: 14px;
+    color: #B0B0B0;
+}
+
+.centrar-boton {
+    text-align: center;
+}
+
+#seccion-garden-home {
+    background-color: #1a1718;
+    padding: 60px 20px;
+    text-align: center;
+    border-top: 1px solid #2A2628;
+    border-bottom: 1px solid #2A2628;
+}
+
+.garden-banner-pixel {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.garden-banner-pixel h2 {
+    font-size: 26px;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+}
+
+.garden-banner-pixel p {
+    font-size: 16px;
+    color: #CCCCCC;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.btn-cta-secundario {
+    display: inline-block;
+    background-color: #231F20;
+    color: #FFFFFF;
+    border: 1px solid #444444;
+    padding: 10px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-cta-secundario:hover {
+    background-color: #9FBD2B;
+    border-color: #9FBD2B;
+    color: #161415;
+}
+
+
+/* ========================================================================= */
+/* 4. BLOQUE: E-COMMERCE, LANDING, REDES Y DASHBOARDS                        */
+/* ========================================================================= */
+#body_ecommerce, #body_landing {
+    background-color: #161415;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 45vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 60px 80px;
+    text-align: left;
+    color: #F4F4F4;
+}
+
+#body_ecommerce h2, #body_landing h2 {
+    text-align: left;
+    font-size: 28px;
+    margin-bottom: 25px;
+    color: #FFFFFF;
+}
+
+#body_ecommerce p, #body_landing p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #CCCCCC;
+    max-width: 600px;
+    margin: 0 0 25px 0;
+}
+
+#body_ecommerce ul, #body_landing ul {
+    padding: 0 0 25px 45px;
+    font-size: 1.2rem;
+    color: #BBBBBB;
+}
+
+#servicios_ecommerce {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+#servicios_ecommerce > h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 40px;
+    color: #FFFFFF;
+}
+
+.grid-tiendas, 
+.grid-marketplaces {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+#servicios_ecommerce h2:nth-of-type(2) {
+    text-align: center;
+    margin: 50px 0 30px 0;
+    color: #FFFFFF;
+}
+
+.tiendanube_ecommerce,
+.woocommerce_ecommerce,
+.MELI_ecommerce,
+.facebookmarketplace_ecommerce {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    padding: 0;
+    transition: border-color 0.3s ease;
+}
+
+.tiendanube_ecommerce:hover,
+.woocommerce_ecommerce:hover,
+.MELI_ecommerce:hover,
+.facebookmarketplace_ecommerce:hover {
+    border-color: #9FBD2B;
+}
+
+.tiendanube_ecommerce h3,
+.woocommerce_ecommerce h3,
+.MELI_ecommerce h3,
+.facebookmarketplace_ecommerce h3 {
+    font-size: 22px;
+    color: #FFFFFF;
+    padding: 25px 25px 10px 25px;
+}
+
+.tiendanube_ecommerce p,
+.woocommerce_ecommerce p,
+.MELI_ecommerce p,
+.facebookmarketplace_ecommerce p {
+    font-size: 15px;
+    color: #CCCCCC;
+    padding: 0 25px 15px 25px;
+}
+
+.tiendanube_ecommerce ul,
+.woocommerce_ecommerce ul,
+.MELI_ecommerce ul,
+.facebookmarketplace_ecommerce ul {
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: #AAAAAA;
+    padding: 0 25px 20px 45px;
+}
+
+.tiendanube_ecommerce li,
+.woocommerce_ecommerce li,
+.MELI_ecommerce li,
+.facebookmarketplace_ecommerce li {
+    margin-bottom: 5px;
+}
+
+.banner-tarjeta {
+    width: 100%;
+    height: 185px;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+}
+
+.tiendanube_ecommerce .btn-cta,
+.woocommerce_ecommerce .btn-cta,
+.MELI_ecommerce .btn-cta,
+.facebookmarketplace_ecommerce .btn-cta {
+    margin: 0 25px 25px 25px;
+    text-align: center;
+}
+
+#proceso-landing, #proceso-redes, #proceso-dashboards {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    padding: 20px;
+}
+
+.columna-imagen {
+    flex: 1;
+}
+
+.columna-imagen img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    border: 1px solid #333333;
+}
+
+.columna-texto {
+    flex: 1;
+    text-align: left;
+}
+
+.columna-texto h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+    text-align: left;
+}
+
+.columna-texto p {
+    font-size: 1rem;
+    color: #CCCCCC;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.icono_pensamiento {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+.contenido-texto {
+    max-width: 60%;
+}
+
+
+/* ========================================================================= */
+/* 5. BLOQUE: PORTFOLIO (Página dedicada y Editorial)                        */
+/* ========================================================================= */
+.portfolio-hero {
+    background: linear-gradient(135deg, #161415 0%, #231F20 100%);
+    color: #FFFFFF;
+    text-align: center;
+    padding: 80px 20px;
+    border-bottom: 1px solid #333333;
+}
+
+.portfolio-hero h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+}
+
+.portfolio-hero p {
+    font-size: 1.2rem;
+    color: #CCCCCC;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.portfolio-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+.portfolio-filtros {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.filtro-btn {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    color: #CCCCCC;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filtro-btn:hover,
+.filtro-btn.activo {
+    background-color: #9FBD2B;
+    border-color: #9FBD2B;
+    color: #FFFFFF;
+    box-shadow: 0 4px 12px rgba(159, 189, 43, 0.3);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    animation: fadeInPortfolio 0.6s ease-in-out;
+}
+
+@keyframes fadeInPortfolio {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.portfolio-card {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(159, 189, 43, 0.15);
+    border-color: #9FBD2B;
+}
+
+.portfolio-img-container {
+    width: 100%;
+    height: 230px;
+    overflow: hidden;
+    position: relative;
+    background-color: #1a1718;
+}
+
+.portfolio-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.portfolio-card:hover .portfolio-img-container img {
+    transform: scale(1.08);
+}
+
+.carrusel-flyers {
+    position: relative;
+}
+
+.flyer-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.flyer-img.activo {
+    opacity: 1;
+}
+
+.ver-detalles {
+    display: inline-block;
+    margin-top: 15px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #9FBD2B;
+    transition: color 0.2s ease;
+}
+
+.portfolio-card:hover .ver-detalles {
+    color: #FFFFFF;
+}
+
+.portfolio-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.portfolio-modal-overlay.activo {
+    display: flex;
+}
+
+.portfolio-modal-contenido {
+    background-color: #231F20;
+    width: 100%;
+    max-width: 650px;
+    padding: 40px;
+    border-radius: 12px;
+    position: relative;
+    border: 1px solid #333333;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+.portfolio-modal-cerrar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #AAAAAA;
+    font-weight: bold;
+}
+
+.portfolio-modal-cerrar:hover {
+    color: #9FBD2B;
+}
+
+.modal-info-proyecto h2 {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+}
+
+.modal-info-proyecto p {
+    font-size: 15px;
+    color: #CCCCCC;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.modal-link-btn {
+    display: inline-block;
+    background-color: #9FBD2B;
+    color: #FFFFFF;
+    padding: 10px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-link-btn:hover {
+    background-color: #8aa523;
+}
+
+/* Estilo Editorial / Autor (Portfolio Editorial) */
+.portfolio-hero-editorial {
+    padding: 100px 40px 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-editorial-contenido .etiqueta-autor {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #9FBD2B;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.hero-editorial-contenido h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #FFFFFF;
+    max-width: 800px;
+    margin-bottom: 20px;
+}
+
+.hero-editorial-contenido p {
+    font-size: 1.2rem;
+    color: #AAAAAA;
+    max-width: 600px;
+}
+
+.portfolio-editorial-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 100px 40px;
+    position: relative;
+}
+
+.lista-proyectos-editorial {
+    display: flex;
+    flex-direction: column;
+}
+
+.cursor-preview-img {
+    position: fixed;
+    width: 320px;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(0.8) translate(-50%, -50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 1500;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    border: 1px solid rgba(159, 189, 43, 0.3);
+}
+
+.cursor-preview-img.activo {
+    opacity: 1;
+    transform: scale(1) translate(-50%, -50%);
+}
+
+.cursor-preview-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Acordeón y subgrillas del Portfolio Editorial */
+.item-proyecto-acordeon {
+    border-bottom: 1px solid #2A2628;
+    transition: border-color 0.3s ease;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 35px 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.info-item {
+    display: flex;
+    align-items: baseline;
+    gap: 15px; 
+}
+
+.num-proyecto {
+    font-size: 0.85rem; 
+    color: #888888; 
+    font-family: monospace; 
+    font-weight: normal;
+}
+
+.item-header:hover .info-item h2 {
+    color: #9FBD2B;
+}
+
+.item-proyecto-acordeon.activo .flecha-acordeon {
+    transform: rotate(90deg);
+    color: #9FBD2B;
+}
+
+.flecha-acordeon {
+    font-size: 16px;
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease, color 0.3s ease;
+    color: #888888;
+}
+
+.panel-desplegable {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1), padding 0.4s ease;
+    background-color: #1a1718;
+    border-radius: 8px;
+}
+
+.item-proyecto-acordeon.activo .panel-desplegable {
+    max-height: 520px;
+    padding: 30px 30px 40px 30px;
+    margin-bottom: 30px;
+    border: 1px solid #2A2628;
+}
+
+.subgrilla-tiendas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.card-tienda-preview {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card-tienda-preview:hover {
+    transform: translateY(-4px);
+    border-color: #9FBD2B;
+}
+
+.recuadro-screenshot {
+    width: 100%;
+    height: 135px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.recuadro-screenshot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.recuadro-titulo-tienda h3 {
+    font-size: 15px;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+    font-weight: 600;
+}
+
+.recuadro-enlace-tienda .btn-enlace-verde {
+    display: block;
+    text-align: center;
+    background-color: #9FBD2B;
+    color: #FFFFFF;
+    padding: 8px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.recuadro-enlace-tienda .btn-enlace-verde:hover {
+    background-color: #8aa523;
+}
+
+/* Carrusel de Cajitas Expandibles (Branding) */
+.carrusel-cajitas-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    padding: 10px 0;
+}
+
+.carrusel-track-container {
+    overflow: hidden;
+    width: 100%;
+}
+
+.carrusel-cajitas-track {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.cajita-branding {
+    min-width: calc(33.333% - 13.33px);
+    background-color: #231F20;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    cursor: pointer;
+    position: relative;
+    height: 160px;
+    overflow: hidden;
+}
+
+.cajita-header-preview h3 {
+    font-size: 16px;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+}
+
+.cajita-header-preview span {
+    font-size: 12px;
+    color: #9FBD2B;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cajita-grid-expandida {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    opacity: 0;
+    max-height: 0;
+    transition: all 0.4s ease;
+    margin-top: 0;
+}
+
+.img-vertical-45 {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #161415;
+}
+
+.img-vertical-45 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cajita-branding:hover {
+    height: 440px;
+    border-color: #9FBD2B;
+    background-color: #1d1a1b;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+    z-index: 10;
+    padding-bottom: 25px;
+}
+
+.cajita-branding:hover .cajita-grid-expandida {
+    opacity: 1;
+    max-height: 330px;
+    margin-top: 15px;
+}
+
+.carrusel-btn {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    color: #FFFFFF;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    z-index: 5;
+}
+
+.carrusel-btn:hover {
+    background-color: #9FBD2B;
+    border-color: #9FBD2B;
+    color: #161415;
+}
+
+/* Carrusel Infinito Flyers */
+.carrusel-flyers-wrapper {
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 10px 0;
+}
+
+.carrusel-flyers-track {
+    display: flex;
+    gap: 15px;
+    width: max-content;
+    animation: scrollFlyers 40s linear infinite;
+    align-items: center;
+}
+
+.carrusel-flyers-wrapper:hover .carrusel-flyers-track {
+    animation-play-state: paused;
+}
+
+.flyer-slot {
+    height: 340px;
+    border-radius: 6px;
+    overflow: hidden;
+    background-color: #231F20;
+    border: 1px solid #333333;
+    flex-shrink: 0;
+    transition: border-color 0.3s ease;
+}
+
+.flyer-slot:hover {
+    border-color: #9FBD2B;
+}
+
+.flyer-slot.ratio-45 { width: 272px; }
+.flyer-slot.ratio-916 { width: 191px; }
+
+.flyer-slot img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+@keyframes scrollFlyers {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+
+/* ========================================================================= */
+/* 6. BLOQUE: BLOG (Grillas, Carrusel Home, Filtros y Artículos)             */
+/* ========================================================================= */
+#seccion-blog-home {
+    padding: 70px 20px;
+    background-color: #231F20;
+    overflow: hidden;
+    text-align: center;
+    border-top: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+}
+
+#seccion-blog-home h2 {
+    font-size: 32px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+
+.subtitulo-blog {
+    color: #F4F8E8;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.blog-carrusel-contenedor {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+.blog-track {
+    display: flex;
+    gap: 30px;
+    width: max-content;
+    animation: scrollInfinito 30s linear infinite;
+}
+
+.blog-carrusel-contenedor:hover .blog-track {
+    animation-play-state: paused;
+}
+
+.blog-card {
+    background: #231F20;
+    border: 1px solid #333333;
+    border-radius: 12px;
+    width: 320px;
+    text-align: left;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: #9FBD2B;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+.blog-imagen-container {
+    width: 100%;
+    height: 130px;
+    overflow: hidden;
+    background-color: #161415;
+}
+
+.blog-imagen-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.blog-card:hover .blog-imagen-container img {
+    transform: scale(1.05);
+}
+
+.blog-card-contenido {
+    padding: 20px 25px 25px 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1;
+}
+
+.blog-fecha {
+    font-size: 12px;
+    color: #888888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.blog-card h3 {
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.blog-card p {
+    font-size: 14px;
+    color: #B0B0B0;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.leer-mas {
+    font-size: 14px;
+    font-weight: 600;
+    color: #9FBD2B;
+}
+
+@keyframes scrollInfinito {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 15px)); }
+}
+
+/* Grilla Blog Principal */
+.blog-grilla-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0 60px 0;
+}
+
+.blog-grilla-tarjetas .blog-card {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    width: auto;
+}
+
+.blog-card-img {
+    position: relative;
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    background-color: #161415;
+}
+
+.blog-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.blog-card:hover .blog-card-img img {
+    transform: scale(1.05);
+}
+
+.blog-tag-etiqueta {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background-color: rgba(22, 20, 21, 0.85);
+    color: #9FBD2B;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid #333333;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.blog-card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.blog-card-fecha {
+    font-size: 12px;
+    color: #888888;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.blog-card-body h2 {
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.blog-card-body p {
+    font-size: 14px;
+    color: #B0B0B0;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+/* Filtros del Blog */
+.blog-filtro-dropdown {
+    margin-top: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+.btn-filtro-toggle {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.btn-filtro-toggle:hover {
+    border-color: #9FBD2B;
+    color: #9FBD2B;
+}
+
+.blog-filtro-panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    background-color: #231F20;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 15px;
+    z-index: 20;
+    min-width: 260px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.blog-filtro-panel.activo {
+    display: block;
+}
+
+.grupo-filtro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.grupo-filtro span {
+    font-size: 12px;
+    color: #888888;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.filtro-tag {
+    background: transparent;
+    border: 1px solid #333333;
+    color: #B0B0B0;
+    padding: 6px 12px;
+    border-radius: 4px;
+    text-align: left;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.filtro-tag:hover, .filtro-tag.activo {
+    background-color: #9FBD2B;
+    border-color: #9FBD2B;
+    color: #161415;
+    font-weight: 500;
+}
+
+
+/* ========================================================================= */
+/* 7. BLOQUE: ARTÍCULOS INDIVIDUALES, PODCAST Y ÍNDICE FLOTANTE              */
+/* ========================================================================= */
+.articulo-cuerpo-contenedor {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 20px 20px 80px 20px;
+}
+
+.articulo-imagen-principal {
+    width: 100%;
+    height: 380px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    border: 1px solid #333333;
+    background-color: #161415;
+}
+
+.articulo-imagen-principal img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.articulo-texto p {
+    font-size: 16px;
+    color: #C0C0C0;
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.articulo-texto h2 {
+    font-size: 24px;
+    color: #FFFFFF;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.articulo-texto ul {
+    padding-left: 20px;
+    margin-bottom: 20px;
+}
+
+.articulo-figura {
+    margin: 0 0 40px 0;
+}
+
+.articulo-credito-img {
+    font-size: 13px;
+    color: #888888;
+    text-align: right;
+    margin-top: 8px;
+    font-style: italic;
+}
+
+.articulo-fuentes {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #2A2628;
+}
+
+.articulo-fuentes h3 {
+    font-size: 18px;
+    color: #FFFFFF;
+    margin-bottom: 15px;
+}
+
+.articulo-fuentes ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #AAAAAA;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.articulo-fuentes li {
+    margin-bottom: 8px;
+}
+
+.articulo-fuentes a {
+    color: #9FBD2B;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.articulo-fuentes a:hover {
+    text-decoration: underline;
+    color: #b0d426;
+}
+
+/* Reproductor Podcast Píldora */
+.podcast-pildora-container {
+    display: inline-flex;
+    align-items: center;
+    background-color: #231F20;
+    border: 1px solid #333333;
+    border-radius: 40px;
+    padding: 10px 20px;
+    gap: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    margin-top: 20px;
+    max-width: 100%;
+}
+
+.podcast-btn-play {
+    background-color: #9FBD2B;
+    color: #161415;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.podcast-btn-play:hover {
+    background-color: #b0d426;
+    transform: scale(1.08);
+}
+
+.podcast-btn-skip {
+    background: transparent;
+    border: none;
+    color: #AAAAAA;
+    cursor: pointer;
+    font-size: 14px;
+    transition: color 0.2s ease;
+    flex-shrink: 0;
+}
+
+.podcast-btn-skip:hover {
+    color: #9FBD2B;
+}
+
+.podcast-tiempo {
+    font-family: monospace;
+    font-size: 13px;
+    color: #CCCCCC;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+}
+
+.podcast-barra-progreso {
+    flex-grow: 1;
+    min-width: 110px;
+    height: 6px;
+    background-color: #333333;
+    border-radius: 3px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.podcast-progreso-fill {
+    height: 100%;
+    width: 0%;
+    background-color: #9FBD2B;
+    border-radius: 3px;
+    transition: width 0.1s linear;
+}
+
+/* Índice flotante editorial */
+.indice-flotante-editorial {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 25px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.indice-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: #9FBD2B;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333333;
+    padding-bottom: 10px;
+}
+
+.indice-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.indice-lista a {
+    color: #CCCCCC;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: block;
+    padding: 4px 0;
+}
+
+.indice-lista a:hover {
+    color: #9FBD2B;
+    transform: translateX(5px);
+}
+
+.articulo-hero-editorial {
+    padding: 100px 40px 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.articulo-hero-editorial .hero-editorial-contenido {
+    display: grid !important;
+    grid-template-columns: 1fr 380px !important;
+    gap: 50px !important;
+    align-items: start !important;
+    max-width: 1200px !important;
+    margin: 0 auto;
+}
+
+.hero-columna-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+
+/* ========================================================================= */
+/* 8. FOOTER INSTITUCIONAL - ADAPTADO MOBILE FIRST                           */
+/* ========================================================================= */
+.footer-estudio {
+    background-color: #1a1718;
+    color: #FFFFFF;
+    padding: 50px 20px 20px 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.footer-contenido {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column; /* Apila la información arriba y el formulario abajo en mobile */
+    align-items: stretch;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-info {
+    width: 100%;
+    max-width: 100%;
+}
+
+.footer-info h3 {
+    font-size: 24px;
+    color: #9FBD2B;
+    margin-bottom: 15px;
+}
+
+.footer-info p {
+    color: #CCCCCC;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.ubicacion-footer {
+    font-weight: 600;
+    color: #FFFFFF !important;
+    display: block;
+    margin-top: 10px;
+}
+
+.footer-logo-link {
+    display: inline-block;
+    text-decoration: none;
+    margin-bottom: 15px;
+}
+
+.footer-logo {
+    height: 40px;
+    width: auto;
+    display: block;
+}
+
+.footer-social-ubicacion {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-redes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #CCCCCC;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.social-link i {
+    font-size: 16px;
+    color: #9FBD2B;
+    width: 20px;
+    text-align: center;
+}
+
+.social-link:hover {
+    color: #FFFFFF;
+}
+
+.footer-ubicacion p {
+    color: #FFFFFF !important;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 !important;
+}
+
+.footer-ubicacion i {
+    color: #9FBD2B;
+}
+
+/* Formulario en Mobile: Ocupa todo el ancho y respira prolijo */
+.footer-estudio form {
+    width: 100%;
+    max-width: 100%;
+    background-color: #231F20;
+    padding: 25px 20px;
+    border-radius: 8px;
+    border: 1px solid #333333;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    margin: 0;
+}
+
+.footer-estudio form h3 {
+    font-size: 20px;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+}
+
+.footer-estudio form p {
+    font-size: 13px;
+    color: #AAAAAA;
+    margin-bottom: 20px;
+}
+
+.footer-estudio form div {
+    margin-bottom: 16px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+}
+
+.footer-estudio label {
+    display: block !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    margin-bottom: 6px !important;
+    color: #DDDDDD !important;
+    text-align: left !important;
+}
+
+.footer-estudio input,
+.footer-estudio textarea {
+    width: 100% !important;
+    padding: 12px !important;
+    background-color: #1a1718 !important;
+    border: 1px solid #444444 !important;
+    border-radius: 6px !important;
+    color: #FFFFFF !important;
+    font-family: inherit !important;
+    font-size: 14px !important;
+}
+
+.footer-estudio input:focus,
+.footer-estudio textarea:focus {
+    outline: none !important;
+    border-color: #9FBD2B !important;
+}
+
+.footer-estudio button[type="submit"] {
+    display: block !important;
+    width: 100% !important; /* Botón ancho completo en mobile para facilitar el toque */
+    background-color: #9FBD2B !important;
+    color: #FFFFFF !important;
+    padding: 12px !important;
+    border-radius: 6px !important;
+    font-weight: bold !important;
+    font-size: 15px !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease;
+    margin-top: 10px !important;
+    text-align: center;
+}
+
+.footer-estudio button[type="submit"]:hover {
+    background-color: #8aa523 !important;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333333;
+    padding-top: 20px;
+    color: #888888;
+    font-size: 13px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* ========================================================================= */
+/* BOTÓN WHATSAPP FLOTANTE - AJUSTADO PARA MOBILE                            */
+/* ========================================================================= */
+.btn-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 55px;  /* Tamaño compacto ideal para celulares */
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.btn-whatsapp img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.btn-whatsapp:hover {
+    transform: scale(1.1);
+}
+
+
+/* ========================================================================= */
+/* 9. MEDIA QUERIES (ESCALADO PROGRESIVO)                                    */
+/* ========================================================================= */
+@media (min-width: 768px) {
+    #inicio, 
+    #inicio_ecommerce, 
+    #inicio_landing, 
+    #inicio_redes, 
+    #inicio_dashboards {
+        min-height: 80vh;
+        padding: 80px 60px 80px 100px;
+    }
+
+    #inicio h1, 
+    #inicio_ecommerce h1, 
+    #inicio_landing h1, 
+    #inicio_redes h1, 
+    #inicio_dashboards h1 {
+        font-size: 1.8rem;
+    }
+
+    #inicio p, 
+    #inicio_ecommerce p, 
+    #inicio_landing p, 
+    #inicio_redes p, 
+    #inicio_dashboards p {
+        font-size: 1.5rem;
+    }
+    section {
+        padding: 60px 30px;
+    }
+
+    .grid-tiendas, 
+    .grid-marketplaces,
+    .grid-portfolio-home {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .blog-grilla-tarjetas {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    .subgrilla-tiendas {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media (min-width: 992px) {
+    section {
+        padding: 80px 40px;
+    }
+
+    header {
+        padding: 20px 40px;
+    }
+
+    .blog-grilla-tarjetas {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    #inicio, 
+    #inicio_ecommerce, 
+    #inicio_landing, 
+    #inicio_redes, 
+    #inicio_dashboards {
+        height: 500px;          /* Altura fija exacta para todos los banners en PC */
+        min-height: 480px;      
+        max-height: 500px;
+        justify-content: center; /* Vuelve a centrar el texto verticalmente en PC */
+        background-size: cover; 
+        background-position: center center;
+        background-repeat: no-repeat;
+        padding: 60px 40px 60px 80px; /* Padding original amplio para escritorio */
+        overflow: hidden;       /* Evita cualquier desborde si alguna imagen varía un poco */
+    }
+
+    /* Imágenes de fondo para PC (Proporción 1920x720) */
+    #inicio { background-image: url('../img/banners_PC_1920x720/banner_inicio.jpg'); }
+    #inicio_ecommerce { background-image: url('../img/banners_PC_1920x720/banner_ecommerce.jpg'); }
+    #inicio_landing { background-image: url('../img/banners_PC_1920x720/banner_landingpage.jpg'); }
+    #inicio_redes { background-image: url('../img/banners_PC_1920x720/banner_rrss.jpg'); }
+    #inicio_dashboards { background-image: url('../img/banners_PC_1920x720/banner_dashboards.jpg'); }
+
+    #inicio h1, 
+    #inicio_ecommerce h1, 
+    #inicio_landing h1, 
+    #inicio_redes h1, 
+    #inicio_dashboards h1 {
+        font-size: 2.8rem;
+        margin-bottom: 0; /* Limpia el margen inferior extra de mobile si lo hubiera */
+    }
+
+    #inicio p, 
+    #inicio_ecommerce p, 
+    #inicio_landing p, 
+    #inicio_redes p, 
+    #inicio_dashboards p {
+        font-size: 1.6rem;
+        max-width: 600px;
+        margin: 20px 0 25px 0;
+    }
+
+    #body_ecommerce, 
+    #body_landing,
+    #proceso-landing, 
+    #proceso-redes, 
+    #proceso-dashboards {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    .articulo-hero-editorial {
+        padding: 100px 40px 60px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .articulo-hero-editorial .hero-editorial-contenido {
+        display: grid !important;
+        grid-template-columns: 1fr 380px !important;
+        gap: 50px !important;
+        align-items: start !important;
+    }
+
+    .btn-whatsapp {
+        width: 100px;
+        height: 100px;
+        bottom: 25px;
+        right: 25px;
+    }
+}
+
+@media (max-width: 600px) {
+    .blog-grilla-tarjetas {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .podcast-pildora-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        border-radius: 16px;
+        padding: 15px;
+    }
+    .podcast-barra-progreso {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+/* ========================================================================= */
+/* BOTÓN PERSONALIZADO: VISITAR BLOG                                         */
+/* ========================================================================= */
+.centrar-boton-blog {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.btn-visitar-blog {
+    display: inline-block;
+    background-color: #231F20;         /* Fondo oscuro acorde a la estética dark */
+    color: #CCCCCC;                    /* Color gris institucional que pediste */
+    border: 1px solid #444444;         /* Borde sutil y elegante */
+    padding: 10px 22px;                ; /* Tamaño más pequeño y cómodo */
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;                   /* Reducido en comparación al .btn-cta grande */
+    transition: all 0.3s ease;
+}
+
+.btn-visitar-blog:hover {
+    background-color: #9FBD2B;         /* Pasa al verde institucional al apoyar el mouse */
+    border-color: #9FBD2B;
+    color: #161415;                    /* Texto oscuro de alto contraste al hacer hover */
+    transform: translateY(-2px);
+}
+@media (min-width: 992px) {
+    .footer-contenido {
+        flex-direction: row; /* Vuelve a poner la info a la izquierda y el formulario a la derecha en PC */
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 60px;
+    }
+
+    .footer-info {
+        flex: 1;
+        max-width: 450px;
+    }
+
+    .footer-estudio form {
+        flex: 1;
+        max-width: 500px;
+        padding: 35px 40px;
+    }
+
+    .footer-estudio button[type="submit"] {
+        width: auto !important; /* El botón en PC recupera su tamaño estándar */
+    }
+
+    /* El botón de WhatsApp un poco más grande y cómodo para PC */
+    .btn-whatsapp {
+        width: 75px;
+        height: 75px;
+        bottom: 25px;
+        right: 25px;
+        box-shadow: none;
+    }
+}
+/* ========================================================================= */
+/* E-COMMERCE MOBILE: VERSIÓN AÚN MÁS COMPACTA Y MINIATURA                   */
+/* ========================================================================= */
+
+#body_ecommerce, #body_landing {
+    background-color: #161415;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 10px;
+    text-align: left;
+    color: #F4F4F4;
+}
+
+#body_ecommerce .contenido-texto,
+#body_ecommerce div {
+    max-width: 100%;
+    width: 100%;
+}
+
+#body_ecommerce h2, #body_landing h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #FFFFFF;
+}
+
+#body_ecommerce p, #body_landing p {
+    font-size: 0.9rem;
+    color: #CCCCCC;
+    margin: 0 0 10px 0;
+}
+
+#body_ecommerce ul, #body_landing ul {
+    padding-left: 15px;
+    font-size: 0.85rem;
+    color: #BBBBBB;
+    margin-bottom: 10px;
+}
+
+.icono_pensamiento {
+    max-width: 120px;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    margin: 0 auto;
+    display: block;
+}
+
+#servicios_ecommerce {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px 8px;
+    box-sizing: border-box;
+}
+
+#servicios_ecommerce > h2 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+    line-height: 1.2;
+}
+
+/* Dos columnas más compactas en mobile */
+.grid-tiendas, 
+.grid-marketplaces {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+#servicios_ecommerce h2:nth-of-type(2) {
+    text-align: center;
+    margin: 25px 0 15px 0;
+    font-size: 18px;
+    color: #FFFFFF;
+}
+
+/* Tarjetas minimizadas para que entren holgadas en 2 columnas */
+.tiendanube_ecommerce,
+.woocommerce_ecommerce,
+.MELI_ecommerce,
+.facebookmarketplace_ecommerce {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    width: 100%;
+}
+
+.tiendanube_ecommerce h3,
+.woocommerce_ecommerce h3,
+.MELI_ecommerce h3,
+.facebookmarketplace_ecommerce h3 {
+    font-size: 13px;
+    color: #FFFFFF;
+    padding: 10px 8px 4px 8px;
+    line-height: 1.1;
+}
+
+.tiendanube_ecommerce p,
+.woocommerce_ecommerce p,
+.MELI_ecommerce p,
+.facebookmarketplace_ecommerce p {
+    font-size: 10px;
+    color: #CCCCCC;
+    padding: 0 8px 8px 8px;
+    line-height: 1.3;
+}
+
+.tiendanube_ecommerce ul,
+.woocommerce_ecommerce ul,
+.MELI_ecommerce ul,
+.facebookmarketplace_ecommerce ul {
+    margin-bottom: 8px;
+    font-size: 9.5px;
+    color: #AAAAAA;
+    padding: 0 8px 8px 16px;
+}
+
+.banner-tarjeta {
+    width: 100%;
+    height: 75px; /* Altura reducida para que las imágenes ocupen menos espacio vertical */
+    object-fit: cover;
+    display: block;
+}
+
+.tiendanube_ecommerce .btn-cta,
+.woocommerce_ecommerce .btn-cta,
+.MELI_ecommerce .btn-cta,
+.facebookmarketplace_ecommerce .btn-cta {
+    margin: 0 8px 10px 8px;
+    text-align: center;
+    font-size: 0.75rem; /* Botón bien compacto */
+    padding: 6px 8px;
+}
+
+/* ========================================================================= */
+/* RECUPERACIÓN DE DISEÑO PARA PC / ESCRITORIO (Desde 992px en adelante)     */
+/* ========================================================================= */
+@media (min-width: 992px) {
+    #body_ecommerce, #body_landing {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 40px;
+        padding: 60px 80px;
+    }
+
+    #body_ecommerce h2, #body_landing h2 {
+        font-size: 28px;
+    }
+
+    #body_ecommerce p, #body_landing p {
+        font-size: 1.2rem;
+    }
+
+    #body_ecommerce ul, #body_landing ul {
+        font-size: 1.2rem;
+    }
+
+    .icono_pensamiento {
+        max-width: 250px;
+    }
+
+    #servicios_ecommerce {
+        max-width: 1000px;
+        padding: 60px 20px;
+    }
+
+    #servicios_ecommerce > h2,
+    #servicios_ecommerce h2:nth-of-type(2) {
+        font-size: 28px;
+    }
+
+    .grid-tiendas, 
+    .grid-marketplaces {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .tiendanube_ecommerce h3,
+    .woocommerce_ecommerce h3,
+    .MELI_ecommerce h3,
+    .facebookmarketplace_ecommerce h3 {
+        font-size: 22px;
+        padding: 25px 25px 10px 25px;
+    }
+
+    .tiendanube_ecommerce p,
+    .woocommerce_ecommerce p,
+    .MELI_ecommerce p,
+    .facebookmarketplace_ecommerce p {
+        font-size: 15px;
+        padding: 0 25px 15px 25px;
+    }
+
+    .tiendanube_ecommerce ul,
+    .woocommerce_ecommerce ul,
+    .MELI_ecommerce ul,
+    .facebookmarketplace_ecommerce ul {
+        font-size: 14px;
+        padding: 0 25px 20px 45px;
+    }
+
+    .banner-tarjeta {
+        height: 185px;
+    }
+
+    .tiendanube_ecommerce .btn-cta,
+    .woocommerce_ecommerce .btn-cta,
+    .MELI_ecommerce .btn-cta,
+    .facebookmarketplace_ecommerce .btn-cta {
+        margin: 0 25px 25px 25px;
+        font-size: 1.6rem;
+        padding: 12px 28px;
+    }
+}
+/* ========================================================================= */
+/* CORRECCIÓN DINÁMICA DEL HERO EN MOBILE (E-commerce / Servicios)           */
+/* ========================================================================= */
+
+#inicio_ecommerce, 
+#inicio_landing, 
+#inicio_redes, 
+#inicio_dashboards {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 420px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente para que no quede pegado arriba */
+    align-items: flex-start;
+    background-size: cover;       
+    background-position: center;  
+    background-repeat: no-repeat;
+    text-align: left;
+    color: #FFFFFF;
+    position: relative;
+}
+
+/* Animación sutil de aparición para quitarle lo estático */
+#inicio_ecommerce h1, 
+#inicio_landing h1, 
+#inicio_redes h1, 
+#inicio_dashboards h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+    animation: fadeInHero 0.8s ease-out;
+}
+
+#inicio_ecommerce p, 
+#inicio_landing p, 
+#inicio_redes p, 
+#inicio_dashboards p {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    max-width: 100%;
+    margin: 0;
+    animation: fadeInHero 1.1s ease-out;
+}
+
+@keyframes fadeInHero {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* ========================================================================= */
+/* DASHBOARDS MOBILE: IMAGEN ARRIBA, TEXTO EN MEDIO Y BOTÓN ESTILIZADO       */
+/* ========================================================================= */
+
+#proceso-dashboards {
+    max-width: 100%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column; /* Apila todo verticalmente en mobile */
+    align-items: center;
+    gap: 20px;
+    padding: 20px 15px;
+    box-sizing: border-box;
+}
+
+/* 1. Imagen arriba del todo */
+#proceso-dashboards .columna-imagen {
+    width: 100%;
+    max-width: 280px; /* Tamaño contenido y elegante para celular */
+    margin: 0 auto;
+}
+
+#proceso-dashboards .columna-imagen img {
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    border: 1px solid #333333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* 2. Texto en el medio */
+#proceso-dashboards .columna-texto {
+    width: 100%;
+    text-align: left;
+}
+
+#proceso-dashboards .columna-texto h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    text-align: left;
+    line-height: 1.3;
+}
+
+#proceso-dashboards .columna-texto p {
+    font-size: 0.95rem;
+    color: #CCCCCC;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* 3. Botón estilizado abajo (más chico, elegante y moderno) */
+#proceso-dashboards .btn-cta,
+#proceso-dashboards a.btn-cta {
+    display: inline-block;
+    width: 100%;
+    max-width: 280px; /* Ancho controlado para que no sea un bloque gigante */
+    margin: 15px auto 0 auto;
+    padding: 10px 16px;
+    background-color: #9FBD2B;
+    color: #FFFFFF;
+    border-radius: 6px; /* Bordes sutiles y modernos */
+    font-size: 0.95rem;  /* Letra más equilibrada y estilizada */
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(159, 189, 43, 0.25);
+    transition: all 0.3s ease;
+}
+
+#proceso-dashboards .btn-cta:hover {
+    background-color: #8aa523;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(159, 189, 43, 0.4);
+}
+
+
+/* ========================================================================= */
+/* RECUPERACIÓN PARA PC / ESCRITORIO (Desde 992px en adelante)               */
+/* ========================================================================= */
+@media (min-width: 992px) {
+    #proceso-dashboards {
+        max-width: 1100px;
+        margin: 40px auto;
+        flex-direction: row; /* Vuelve a poner la imagen al costado y el texto al otro lado en PC */
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 20px;
+    }
+
+    #proceso-dashboards .columna-imagen {
+        max-width: none;
+        flex: 1;
+    }
+
+    #proceso-dashboards .columna-imagen img {
+        height: 380px;
+        max-height: none;
+    }
+
+    #proceso-dashboards .columna-texto {
+        flex: 1;
+    }
+
+    #proceso-dashboards .columna-texto h2 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    #proceso-dashboards .columna-texto p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    #proceso-dashboards .btn-cta,
+    #proceso-dashboards a.btn-cta {
+        width: auto;
+        max-width: none;
+        font-size: 1.6rem;
+        padding: 12px 28px;
+        margin-top: 10px;
+    }
+}
+/* ========================================================================= */
+/* BOTÓN ESTILIZADO TIPO "VISITAR BLOG" PARA DASHBOARDS                      */
+/* ========================================================================= */
+
+#proceso-dashboards .btn-cta,
+#proceso-dashboards a.btn-cta {
+    display: inline-block;
+    width: 100%;
+    max-width: 260px;
+    margin: 15px auto 0 auto;
+    background-color: #231F20;         /* Fondo oscuro acorde a la estética dark */
+    color: #CCCCCC;                    /* Color gris institucional sutil */
+    border: 1px solid #444444;         /* Borde sutil y elegante */
+    padding: 10px 18px;                /* Tamaño compacto y cómodo */
+    border-radius: 4px;                /* Bordes rectos sutiles como el del blog */
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#proceso-dashboards .btn-cta:hover,
+#proceso-dashboards a.btn-cta:hover {
+    background-color: #9FBD2B;         /* Pasa al verde institucional al apoyar el mouse */
+    border-color: #9FBD2B;
+    color: #161415;                    /* Texto oscuro de alto contraste al hacer hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(159, 189, 43, 0.3);
+}
+@media (min-width: 992px) {
+    #proceso-dashboards .btn-cta,
+    #proceso-dashboards a.btn-cta {
+        width: auto;
+        max-width: none;
+        font-size: 1rem;               /* Mantiene el tamaño estilizado y sobrio también en PC */
+        padding: 10px 22px;
+        margin-top: 10px;
+    }
+}
+/* ========================================================================= */
+/* REDES SOCIALES MOBILE: IMAGEN ARRIBA, TEXTO EN MEDIO Y BOTÓN ESTILIZADO   */
+/* ========================================================================= */
+
+#proceso-redes {
+    max-width: 100%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column; /* Apila todo verticalmente en mobile */
+    align-items: center;
+    gap: 20px;
+    padding: 20px 15px;
+    box-sizing: border-box;
+}
+
+/* 1. Imagen arriba del todo */
+#proceso-redes .columna-imagen {
+    width: 100%;
+    max-width: 280px; /* Tamaño contenido y elegante para celular */
+    margin: 0 auto;
+}
+
+#proceso-redes .columna-imagen img {
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    border: 1px solid #333333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* 2. Texto en el medio */
+#proceso-redes .columna-texto {
+    width: 100%;
+    text-align: left;
+}
+
+#proceso-redes .columna-texto h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    text-align: left;
+    line-height: 1.3;
+}
+
+#proceso-redes .columna-texto p {
+    font-size: 0.95rem;
+    color: #CCCCCC;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* 3. Botón estilizado abajo (tipo "Visitar Blog") */
+#proceso-redes .btn-cta,
+#proceso-redes a.btn-cta {
+    display: inline-block;
+    width: 100%;
+    max-width: 260px;
+    margin: 15px auto 0 auto;
+    background-color: #231F20;         /* Fondo oscuro acorde a la estética dark */
+    color: #CCCCCC;                    /* Color gris institucional sutil */
+    border: 1px solid #444444;         /* Borde sutil y elegante */
+    padding: 10px 18px;                /* Tamaño compacto y cómodo */
+    border-radius: 4px;                /* Bordes rectos sutiles */
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#proceso-redes .btn-cta:hover,
+#proceso-redes a.btn-cta:hover {
+    background-color: #9FBD2B;         /* Pasa al verde institucional al apoyar el mouse */
+    border-color: #9FBD2B;
+    color: #161415;                    /* Texto oscuro de alto contraste al hacer hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(159, 189, 43, 0.3);
+}
+
+
+/* ========================================================================= */
+/* RECUPERACIÓN PARA PC / ESCRITORIO (Desde 992px en adelante)               */
+/* ========================================================================= */
+@media (min-width: 992px) {
+    #proceso-redes {
+        max-width: 1100px;
+        margin: 40px auto;
+        flex-direction: row; /* Vuelve a poner la imagen al costado y el texto al otro lado en PC */
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 20px;
+    }
+
+    #proceso-redes .columna-imagen {
+        max-width: none;
+        flex: 1;
+    }
+
+    #proceso-redes .columna-imagen img {
+        height: 380px;
+        max-height: none;
+    }
+
+    #proceso-redes .columna-texto {
+        flex: 1;
+    }
+
+    #proceso-redes .columna-texto h2 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    #proceso-redes .columna-texto p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    #proceso-redes .btn-cta,
+    #proceso-redes a.btn-cta {
+        width: auto;
+        max-width: none;
+        font-size: 1rem;
+        padding: 10px 22px;
+        margin-top: 10px;
+    }
+}
+/* ========================================================================= */
+/* LANDING PAGE MOBILE: IMAGEN ARRIBA, TEXTO EN MEDIO Y BOTÓN ESTILIZADO     */
+/* ========================================================================= */
+
+#proceso-landing {
+    max-width: 100%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column; /* Apila todo verticalmente en mobile */
+    align-items: center;
+    gap: 20px;
+    padding: 20px 15px;
+    box-sizing: border-box;
+}
+
+/* 1. Imagen arriba del todo */
+#proceso-landing .columna-imagen {
+    width: 100%;
+    max-width: 280px; /* Tamaño contenido y elegante para celular */
+    margin: 0 auto;
+}
+
+#proceso-landing .columna-imagen img {
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    border: 1px solid #333333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* 2. Texto en el medio */
+#proceso-landing .columna-texto {
+    width: 100%;
+    text-align: left;
+}
+
+#proceso-landing .columna-texto h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    text-align: left;
+    line-height: 1.3;
+}
+
+#proceso-landing .columna-texto p {
+    font-size: 0.95rem;
+    color: #CCCCCC;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+/* 3. Botón estilizado abajo (tipo "Visitar Blog") */
+#proceso-landing .btn-cta,
+#proceso-landing a.btn-cta {
+    display: inline-block;
+    width: 100%;
+    max-width: 260px;
+    margin: 15px auto 0 auto;
+    background-color: #231F20;         /* Fondo oscuro acorde a la estética dark */
+    color: #CCCCCC;                    /* Color gris institucional sutil */
+    border: 1px solid #444444;         /* Borde sutil y elegante */
+    padding: 10px 18px;                /* Tamaño compacto y cómodo */
+    border-radius: 4px;                /* Bordes rectos sutiles */
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+#proceso-landing .btn-cta:hover,
+#proceso-landing a.btn-cta:hover {
+    background-color: #9FBD2B;         /* Pasa al verde institucional al apoyar el mouse */
+    border-color: #9FBD2B;
+    color: #161415;                    /* Texto oscuro de alto contraste al hacer hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(159, 189, 43, 0.3);
+}
+
+
+/* ========================================================================= */
+/* RECUPERACIÓN PARA PC / ESCRITORIO (Desde 992px en adelante)               */
+/* ========================================================================= */
+@media (min-width: 992px) {
+    #proceso-landing {
+        max-width: 1100px;
+        margin: 40px auto;
+        flex-direction: row; /* Vuelve a poner la imagen al costado y el texto al otro lado en PC */
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+        padding: 20px;
+    }
+
+    #proceso-landing .columna-imagen {
+        max-width: none;
+        flex: 1;
+    }
+
+    #proceso-landing .columna-imagen img {
+        height: 380px;
+        max-height: none;
+    }
+
+    #proceso-landing .columna-texto {
+        flex: 1;
+    }
+
+    #proceso-landing .columna-texto h2 {
+        font-size: 26px;
+        margin-bottom: 20px;
+    }
+
+    #proceso-landing .columna-texto p {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+
+    #proceso-landing .btn-cta,
+    #proceso-landing a.btn-cta {
+        width: auto;
+        max-width: none;
+        font-size: 1rem;
+        padding: 10px 22px;
+        margin-top: 10px;
+    }
+}
+/* ========================================================================= */
+/* BLOG MOBILE: HERO MÁS CHICO Y GRILLA DE DOS COLUMNAS                      */
+/* ========================================================================= */
+
+/* 1. Hero del Blog más compacto en Mobile */
+.portfolio-hero-editorial {
+    padding: 40px 15px 30px 15px !important; /* Reduce drásticamente el espacio superior e inferior */
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.hero-editorial-contenido .etiqueta-autor {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.hero-editorial-contenido h1 {
+    font-size: 2.1rem !important; /* Título mucho más contenido y elegante en mobile */
+    font-weight: 700;
+    line-height: 1.15;
+    color: #FFFFFF;
+    max-width: 100%;
+    margin-bottom: 12px;
+}
+
+.hero-editorial-contenido p {
+    font-size: 0.95rem !important;
+    color: #AAAAAA;
+    max-width: 100%;
+    margin-bottom: 15px;
+}
+
+/* 2. Grilla de entradas del blog en Dos Columnas para Mobile */
+.portfolio-editorial-main {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 10px 60px 10px !important;
+    position: relative;
+}
+
+.blog-grilla-tarjetas {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important; /* Dos columnas exactas en mobile */
+    gap: 10px !important;                             /* Separación compacta */
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 10px 0 !important;
+}
+
+/* Tarjetas minimizadas para que entren holgadas en 2 columnas */
+.blog-grilla-tarjetas .blog-card {
+    background-color: #231F20 !important;
+    border: 1px solid #333333 !important;
+    width: 100% !important;
+    border-radius: 6px !important;
+}
+
+.blog-card-img {
+    height: 95px !important; /* Imagen de la tarjeta más bajita */
+}
+
+.blog-tag-etiqueta {
+    top: 6px !important;
+    left: 6px !important;
+    font-size: 9px !important;
+    padding: 2px 6px !important;
+}
+
+.blog-card-body {
+    padding: 10px !important;
+}
+
+.blog-card-fecha {
+    font-size: 10px !important;
+    margin-bottom: 4px !important;
+}
+
+.blog-card-body h2 {
+    font-size: 13px !important; /* Título del artículo compacto */
+    margin-bottom: 6px !important;
+    line-height: 1.2 !important;
+}
+
+.blog-card-body p {
+    font-size: 11px !important; /* Descripción breve y legible */
+    line-height: 1.3 !important;
+    margin-bottom: 12px !important;
+}
+
+/* Botón "Leer artículo" adaptado a dos columnas */
+.blog-card-body .btn-enlace-verde,
+a.btn-enlace-verde {
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+    width: 25% !important;
+    text-align: center !important;
+}
+@media (min-width: 992px) {
+    .portfolio-hero-editorial {
+        padding: 100px 40px 60px 40px !important;
+    }
+
+    .hero-editorial-contenido h1 {
+        font-size: 3.5rem !important;
+    }
+
+    .hero-editorial-contenido p {
+        font-size: 1.2rem !important;
+    }
+
+    .portfolio-editorial-main {
+        padding: 0 40px 100px 40px !important;
+    }
+
+    .blog-grilla-tarjetas {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 30px !important;
+    }
+
+    .blog-card-img {
+        height: 180px !important;
+    }
+
+    .blog-card-body {
+        padding: 20px !important;
+    }
+
+    .blog-card-body h2 {
+        font-size: 18px !important;
+    }
+
+    .blog-card-body p {
+        font-size: 14px !important;
+    }
+
+    .blog-card-body .btn-enlace-verde {
+        width: auto !important;
+        font-size: 13px !important;
+        padding: 10px 18px !important;
+    }
+}
+/* ========================================================================= */
+/* PORTFOLIO MOBILE: TIENDAS, LANDINGS Y CARRUSEL DE IDENTIDAD VISUAL        */
+/* ========================================================================= */
+
+@media (max-width: 991px) {
+
+    /* 1. Apartado Tiendas Online: Dos tarjetas bien dimensionadas */
+    .subgrilla-tiendas {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* Dos columnas exactas */
+        gap: 10px !important;
+        padding: 5px !important;
+    }
+
+    .card-tienda-preview {
+        padding: 10px !important;
+    }
+
+    .recuadro-screenshot {
+        height: 105px !important; /* Altura contenida para pantallas chicas */
+    }
+
+    .recuadro-titulo-tienda h3 {
+        font-size: 12px !important;
+        margin-bottom: 8px !important;
+        line-height: 1.2 !important;
+    }
+
+    .recuadro-enlace-tienda .btn-enlace-verde {
+        padding: 6px 4px !important;
+        font-size: 11px !important;
+    }
+
+
+    /* 2. Apartado Landing Pages: Preparado para una o más tarjetas adaptables */
+    /* Usamos una grilla flexible que si hay una ocupa espacio óptimo, y si agregás otra se ponen de a dos */
+    .panel-desplegable .subgrilla-tiendas:has(.card-tienda-preview:only-child) {
+        grid-template-columns: 1fr !important; /* Si hay una sola, ocupa el ancho completo elegante */
+        max-width: 220px;
+        margin: 0 auto;
+    }
+
+
+    /* 3. Apartado Identidad Visual y Logotipos: Una tarjeta a la vez en el carrusel */
+    .carrusel-cajitas-wrapper {
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .carrusel-cajitas-track {
+        display: flex;
+        gap: 0;
+        transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    /* Forzamos a que cada cajita de identidad visual ocupe el 100% del ancho visible del contenedor */
+    .cajita-branding {
+        min-width: 100% !important;
+        width: 100% !important;
+        height: auto !important; /* Permite que se expanda dinámicamente al navegar */
+        padding: 15px !important;
+    }
+
+    /* Permitimos que la vista expandida se muestre limpia al deslizar en mobile */
+    .cajita-grid-expandida {
+        opacity: 1 !important;
+        max-height: none !important;
+        margin-top: 12px !important;
+    }
+
+    .carrusel-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
+}
+/* ========================================================================= */
+/* CARRUSEL DE IDENTIDAD VISUAL - DESLIZABLE EN MOBILE (SWIPE)               */
+/* ========================================================================= */
+@media (max-width: 991px) {
+    
+    /* Ocultamos los botones de flechas en mobile ya que se desliza con el dedo */
+    .carrusel-cajitas-wrapper .carrusel-btn {
+        display: none !important;
+    }
+
+    /* Contenedor principal del carrusel adaptado para scroll horizontal */
+    .carrusel-cajitas-wrapper {
+        display: block !important;
+        width: 100% !important;
+        padding: 10px 0 !important;
+    }
+
+    .carrusel-track-container {
+        width: 100% !important;
+        overflow: hidden !important;
+    }
+
+    /* El track ahora permite scroll horizontal fluido y se ajusta al toque */
+    .carrusel-cajitas-track {
+        display: flex !important;
+        gap: 15px !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important; /* Hace que se imante a cada tarjeta al deslizar */
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 10px;
+    }
+
+    /* Ocultar la barra de scroll para que se vea limpio */
+    .carrusel-cajitas-track::-webkit-scrollbar {
+        display: none;
+    }
+    .carrusel-cajitas-track {
+        scrollbar-width: none;
+    }
+
+    /* Cada tarjeta ocupa el ancho óptimo para deslizar de a una o ver parte de la siguiente */
+    .cajita-branding {
+        min-width: 85% !important;  /* Deja ver un cachito de la siguiente tarjeta para invitar al gesto */
+        width: 85% !important;
+        max-width: 320px !important;
+        height: auto !important;
+        scroll-snap-align: center !important; /* Centra la tarjeta automáticamente al soltar el dedo */
+        background-color: #231F20 !important;
+        border: 1px solid #333333 !important;
+        border-radius: 8px !important;
+        padding: 20px !important;
+        flex-shrink: 0 !important;
+    }
+
+    /* Forzamos a que la grilla interna de imágenes se vea desplegada y prolija */
+    .cajita-grid-expandida {
+        display: grid !important;
+        opacity: 1 !important;
+        max-height: none !important;
+        margin-top: 15px !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+
+    /* Ajuste para que las imágenes verticales luzcan bien en mobile */
+    .img-vertical-45 {
+        width: 100% !important;
+        aspect-ratio: 4 / 5 !important;
+        border-radius: 4px !important;
+        overflow: hidden !important;
+    }
+}
+/* ========================================================================= */
+/* IDENTIDAD VISUAL EN PC: ABIERTAS POR DEFECTO                              */
+/* ========================================================================= */
+@media (min-width: 992px) {
+    
+    /* Modificamos el estado base de la cajita para que ya se muestre expandida */
+    .cajita-branding {
+        min-width: calc(33.333% - 13.33px);
+        height: auto !important;             /* Altura automática para que entre todo el contenido abierto */
+        padding-bottom: 25px;
+        background-color: #1d1a1b;           /* Fondo activo/destacado */
+        border-color: #9FBD2B;               /* Borde verde institucional fijo */
+    }
+
+    /* Forzamos a que la grilla interna esté visible siempre sin necesidad de hover */
+    .cajita-branding .cajita-grid-expandida {
+        opacity: 1 !important;
+        max-height: none !important;
+        margin-top: 15px !important;
+    }
+
+    /* Hacemos que las imágenes dentro de la tarjeta tengan cursor de lupa o pointer al pasar el mouse */
+    .cajita-grid-expandida img {
+        cursor: zoom-in;
+        transition: transform 0.3s ease;
+    }
+
+    .cajita-grid-expandida img:hover {
+        transform: scale(1.03);
+    }
+}
+/* ========================================================================= */
+/* VISOR DE IMÁGENES EN GRANDE (LIGHTBOX)                                    */
+/* ========================================================================= */
+.lightbox-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.lightbox-overlay.activo {
+    display: flex;
+}
+
+.lightbox-imagen-contenedor {
+    position: relative;
+    max-width: 90%;
+    max-height: 90vh;
+}
+
+.lightbox-imagen-contenedor img {
+    width: 100%;
+    height: auto;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    border: 1px solid #444444;
+}
+
+.lightbox-cerrar {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 32px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.lightbox-cerrar:hover {
+    color: #9FBD2B;
+}
+/* ========================================================================= */
+/* CORRECCIÓN DEL PANEL DESPLEGABLE EN PC                                    */
+/* ========================================================================= */
+@media (min-width: 992px) {
+    .item-proyecto-acordeon.activo .panel-desplegable {
+        max-height: none !important; /* Permite que crezca según el contenido sin recortar */
+        padding: 40px 40px 50px 40px !important;
+        margin-bottom: 40px;
+        border: 1px solid #2A2628;
+    }
+}
+/* ========================================================================= */
+/* ESTILOS DE FLECHAS FLOTANTES PARA EL LIGHTBOX                             */
+/* ========================================================================= */
+.lightbox-flecha {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(35, 31, 32, 0.8);
+    color: #FFFFFF;
+    border: 1px solid #444444;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+}
+
+.lightbox-flecha:hover {
+    background-color: #9FBD2B;
+    border-color: #9FBD2B;
+    color: #161415;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.lightbox-prev {
+    left: -60px; /* Flota de manera elegante a la izquierda de la foto en PC */
+}
+
+.lightbox-next {
+    right: -60px; /* Flota de manera elegante a la derecha de la foto en PC */
+}
+
+/* Ajuste para que en celulares las flechas queden cómodas dentro de la pantalla */
+@media (max-width: 768px) {
+    .lightbox-prev {
+        left: 10px;
+    }
+    .lightbox-next {
+        right: 10px;
+    }
+}
+/* ========================================================================= */
+/* ESTILOS PARA LA 4TA IMAGEN CON OVERLAY Y MACRO-VENTANA MODAL DE BRANDING  */
+/* ========================================================================= */
+
+/* Efecto de la 4ta imagen con el círculo y el signo más */
+.overlay-mas-branding {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.35);
+    transition: background 0.3s ease;
+}
+
+.img-vertical-45:hover .overlay-mas-branding {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.circulo-mas {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: all 0.3s ease;
+}
+
+.img-vertical-45:hover .circulo-mas {
+    background-color: #9FBD2B;
+    border-color: #9FBD2B;
+    transform: scale(1.1);
+}
+
+/* Macro-Ventana Modal (Panel tipo Case Study de dos columnas) */
+.branding-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.branding-modal-overlay.activo {
+    display: flex;
+}
+
+.branding-modal-contenedor {
+    position: relative;
+    background-color: #1a1718;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1100px;
+    height: 85vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+}
+
+.branding-modal-cerrar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10;
+    transition: color 0.3s ease;
+}
+
+.branding-modal-cerrar:hover {
+    color: #9FBD2B;
+}
+
+/* Lado Izquierdo: Visualizador Adaptativo con Lupa */
+.branding-modal-left {
+    flex: 1.2;
+    background-color: #121011;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    border-right: 1px solid #2A2628;
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+#macro-img-principal {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #333333;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: transform 0.1s ease-out;
+    transform-origin: center center;
+}
+
+/* Lado Derecho: Cabecera y Grilla Desplazable */
+.branding-modal-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: #1a1718;
+    overflow: hidden;
+}
+
+.branding-modal-header {
+    margin-bottom: 20px;
+    padding-right: 30px;
+}
+
+.branding-modal-header h2 {
+    font-size: 22px;
+    color: #FFFFFF;
+    font-weight: 700;
+}
+
+.branding-modal-header span {
+    font-size: 12px;
+    color: #9FBD2B;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Grilla Scrollable de 3 columnas con formato 4:5 prolijo */
+.branding-modal-grid-scroll {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.branding-modal-grid-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.branding-modal-grid-scroll::-webkit-scrollbar-track {
+    background: #161415;
+    border-radius: 3px;
+}
+.branding-modal-grid-scroll::-webkit-scrollbar-thumb {
+    background: #333333;
+    border-radius: 3px;
+}
+.branding-modal-grid-scroll::-webkit-scrollbar-thumb:hover {
+    background: #9FBD2B;
+}
+
+.thumb-miniatura {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    background-color: #161415;
+}
+
+.thumb-miniatura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumb-miniatura:hover {
+    transform: translateY(-2px);
+    border-color: #9FBD2B;
+}
+
+.thumb-miniatura.activo {
+    border-color: #9FBD2B;
+    box-shadow: 0 0 10px rgba(159, 189, 43, 0.4);
+}
+
+/* ========================================================================= */
+/* UNIFICACIÓN DE H1 Y P EN HEROES DE SERVICIOS PARA PC (DESDE 992px)        */
+/* ========================================================================= */
+@media (min-width: 992px) {
+    /* Unificamos todos los contenedores de inicio para que tengan idéntica estructura */
+    #inicio, 
+    #inicio_ecommerce, 
+    #inicio_landing, 
+    #inicio_redes, 
+    #inicio_dashboards {
+        height: 500px !important;          
+        min-height: 480px !important;      
+        max-height: 500px !important;
+        justify-content: center !important; 
+        background-size: cover !important; 
+        background-position: center center !important;
+        background-repeat: no-repeat !important;
+        padding: 60px 40px 60px 80px !important; 
+        overflow: hidden !important;       
+    }
+
+    /* Unificamos la tipografía del H1 para que luzca idéntica en todas las secciones */
+    #inicio h1, 
+    #inicio_ecommerce h1, 
+    #inicio_landing h1, 
+    #inicio_redes h1, 
+    #inicio_dashboards h1 {
+        font-size: 2.8rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0 !important;
+    }
+
+    /* Unificamos la tipografía del párrafo principal (p) */
+    #inicio p, 
+    #inicio_ecommerce p, 
+    #inicio_landing p, 
+    #inicio_redes p, 
+    #inicio_dashboards p {
+        font-size: 1.6rem !important;
+        max-width: 600px !important;
+        margin: 20px 0 25px 0 !important;
+    }
+}
+@media (min-width: 992px) {
+    /* Sube el índice flotante para alinearlo con la línea superior / azul */
+    .indice-flotante-editorial {
+        margin-top: 100px; /* Probá ajustando este valor (ej: -40px a -55px) según el punto exacto que busques */
+    }
+}
+/* Corrección de botones en tarjetas para vista mobile */
+.card-tienda-preview .recuadro-enlace-tienda .btn-enlace-verde,
+.tiendanube_ecommerce .btn-cta,
+.woocommerce_ecommerce .btn-cta,
+.MELI_ecommerce .btn-cta,
+.facebookmarketplace_ecommerce .btn-cta{
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+    padding: 10px 12px !important;
+    font-size: 12px !important;
+    white-space: nowrap !important;
+}
+
+/* Corrección exclusiva para mobile: botones prolijos en tarjetas de blog */
+@media (max-width: 991px) {
+    .blog-grilla-tarjetas .blog-card .blog-card-body .btn-enlace-verde {
+        display: block !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        padding: 6px 4px !important;
+        font-size: 11px !important;
+        white-space: nowrap !important;
+    }
+}
+/* Corrección exclusiva para mobile: hero blog prolijos en tarjetas de blog */
+@media (max-width: 991px) {
+    .hero-editorial-contenido h1 {
+        font-size: 2rem !important;
+        font-weight: 700 !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0 !important;
+    }
+}
+/* ========================================================================= */
+/* UNIFICACIÓN Y CORRECCIÓN DE HEROS DE BLOG EN MOBILE                       */
+/* ========================================================================= */
+@media (max-width: 991px) {
+    /* Contenedor principal del hero en las páginas de artículos */
+    .articulo-hero-editorial,
+    .portfolio-hero-editorial {
+        padding: 30px 15px 20px 15px !important;
+        margin: 0 auto !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Estructura interna adaptada a una sola columna ordenada */
+    .articulo-hero-editorial .hero-editorial-contenido,
+    .hero-editorial-contenido {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 15px !important;
+        max-width: 100% !important;
+    }
+
+    /* Botón "Volver al Blog" unificado (tamaño y posición) */
+    .articulo-hero-editorial .hero-editorial-contenido a,
+    .hero-editorial-contenido .btn-enlace-verde,
+    .hero-editorial-contenido a {
+        display: inline-block !important;
+        width: auto !important;
+        max-width: 130px !important;
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        text-align: center !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* Títulos principales (H1) con tamaño idéntico y sin desbordes */
+    .hero-editorial-contenido h1 {
+        font-size: 1.9rem !important;
+        line-height: 1.15 !important;
+        margin-bottom: 10px !important;
+        max-width: 100% !important;
+    }
+
+    /* Párrafos descriptivos o bajadas de los artículos */
+    .hero-editorial-contenido p {
+        font-size: 0.95rem !important;
+        line-height: 1.4 !important;
+        max-width: 100% !important;
+        margin-bottom: 10px !important;
+    }
+
+    /* Corrección radical para el Índice Flotante en Mobile (evita que se desborde a la derecha) */
+    .indice-flotante-editorial {
+        position: relative !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 20px 0 !important;
+        box-sizing: border-box !important;
+        right: auto !important;
+        left: auto !important;
+        top: auto !important;
+    }
+}
+/* ========================================================================= */
+/* UNIFICACIÓN DE LA IMAGEN DE CABECERA (BANNER PC) PARA MOBILE              */
+/* ========================================================================= */
+@media (max-width: 991px) {
+    /* Contenedor principal de la imagen de portada en los artículos */
+    .articulo-imagen-principal {
+        width: 100% !important;
+        height: 220px !important; /* Altura compacta y proporcionada para celulares */
+        max-height: 220px !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+        margin-bottom: 25px !important;
+        background-color: #161415 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Ajuste de la imagen interna para que ocupe todo el bloque sin deformarse */
+    .articulo-imagen-principal img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important; /* Mantiene la proporción recortando los excedentes de manera limpia */
+        display: block !important;
+    }
+}
+/* ========================================================================= */
+/* CORRECCIÓN DEL BOTÓN DE RETORNO AL FINAL DE LAS ENTRADAS (MOBILE)         */
+/* ========================================================================= */
+@media (max-width: 991px) {
+    /* Selector para el botón de retorno al final del artículo en mobile */
+    .articulo-cuerpo-contenedor a.btn-enlace-verde,
+    .articulo-cuerpo-contenedor .btn-enlace-verde {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+        padding: 12px 20px !important;
+        font-size: 14px !important;
+        white-space: nowrap !important;
+        margin: 30px auto 0 auto !important;
+    }
+}
+/* ========================================================================= */
+/* ADAPTACIÓN DE LA MACRO-VENTANA MODAL DE BRANDING PARA MOBILE (VERTICAL)   */
+/* ========================================================================= */
+@media (max-width: 991px) {
+    /* Ajustes generales del overlay y contenedor modal en celular */
+    .branding-modal-overlay {
+        padding: 10px !important;
+        align-items: flex-start !important;
+        overflow-y: auto !important;
+    }
+
+    .branding-modal-contenedor {
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 92vh !important;
+        overflow-y: auto !important;
+        margin: auto 0 !important;
+    }
+
+    /* Botón de cierre más accesible */
+    .branding-modal-cerrar {
+        top: 10px !important;
+        right: 15px !important;
+        font-size: 26px !important;
+        z-index: 20 !important;
+    }
+
+    /* 1. SECCIÓN SUPERIOR: Cabecera con título y marca (Equivalente al recuadro amarillo) */
+    .branding-modal-right {
+        order: 1 !important;
+        flex: none !important;
+        width: 100% !important;
+        padding: 20px 20px 10px 20px !important;
+        background-color: #1a1718 !important;
+    }
+
+    .branding-modal-header {
+        margin-bottom: 5px !important;
+        padding-right: 25px !important;
+    }
+
+    .branding-modal-header h2 {
+        font-size: 18px !important;
+    }
+
+    /* Ocultamos temporalmente la grilla vieja dentro del panel derecho en mobile */
+    .branding-modal-right .branding-modal-grid-scroll {
+        display: none !important;
+    }
+
+    /* 2. SECCIÓN DEL MEDIO: Visualizador principal con zoom táctil (Equivalente al recuadro verde) */
+    .branding-modal-left {
+        order: 2 !important;
+        flex: none !important;
+        width: 100% !important;
+        height: 280px !important;
+        max-height: 280px !important;
+        padding: 15px !important;
+        border-right: none !important;
+        border-bottom: 1px solid #2A2628 !important;
+        background-color: #121011 !important;
+        touch-action: pan-x pan-y; /* Permite hacer zoom y desplazamiento táctil nativo */
+    }
+
+    #macro-img-principal {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+    }
+
+    /* 3. SECCIÓN INFERIOR: Carrusel de miniaturas horizontal (Equivalente al recuadro azul y rojo) */
+    .branding-modal-contenedor::after {
+        content: '';
+        display: block;
+    }
+
+    /* Creamos una barra inferior desplazable para las miniaturas en mobile */
+    .branding-modal-contenedor .mobile-carrusel-miniaturas {
+        order: 3 !important;
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        gap: 10px !important;
+        padding: 15px 20px !important;
+        background-color: #161415 !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        scroll-snap-type: x mandatory;
+    }
+
+    .branding-modal-contenedor .mobile-carrusel-miniaturas .thumb-miniatura {
+        min-width: 70px !important;
+        width: 70px !important;
+        height: 85px !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: start;
+    }
+}
+/* ========================================================================= */
+/* CORRECCIÓN DE ORDEN EN LA MACRO-VENTANA DE BRANDING (MOBILE)              */
+/* ========================================================================= */
+@media (max-width: 991px) {
+    /* Forzamos el orden exacto: 1° Marca, 2° Visualizador, 3° Carrusel inferior */
+    
+    .branding-modal-right {
+        order: 1 !important; /* Cabecera de Marca arriba de todo */
+    }
+
+    .branding-modal-left {
+        order: 2 !important; /* Visualizador principal en el medio */
+    }
+
+    .branding-modal-contenedor .mobile-carrusel-miniaturas {
+        order: 3 !important; /* Carrusel de miniaturas al pie de la ventana */
+    }
+}
+/* ========================================================================= */
+/* MACRO-VENTANA MODAL DE BRANDING (ESTRUCTURA UNIFICADA MOBILE & PC)        */
+/* ========================================================================= */
+.branding-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.branding-modal-overlay.activo {
+    display: flex;
+}
+
+.branding-modal-contenedor {
+    position: relative;
+    background-color: #1a1718;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 1100px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+    overflow: hidden;
+}
+
+.branding-modal-cerrar {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 20;
+    transition: color 0.3s ease;
+}
+
+.branding-modal-cerrar:hover {
+    color: #9FBD2B;
+}
+
+/* Cabecera / Marca */
+.branding-modal-header-mobile-wrap {
+    background-color: #1a1718;
+    padding: 20px 20px 10px 20px;
+}
+
+.branding-modal-header-mobile-wrap h2 {
+    font-size: 20px;
+    color: #FFFFFF;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.branding-modal-header-mobile-wrap span {
+    font-size: 12px;
+    color: #9FBD2B;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+}
+
+/* Visualizador Principal */
+.branding-modal-left {
+    background-color: #121011;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+#macro-img-principal {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #333333;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: transform 0.1s ease-out;
+    transform-origin: center center;
+}
+
+/* Grilla / Carrusel de Miniaturas */
+.branding-modal-grid-scroll {
+    background-color: #1a1718;
+    padding: 15px 20px;
+}
+
+
+/* --- MOBILE STYLES (< 992px) --- */
+@media (max-width: 991px) {
+    .branding-modal-overlay {
+        padding: 10px !important;
+        align-items: flex-start !important;
+        overflow-y: auto !important;
+    }
+
+    .branding-modal-contenedor {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 92vh !important;
+        overflow-y: auto !important;
+        margin: auto 0 !important;
+    }
+
+    /* ORDEN EXACTO MOBILE: 1° Marca, 2° Visualizador, 3° Carrusel */
+    .branding-modal-header-mobile-wrap {
+        order: 1 !important;
+        width: 100% !important;
+    }
+
+    .branding-modal-left {
+        order: 2 !important;
+        width: 100% !important;
+        height: 260px !important;
+        max-height: 260px !important;
+        border-top: 1px solid #2A2628;
+        border-bottom: 1px solid #2A2628;
+        cursor: default;
+    }
+
+    .branding-modal-grid-scroll {
+        order: 3 !important;
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        gap: 10px !important;
+        scroll-snap-type: x mandatory;
+    }
+
+    .branding-modal-grid-scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .branding-modal-grid-scroll .thumb-miniatura {
+        min-width: 70px !important;
+        width: 70px !important;
+        height: 85px !important;
+        flex-shrink: 0 !important;
+        scroll-snap-align: start;
+    }
+}
+
+
+/* --- PC STYLES (>= 992px) --- */
+@media (min-width: 992px) {
+    .branding-modal-contenedor {
+        display: grid !important;
+        grid-template-columns: 1.2fr 1fr !important;
+        grid-template-rows: auto 1fr !important;
+        height: 85vh !important;
+        max-height: 85vh !important;
+    }
+
+    .branding-modal-left {
+        grid-column: 1 !important;
+        grid-row: 1 / 3 !important;
+        border-right: 1px solid #2A2628;
+        padding: 30px;
+        cursor: crosshair;
+    }
+
+    .branding-modal-header-mobile-wrap {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+        padding: 30px 30px 10px 30px !important;
+    }
+
+    .branding-modal-header-mobile-wrap h2 {
+        font-size: 22px !important;
+    }
+
+    .branding-modal-grid-scroll {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+        overflow-y: auto !important;
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 12px !important;
+        padding: 0 30px 30px 30px !important;
+    }
+
+    .branding-modal-grid-scroll .thumb-miniatura {
+        width: 100% !important;
+        aspect-ratio: 4 / 5 !important;
+    }
+}
+
+.thumb-miniatura {
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    background-color: #161415;
+}
+
+.thumb-miniatura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.thumb-miniatura:hover {
+    transform: translateY(-2px);
+    border-color: #9FBD2B;
+}
+
+.thumb-miniatura.activo {
+    border-color: #9FBD2B;
+    box-shadow: 0 0 10px rgba(159, 189, 43, 0.4);
+}
+/* ========================================================================= */
+/* ESTILOS PARA LISTAS ORDENADAS (OL) CON NÚMEROS ESTILO PORTFOLIO           */
+/* ========================================================================= */
+.articulo-texto ol,
+.articulo-cuerpo-contenedor ol {
+    list-style: none; /* Quitamos la numeración nativa del navegador */
+    padding-left: 0;
+    margin-bottom: 25px;
+    counter-reset: item-ol; /* Inicializamos el contador personalizado */
+}
+
+.articulo-texto ol li,
+.articulo-cuerpo-contenedor ol li {
+    position: relative;
+    padding-left: 35px; /* Espacio reservado para el número personalizado */
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #C0C0C0;
+    line-height: 1.8;
+}
+
+.articulo-texto ol li::before,
+.articulo-cuerpo-contenedor ol li::before {
+    content: counter(item-ol, decimal-leading-zero); /* Genera números con cero a la izquierda (ej: 01, 02) o podés usar solo 'decimal' si preferís 1, 2 */
+    counter-increment: item-ol;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    /* Misma fuente y color gris de los números del portfolio (.num-proyecto) */
+    font-size: 0.85rem;
+    color: #888888;
+    font-family: monospace;
+    font-weight: normal;
+}
+
+/* ========================================================================= */
+/* CONTROL DE ESTADO: ÉXITO EN EL FOOTER                                     */
+/* ========================================================================= */
+#mensaje-exito-footer {
+    display: none !important;
+}
+
+/* ========================================================================= */
+/* CORRECCIÓN DEFINITIVA PARA LOS BOTONES DE LAS TARJETAS DE SERVICIOS       */
+/* ========================================================================= */
+.tiendanube_ecommerce .btn-cta,
+.woocommerce_ecommerce .btn-cta,
+.MELI_ecommerce .btn-cta,
+.facebookmarketplace_ecommerce .btn-cta {
+    display: inline-block !important;
+    width: auto !important;
+    margin: 10px auto 20px auto !important; /* Centrado prolijo con espacio arriba y abajo */
+    padding: 8px 20px !important;            /* Tamaño compacto y cómodo */
+    font-size: 0.9rem !important;            /* Letra chica y equilibrada, chau monstruos verdes */
+    text-align: center !important;
+    border-radius: 4px !important;
+}
+
+/* Contenedor o alineación para asegurarnos de que queden bien centrados en la tarjeta */
+.tiendanube_ecommerce,
+.woocommerce_ecommerce,
+.MELI_ecommerce,
+.facebookmarketplace_ecommerce {
+    text-align: center !important;           /* Centra el botón de forma nativa en la tarjeta */
+}
+
+/* Mantenemos el texto y las listas alineadas a la izquierda dentro de la tarjeta, centrando solo el botón */
+.tiendanube_ecommerce h3,
+.tiendanube_ecommerce p,
+.tiendanube_ecommerce ul,
+.woocommerce_ecommerce h3,
+.woocommerce_ecommerce p,
+.woocommerce_ecommerce ul,
+.MELI_ecommerce h3,
+.MELI_ecommerce p,
+.MELI_ecommerce ul,
+.facebookmarketplace_ecommerce h3,
+.facebookmarketplace_ecommerce p,
+.facebookmarketplace_ecommerce ul {
+    text-align: left !important;
+}
+/* ========================================================================= */
+/* CORRECCIÓN DEFINITIVA DE BOTONES EN TARJETAS (MOBILE Y PC)                */
+/* ========================================================================= */
+
+/* Estilo general para pantallas grandes (PC) */
+@media (min-width: 992px) {
+    .tiendanube_ecommerce .btn-cta,
+    .woocommerce_ecommerce .btn-cta,
+    .MELI_ecommerce .btn-cta,
+    .facebookmarketplace_ecommerce .btn-cta {
+        display: inline-block !important;
+        width: auto !important;
+        margin: 0 25px 25px 25px !important;
+        padding: 12px 28px !important;
+        font-size: 1.6rem !important;
+        text-align: center !important;
+    }
+}
+
+/* Estilo específico y controlado para Celulares (Mobile) */
+@media (max-width: 991px) {
+    .tiendanube_ecommerce .btn-cta,
+    .woocommerce_ecommerce .btn-cta,
+    .MELI_ecommerce .btn-cta,
+    .facebookmarketplace_ecommerce .btn-cta {
+        display: block !important;
+        width: calc(100% - 16px) !important; /* Ocupa el ancho prolijo de la tarjeta dejando un pequeño margen */
+        margin: 8px auto 10px auto !important;
+        padding: 8px 10px !important;
+        font-size: 11px !important;          /* Letra chica, prolija y sin desbordes */
+        text-align: center !important;
+        box-sizing: border-box !important;
+    }
+
+    .tiendanube_ecommerce,
+    .woocommerce_ecommerce,
+    .MELI_ecommerce,
+    .facebookmarketplace_ecommerce {
+        text-align: center !important;
+    }
+
+    .tiendanube_ecommerce h3,
+    .tiendanube_ecommerce p,
+    .tiendanube_ecommerce ul,
+    .woocommerce_ecommerce h3,
+    .woocommerce_ecommerce p,
+    .woocommerce_ecommerce ul,
+    .MELI_ecommerce h3,
+    .MELI_ecommerce p,
+    .MELI_ecommerce ul,
+    .facebookmarketplace_ecommerce h3,
+    .facebookmarketplace_ecommerce p,
+    .facebookmarketplace_ecommerce ul {
+        text-align: left !important;
+    }
+}
+/* ========================================================================= */
+/* LIMITAR ANCHO DEL MENÚ DESPLEGABLE EN PC                                  */
+/* ========================================================================= */
+@media (min-width: 992px) {
+    header {
+        position: relative; /* Permite posicionar el menú en base al header y no a toda la pantalla */
+    }
+
+    header nav {
+        width: 320px !important;     /* Ajustá este valor si querés que sea un poco más ancho o angosto */
+        right: 20px !important;      /* Lo alinea prolijamente hacia la derecha, debajo del botón hamburguesa */
+        left: auto !important;
+        border-radius: 6px;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.7);
+    }
+}

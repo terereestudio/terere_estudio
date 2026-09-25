@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tereré estudio - Gestión de Redes Sociales</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/favicon.png">
+</head>
+<body>
+
+    <!--// HEADER //-->
+    <header>
+        <a href="index.html" class="logo-link">
+            <img src="img/logo_blanco_transparente.png" alt="Logo Tereré Estudio">
+        </a>
+        <!-- Botón hamburguesa -->
+        <button class="menu-hamburguesa" id="btn-hamburguesa" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <!-- Menú desplegable aplanado (sin subpestaña "Más") -->
+        <nav id="menu-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!--// MAIN CONTAINER //-->
+    <main>
+
+        <!--// HERO REDES SOCIALES //-->
+        <section id="inicio_redes">
+            <h1>Tu presencia digital</h1>
+            <h1 class="frase-resaltada">en Redes Sociales</h1>
+            <p>Estrategia y diseño para conectar con tu audiencia,<br>crear una comunidad y convertir a tus seguidores en clientes</p>
+        </section>
+
+        <!--// PROCESO REDES SOCIALES //-->
+        <section id="proceso-redes">
+            <div class="columna-imagen">
+                <img src="img/banner_redessociales.jpg" alt="Gestión de Redes Sociales Tereré Estudio">
+            </div>
+            <div class="columna-texto">
+                <h2>Transformamos tus redes en un canal de venta</h2>
+                <p><strong>1. Auditoría, Estrategia y Setup Inicial:</strong> Diagnosticamos tu estado actual, definimos el tono de voz de tu marca, establecemos los pilares de contenido y diseñamos una identidad visual atractiva y profesional.</p>
+                <p><strong>2. Gestión Integral Mensual:</strong> Planificamos el calendario editorial mes a mes, producimos los diseños, sugerimos ideas de contenido y redactamos copies persuasivos orientados a la conversión.</p>
+                <button type="button" class="btn-cta btn-accion-modal" style="width: 100%; text-align: center; margin-top: 10px;">¡Quiero potenciar mis redes!</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!--// MODAL DE CONTACTO //-->
+    <div id="modal-contacto" class="modal-overlay">
+        <div class="modal-content">
+            <button class="modal-cerrar">&times;</button>
+            
+            <div id="contenido-formulario">
+                <h3>Hablemos de tu proyecto</h3>
+                <p>Completá tus datos y nos ponemos en contacto con vos.</p>
+                <form id="form-contacto-modal" action="https://formspree.io/f/mvkolbbj" method="POST">
+                    <div>
+                        <label for="modal-nombre">Nombre</label>
+                        <input type="text" id="modal-nombre" name="nombre" required placeholder="Tu nombre o el de tu marca">
+                    </div>
+                    <div>
+                        <label for="modal-contacto-input">Correo o Teléfono</label>
+                        <input type="text" id="modal-contacto-input" name="contacto" required placeholder="Tu email o número de WhatsApp">
+                    </div>
+                    <div>
+                        <label for="modal-servicio">Servicio de interés</label>
+                        <select id="modal-servicio" name="servicio" required>
+                            <option value="" disabled selected>Seleccioná un servicio...</option>
+                            <option value="redes-sociales" selected>Gestión de Redes Sociales</option>
+                            <option value="landing-page">Desarrollo Web a Medida</option>
+                            <option value="tiendanube">TiendaNube</option>
+                            <option value="woocommerce">WooCommerce</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="modal-comentarios">Comentarios adicionales</label>
+                        <textarea id="modal-comentarios" name="comentarios" rows="3" placeholder="Contame más detalles sobre tus redes actuales..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-cta">Enviar solicitud</button>
+                </form>
+            </div>
+
+            <div id="mensaje-exito" style="display: none; text-align: center; padding: 20px 0;">
+                <img src="img/yacare_gracias.png" alt="Yacaré Tereré agradeciendo" style="max-width: 180px; height: auto; margin: 0 auto 20px auto; display: block;">
+                <h3>¡Muchas gracias!</h3>
+                <p>Recibimos tu consulta. Estaremos en contacto con vos a la brevedad.</p>
+                <button type="button" id="btn-cerrar-exito" class="btn-cta">¡Genial!</button>
+            </div>
+        </div>
+    </div>
+
+    <!--// WHATSAPP FLOTANTE //-->
+    <a href="https://wa.me/5493644328260?text=Hola%20Tereré%20Estudio,%20quiero%20consultar%20sobre%20Gestión%20de%20Redes%20Sociales" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <img src="img/icono_whatsapp.png" alt="WhatsApp Tereré Estudio">
+    </a>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>

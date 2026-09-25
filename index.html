@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tereré estudio</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/favicon.png">
+</head>
+<body>
+
+    <!--// HEADER //-->
+    <header>
+        <a href="index.html" class="logo-link">
+            <img src="img/logo_blanco_transparente.png" alt="Logo Tereré Estudio">
+        </a>
+        <!-- Botón hamburguesa -->
+        <button class="menu-hamburguesa" id="btn-hamburguesa" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <!-- Menú desplegable aplanado (sin subpestaña "Más") -->
+        <nav id="menu-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!--// MAIN CONTAINER //-->
+    <main>
+
+        <!--// HERO INICIO //-->
+        <section id="inicio">
+            <h1>¿Listo para impulsar<br><span id="texto-dinamico" class="frase-cambiante">tu estrategia</span>?</h1>
+            <p>Te ayudamos a potenciar<br>tu ecosistema digital.</p>
+        </section>
+
+        <!--// SECCIÓN SERVICIOS //-->
+        <section id="servicios">
+            <h2>Nuestros Servicios</h2>
+            
+            <a href="ecommerce.html">
+                <div class="servicio-card">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <div class="servicio-info">
+                        <h3>Tu siguiente paso es el comercio electrónico</h3>
+                        <p>Configuración y optimización integral de tu tienda online en plataformas como Tiendanube y MercadoLibre.</p>
+                    </div>
+                    <div class="indicador-hover">
+                        <span>Ver más</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="dashboards.html">
+                <div class="servicio-card">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <div class="servicio-info">
+                        <h3>Tomá decisiones con respaldo estadístico</h3>
+                        <p>Análisis de KPIs, tableros de control y estrategias de pricing para mejorar la rentabilidad de tu negocio.</p>
+                    </div>
+                    <div class="indicador-hover">
+                        <span>Ver más</span>
+                    </div>
+                </div>
+            </a>
+                
+            <a href="redes-sociales.html">
+                <div class="servicio-card">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <div class="servicio-info"> 
+                        <h3>Gestionamos tus redes sociales y su contenido</h3>
+                        <p>Estrategia de contenidos orientada a la conversión y atención directa por canales como WhatsApp.</p>
+                    </div>
+                    <div class="indicador-hover">
+                        <span>Ver más</span>
+                    </div>
+                </div>
+            </a>
+            
+            <a href="landingpage.html">
+                <div class="servicio-card">
+                    <i class="fa-solid fa-bullhorn"></i>
+                    <div class="servicio-info">
+                        <h3>¿Pensaste en tener tu propia página web?</h3>
+                        <p>Desarrollo web a medida, con diseño minimalista, ultra rápido y optimizado en código puro.</p>
+                    </div>
+                    <div class="indicador-hover">
+                        <span>Ver más</span>
+                    </div>
+                </div>
+            </a>
+        </section>
+
+        <!--// SECCIÓN BLOG HOME //-->
+        <section id="seccion-blog-home">
+            <div class="blog-home-contenedor">
+                <span class="etiqueta-autor">Blog & Bitácora Digital</span>
+                <h2>¿Ya visitaste nuestro blog?</h2>
+                <p class="subtitulo-blog">Artículos sobre desarrollo web, estrategia digital y nuestros aprendizajes en el mundo de la programación.</p>
+                
+                <div class="blog-grilla-tarjetas">
+                    
+                    <article class="blog-card" data-categoria="diseno-ux">
+                        <div class="blog-card-img">
+                            <img src="https://fotografias-2.larazon.es/assets/2026/04/google-chrome-para-escritorio-por-fin-permite-pestanas-laterales.jpg?width=1600&height=900" alt="Logos de Google">
+                            <span class="blog-tag-etiqueta">Diseño UX/UI</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <span class="blog-card-fecha">14 Sept 2026</span>
+                            <h2>Rediseñando la mirada</h2>
+                            <p>¿Qué hay detrás del cambio de Google y su salto a la barra lateral?</p>
+                            <a href="blog/cambio_google_pestañas.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-categoria="codigo">
+                        <div class="blog-card-img">
+                            <img src="img/blog/blog_banner_IA_reemplaza_humanos_Gemini_Generated_Image_7uxbmv7uxbmv7uxb.jpg" alt="Código puro">
+                            <span class="blog-tag-etiqueta">Inteligencia Artificial</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <span class="blog-card-fecha">16 Sep 2026</span>
+                            <h2>Entrevista a la IA: ¿Nos van a reemplazar?</h2>
+                            <p>En esta entrevista tendremos respuesta a una de la preguntas más polémicas del siglo XXI según distintas inteligencias artificiales...</p>
+                            <a href="blog/Entrevista_IA/nos_van_a_reemplazar.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
+                        </div>
+                    </article>
+
+                    <article class="blog-card" data-categoria="diseno">
+                        <div class="blog-card-img">
+                            <img src="https://uploads7.wikiart.org/images/ad-reinhardt/study-for-a-painting-1939-1.jpg" alt="Study for a Painting por Ad Reinhardt">
+                            <span class="blog-tag-etiqueta">Diseño UI/UX</span>
+                        </div>
+                        <div class="blog-card-body">
+                            <span class="blog-card-fecha">24 Feb 2026</span>
+                            <h2>Minimalismo en el Diseño Web</h2>
+                            <p>Cómo los detalles sutiles transforman un sitio estático en una experiencia memorable y sofisticada...</p>
+                            <a href="blog/minimalismo_desarrollo_web.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="centrar-boton-blog">
+                    <a href="blog.html" class="btn-visitar-blog">Visitar Blog &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!--// FOOTER INSTITUCIONAL //-->
+        <footer id="contacto" class="footer-estudio">
+            <div class="footer-contenido">
+                <div class="footer-info">
+                    <a href="index.html" class="footer-logo-link">
+                        <img src="img/logo_blanco_transparente.png" alt="Tereré Estudio" class="footer-logo">
+                    </a>
+                    <p>Desarrollo web minimalista, ultra rápido y enfocado en la conversión real de tu negocio.</p>
+                    
+                    <div class="footer-social-ubicacion">
+                        <div class="footer-redes">
+                            <a href="https://instagram.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fa-brands fa-instagram"></i> <span>@terere.ecommerce</span>
+                            </a>
+                            <a href="https://facebook.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fa-brands fa-facebook"></i> <span>@terere.ecommerce</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/leonardo-lavrovic/" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fa-brands fa-linkedin"></i> <span>Leonardo Lavrovic</span>
+                            </a>
+                        </div>
+                        
+                        <div class="footer-ubicacion">
+                            <p><i class="fa-solid fa-location-dot"></i> Corrientes, Argentina</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formulario del Footer con contenedor de inputs y contenedor de éxito integrado -->
+                <form id="form-contacto-footer" action="https://formspree.io/f/mvkolbbj" method="POST">
+                    
+                    <!-- Contenedor de los campos de texto -->
+                    <div id="contenido-formulario-footer">
+                        <h3>Trabajemos juntos</h3>
+                        <p>Dejanos tu mensaje y nos ponemos en contacto.</p>
+                        
+                        <div>
+                            <label for="footer-nombre">Tu nombre</label>
+                            <input type="text" id="footer-nombre" name="nombre" required placeholder="Nombre y Apellido">
+                        </div>
+
+                        <div>
+                            <label for="footer-email">Correo electrónico</label>
+                            <input type="email" id="footer-email" name="email" required placeholder="tu@email.com">
+                        </div>                    
+                        
+                        <div>
+                            <label for="footer-mensaje">Mensaje</label>
+                            <textarea id="footer-mensaje" name="mensaje" rows="4" required placeholder="Comentanos un poco sobre tu idea"></textarea>
+                        </div>
+
+                        <button type="submit">Enviar mensaje</button>
+                    </div>
+
+                    <!-- Contenedor de éxito con el yacaré (arranca oculto) -->
+                    <div id="mensaje-exito-footer" style="display: none; text-align: center; padding: 20px 0;">
+                        <img src="img/yacare_gracias.png" alt="Yacaré Tereré agradeciendo" style="max-width: 180px; height: auto; margin: 0 auto 20px auto; display: block;">
+                        <h3 style="color: #FFFFFF; font-size: 22px; margin-bottom: 12px; font-weight: 700;">¡Muchas gracias!</h3>
+                        <p style="color: #CCCCCC; font-size: 14px; line-height: 1.5; margin-bottom: 25px;">Recibimos tu consulta. Estaremos en contacto con vos a la brevedad.</p>
+                        <button type="button" id="btn-reiniciar-footer" class="btn-cta">¡Genial!</button>
+                    </div>
+
+                </form>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tereré Estudio. Todos los derechos reservados.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!--// WHATSAPP FLOTANTE //-->
+    <a href="https://wa.me/5493644328260?text=Hola%20Tereré%20Estudio,%20quiero%20consultar%20sobre%20sus%20servicios" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <img src="img/icono_whatsapp.png" alt="WhatsApp Tereré Estudio">
+    </a>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>

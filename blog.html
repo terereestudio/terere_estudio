@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tereré estudio - Blog & Bitácora</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="img/favicon.png">
+</head>
+<body class="portfolio-body-editorial">
+
+    <!--// HEADER //-->
+    <header>
+        <a href="index.html" class="logo-link">
+            <img src="img/logo_blanco_transparente.png" alt="Logo Tereré Estudio">
+        </a>
+        <!-- Botón hamburguesa -->
+        <button class="menu-hamburguesa" id="btn-hamburguesa" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <!-- Menú desplegable aplanado (sin subpestaña "Más") -->
+        <nav id="menu-links">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicios">Servicios</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="blog.html">Blog</a>
+            <a href="index.html#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <!--// HERO DEL BLOG CON FILTROS //-->
+    <section class="portfolio-hero-editorial">
+        <div class="hero-editorial-contenido">
+            <span class="etiqueta-autor">Tereré Estudio / Blog & Bitácora</span>
+            <h1>Notas sobre código, diseño y desarrollo.</h1>
+            <p>Pensamientos, tutoriales y reflexiones ordenados por temáticas.</p>
+            
+            <div class="blog-filtro-dropdown">
+                <button type="button" class="btn-filtro-toggle" id="btn-filtro-toggle">
+                    <i class="fa-solid fa-filter"></i> Filtrar entradas <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="blog-filtro-panel" id="blog-filtro-panel">
+                    <div class="grupo-filtro">
+                        <span>Por Tema:</span>
+                        <button class="filtro-tag activo" data-filtro="todos">Todos</button>
+                        <button class="filtro-tag" data-filtro="ia">Inteligencia Artificial</button>
+                        <button class="filtro-tag" data-filtro="desarrollo-web">Desarrollo Web</button>
+                        <button class="filtro-tag" data-filtro="diseno-ux">Diseño UX/UI</button>
+                        <button class="filtro-tag" data-filtro="coding">Coding</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--// GRILLA DE ARTÍCULOS //-->
+    <main class="portfolio-editorial-main">
+        <div class="blog-grilla-tarjetas">
+            
+            <article class="blog-card" data-categoria="diseno-ux">
+                <div class="blog-card-img">
+                    <img src="https://fotografias-2.larazon.es/assets/2026/04/google-chrome-para-escritorio-por-fin-permite-pestanas-laterales.jpg?width=1600&height=900" alt="Logos de Google">
+                    <span class="blog-tag-etiqueta">Diseño UX/UI</span>
+                    <div class="sello-ia-advertencia-img" data-tooltip="TEXTO GENERADO CON IA    PRÁCTICA DE PROMPTING">
+                        <img src="img/rotulo_exceso_IA.png" alt="Exceso de Inteligencia Artificial">
+                    </div>
+                </div>
+                <div class="blog-card-body">
+                    <span class="blog-card-fecha">18 Sept 2026</span>
+                    <h2>Rediseñando la mirada</h2>
+                    <p>¿Qué hay detrás del cambio de Google y su salto a la barra lateral?</p>
+                    <a href="blog/cambio_google_pestañas.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-categoria="ia">
+                <div class="blog-card-img">
+                    <img src="img/blog/blog_banner_IA_reemplaza_humanos_Gemini_Generated_Image_7uxbmv7uxbmv7uxb.jpg" alt="Código puro">
+                    <span class="blog-tag-etiqueta">Inteligencia Artificial</span>
+                </div>
+                <div class="blog-card-body">
+                    <span class="blog-card-fecha">14 Sep 2026</span>
+                    <h2>Entrevista con la IA:<br>¿Nos van a reemplazar?</h2>
+                    <p>En esta entrevista tendremos respuesta a una de la preguntas más polémicas del siglo XXI según distintas inteligencias artificiales</p>
+                    <a href="blog/Entrevista_IA/nos_van_a_reemplazar.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-categoria="diseno-ux">
+                <div class="blog-card-img">
+                    <img src="https://uploads7.wikiart.org/images/ad-reinhardt/study-for-a-painting-1939-1.jpg" alt="Study for a Painting por Ad Reinhardt">
+                    <span class="blog-tag-etiqueta">Diseño UX/UI</span>
+                    <div class="sello-ia-advertencia-img" data-tooltip="TEXTO GENERADO CON IA    PRÁCTICA DE PROMPTING">
+                        <img src="img/rotulo_exceso_IA.png" alt="Exceso de Inteligencia Artificial">
+                    </div>                    
+                </div>
+                <div class="blog-card-body">
+                    <span class="blog-card-fecha">22 Sep 2026</span>
+                    <h2>Minimalismo en el Diseño UX/UI<nav></nav></h2>
+                    <p>Es una filosofía que prioriza la claridad, la función y la experiencia del usuario por encima del ruido visual</p>
+                    <a href="blog/minimalismo_desarrollo_web.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-categoria="coding">
+                <div class="blog-card-img">
+                    <img src="https://www.differencebetween.net/wp-content/uploads/2018/01/Difference-between-Coding-and-Programming.jpg" alt="Imagen con código de programación">
+                    <span class="blog-tag-etiqueta">Coding</span>
+                    <div class="sello-ia-advertencia-img" data-tooltip="TEXTO GENERADO CON IA    PRÁCTICA DE PROMPTING">
+                        <img src="img/rotulo_exceso_IA.png" alt="Exceso de Inteligencia Artificial">
+                    </div>
+                </div>
+                <div class="blog-card-body">
+                    <span class="blog-card-fecha">14 Sep 2026</span>
+                    <h2>¿Qué es el VibeCoding?</h2>
+                    <p>Programar con la IA como puente técnico.</p>
+                    <a href="blog/VibeCoding.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
+                </div>
+            </article>
+
+            <article class="blog-card" data-categoria="coding">
+                <div class="blog-card-img">
+                    <img src="img/blog/blog_banner_programmer_ai_contemplation.jpg" alt="Programador contemplando a la inteligencia artificial">
+                    <span class="blog-tag-etiqueta">Coding</span>
+                    <div class="sello-ia-advertencia-img" data-tooltip="TEXTO GENERADO CON IA    PRÁCTICA DE PROMPTING">
+                        <img src="img/rotulo_exceso_IA.png" alt="Exceso de Inteligencia Artificial">
+                    </div>
+                </div>
+                <div class="blog-card-body">
+                    <span class="blog-card-fecha">15 Sep 2026</span>
+                    <h2>¿Vale la pena aprender <br> a codear en 2026?</h2>
+                    <p>Si estás pensando en aprender a programar hay una pregunta que te frena en seco.</p>
+                    <a href="blog/valepenaaprendercoding.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!--// FOOTER INSTITUCIONAL //-->
+    <footer id="contacto" class="footer-estudio">
+        <div class="footer-contenido">
+            <div class="footer-info">
+                <a href="index.html" class="footer-logo-link">
+                    <img src="img/logo_blanco_transparente.png" alt="Tereré Estudio" class="footer-logo">
+                </a>
+                <p>Desarrollo web minimalista, ultra rápido y enfocado en la conversión real de tu negocio.</p>
+                
+                <div class="footer-social-ubicacion">
+                    <div class="footer-redes">
+                        <a href="https://instagram.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fa-brands fa-instagram"></i> <span>@terere.ecommerce</span>
+                        </a>
+                        <a href="https://facebook.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fa-brands fa-facebook"></i> <span>@terere.ecommerce</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/leonardo-lavrovic/" target="_blank" rel="noopener noreferrer" class="social-link">
+                            <i class="fa-brands fa-linkedin"></i> <span>Leonardo Lavrovic</span>
+                        </a>
+                    </div>
+                    
+                    <div class="footer-ubicacion">
+                        <p><i class="fa-solid fa-location-dot"></i> Corrientes, Argentina</p>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="form-contacto">
+                <h3>Hablemos de tu proyecto</h3>
+                <p>Completá el formulario y nos ponemos en contacto.</p>
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
+                </div>
+                <div>
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                </div>
+                <div>
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" name="mensaje" rows="4" required placeholder="¿Qué proyecto tenés en mente?"></textarea>
+                </div>
+                <button type="submit" class="btn-cta">Enviar mensaje</button>
+            </form>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Tereré Estudio. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!--// WHATSAPP FLOTANTE //-->
+    <a href="https://wa.me/5493644328260?text=Hola%20Tereré%20Estudio,%20quiero%20consultar%20sobre%20su%20blog" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <img src="img/icono_whatsapp.png" alt="WhatsApp Tereré Estudio">
+    </a>
+
+    <script src="js/main.js" defer></script>
+</body>
+</html>
