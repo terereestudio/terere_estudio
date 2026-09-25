@@ -535,100 +535,78 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* ===================================================================== */
-    /* 9. CONTROLADOR DE FORMULARIOS VÍA FETCH (MODAL Y FOOTER)              */
+    /* FORMULARIO DEL FOOTER                                                 */
     /* ===================================================================== */
-    function configurarFormularioFetch(formId, contenidoId, exitoId, botonCerrarId, esModal) {
-        const form = document.getElementById(formId);
-        const contenido = document.getElementById(contenidoId);
-        const exito = document.getElementById(exitoId);
-        const btnCerrarExito = document.getElementById(botonCerrarId);
 
-        if (form && exito) {
-            form.addEventListener("submit", function (e) {
-                e.preventDefault(); // Evita la redirección a Formspree
-                const formData = new FormData(form);
-
-                fetch(form.action, {
-                    method: "POST",
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                })
-                .then(response => {
-                    if (response.ok) {
-                        if (contenido) contenido.style.display = "none";
-                        exito.style.display = "block";
-                        form.reset();
-                    } else {
-                        return response.json().then(data => {
-                            console.error("Error de Formspree:", data);
-                            alert("Hubo un problema al enviar. Revisá los datos e intentá nuevamente.");
-                        });
-                    }
-                })
-                .catch(error => {
-                    console.error("Error de red:", error);
-                    alert("Error de conexión. Verificá tu red.");
-                });
-            });
-
-            if (btnCerrarExito) {
-                btnCerrarExito.addEventListener("click", function () {
-                    if (esModal && modalContacto) {
-                        modalContacto.classList.remove("activo");
-                    }
-                    exito.style.display = "none";
-                    if (contenido) contenido.style.display = "block";
-                });
-            }
-        }
-    }
-
-    // Inicializar Formulario del Modal (Dashboards, Ecommerce, Redes, Landing)
-    configurarFormularioFetch("form-contacto-modal", "contenido-formulario", "mensaje-exito", "btn-cerrar-exito", true);
-
-    // Inicializar Formulario del Footer (Index y otras páginas)
-    configurarFormularioFetch("form-contacto-footer", "contenido-formulario-footer", "mensaje-exito-footer", "btn-reiniciar-footer", false);
-    /* ===================================================================== */
-    /* CONTROLADOR DEFINITIVO PARA EL FORMULARIO DEL FOOTER                  */
-    /* ===================================================================== */
     const formFooter = document.getElementById("form-contacto-footer");
     const contenidoFormFooter = document.getElementById("contenido-formulario-footer");
     const mensajeExitoFooter = document.getElementById("mensaje-exito-footer");
     const btnReiniciarFooter = document.getElementById("btn-reiniciar-footer");
 
-    if (formFooter && mensajeExitoFooter) {
-        formFooter.addEventListener("submit", function (e) {
-            e.preventDefault(); // Detiene totalmente la recarga y la redirección fea
-            const formData = new FormData(formFooter);
+    if (formFooter && contenidoFormFooter && mensajeExitoFooter) {
 
-            fetch(formFooter.action, {
-                method: "POST",
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            })
-            .then(response => {
-                if (response.ok) {
-                    if (contenidoFormFooter) contenidoFormFooter.style.display = "none";
-                    mensajeExitoFooter.style.display = "block";
-                    formFooter.reset();
-                } else {
-                    return response.json().then(data => {
-                        console.error("Error de Formspree:", data);
-                        alert("Hubo un problema al enviar. Revisá los datos.");
-                    });
+        formFooter.addEventListener("submit", async function (e) {
+
+            e.preventDefault();
+
+            const submitButton = formFooter.querySelector('button[type="submit"]');
+
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = "Enviando...";
+            }
+
+            try {
+
+                const response = await fetch(formFooter.action, {
+                    method: "POST",
+                    body: new FormData(formFooter),
+                    headers: {
+                        "Accept": "application/json"
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error("Formspree no pudo procesar el formulario.");
                 }
-            })
-            .catch(error => {
-                console.error("Error de red:", error);
-                alert("Error de conexión. Verificá tu red.");
-            });
+
+                formFooter.reset();
+
+                contenidoFormFooter.hidden = true;
+                mensajeExitoFooter.hidden = false;
+
+            } catch (error) {
+
+                console.error("Error en formulario:", error);
+
+                alert(
+                    "Hubo un problema al enviar el mensaje. " +
+                    "Verificá tu conexión e intentá nuevamente."
+                );
+
+            } finally {
+
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = "Enviar mensaje";
+                }
+
+            }
+
         });
 
+
         if (btnReiniciarFooter) {
+
             btnReiniciarFooter.addEventListener("click", function () {
-                mensajeExitoFooter.style.display = "none";
-                if (contenidoFormFooter) contenidoFormFooter.style.display = "block";
+
+                mensajeExitoFooter.hidden = true;
+                contenidoFormFooter.hidden = false;
+
             });
+
         }
+
     }
+
 });

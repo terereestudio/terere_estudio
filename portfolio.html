@@ -348,56 +348,112 @@
 
     </main>
 
-    <!--// FOOTER INSTITUCIONAL //-->
-    <footer id="contacto" class="footer-estudio">
-        <div class="footer-contenido">
-            <div class="footer-info">
-                <a href="index.html" class="footer-logo-link">
-                    <img src="img/logo_blanco_transparente.png" alt="Tereré Estudio" class="footer-logo">
-                </a>
-                <p>Desarrollo web minimalista, ultra rápido y enfocado en la conversión real de tu negocio.</p>
-                
-                <div class="footer-social-ubicacion">
-                    <div class="footer-redes">
-                        <a href="https://instagram.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i class="fa-brands fa-instagram"></i> <span>@terere.ecommerce</span>
-                        </a>
-                        <a href="https://facebook.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i class="fa-brands fa-facebook"></i> <span>@terere.ecommerce</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/leonardo-lavrovic/" target="_blank" rel="noopener noreferrer" class="social-link">
-                            <i class="fa-brands fa-linkedin"></i> <span>Leonardo Lavrovic</span>
-                        </a>
-                    </div>
+        <!--// FOOTER INSTITUCIONAL //-->
+        <footer id="contacto" class="footer-estudio">
+            <div class="footer-contenido">
+                <div class="footer-info">
+                    <a href="index.html" class="footer-logo-link">
+                        <img src="img/logo_blanco_transparente.png" alt="Tereré Estudio" class="footer-logo">
+                    </a>
+                    <p>Desarrollo web minimalista, ultra rápido y enfocado en la conversión real de tu negocio.</p>
                     
-                    <div class="footer-ubicacion">
-                        <p><i class="fa-solid fa-location-dot"></i> Corrientes, Argentina</p>
+                    <div class="footer-social-ubicacion">
+                        <div class="footer-redes">
+                            <a href="https://instagram.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fa-brands fa-instagram"></i> <span>@terere.ecommerce</span>
+                            </a>
+                            <a href="https://facebook.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fa-brands fa-facebook"></i> <span>@terere.ecommerce</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/leonardo-lavrovic/" target="_blank" rel="noopener noreferrer" class="social-link">
+                                <i class="fa-brands fa-linkedin"></i> <span>Leonardo Lavrovic</span>
+                            </a>
+                        </div>
+                        
+                        <div class="footer-ubicacion">
+                            <p><i class="fa-solid fa-location-dot"></i> Corrientes, Argentina</p>
+                        </div>
                     </div>
                 </div>
+
+                <form id="form-contacto-footer"
+                    action="https://formspree.io/f/mvkolbbj"
+                    method="POST">
+
+                    <!-- ESTADO: FORMULARIO -->
+                    <div id="contenido-formulario-footer" class="footer-form-view">
+
+                        <h3>Trabajemos juntos</h3>
+
+                        <p>
+                            Dejanos tu mensaje y nos ponemos en contacto.
+                        </p>
+
+                        <div class="footer-form-field">
+                            <label for="footer-nombre">Tu nombre</label>
+                            <input
+                                type="text"
+                                id="footer-nombre"
+                                name="nombre"
+                                required
+                                placeholder="Nombre y Apellido"
+                            >
+                        </div>
+
+                        <div class="footer-form-field">
+                            <label for="footer-email">Correo electrónico</label>
+                            <input
+                                type="email"
+                                id="footer-email"
+                                name="email"
+                                required
+                                placeholder="tu@email.com"
+                            >
+                        </div>
+
+                        <div class="footer-form-field">
+                            <label for="footer-mensaje">Mensaje</label>
+                            <textarea
+                                id="footer-mensaje"
+                                name="mensaje"
+                                rows="4"
+                                required
+                                placeholder="Comentanos un poco sobre tu idea"
+                            ></textarea>
+                        </div>
+
+                        <button type="submit">
+                            Enviar mensaje
+                        </button>
+
+                    </div>
+
+
+                    <!-- ESTADO: ÉXITO -->
+                    <div id="mensaje-exito-footer" class="footer-success-view" hidden>
+
+                        <h3>¡Muchas gracias!</h3>
+
+                        <p>
+                            Brevemente estaremos en contacto.
+                        </p>
+
+                        <button
+                            type="button"
+                            id="btn-reiniciar-footer"
+                            class="btn-cta"
+                        >
+                            ¡Genial!
+                        </button>
+
+                    </div>
+
+                </form>
             </div>
-            
-            <form id="form-contacto">
-                <h3>Hablemos de tu proyecto</h3>
-                <p>Completá el formulario y nos ponemos en contacto.</p>
-                <div>
-                    <label for="nombre">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre">
-                </div>
-                <div>
-                    <label for="email">Correo electrónico</label>
-                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
-                </div>
-                <div>
-                    <label for="mensaje">Mensaje</label>
-                    <textarea id="mensaje" name="mensaje" rows="4" required placeholder="¿Qué proyecto tenés en mente?"></textarea>
-                </div>
-                <button type="submit" class="btn-cta">Enviar mensaje</button>
-            </form>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Tereré Estudio. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Tereré Estudio. Todos los derechos reservados.</p>
+            </div>
+        </footer>
 
     <!--// WHATSAPP FLOTANTE //-->
     <a href="https://wa.me/5493644328260?text=Hola%20Tereré%20Estudio,%20quiero%20consultar%20sobre%20su%20portfolio" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">

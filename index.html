@@ -179,38 +179,76 @@
                     </div>
                 </div>
 
-                <!-- Formulario del Footer con contenedor de inputs y contenedor de éxito integrado -->
-                <form id="form-contacto-footer" action="https://formspree.io/f/mvkolbbj" method="POST">
-                    
-                    <!-- Contenedor de los campos de texto -->
-                    <div id="contenido-formulario-footer">
+                <form id="form-contacto-footer"
+                    action="https://formspree.io/f/mvkolbbj"
+                    method="POST">
+
+                    <!-- ESTADO: FORMULARIO -->
+                    <div id="contenido-formulario-footer" class="footer-form-view">
+
                         <h3>Trabajemos juntos</h3>
-                        <p>Dejanos tu mensaje y nos ponemos en contacto.</p>
-                        
-                        <div>
+
+                        <p>
+                            Dejanos tu mensaje y nos ponemos en contacto.
+                        </p>
+
+                        <div class="footer-form-field">
                             <label for="footer-nombre">Tu nombre</label>
-                            <input type="text" id="footer-nombre" name="nombre" required placeholder="Nombre y Apellido">
+                            <input
+                                type="text"
+                                id="footer-nombre"
+                                name="nombre"
+                                required
+                                placeholder="Nombre y Apellido"
+                            >
                         </div>
 
-                        <div>
+                        <div class="footer-form-field">
                             <label for="footer-email">Correo electrónico</label>
-                            <input type="email" id="footer-email" name="email" required placeholder="tu@email.com">
-                        </div>                    
-                        
-                        <div>
-                            <label for="footer-mensaje">Mensaje</label>
-                            <textarea id="footer-mensaje" name="mensaje" rows="4" required placeholder="Comentanos un poco sobre tu idea"></textarea>
+                            <input
+                                type="email"
+                                id="footer-email"
+                                name="email"
+                                required
+                                placeholder="tu@email.com"
+                            >
                         </div>
 
-                        <button type="submit">Enviar mensaje</button>
+                        <div class="footer-form-field">
+                            <label for="footer-mensaje">Mensaje</label>
+                            <textarea
+                                id="footer-mensaje"
+                                name="mensaje"
+                                rows="4"
+                                required
+                                placeholder="Comentanos un poco sobre tu idea"
+                            ></textarea>
+                        </div>
+
+                        <button type="submit">
+                            Enviar mensaje
+                        </button>
+
                     </div>
 
-                    <!-- Contenedor de éxito con el yacaré (arranca oculto) -->
-                    <div id="mensaje-exito-footer" style="display: none; text-align: center; padding: 20px 0;">
-                        <img src="img/yacare_gracias.png" alt="Yacaré Tereré agradeciendo" style="max-width: 180px; height: auto; margin: 0 auto 20px auto; display: block;">
-                        <h3 style="color: #FFFFFF; font-size: 22px; margin-bottom: 12px; font-weight: 700;">¡Muchas gracias!</h3>
-                        <p style="color: #CCCCCC; font-size: 14px; line-height: 1.5; margin-bottom: 25px;">Recibimos tu consulta. Estaremos en contacto con vos a la brevedad.</p>
-                        <button type="button" id="btn-reiniciar-footer" class="btn-cta">¡Genial!</button>
+
+                    <!-- ESTADO: ÉXITO -->
+                    <div id="mensaje-exito-footer" class="footer-success-view" hidden>
+
+                        <h3>¡Muchas gracias!</h3>
+
+                        <p>
+                            Brevemente estaremos en contacto.
+                        </p>
+
+                        <button
+                            type="button"
+                            id="btn-reiniciar-footer"
+                            class="btn-cta"
+                        >
+                            ¡Genial!
+                        </button>
+
                     </div>
 
                 </form>
