@@ -4455,3 +4455,168 @@ a.btn-enlace-verde {
     margin: 0 auto;
     display: block;
 }
+/* ========================================================================= */
+/* AJUSTE V2 — MODAL BRANDING PC                                            */
+/* Galería con scroll vertical real y filas independientes                  */
+/* Solo afecta pantallas de 992px en adelante                              */
+/* ========================================================================= */
+
+@media (min-width: 992px) {
+
+    /* ------------------------------------------------------------- */
+    /* CONTENEDOR PRINCIPAL                                         */
+    /* ------------------------------------------------------------- */
+
+    .branding-modal-contenedor {
+        width: min(92vw, 1280px) !important;
+        height: 88vh !important;
+        max-height: 88vh !important;
+
+        grid-template-columns: 1.05fr 0.95fr !important;
+        grid-template-rows: auto minmax(0, 1fr) !important;
+    }
+
+
+    /* ------------------------------------------------------------- */
+    /* IMAGEN PRINCIPAL                                              */
+    /* ------------------------------------------------------------- */
+
+    .branding-modal-left {
+        grid-column: 1 !important;
+        grid-row: 1 / 3 !important;
+
+        padding: 40px !important;
+
+        border-right: 1px solid #2A2628 !important;
+
+        min-width: 0 !important;
+        min-height: 0 !important;
+    }
+
+
+    /* ------------------------------------------------------------- */
+    /* CABECERA                                                      */
+    /* ------------------------------------------------------------- */
+
+    .branding-modal-header-mobile-wrap {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+
+        padding: 30px 35px 20px 35px !important;
+
+        min-width: 0 !important;
+    }
+
+    .branding-modal-header-mobile-wrap h2 {
+        font-size: 24px !important;
+    }
+
+
+    /* ------------------------------------------------------------- */
+    /* GALERÍA                                                       */
+    /* ------------------------------------------------------------- */
+
+    .branding-modal-grid-scroll {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+
+        display: grid !important;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+
+        /*
+         * CLAVE:
+         * cada fila conserva su altura real
+         */
+        grid-auto-rows: max-content !important;
+
+        /*
+         * Las filas empiezan desde arriba
+         * y no intentan repartirse el espacio disponible.
+         */
+        align-content: start !important;
+
+        gap: 18px !important;
+
+        padding: 0 35px 35px 35px !important;
+
+        /*
+         * El scroll pertenece SOLO a la galería.
+         */
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+
+        /*
+         * Fundamental cuando el Grid está
+         * dentro de otro Grid.
+         */
+        min-height: 0 !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* ------------------------------------------------------------- */
+    /* SCROLLBAR                                                     */
+    /* ------------------------------------------------------------- */
+
+    .branding-modal-grid-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .branding-modal-grid-scroll::-webkit-scrollbar-track {
+        background: #161415;
+        border-radius: 3px;
+    }
+
+    .branding-modal-grid-scroll::-webkit-scrollbar-thumb {
+        background: #333333;
+        border-radius: 3px;
+    }
+
+    .branding-modal-grid-scroll::-webkit-scrollbar-thumb:hover {
+        background: #9FBD2B;
+    }
+
+
+    /* ------------------------------------------------------------- */
+    /* MINIATURAS                                                    */
+    /* ------------------------------------------------------------- */
+
+    .branding-modal-grid-scroll .thumb-miniatura {
+        width: 100% !important;
+
+        /*
+         * Mantenemos proporción.
+         */
+        aspect-ratio: 4 / 5 !important;
+
+        /*
+         * Evita que el navegador intente
+         * comprimir las tarjetas.
+         */
+        height: auto !important;
+        min-height: 0 !important;
+
+        align-self: start !important;
+
+        border-radius: 6px !important;
+
+        box-sizing: border-box !important;
+    }
+
+
+    /* ------------------------------------------------------------- */
+    /* IMAGEN DE CADA MINIATURA                                     */
+    /* ------------------------------------------------------------- */
+
+    .branding-modal-grid-scroll .thumb-miniatura img {
+        width: 100% !important;
+        height: 100% !important;
+
+        object-fit: cover !important;
+
+        display: block !important;
+    }
+
+}
