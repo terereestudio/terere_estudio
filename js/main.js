@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="modal-info-proyecto">
                             <h2>${datos.titulo}</h2>
                             <p>${datos.descripcion}</p>
-                            <a href="${datos.link}" target="_blank" class="modal-link-btn">Visitar proyecto en vivo &rarr;</a>
+                            <a href="${datos.link}" target="_blank" rel="noopener noreferrer"  class="modal-link-btn">Visitar proyecto en vivo &rarr;</a>
                         </div>
                     `;
                     modalProyectoOverlay.classList.add("activo");

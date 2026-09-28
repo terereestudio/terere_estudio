@@ -4620,3 +4620,256 @@ a.btn-enlace-verde {
     }
 
 }
+/* ========================================================================= */
+/* PATCH INDEX.HTML — LIMPIEZA Y ESTABILIZACIÓN                            */
+/* ========================================================================= */
+
+
+/* ------------------------------------------------------------------------- */
+/* 1. HERO HOME                                                             */
+/* ------------------------------------------------------------------------- */
+
+#inicio {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* 2. SERVICIOS                                                             */
+/* ------------------------------------------------------------------------- */
+
+#servicios > a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+#servicios > a:last-child .servicio-card {
+    margin-bottom: 0;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* 3. BLOG HOME                                                             */
+/* ------------------------------------------------------------------------- */
+
+#seccion-blog-home {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.blog-home-contenedor {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.blog-grilla-tarjetas {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.blog-card {
+    min-width: 0;
+}
+
+.blog-card-img img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* 4. FORMULARIO FOOTER                                                     */
+/* ------------------------------------------------------------------------- */
+
+/*
+   Los campos tienen su propia clase.
+   Evitamos aplicar estilos generales a todos los div del formulario.
+*/
+
+.footer-estudio .footer-form-view {
+    width: 100%;
+}
+
+.footer-estudio .footer-form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    margin-bottom: 16px;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* 5. ESTADO DE ÉXITO DEL FORMULARIO                                       */
+/* ------------------------------------------------------------------------- */
+
+/*
+   El atributo hidden controla la visibilidad.
+   JavaScript solo cambia el estado.
+   CSS controla la apariencia.
+*/
+
+.footer-success-view {
+    background-color: #231F20;
+    border: 1px solid #333333;
+    padding: 30px 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.footer-success-view[hidden] {
+    display: none !important;
+}
+
+.footer-success-view h3 {
+    color: #FFFFFF;
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.footer-success-view p {
+    color: #CCCCCC;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.footer-success-view .btn-cta {
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+    display: block;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* 6. ACCESIBILIDAD — FOCUS VISIBLE                                       */
+/* ------------------------------------------------------------------------- */
+
+#servicios > a:focus-visible,
+.blog-card a:focus-visible,
+.btn-visitar-blog:focus-visible,
+.social-link:focus-visible,
+.footer-estudio button:focus-visible,
+.btn-whatsapp:focus-visible,
+.menu-hamburguesa:focus-visible {
+    outline: 2px solid #9FBD2B;
+    outline-offset: 3px;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* 7. REDUCCIÓN DE MOVIMIENTO                                              */
+/* ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .frase-cambiante,
+    .servicio-card,
+    .blog-card,
+    .blog-card-img img,
+    .btn-whatsapp {
+        transition: none;
+    }
+
+    .frase-cambiante.fade-out {
+        transform: none;
+    }
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* 8. AJUSTES RESPONSIVE DEL INDEX                                         */
+/* ------------------------------------------------------------------------- */
+
+@media (max-width: 600px) {
+
+    #servicios {
+        width: 100%;
+    }
+
+    .servicio-card {
+        gap: 15px;
+        padding: 24px 20px;
+    }
+
+    .servicio-card h3 {
+        font-size: 18px;
+    }
+
+    .servicio-card p {
+        font-size: 14px;
+    }
+
+    .indicador-hover {
+        display: none;
+    }
+
+    .blog-home-contenedor {
+        width: 100%;
+    }
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* 9. DESKTOP INDEX                                                        */
+/* ------------------------------------------------------------------------- */
+
+@media (min-width: 992px) {
+
+    #servicios {
+        max-width: 1000px;
+    }
+
+    .blog-home-contenedor {
+        max-width: 1200px;
+    }
+
+}
+
+/* ========================================================================= */
+/* PATCH — BLOG HOME MOBILE                                                 */
+/* Recupera el desplazamiento horizontal de las tarjetas                   */
+/* ========================================================================= */
+
+@media (max-width: 767px) {
+
+    #seccion-blog-home .blog-grilla-tarjetas {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        gap: 15px !important;
+
+        width: 100% !important;
+        max-width: 100% !important;
+
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+
+        padding: 10px 5px 15px 5px !important;
+
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch;
+
+        scrollbar-width: none;
+    }
+
+    #seccion-blog-home .blog-grilla-tarjetas::-webkit-scrollbar {
+        display: none;
+    }
+
+    #seccion-blog-home .blog-grilla-tarjetas .blog-card {
+        flex: 0 0 85% !important;
+        width: 85% !important;
+        min-width: 85% !important;
+
+        scroll-snap-align: center;
+
+        box-sizing: border-box !important;
+    }
+}
