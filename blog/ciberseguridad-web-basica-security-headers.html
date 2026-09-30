@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tereré estudio</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="../img/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="portfolio-body-editorial">
+    <!--// HEADER //-->
+    <header>
+        <a href="../../index.html" class="logo-link">
+            <img src="../img/logo_blanco_transparente.png" alt="Logo Tereré Estudio">
+        </a>
+        <!-- Botón hamburguesa -->
+        <button class="menu-hamburguesa" id="btn-hamburguesa" aria-label="Abrir menú">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <!-- Menú desplegable aplanado (sin subpestaña "Más") -->
+        <nav id="menu-links">
+            <a href="../index.html">Inicio</a>
+            <a href="../index.html#servicios">Servicios</a>
+            <a href="../portfolio.html">Portfolio</a>
+            <a href="../blog.html">Blog</a>
+            <a href="../index.html#contacto">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+
+        <!--// HERO DEL ARTÍCULO //-->
+
+
+        <section class="articulo-hero-editorial">
+
+            <div class="hero-editorial-contenido">
+
+                <!-- COLUMNA PRINCIPAL DEL HERO -->
+                <div class="hero-columna-texto">
+
+                    <span class="etiqueta-autor">
+                        Ciberseguridad web | Desarrollo frontend
+                    </span>
+
+                    <h1>
+                        Ciberseguridad web básica:
+                        cómo protegí mi primera página web
+                        con Security Headers
+                    </h1>
+
+                    <p>
+                        Una primera aproximación a la seguridad web desde la experiencia
+                        de un desarrollador junior.
+                    </p>
+
+                    <a href="../blog.html" class="btn-enlace-verde">
+                        &larr; Volver al Blog
+                    </a>
+
+                </div>
+
+
+                <!-- ÍNDICE DEL ARTÍCULO -->
+                <aside class="indice-flotante-editorial">
+
+                    <div class="indice-header">
+                        <i class="fa-solid fa-list"></i>
+                        <span>En este artículo</span>
+                    </div>
+
+                    <ul class="indice-lista">
+
+                        <li>
+                            <a href="#introduccion">
+                                Mi primera auditoría
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#que-es-ciberseguridad">
+                                ¿Qué es la ciberseguridad web?
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#headers">
+                                Mi primer _headers
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#devtools">
+                                ¿Cómo comprobé que funcionaba?
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#csp">
+                                ¿Y qué pasó con CSP?
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#limites">
+                                ¿Mi web es imposible de hackear?
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#aprendizaje">
+                                El aprendizaje que me llevo
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!--// CUERPO DEL ARTÍCULO //-->
+
+
+        <article class="articulo-cuerpo-contenedor">
+
+            <div class="articulo-texto">
+
+
+                <!-- INTRODUCCIÓN -->
+
+                <section id="introduccion">
+
+                    <p>
+                        Cuando empecé a desarrollar mi sitio web, mi principal preocupación
+                        era bastante sencilla: que funcionara.
+                    </p>
+
+                    <p>
+                        Que el HTML estuviera bien estructurado, que el CSS se viera
+                        correctamente, que JavaScript hiciera lo que tenía que hacer y que
+                        la página se adaptara a celulares y computadoras.
+                    </p>
+
+                    <p>
+                        Pero después apareció una pregunta que, como desarrollador web junior,
+                        considero que todos deberíamos hacernos:
+                    </p>
+
+                    <blockquote>
+                        <p>
+                            ¿Qué pasa con mi página una vez que la publico en Internet?
+                        </p>
+                    </blockquote>
+
+                    <p>
+                        Ahí fue cuando decidí hacer una primera revisión de
+                        <strong>ciberseguridad web básica</strong> sobre mi propio proyecto.
+                    </p>
+
+                    <p>
+                        No soy especialista en ciberseguridad y esta experiencia no pretende
+                        ser una auditoría profesional de seguridad. Es, simplemente, el proceso
+                        que seguí para aprender qué podía mejorar en una página web estática
+                        y qué herramientas podía utilizar para comprobarlo.
+                    </p>
+
+                    <p>
+                        Para esta etapa también utilicé inteligencia artificial como herramienta
+                        de acompañamiento y aprendizaje. La idea no fue simplemente copiar
+                        configuraciones, sino entender <strong>qué estaba haciendo, por qué lo
+                        estaba haciendo y cómo comprobar que realmente funcionaba</strong>.
+                    </p>
+
+                </section>
+
+
+                <!-- ¿QUÉ ES LA CIBERSEGURIDAD? -->
+
+                <section id="que-es-ciberseguridad">
+
+                    <h2>
+                        ¿Qué es la ciberseguridad web?
+                    </h2>
+
+                    <p>
+                        La ciberseguridad web comprende un conjunto muy amplio de prácticas
+                        destinadas a proteger sitios y aplicaciones web, sus usuarios,
+                        datos e infraestructura.
+                    </p>
+
+                    <p>
+                        Para alguien que recién comienza en desarrollo web, puede parecer
+                        un tema enorme. Y realmente lo es.
+                    </p>
+
+                    <p>
+                        Pero también existen algunas medidas relativamente sencillas que
+                        permiten establecer una <strong>primera capa de protección</strong>.
+                    </p>
+
+                    <p>
+                        Una de ellas son los llamados:
+                    </p>
+
+                    <div class="articulo-destacado">
+                        <span class="articulo-destacado-etiqueta">
+                            CONCEPTO
+                        </span>
+
+                        <strong>
+                            HTTP Security Headers
+                        </strong>
+
+                        <p>
+                            Los headers o encabezados HTTP son información que viaja entre
+                            el servidor y el navegador cuando se realiza una solicitud.
+                        </p>
+                    </div>
+
+                    <p>
+                        Por ejemplo, cuando alguien entra a:
+                    </p>
+
+                    <pre class="bloque-codigo"><code>https://terereestudio.com.ar</code></pre>
+
+                    <p>
+                        el navegador solicita los recursos de la página y el servidor
+                        responde con información sobre ese contenido.
+                    </p>
+
+                    <p>
+                        Entre esa información pueden encontrarse determinados headers que
+                        le indican al navegador <strong>cómo debe comportarse frente a esos
+                        recursos</strong>.
+                    </p>
+
+                </section>
+
+
+                <!-- HEADERS -->
+
+                <section id="headers">
+
+                    <h2>
+                        Mi primer <code>_headers</code>
+                    </h2>
+
+                    <p>
+                        Como mi página estaba alojada en <strong>Netlify</strong>, encontré
+                        una solución muy práctica: utilizar un archivo llamado:
+                    </p>
+
+                    <pre class="bloque-codigo"><code>_headers</code></pre>
+
+                    <p>
+                        Este archivo se coloca dentro del directorio que Netlify publica.
+                    </p>
+
+                    <p>
+                        La documentación oficial de Netlify indica que
+                        <code>_headers</code> debe ser un archivo de texto plano y permite
+                        definir headers para determinadas rutas o para todo el sitio.
+                        Para aplicar una regla a todas las páginas se puede utilizar:
+                    </p>
+
+                    <pre class="bloque-codigo"><code>/*</code></pre>
+
+                    <p>
+                        En mi caso, el archivo terminó teniendo una estructura similar a esta:
+                    </p>
+
+
+                    <pre class="bloque-codigo bloque-codigo-destacado"><code>/*
+ X-Content-Type-Options: nosniff
+ Referrer-Policy: strict-origin-when-cross-origin
+ Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+ X-Frame-Options: DENY
+ Strict-Transport-Security: max-age=31536000; includeSubDomains</code></pre>
+
+                    <p>
+                        Cada línea tiene un propósito diferente.
+                    </p>
+
+                </section>
+
+
+                <!-- HSTS -->
+
+                <section id="hsts">
+
+                    <h2>
+                        1. <code>Strict-Transport-Security</code>
+                    </h2>
+
+                    <p>
+                        El primer concepto que incorporé fue <strong>HSTS</strong>, o
+                        HTTP Strict Transport Security.
+                    </p>
+
+                    <p>
+                        La configuración que utilicé fue:
+                    </p>
+
+                    <pre class="bloque-codigo"><code>Strict-Transport-Security:
+ max-age=31536000; includeSubDomains</code></pre>
+
+                    <p>
+                        En términos sencillos, le indica al navegador que, durante el período
+                        indicado, debe utilizar HTTPS para comunicarse con el sitio.
+                    </p>
+
+                    <p>
+                        Esto ayuda a reducir determinados escenarios de ataques de intermediario
+                        (<em>man-in-the-middle</em>) relacionados con conexiones HTTP inseguras.
+                    </p>
+
+                    <div class="articulo-destacado articulo-destacado-verde">
+
+                        <span class="articulo-destacado-etiqueta">
+                            APRENDIZAJE
+                        </span>
+
+                        <p>
+                            En mi caso tenía sentido porque mi sitio ya funcionaba mediante HTTPS.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- CONTENT TYPE -->
+
+                <section id="content-type">
+
+                    <h2>
+                        2. <code>X-Content-Type-Options</code>
+                    </h2>
+
+                    <p>
+                        Después incorporé:
+                    </p>
+
+                    <pre class="bloque-codigo"><code>X-Content-Type-Options: nosniff</code></pre>
+
+                    <p>
+                        Este header le indica al navegador que respete los tipos MIME
+                        declarados y que no intente “adivinar” el tipo de contenido.
+                    </p>
+
+                    <p>
+                        Esto ayuda a evitar determinados problemas de
+                        <strong>MIME sniffing</strong>, en los que un recurso podría ser
+                        interpretado de una manera diferente a la esperada.
+                    </p>
+
+                    <p>
+                        Es una línea pequeña, pero fue una de esas cosas que me hicieron
+                        entender que la seguridad web también consiste en controlar
+                        <strong>cómo interpreta el navegador aquello que recibe</strong>.
+                    </p>
+
+                </section>
+
+
+                <!-- X-FRAME -->
+
+                <section id="frame">
+
+                    <h2>
+                        3. <code>X-Frame-Options</code>
+                    </h2>
+
+                    <p>
+                        Otro de los headers que incorporé fue:
+                    </p>
+
+                    <pre class="bloque-codigo"><code>X-Frame-Options: DENY</code></pre>
+
+                    <p>
+                        Su función es impedir que la página sea mostrada dentro de determinados
+                        elementos de otros sitios, como un <code>&lt;iframe&gt;</code>.
+                    </p>
+
+                    <p>
+                        Una de las amenazas relacionadas con este comportamiento es el
+                        <strong>clickjacking</strong>, donde una página puede intentar engañar
+                        al usuario superponiendo o integrando contenido de manera que no sea
+                        evidente.
+                    </p>
+
+                    <p>
+                        En mi caso, no necesitaba que mi sitio pudiera ser embebido dentro
+                        de otro sitio, así que esta configuración tenía sentido.
+                    </p>
+
+                </section>
+
+
+                <!-- REFERRER -->
+
+                <section id="referrer">
+
+                    <h2>
+                        4. <code>Referrer-Policy</code>
+                    </h2>
+
+                    <p>
+                        También incorporé:
+                    </p>
+
+                    <pre class="bloque-codigo"><code>Referrer-Policy:
+ strict-origin-when-cross-origin</code></pre>
+
+                    <p>
+                        Este header controla qué información de referencia envía el navegador
+                        cuando el usuario navega desde mi sitio hacia otro recurso.
+                    </p>
+
+                    <p>
+                        La política que utilicé permite mantener información de referencia
+                        dentro del mismo origen, mientras que en solicitudes entre diferentes
+                        orígenes limita la información enviada principalmente al origen.
+                    </p>
+
+                    <p>
+                        Antes de estudiar este tema, nunca me había detenido a pensar que
+                        <strong>el navegador también puede estar compartiendo información
+                        contextual sobre la navegación</strong>.
+                    </p>
+
+                </section>
+
+
+                <!-- PERMISSIONS -->
+
+                <section id="permissions">
+
+                    <h2>
+                        5. <code>Permissions-Policy</code>
+                    </h2>
+
+                    <p>
+                        Finalmente agregué:
+                    </p>
+
+                    <pre class="bloque-codigo"><code>Permissions-Policy:
+ camera=(), microphone=(), geolocation=(), payment=()</code></pre>
+
+                    <p>
+                        La idea es restringir determinadas capacidades del navegador que
+                        mi página no necesita.
+                    </p>
+
+                    <p>
+                        En mi caso no necesito acceder a:
+                    </p>
+
+                    <ul>
+
+                        <li>cámara;</li>
+                        <li>micrófono;</li>
+                        <li>ubicación;</li>
+                        <li>APIs relacionadas con pagos.</li>
+
+                    </ul>
+
+                    <p>
+                        Por lo tanto, tiene sentido indicarle al navegador que esas capacidades
+                        no están permitidas para mi sitio.
+                    </p>
+
+                    <p>
+                        No significa que esto convierta automáticamente una página en
+                        “segura”, pero sí establece límites adicionales sobre las capacidades
+                        que puede utilizar el contenido web.
+                    </p>
+
+                </section>
+
+
+                <!-- DEVTOOLS -->
+
+                <section id="devtools">
+
+                    <h2>
+                        ¿Cómo comprobé que realmente funcionaba?
+                    </h2>
+
+                    <p>
+                        Esta fue probablemente una de las partes que más me interesó
+                        como desarrollador.
+                    </p>
+
+                    <p>
+                        No quería simplemente agregar el archivo y asumir que estaba funcionando.
+                    </p>
+
+                    <p>
+                        Después de hacer el deploy en Netlify, abrí mi página en Google Chrome
+                        y utilicé:
+                    </p>
+
+                    <div class="pasos-devtools">
+
+                        <span>Chrome DevTools</span>
+                        <strong>&rarr;</strong>
+                        <span>Network</span>
+                        <strong>&rarr;</strong>
+                        <span>Documento principal</span>
+                        <strong>&rarr;</strong>
+                        <span>Headers</span>
+
+                    </div>
+
+                    <p>
+                        Ahí pude observar los headers que realmente estaba enviando el servidor.
+                    </p>
+
+                    <pre class="bloque-codigo bloque-codigo-resultados"><code>Strict-Transport-Security:
+ max-age=31536000; includeSubDomains
+
+ X-Content-Type-Options:
+ nosniff
+
+ X-Frame-Options:
+ DENY
+
+ Referrer-Policy:
+ strict-origin-when-cross-origin
+
+ Permissions-Policy:
+ camera=(), microphone=(), geolocation=(), payment=()</code></pre>
+
+                    <p>
+                        Fue un aprendizaje importante porque entendí la diferencia entre:
+                    </p>
+
+                    <blockquote>
+                        <p>
+                            “Configuré algo en mi proyecto.”
+                        </p>
+                    </blockquote>
+
+                    <p>
+                        y:
+                    </p>
+
+                    <blockquote>
+                        <p>
+                            “Comprobé que esa configuración llegó realmente al navegador.”
+                        </p>
+                    </blockquote>
+
+                    <p>
+                        Las DevTools del navegador se convirtieron así en una herramienta
+                        fundamental para verificar mi trabajo.
+                    </p>
+
+                </section>
+
+
+                <!-- CSP -->
+
+                <section id="csp">
+
+                    <h2>
+                        ¿Y qué pasó con Content Security Policy?
+                    </h2>
+
+                    <p>
+                        Durante esta primera etapa también llegué a otro concepto muy importante:
+                    </p>
+
+                    <!--<div class="articulo-destacado">
+
+                        <span class="articulo-destacado-etiqueta">
+                            PRÓXIMO TEMA
+                        </span>
+
+                        <strong>
+                            Content Security Policy (CSP)
+                        </strong>
+
+                    </div>-->
+
+                    <p>
+                        La CSP permite establecer qué orígenes y tipos de recursos puede cargar
+                        una página y constituye una capa adicional de defensa frente a determinados
+                        ataques, entre ellos algunos escenarios de XSS e inyección de contenido.
+                    </p>
+
+                    <p>
+                        Sin embargo, decidí <strong>no aplicar inmediatamente una CSP restrictiva</strong>.
+                    </p>
+
+                    <p>
+                        Primero la configuré en modo:
+                    </p>
+
+                    <pre class="bloque-codigo"><code>Content-Security-Policy-Report-Only</code></pre>
+
+                    <p>
+                        Este modo permite observar posibles violaciones de la política sin
+                        bloquear inmediatamente los recursos.
+                    </p>
+
+                    <p>
+                        Me pareció una buena oportunidad para aprender algo más importante
+                        que simplemente agregar una línea de configuración:
+                    </p>
+
+                    <blockquote>
+                        <p>
+                            En seguridad, antes de bloquear cosas en producción, conviene
+                            entender qué estás bloqueando.
+                        </p>
+                    </blockquote>
+
+                    <p>
+                        La experiencia completa con CSP merece una entrada propia, así que
+                        será tema de un próximo artículo.
+                    </p>
+
+                </section>
+
+
+                <!-- LIMITACIONES -->
+
+                <section id="limites">
+
+                    <h2>
+                        ¿Esto significa que mi web es imposible de hackear?
+                    </h2>
+
+                    <p>
+                        No.
+                    </p>
+
+                    <p>
+                        Y esta fue otra de las cosas importantes que aprendí.
+                    </p>
+
+                    <p>
+                        Agregar Security Headers <strong>no convierte una página web en inexpugnable</strong>.
+                    </p>
+
+                    <p>
+                        La seguridad depende de muchas capas:
+                    </p>
+
+                    <ul>
+
+                        <li>código;</li>
+                        <li>dependencias;</li>
+                        <li>infraestructura;</li>
+                        <li>formularios;</li>
+                        <li>cuentas;</li>
+                        <li>contraseñas;</li>
+                        <li>autenticación;</li>
+                        <li>servidor;</li>
+                        <li>proveedores externos;</li>
+                        <li>configuración;</li>
+                        <li>actualizaciones;</li>
+                        <li>comportamiento del usuario.</li>
+
+                    </ul>
+
+                    <p>
+                        En mi caso, además de trabajar sobre la web, protegí las cuentas
+                        relacionadas con el proyecto mediante <strong>autenticación de dos
+                        factores (2FA)</strong>.
+                    </p>
+
+                    <p>
+                        Por eso prefiero pensar en seguridad como un proceso de
+                        <strong>reducción de riesgos</strong>, no como una garantía absoluta.
+                    </p>
+
+                </section>
+
+
+                <!-- APRENDIZAJE -->
+
+                <section id="aprendizaje">
+
+                    <h2>
+                        Lo que me llevo de esta experiencia
+                    </h2>
+
+                    <p>
+                        Probablemente el aprendizaje más importante no fue memorizar cinco headers.
+                    </p>
+
+                    <p>
+                        Fue cambiar ligeramente mi forma de pensar como desarrollador. Después de esta experiencia empecé a pensar así:
+                    </p>
+
+                    <blockquote>
+                        <p>
+                            “Mi página funciona, está publicada y ahora quiero entender
+                            qué sucede cuando un navegador la recibe.”
+                        </p>
+                    </blockquote>
+
+                    <p>
+                        Aprendí a revisar los headers HTTP, utilizar Chrome DevTools,
+                        configurar <code>_headers</code> en Netlify y comprobar directamente
+                        en producción el resultado.
+                    </p>
+
+                    <p>
+                        También aprendí que no hace falta comenzar siendo especialista
+                        en ciberseguridad para incorporar <strong>buenas prácticas de
+                        seguridad desde las primeras etapas de un proyecto</strong>.
+                    </p>
+
+                    <p>
+                        Esta fue solamente mi primera aproximación.
+                    </p>
+
+                    <p>
+                        Y justamente por eso decidí documentarla.
+                    </p>
+
+                </section>
+
+
+                <!-- TERERÉ ESTUDIO -->
+
+                <section class="articulo-cierre">
+
+                    <div class="articulo-destacado articulo-destacado-verde">
+
+                        <span class="articulo-destacado-etiqueta">
+                            TERERÉ ESTUDIO
+                        </span>
+
+                        <p>
+                            En tereré estudio creo que desarrollar una página web no consiste
+                            solamente en hacer que se vea bien.
+                        </p>
+
+                        <p>
+                            También implica pensar en:
+                        </p>
+
+                        <p class="articulo-palabras-clave">
+                            <strong>
+                                rendimiento · accesibilidad · seguridad · responsive · SEO · mantenimiento
+                            </strong>
+                        </p>
+
+                        <p>
+                            Y seguir aprendiendo después de publicar.
+                        </p>
+
+                    </div>
+
+                    <p>
+                        Esta auditoría fue una pequeña parte de ese proceso.
+                    </p>
+
+                    <!--<p>
+                        <strong>Próximo artículo:</strong> Content Security Policy (CSP):
+                        qué es, cómo funciona y cómo la probé en modo
+                        <code>Report-Only</code>.
+                    </p>-->
+
+                </section>
+
+
+                <!-- FUENTES -->
+
+                <section class="articulo-fuentes">
+
+                    <h3>
+                        Fuentes y recursos
+                    </h3>
+
+                    <ul>
+
+                        <li>
+                            <a href="https://docs.netlify.com/manage/routing/headers/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                                Documentación oficial de Netlify — Headers
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Headers_Cheat_Sheet.html"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                                OWASP — HTTP Headers Cheat Sheet
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://cheatsheetseries.owasp.org/cheatsheets/HTTP_Strict_Transport_Security_Cheat_Sheet.html"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                                OWASP — HTTP Strict Transport Security
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="https://cheatsheetseries.owasp.org/cheatsheets/Content_Security_Policy_Cheat_Sheet.html"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                                OWASP — Content Security Policy
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </section>
+
+
+                <!-- VOLVER AL BLOG -->
+
+                <a href="../blog.html" class="btn-enlace-verde">
+                    &larr; Volver al Blog
+                </a>
+
+            </div>
+
+        </article>
+
+    </main>
+    <script src="../js/main.js" defer></script>
+</body>
+</html>

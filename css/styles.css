@@ -1709,8 +1709,8 @@ a.btn-enlace-verde:hover,
 }
 
 .articulo-fuentes {
-    margin-top: 50px;
-    padding-top: 30px;
+    margin-top: 30px;
+    padding-top: 40px;
     border-top: 1px solid #2A2628;
 }
 
@@ -4872,4 +4872,331 @@ a.btn-enlace-verde {
 
         box-sizing: border-box !important;
     }
+}
+/* ========================================================================= */
+/* CIBERSEGURIDAD — BLOQUES EDUCATIVOS DEL ARTÍCULO                        */
+/* ========================================================================= */
+
+/* ------------------------------------------------------------------------- */
+/* CÓDIGO                                                                   */
+/* ------------------------------------------------------------------------- */
+
+.bloque-codigo {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    margin: 20px 0 30px 0;
+    padding: 18px 20px;
+
+    background-color: #161415;
+    border: 1px solid #333333;
+    border-left: 3px solid #9FBD2B;
+
+    border-radius: 6px;
+
+    color: #C8D68A;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+    line-height: 1.7;
+
+    overflow-x: auto;
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+
+/* Código inline */
+
+.articulo-texto code {
+    background-color: #292526;
+    color: #9FBD2B;
+
+    padding: 2px 6px;
+
+    border-radius: 4px;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 0.9em;
+}
+
+
+/* Evitamos que el código dentro de PRE herede el fondo
+   del código inline */
+
+.articulo-texto pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* BLOQUE DE CÓDIGO DESTACADO                                                */
+/* ------------------------------------------------------------------------- */
+
+.bloque-codigo-destacado {
+    border-left-width: 4px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #161415 0%,
+            #1D1A1B 100%
+        );
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* RESULTADOS DE DEVTOOLS                                                    */
+/* ------------------------------------------------------------------------- */
+
+.bloque-codigo-resultados {
+    color: #D5D5D5;
+    border-left-color: #666666;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* BLOQUES DESTACADOS                                                        */
+/* ------------------------------------------------------------------------- */
+
+.articulo-destacado {
+    margin: 30px 0;
+
+    padding: 24px;
+
+    background-color: #231F20;
+
+    border: 1px solid #333333;
+    border-left: 4px solid #9FBD2B;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.articulo-destacado strong {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #FFFFFF;
+
+    font-size: 21px;
+}
+
+.articulo-destacado p {
+    margin-bottom: 10px;
+}
+
+
+/* Variante verde */
+
+.articulo-destacado-verde {
+    border-left-color: #9FBD2B;
+
+    background-color: #1B1E18;
+}
+
+
+/* Etiqueta pequeña */
+
+.articulo-destacado-etiqueta {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #9FBD2B;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* BLOCKQUOTES                                                               */
+/* ------------------------------------------------------------------------- */
+
+.articulo-texto blockquote {
+    position: relative;
+
+    margin: 30px 0;
+
+    padding: 22px 25px 22px 28px;
+
+    background-color: #1B191A;
+
+    border-left: 3px solid #9FBD2B;
+
+    color: #FFFFFF;
+
+    border-radius: 0 6px 6px 0;
+}
+
+.articulo-texto blockquote p {
+    margin: 0;
+
+    color: #E0E0E0;
+
+    font-size: 18px;
+    line-height: 1.7;
+
+    font-style: italic;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* PASOS DEVTOOLS                                                            */
+/* ------------------------------------------------------------------------- */
+
+.pasos-devtools {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin: 30px 0;
+
+    padding: 20px;
+
+    background-color: #161415;
+
+    border: 1px solid #333333;
+
+    border-radius: 8px;
+
+    color: #CCCCCC;
+
+    font-size: 14px;
+}
+
+.pasos-devtools span {
+    padding: 7px 10px;
+
+    background-color: #231F20;
+
+    border: 1px solid #333333;
+
+    border-radius: 4px;
+}
+
+.pasos-devtools span:nth-of-type(2),
+.pasos-devtools span:nth-of-type(4) {
+    color: #9FBD2B;
+}
+
+.pasos-devtools strong {
+    color: #666666;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* PALABRAS CLAVE DEL CIERRE                                                 */
+/* ------------------------------------------------------------------------- */
+
+.articulo-palabras-clave {
+    color: #9FBD2B !important;
+
+    font-size: 17px !important;
+
+    letter-spacing: 0.3px;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* ENLACES DE FUENTES                                                        */
+/* ------------------------------------------------------------------------- */
+
+.articulo-fuentes a {
+    color: #9FBD2B;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.articulo-fuentes a:hover {
+    color: #C8D68A;
+
+    text-decoration: underline;
+}
+
+
+/* ------------------------------------------------------------------------- */
+/* MOBILE                                                                    */
+/* ------------------------------------------------------------------------- */
+
+@media (max-width: 991px) {
+
+    .bloque-codigo {
+        padding: 15px;
+
+        font-size: 12px;
+
+        border-radius: 5px;
+    }
+
+    .articulo-destacado {
+        padding: 20px;
+
+        margin: 25px 0;
+    }
+
+    .articulo-destacado strong {
+        font-size: 19px;
+    }
+
+    .articulo-texto blockquote {
+        padding: 18px 20px;
+    }
+
+    .articulo-texto blockquote p {
+        font-size: 16px;
+    }
+
+    .pasos-devtools {
+        justify-content: flex-start;
+
+        align-items: stretch;
+
+        flex-direction: column;
+
+        text-align: center;
+    }
+
+    .pasos-devtools strong {
+        transform: rotate(90deg);
+
+        align-self: center;
+    }
+
+}
+
+.articulo-texto h2 {
+    margin-top: 20px !important;
+    margin-bottom: 12px !important;
+}
+
+.articulo-texto section {
+    margin-top: 0 !important;
+    margin-bottom: 60px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.articulo-texto .articulo-fuentes {
+    padding-top: 40px !important;
 }
