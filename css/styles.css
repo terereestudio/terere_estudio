@@ -2085,10 +2085,42 @@ a.btn-enlace-verde:hover,
     margin: 0 auto;
 }
 
-/* Sello "CSS Válido" del W3C */
-.footer-bottom .sello-w3c {
-    margin-top: 12px;
-    line-height: 0;   /* evita espacio extra debajo de la imagen */
+/* ========================================================================= */
+/* SELLOS DE VALIDACIÓN W3C (HTML y CSS) EN EL FOOTER DEL INICIO             */
+/* Celular: debajo del formulario, centrados.                                */
+/* PC: abajo de la columna izquierda, alineados con el final del formulario. */
+/* ========================================================================= */
+.footer-validadores {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+
+.footer-validadores a {
+    display: block;
+    line-height: 0;
+}
+
+.footer-validadores img {
+    display: block;
+    border: 0;
+    width: 88px;
+    height: 31px;
+}
+
+@media (min-width: 992px) {
+    /* El footer sigue siendo flex como siempre; los sellos se ubican
+       abajo a la izquierda, a la altura del final del formulario */
+    .footer-con-validadores {
+        position: relative;
+    }
+
+    .footer-con-validadores .footer-validadores {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        justify-content: flex-start;
+    }
 }
 
 
