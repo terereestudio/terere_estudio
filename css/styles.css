@@ -2085,6 +2085,12 @@ a.btn-enlace-verde:hover,
     margin: 0 auto;
 }
 
+/* Sello "CSS Válido" del W3C */
+.footer-bottom .sello-w3c {
+    margin-top: 12px;
+    line-height: 0;   /* evita espacio extra debajo de la imagen */
+}
+
 
 /* ========================================================================= */
 /* BOTÓN WHATSAPP FLOTANTE - AJUSTADO PARA MOBILE                            */
