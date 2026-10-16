@@ -298,12 +298,13 @@ header nav a.active {
     line-height: 1.4;
     border: 2px solid #ffffff;
     box-shadow: 0 10px 25px rgba(0,0,0,0.8);
-    pointer-events: none;
+    visibility: hidden;         /* mientras está oculto no tapa ni recibe clics */
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .tooltip-ia-global.activo {
+    visibility: visible;
     opacity: 1;
 }
 
@@ -481,7 +482,6 @@ a.btn-enlace-verde:hover,
     border: 1px solid #444444;
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     transition: all 0.3s ease;
-    pointer-events: none;
 }
 
 .indicador-hover span {
@@ -1072,7 +1072,7 @@ a.btn-enlace-verde:hover,
     height: 200px;
     border-radius: 8px;
     overflow: hidden;
-    pointer-events: none;
+    visibility: hidden;         /* mientras está oculto no tapa ni recibe clics */
     opacity: 0;
     transform: scale(0.8) translate(-50%, -50%);
     transition: opacity 0.2s ease, transform 0.2s ease;
@@ -1082,6 +1082,7 @@ a.btn-enlace-verde:hover,
 }
 
 .cursor-preview-img.activo {
+    visibility: visible;
     opacity: 1;
     transform: scale(1) translate(-50%, -50%);
 }
@@ -5167,4 +5168,29 @@ a.btn-enlace-verde {
 
 .articulo-texto .articulo-fuentes {
     padding-top: 40px !important;
+}
+/* ========================================================================= */
+/* ÍCONOS SVG (reemplazan a Font Awesome, que ya no se carga desde cdnjs)    */
+/* Íconos: Font Awesome Free 6.4.0 - fontawesome.com - Licencia CC BY 4.0    */
+/* ========================================================================= */
+.fa-solid,
+.fa-brands {
+    display: inline-flex;
+    justify-content: center;
+    font-style: normal;
+    line-height: 1;
+    vertical-align: -0.125em;   /* misma ubicación que tenía la fuente de íconos */
+}
+
+.fa-solid svg,
+.fa-brands svg {
+    height: 1em;
+    width: auto;
+    overflow: visible;
+}
+
+/* Botón del podcast: el JS alterna las clases fa-play / fa-pause */
+#icono-audio.fa-play .ico-pause,
+#icono-audio.fa-pause .ico-play {
+    display: none;
 }

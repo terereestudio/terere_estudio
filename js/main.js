@@ -241,7 +241,8 @@ document.addEventListener("DOMContentLoaded", function () {
             tooltipGlobal.classList.add("activo");
             
             const rect = sello.getBoundingClientRect();
-            tooltipGlobal.style.top = `${rect.top - 50}px`;
+            // Se ubica justo arriba del sello, sin taparlo (así no parpadea al pasar el mouse)
+            tooltipGlobal.style.top = `${rect.top - tooltipGlobal.offsetHeight - 8}px`;
             tooltipGlobal.style.left = `${rect.left - 160}px`;
         });
 
