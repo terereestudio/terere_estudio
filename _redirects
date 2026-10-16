@@ -1,0 +1,10 @@
+# Las páginas de servicios de la v1 ahora son una sección del inicio
+/ecommerce.html        /#servicios   301
+/landingpage.html      /#servicios   301
+/redes-sociales.html   /#servicios   301
+/dashboards.html       /#tablero     301
+/jardinrecursos.html   /             301
+
+# Archivos de trabajo que no hace falta publicar
+/src/*                 /404.html     404
+/build.mjs             /404.html     404

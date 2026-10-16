@@ -1,66 +1,72 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tereré estudio - ¿Qué es el VibeCoding?</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="icon" href="../img/favicon.png">
-    <title>El contexto en la inteligencia artificial: por qué importa y cómo administrarlo | tereré estudio</title>
-    <!-- URL sugerida -->
-    <!-- /blog/contexto-inteligencia-artificial -->
-    <meta 
-        name="description" 
-        content="Qué es el contexto en la inteligencia artificial, cómo influyen las conversaciones, imágenes, documentos, código y videos, y por qué aprender a administrar la información puede mejorar nuestro trabajo con IA."
-    >
-        <!-- Categorías -->
-    <meta name="category" content="Inteligencia Artificial, Tecnología, Desarrollo Web">
-    <!-- Autor -->
-    <meta name="author" content="tereré estudio">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contexto: la nueva moneda de la inteligencia artificial | Tereré Estudio</title>
+<meta name="description" content="No todo lo que le damos a una IA vale lo mismo. Entender cómo funciona el contexto puede cambiar completamente la forma en que trabajamos con ella.">
+<link rel="canonical" href="https://terereestudio.com.ar/blog/contexto-inteligencia-artificial.html">
+
+<meta name="theme-color" content="#161415">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Tereré Estudio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Contexto: la nueva moneda de la inteligencia artificial | Tereré Estudio">
+<meta property="og:description" content="No todo lo que le damos a una IA vale lo mismo. Entender cómo funciona el contexto puede cambiar completamente la forma en que trabajamos con ella.">
+<meta property="og:url" content="https://terereestudio.com.ar/blog/contexto-inteligencia-artificial.html">
+<meta property="og:image" content="https://terereestudio.com.ar/img/marca/og-terere-estudio.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../img/marca/isotipo-verde.svg" type="image/svg+xml">
+<link rel="icon" href="../img/marca/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../img/marca/apple-touch-icon.png">
+<link rel="stylesheet" href="../css/estilos.css">
+<script src="../js/main.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","headline":"Contexto: la nueva moneda de la inteligencia artificial","description":"No todo lo que le damos a una IA vale lo mismo. Entender cómo funciona el contexto puede cambiar completamente la forma en que trabajamos con ella.","datePublished":"2026-10-08","image":"https://terereestudio.com.ar/img/blog/robot.webp","url":"https://terereestudio.com.ar/blog/contexto-inteligencia-artificial.html","inLanguage":"es-AR","author":{"@type":"Person","name":"Leonardo Lavrovic","url":"https://terereestudio.com.ar/sobre-mi.html"},"publisher":{"@type":"Organization","name":"Tereré Estudio","url":"https://terereestudio.com.ar"}}</script>
+
 </head>
-<body class="portfolio-body-editorial">
+<body class="">
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="encabezado">
+  <div class="encabezado-interior">
+    <a class="marca" href="../index.html" aria-label="Tereré Estudio, ir al inicio">
+      <svg class="iso" fill="currentColor" viewBox="0 0 325.8 202.8" aria-hidden="true"><path fill-rule="evenodd" d="M324 42.9L323.1 41L322.1 37L320.6 33.8L317.2 27.7L315 24.5L312.2 21.1L308.8 17.7L303 12.8L300.7 11.5L299.3 10.2L288.8 5.3L281.7 3L274.4 1L271.8 0.7L269.9 0L273.7 3.7L280.4 11.1L283.8 15.7L285.6 19.1L286.6 20.3L287.8 23.7L289.4 26.8L291 32.8L291.2 40.5L290.6 42.5L290.5 44.3L289.4 46.7L289.4 48.1L288.9 48.4L288.5 49.8L287.1 52.2L286.1 53.2L284.7 56L281.9 59.3L280.9 60.1L279.2 60.1L277 58.4L275.5 57.8L274.5 56.8L273 56.2L268.2 53.1L266 52.1L260 48L258.1 47.2L256.4 45.8L254.9 45.6L256.6 53.4L256.8 56L257.3 56.8L257.8 60.7L258.4 62.5L258.7 65.5L259.3 67.1L259.6 70.7L260.4 71.9L260.5 73.8L260.1 74.7L259.5 74.5L258.3 73.2L255.8 71.4L244.9 60.6L240 56.2L238.4 55.2L238.3 62.3L237.8 68.1L237.4 85.4L237.1 85.7L235.9 84.5L234.2 81.9L233.3 80L229.3 74.2L221.7 61.8L221.1 61.5L220.4 62.3L220 64.4L218.5 68L218.2 70.4L217.5 71.7L216.6 75.2L215.8 77L214.7 82L213.9 83.6L213 87.9L212.4 89.4L211.5 89.5L210.5 87.7L208.9 83.2L208.4 82.6L204.5 73.1L202.6 69.3L201.7 66.3L201 64.9L200.5 64.6L198.4 68.6L198 70.6L196.9 71.4L196.9 72.4L196.3 74.1L193.4 79.4L192.8 81.7L191.9 82.5L192 83.3L190.2 86.5L189.2 89L188.4 89.9L188.3 90.8L187.8 91.4L186.8 91.7L185.8 89.1L184.4 79.9L183.7 78.2L182.8 71.4L182 69.4L180.8 62.9L180 63.2L178 66.1L175.9 68.4L175.4 69.5L173.2 72.1L172 74.1L170.1 76.1L164.8 83.2L163.2 84.9L162.8 86L160.9 87.9L160.3 87.9L159.8 87.5L159.4 85.6L158.8 75L158.1 70.2L157.4 59.7L149.9 66.9L149.7 67.4L143.1 73.8L137.6 79.7L136.1 80.9L135 81.1L133.4 80.3L129.6 79.3L123.4 76.6L121.5 76.2L118.7 74.7L115.8 73.8L115.3 73.3L115.2 72.8L115.8 72.2L118 71.2L120.3 69.4L123.5 65.8L124.4 63.8L125.3 58.8L125.1 55L123.7 51.6L121.1 48.1L118.4 45.6L116 44.5L112.4 43.5L107.1 43.2L103.1 43.9L102.6 44.4L101.2 44.8L100.8 45.3L98.4 46.4L96.2 48.3L94 51.5L92.9 53.9L92.7 57L92.2 58.8L92.2 60.5L92.9 61.5L92.9 62.4L92.6 62.9L91.5 62.8L81.7 57.7L80.9 56.9L81.2 56.3L82.5 56.1L86 54.4L88.5 52.7L92.5 46.9L93 43.3L92.6 37.1L91 33.8L89.2 31.6L87 29.6L82 27.1L78.5 26.4L72.9 26.6L68.4 28.4L65.1 31.1L63.1 33.3L61.1 38.1L60.4 44.8L59.4 45.1L57.9 43.9L52 40.9L48.2 38L46.4 37.1L40.4 32.2L39.4 31.7L31 23.3L23.9 14.4L18.8 9.6L16.8 8.6L13.9 7.8L11.2 7.7L9 8.2L6.3 9.6L2.9 13L0.8 18.1L0 25.9L0.7 28L0.8 29.9L3.7 34.6L3.6 35.6L2.5 37.5L1.8 40.7L1.8 46.8L2.5 48.7L2.6 50.3L3.5 51.6L3.7 53.4L4.8 55.8L5.7 56.5L6.4 55.6L7.3 52.7L9.6 48.1L12.3 44.7L12.8 44.4L13.9 44.5L15.2 45.7L15.2 46.7L12.6 51.5L12.4 56.4L12.6 61.3L15.7 68.9L16.3 69.1L16.6 68.8L17.3 66.1L18.7 63.4L18.9 62.3L19.8 61.4L20.7 59.6L23.2 56.4L25.1 55.5L26.7 56.6L28.1 58.4L28.1 59.2L27.4 60.2L26.5 63.3L26.3 69.4L27.2 70.5L27.4 73.5L29.1 76.5L30.3 79.7L34.4 70.7L35.7 69.4L36.2 68.1L37.3 66.7L38.3 66.4L39.4 67.2L40.6 67.5L41.7 68.7L43.6 69.6L44.7 70.8L46.2 71.3L47.7 72.7L50.6 74L52.5 75.5L55.2 76.7L57 77.9L63.5 81.1L65.6 81.6L67.9 82.9L69.2 83L73.4 84.5L75 84.6L75.5 85L74.9 85.7L68 86.6L64.8 87.6L61.1 88.3L52.5 91L49.2 91.4L46.3 89.6L42.6 85.3L40.9 82.4L39.6 78.5L38.6 77.2L37.6 78.7L37.2 80.4L36.3 81.8L35.1 88.3L35.3 93L36.4 96.9L35.9 97.5L33.9 98.3L32.4 96.9L31.1 96.2L29.1 94.1L25.7 88L24.8 85L23.7 83.7L22.9 85.2L22.5 87.2L21.8 88.2L21.7 89.2L20.9 91L20.8 92.8L20.2 94.8L20.2 97.6L21.8 103.4L21.8 104.6L20.7 105.4L19.6 105.7L15.7 102.5L13.2 99.4L10.7 94.7L10.5 93.5L9.8 92.1L9.1 91.8L7.4 94.5L7.2 96.2L6.5 97.1L5.5 102.7L5.6 105.6L6.2 108.5L8.7 112.8L8.3 113.7L7.4 114.6L5.8 115.3L1 118.9L10.4 119.2L99.7 119.5L100 119.7L97.4 125.2L96.4 128.5L96.4 130.4L95.9 131.2L88.7 134.7L86.3 135.3L80.8 138.3L77.8 139.4L76.7 140.7L88 142.2L89.7 142.8L91.9 143L92.2 143.6L82.8 150.1L78.6 153.3L85.1 153L92.7 152L100.5 151.4L101.1 151.8L101.6 153L102 158.2L102.8 158.7L102.9 159.2L104 158.5L110.8 151.6L114.8 146.7L119.5 142.7L122.7 138.3L125 133.6L126 133.5L129.6 135L130 135.5L130 136.2L127.2 140.4L125.7 144.1L124.7 148L123.8 153.9L123.7 162.7L107.9 178.7L108.1 179L113.4 179.1L116.9 178.6L124.2 178.4L124.8 178.9L118.1 188L117.1 189.9L114.8 192.4L114.5 193.5L113.3 194.3L117.6 193L119.3 192.1L120.9 191.9L123.1 190.6L125.5 190L128.2 188.6L133 186.9L135 186.5L136.1 187.8L137.5 191.7L138 192.3L138.6 194.7L139.6 195.7L142.6 189.4L143 187.7L145.4 183.2L145.6 181.7L148 177.4L148.4 175.6L149.9 172.5L150.8 171.5L151.5 168.8L152.5 166.5L153 162.5L153.6 161.1L153.5 151.7L153 149.8L152.8 147L151.9 146.3L152.5 145.8L161.7 149.2L162.9 149.3L164 150L165.1 150L167.5 151L175.9 153L177.1 153.7L179.6 153.8L189.9 155.4L208.3 155.6L211.4 155L216.9 154.7L219.6 153.9L222.4 153.6L226.7 152.6L227.6 152.7L228.4 153.6L230.2 157.3L230.9 159.6L230.2 162.4L229.5 163.7L223.5 187L224.9 186.6L235 178.5L238.3 175.5L239.3 175.2L239.2 178.4L237.6 186.7L236.4 196.3L235.8 197.8L235.9 198.1L236.3 198L239 194.5L240.2 192.3L243.3 188.5L245.3 185.3L246.5 184.1L247.6 182.1L249.2 180.4L249.7 179.1L252.5 175.4L253.5 175.5L259.4 180.2L260.7 181.6L261.1 181.5L261.4 175.5L261.1 172.2L261 147.6L260.7 142.3L262.4 141.6L263 142.1L263.2 143.5L263.9 144.4L264.1 145.6L265.5 148.4L270.2 155.3L270.6 156.4L273 159.5L275.8 162.3L275 193.4L277.2 191.8L277.9 190.4L281.3 186.6L283.9 183L285.4 181.6L287.8 177.9L288.5 177.8L289 178.4L289.4 179.8L289.6 183.5L290.5 188.1L292.1 202.7L295.2 196.1L295.8 193.9L297 191.6L297.5 189.7L303.2 175.3L303.8 174.8L305.3 175.2L307.7 176.8L313.3 179.6L314.9 179.7L314.1 178L313.9 176.1L312.3 172.2L312.2 170.8L311.3 168.6L311.2 167.6L310.6 166.6L310.4 164.7L309.5 163.3L309.4 161.8L308.8 160.9L307.9 156.9L307.2 155.6L304.4 145.5L302.2 139.4L301 136.8L300.6 136.6L299.5 133.9L297.7 131.5L297 130L293.7 125.5L291.2 123L290.8 122.1L298.8 114.9L308.3 104.3L315.2 94.1L318.5 88L318.4 86.9L319.4 86.2L319.6 85.2L321.3 82.1L321.5 80.5L322.2 79.2L324 73L325 67.5L325.7 60L325.5 51.8L324.1 44.7ZM106.9 47.4L109.3 47.4L111.2 47.8L114.5 49.5L116.5 51.5L118 53.7L119 57.9L118 62.3L116.3 64.6L113.3 67.1L111.2 68L109.6 68.3L105.3 68L101.7 66.2L99.6 64L98 61L97.6 59.2L97.6 56.3L98.3 54L99.6 51.7L101.7 49.5L103 48.6ZM76.3 31.3L80.5 31.9L84.1 34.4L86.1 36.8L87.3 40.8L87.3 42.7L86.5 45.6L84.4 49L80.8 51.6L77.3 52.6L72.9 51.8L71.2 51L68.6 48.9L66.2 45.7L65.4 42.3L66.2 37.9L67.1 36.9L67.8 35.2L69.7 33.5L71.9 32.2Z"/><g class="iso-pupilas"><path d="M77.4 34.6L74.4 35.2L72.3 36.3L70.5 38.4L69.4 40.7L69.5 42.6L71.1 46.1L72.9 47.6L74.6 48.2L78 48.2L79.9 47.7L81.8 45.8L82.7 44.2L82.9 40.7L82.2 37.9L81 36.5Z"/><path d="M107.4 50.8L105 51.4L103 53L101.9 54.7L101.2 57L101.2 58L102 60.5L103.2 62.3L106.8 64.3L109 64.3L111.1 63.6L113 62.5L113.5 61.9L114.6 59.5L114.6 56.6L114.2 55.2L112.8 53L111.1 51.6L109.4 50.9Z"/></g><g class="iso-parpados"><ellipse class="iso-parpado" cx="76.4" cy="42" rx="12" ry="11.7"/><ellipse class="iso-parpado" cx="108.35" cy="57.9" rx="11.75" ry="11.5"/></g></svg>
+      <span class="marca-texto"><strong>tereré</strong> estudio</span>
+    </a>
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <svg class="icono" fill="currentColor" aria-hidden="true"><use href="../img/iconos.svg#menu"/></svg>
+      <span class="menu-boton-texto">Menú</span>
+    </button>
+    <nav class="menu" id="menu-principal" aria-label="Principal">
+      <ul>
+        <li><a href="../index.html#servicios">Servicios</a></li>
+        <li><a href="../portfolio.html">Portfolio</a></li>
+        <li><a href="../blog.html" aria-current="page">Blog</a></li>
+        <li><a href="../sobre-mi.html">Sobre mí</a></li>
+        <li><a class="boton boton-chico" href="../index.html#contacto">Contame tu proyecto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <!--// HEADER //-->
-    <header>
-        <a href="../../index.html" class="logo-link">
-            <img src="../img/logo_blanco_transparente.png" alt="Logo Tereré Estudio">
-        </a>
-        <!-- Botón hamburguesa -->
-        <button class="menu-hamburguesa" id="btn-hamburguesa" aria-label="Abrir menú">
-            <i class="fa-solid fa-bars" aria-hidden="true"><svg viewBox="0 0 448 512" fill="currentColor"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></i>
-        </button>
-        <!-- Menú desplegable aplanado (sin subpestaña "Más") -->
-        <nav id="menu-links">
-            <a href="../index.html">Inicio</a>
-            <a href="../index.html#servicios">Servicios</a>
-            <a href="../portfolio.html">Portfolio</a>
-            <a href="../blog.html">Blog</a>
-            <a href="../index.html#contacto">Contacto</a>
-        </nav>
-    </header>
-
-    <!--// HERO DEL ARTÍCULO //-->
-    <section class="articulo-hero-editorial">
-        <div class="hero-editorial-contenido">
-            <div class="hero-columna-texto">
-                <div>
-                    <a href="../blog.html" class="btn-enlace-verde">&larr; Volver al Blog</a>
-                </div>
-                <span class="etiqueta-autor">Inteligencia Artificial • 8 Oct 2026</span>
-                <h1>Contexto: la nueva moneda de la inteligencia artificial</h1>
-            </div>
-        </div>
-    </section>
-
-    <!--// CONTENIDO PRINCIPAL DE LA NOTA //-->
-    <main class="portfolio-editorial-main">
-        <article class="articulo-cuerpo-contenedor">
-
-            <div class="articulo-texto">
+<main id="contenido">
+<article class="articulo">
+  <header class="articulo-cabecera">
+    <p class="articulo-volver"><a href="../blog.html">Blog</a></p>
+    <p class="articulo-meta"><span>Inteligencia artificial</span> <time datetime="2026-10-08">8 oct 2026</time></p>
+    <h1>Contexto: la nueva moneda de la inteligencia artificial</h1>
+    <p class="articulo-lead">No todo lo que le damos a una IA vale lo mismo. Entender cómo funciona el contexto puede cambiar completamente la forma en que trabajamos con ella.</p>
+    
+    
+  </header>
+  
+  <div class="articulo-cuerpo">
+<div class="articulo-texto">
                 <p>No todo lo que le damos a una IA vale lo mismo. Entender cómo funciona el contexto puede cambiar completamente la forma en que trabajamos con ella.</p>
                 <p>Cuando empezamos a utilizar herramientas de inteligencia artificial de manera cotidiana, es fácil pensar que la conversación funciona simplemente así:</p>
                 
-                <blockquote style="border-left: 3px solid #9FBD2B; margin: 30px 0; padding-left: 20px; font-style: italic; color: #FFFFFF;">
+                <blockquote>
                     "Escribo algo → la IA responde → sigo escribiendo."
                 </blockquote>
                 <p>Pero detrás de esa interacción existe algo mucho más importante: <b>el contexto.</b> </p>
@@ -89,24 +95,17 @@
                 <p>Esto no significa que una conversación larga sea necesariamente mala. Significa que la información que introducimos tiene un costo y una capacidad limitada, y que diferentes tipos de contenido pueden representar cantidades muy diferentes de información.</p>
                 <p>Una buena analogía es pensar en el contexto como la memoria de trabajo de la conversación.</p>
                 <p>El almacenamiento sería:</p>
-                <blockquote style="border-left: 3px solid #9FBD2B; margin: 30px 0; padding-left: 20px; font-style: italic; color: #FFFFFF;">
+                <blockquote>
                     "Todo lo que tenemos guardado."
                 </blockquote>
 
                 <p>El contexto sería:</p>
 
-                <blockquote style="border-left: 3px solid #9FBD2B; margin: 30px 0; padding-left: 20px; font-style: italic; color: #FFFFFF;">
+                <blockquote>
                     "Todo lo que tenemos disponible sobre la mesa para trabajar ahora."
                 </blockquote>
                 <hr>
                 <h2>No todos los archivos pesan lo mismo</h2>
-                
-
-
-
-
-
-
 
                 <p>Uno de los errores más comunes es confundir peso del archivo con cantidad de contexto.</p>
                 <p>Un video de 50 MB no necesariamente consume exactamente más contexto que un PDF de 50 MB.</p>
@@ -116,20 +115,20 @@
                 <p>Un audio puede convertirse en información sonora o transcripción.</p>
                 <p>Un video puede implicar imágenes a través del tiempo, audio, transcripción y otros elementos.</p>
                 <p>Por eso, dos archivos con el mismo tamaño físico pueden tener comportamientos completamente diferentes dentro de una conversación.</p>
-                <p>Los sistemas multimodales modernos convierten diferentes tipos de información en representaciones que el modelo puede procesar. En Gemini, por ejemplo, Google documenta explícitamente el conteo de tokens para imágenes, audio y video, y señala que la resolución y el modo de procesamiento pueden modificar considerablemente el uso de <a href="https://ai.google.dev/gemini-api/docs/tokens?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" style="color: #9FBD2B; text-decoration: underline;">tokens</a>.</p>
+                <p>Los sistemas multimodales modernos convierten diferentes tipos de información en representaciones que el modelo puede procesar. En Gemini, por ejemplo, Google documenta explícitamente el conteo de tokens para imágenes, audio y video, y señala que la resolución y el modo de procesamiento pueden modificar considerablemente el uso de <a href="https://ai.google.dev/gemini-api/docs/tokens?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">tokens</a>.</p>
                 <hr>
                 <h2>El contexto como moneda de cambio</h2>
                 <p>El contexto puede entenderse como una moneda de cambio.No porque exista una moneda llamada “contexto”, sino porque cada elemento que incorporamos a una conversación tiene un valor y un costo.</p>
                 <p>Si agregamos información relevante, estamos aumentando la capacidad del modelo para comprender nuestro problema.</p>
                 <p>Pero si agregamos información innecesaria, estamos ocupando espacio que podría utilizarse para algo más importante.</p>
                 <p>La pregunta entonces empieza a ser:</p>
-                <blockquote style="border-left: 3px solid #9FBD2B; margin: 30px 0; padding-left: 20px; font-style: italic; color: #FFFFFF;">
+                <blockquote>
                     "¿Qué información vale la pena darle?"
                 </blockquote>
                 <hr>
                 <h2>Entonces, ¿qué archivos conviene utilizar?</h2>
 
-                <blockquote style="border-left: 3px solid #9FBD2B; margin: 30px 0; padding-left: 20px; font-style: italic; color: #FFFFFF;">
+                <blockquote>
                     "La regla de oro: contexto útil > contexto abundante"
                 </blockquote>
                 <p>No existe una regla universal, porque depende del modelo y del objetivo.</p>
@@ -163,7 +162,7 @@
                 <p>Es el que contiene la información correcta, en el momento correcto y con el menor ruido posible. En <b>tereré estudio</b>creemos que esta va a ser una parte cada vez más importante de trabajar con inteligencia artificial.</p>
                 <hr>
                 <h2>Una última aclaración</h2>
-                <p>Los detalles técnicos del <a href="https://ai.google.dev/gemini-api/docs/tokens?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer" style="color: #9FBD2B; text-decoration: underline;">consumo de contexto</a>, tokens y procesamiento dependen del modelo y de la herramienta utilizada. No existe una equivalencia universal del tipo “un video de X MB = X tokens”. Los propios proveedores documentan diferentes métodos de procesamiento y ventanas de contexto, por lo que conviene consultar la documentación específica del modelo que estamos utilizando.</p>
+                <p>Los detalles técnicos del <a href="https://ai.google.dev/gemini-api/docs/tokens?utm_source=chatgpt.com" target="_blank" rel="noopener noreferrer">consumo de contexto</a>, tokens y procesamiento dependen del modelo y de la herramienta utilizada. No existe una equivalencia universal del tipo “un video de X MB = X tokens”. Los propios proveedores documentan diferentes métodos de procesamiento y ventanas de contexto, por lo que conviene consultar la documentación específica del modelo que estamos utilizando.</p>
             </div>
 
             <!-- Call to Action / Footer of Article -->
@@ -171,17 +170,53 @@
                 <p>
                     Este artículo nace de nuestra propia experiencia trabajando con inteligencia artificial, desarrollo web y proyectos de software, y busca servir como una guía práctica para otros creadores que quieran aprender a trabajar mejor con modelos de IA.
                 </p>
-                 <!--<span class="text-sm font-bold text-terere-800">¡Dejanos tus comentarios en nuestras redes!</span>-->
+                 <!--<span>¡Dejanos tus comentarios en nuestras redes!</span>-->
             </div>
 
             <!--// RETORNO AL BLOG //-->
-            <div style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #2A2628;">
-                <a href="../blog.html" class="btn-enlace-verde">&larr; Volver a todas las entradas</a>
-            </div>
+            
 
-        </article>
-    </main>
+  </div>
+  <aside class="articulo-cierre-cta">
+    <p>¿Tenés un proyecto en mente? Te ayudo a llevarlo a la web.</p>
+    <a class="boton" href="../index.html#contacto">Contame tu proyecto</a>
+  </aside>
+</article>
 
-    <script src="../js/main.js" defer></script>
+</main>
+<footer class="pie">
+  <div class="pie-interior">
+    <div class="pie-marca">
+      <img src="../img/marca/logo-blanco.svg" width="160" height="64" alt="Tereré Estudio" loading="lazy">
+      <p>Páginas web y herramientas a medida para negocios que quieren vender más. Desde Corrientes, para todo el país.</p>
+    </div>
+    <nav class="pie-columna" aria-label="Secciones">
+      <p class="pie-titulo">Secciones</p>
+      <ul>
+        <li><a href="../index.html#servicios">Servicios</a></li>
+        <li><a href="../portfolio.html">Portfolio</a></li>
+        <li><a href="../blog.html">Blog</a></li>
+        <li><a href="../sobre-mi.html">Sobre mí</a></li>
+      </ul>
+    </nav>
+    <div class="pie-columna">
+      <p class="pie-titulo">Hablemos</p>
+      <ul class="pie-redes">
+        <li><a href="https://wa.me/5493644328260"><svg class="icono" fill="currentColor" aria-hidden="true"><use href="../img/iconos.svg#whatsapp"/></svg>+54 9 3644 32-8260</a></li>
+        <li><a href="https://www.linkedin.com/in/leonardo-lavrovic/" rel="noopener"><svg class="icono" fill="currentColor" aria-hidden="true"><use href="../img/iconos.svg#linkedin"/></svg>LinkedIn</a></li>
+        <li><a href="https://github.com/terereestudio" rel="noopener"><svg class="icono" fill="currentColor" aria-hidden="true"><use href="../img/iconos.svg#github"/></svg>GitHub</a></li>
+        <li><a href="https://instagram.com/terere.ecommerce" rel="noopener"><svg class="icono" fill="currentColor" aria-hidden="true"><use href="../img/iconos.svg#instagram"/></svg>Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="pie-base">
+    <p>© 2026 Tereré Estudio. Leonardo Lavrovic, Corrientes, Argentina.</p>
+    <p><a href="../v1/index.html">Ver la versión 1 del sitio</a></p>
+  </div>
+</footer>
+<a class="whatsapp-flotante" href="https://wa.me/5493644328260?text=Hola%20Leonardo%2C%20quiero%20consultarte%20por%20un%20proyecto" aria-label="Escribime por WhatsApp">
+  <img src="../img/ilustraciones/yacare-telefono.webp" width="64" height="64" alt="">
+</a>
+
 </body>
 </html>

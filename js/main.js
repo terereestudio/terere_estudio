@@ -1,613 +1,248 @@
-/* ========================================================================= */
-/* TERERÉ ESTUDIO - SCRIPT PRINCIPAL OPTIMIZADO                              */
-/* ========================================================================= */
+/* =========================================================================
+   TERERÉ ESTUDIO — JAVASCRIPT (versión 2)
+   Cada bloque revisa si su elemento existe en la página antes de actuar.
+   ========================================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    /* ===================================================================== */
-    /* 1. TEXTO DINÁMICO (HERO INICIO)                                       */
-    /* ===================================================================== */
-    const frases = [
-        "tu nivel",
-        "tu marca",
-        "tus redes",
-        "tu estrategia"
-    ];
+/* 1. Menú del celular ---------------------------------------------------- */
+const botonMenu = document.querySelector('.menu-boton');
+const menu = document.getElementById('menu-principal');
 
-    let indexActual = 0;
-    const elementoTexto = document.getElementById("texto-dinamico");
+if (botonMenu && menu) {
+  const cerrarMenu = () => {
+    menu.classList.remove('abierto');
+    botonMenu.setAttribute('aria-expanded', 'false');
+  };
+  botonMenu.addEventListener('click', () => {
+    const abierto = menu.classList.toggle('abierto');
+    botonMenu.setAttribute('aria-expanded', String(abierto));
+  });
+  menu.addEventListener('click', (e) => { if (e.target.closest('a')) cerrarMenu(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') cerrarMenu(); });
+}
 
-    function cambiarFrase() {
-        if (elementoTexto) {
-            elementoTexto.classList.add("fade-out");
-            setTimeout(() => {
-                indexActual = (indexActual + 1) % frases.length;
-                elementoTexto.textContent = frases[indexActual];
-                elementoTexto.classList.remove("fade-out");
-            }, 500);
-        }
-    }
+/* 2. El yacaré del logo mira hacia el mouse ------------------------------ */
+const iso = document.querySelector('.marca .iso');
+const pupilas = iso && iso.querySelector('.iso-pupilas');
 
-    if (elementoTexto) {
-        setInterval(cambiarFrase, 3500);
-    }
-
-
-    /* ===================================================================== */
-    /* 2. MENÚ DESPLEGABLE (HEADER DROPDOWN)                                 */
-    /* ===================================================================== */
-    const dropdown = document.getElementById("dropdown-menu");
-    const btnDropdown = document.getElementById("btn-dropdown");
-
-    if (dropdown && btnDropdown) {
-        btnDropdown.addEventListener("click", (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle("activo");
-        });
-
-        window.addEventListener("click", () => {
-            if (dropdown.classList.contains("activo")) {
-                dropdown.classList.remove("activo");
-            }
-        });
-    }
-
-
-    /* ===================================================================== */
-    /* 3. APERTURA DE VENTANA MODAL EN PÁGINAS DE SERVICIOS                  */
-    /* ===================================================================== */
-    const modalContacto = document.getElementById("modal-contacto");
-    const botonCerrarModal = document.querySelector(".modal-cerrar");
-    const botonesAbrirModal = document.querySelectorAll(".btn-accion-modal, a.btn-cta[href='#contacto']");
-
-    if (modalContacto) {
-        botonesAbrirModal.forEach(function (btn) {
-            btn.addEventListener("click", function (e) {
-                e.preventDefault();
-                modalContacto.classList.add("activo");
-            });
-        });
-
-        if (botonCerrarModal) {
-            botonCerrarModal.addEventListener("click", function () {
-                modalContacto.classList.remove("activo");
-            });
-        }
-
-        modalContacto.addEventListener("click", function (e) {
-            if (e.target === modalContacto) {
-                modalContacto.classList.remove("activo");
-            }
-        });
-
-        document.addEventListener("keydown", function (e) {
-            if (e.key === "Escape") {
-                modalContacto.classList.remove("activo");
-            }
-        });
-    }
-
-
-    /* ===================================================================== */
-    /* 4. MODALES Y ACORDEÓN DEL PORTFOLIO                                   */
-    /* ===================================================================== */
-    const tarjetasModal = document.querySelectorAll(".abrir-modal");
-    const modalProyectoOverlay = document.getElementById("modal-proyecto");
-    const btnCerrarModal = document.getElementById("cerrar-modal");
-    const modalBody = document.getElementById("modal-body-content");
-
-    const infoProyectos = {
-        ecommerce: {
-            titulo: "Tiendas Online de Alto Rendimiento",
-            descripcion: "Desarrollo integral enfocado en la conversión comercial. Configuramos pasarelas de pago locales, optimización de velocidad de carga y una experiencia de usuario minimalista orientada a potenciar las ventas directas del cliente.",
-            link: "https://instagram.com/terere.ecommerce"
-        },
-        landing: {
-            titulo: "Landing Pages de Alta Conversión",
-            descripcion: "Estructuras web de una sola página desarrolladas 100% en código puro (HTML/CSS/JS) sin frameworks pesados. Diseñadas específicamente para campañas publicitarias y captación directa de leads.",
-            link: "index.html#contacto"
-        }
-    };
-
-    if (tarjetasModal.length > 0 && modalProyectoOverlay) {
-        tarjetasModal.forEach(tarjeta => {
-            tarjeta.addEventListener("click", () => {
-                const tipoProyecto = tarjeta.getAttribute("data-proyecto");
-                const datos = infoProyectos[tipoProyecto];
-
-                if (datos) {
-                    modalBody.innerHTML = `
-                        <div class="modal-info-proyecto">
-                            <h2>${datos.titulo}</h2>
-                            <p>${datos.descripcion}</p>
-                            <a href="${datos.link}" target="_blank" rel="noopener noreferrer"  class="modal-link-btn">Visitar proyecto en vivo &rarr;</a>
-                        </div>
-                    `;
-                    modalProyectoOverlay.classList.add("activo");
-                }
-            });
-        });
-
-        if (btnCerrarModal) {
-            btnCerrarModal.addEventListener("click", () => modalProyectoOverlay.classList.remove("activo"));
-        }
-
-        modalProyectoOverlay.addEventListener("click", (e) => {
-            if (e.target === modalProyectoOverlay) modalProyectoOverlay.classList.remove("activo");
-        });
-    }
-
-    // Acordeón Portfolio
-    const itemsAcordeon = document.querySelectorAll(".item-proyecto-acordeon");
-    if (itemsAcordeon.length > 0) {
-        itemsAcordeon.forEach(item => {
-            item.addEventListener("mouseenter", () => item.classList.add("activo"));
-            item.addEventListener("mouseleave", () => item.classList.remove("activo"));
-        });
-    }
-
-
-    /* ===================================================================== */
-    /* 5. CARRUSEL ROTATIVO DE CAJITAS (BRANDING)                             */
-    /* ===================================================================== */
-    const trackCajitas = document.querySelector(".carrusel-cajitas-track");
-    const cajitas = document.querySelectorAll(".cajita-branding");
-    const nextBtn = document.querySelector(".next-btn");
-    const prevBtn = document.querySelector(".prev-btn");
-
-    if (trackCajitas && cajitas.length > 0) {
-        let currentIndex = 0;
-        const totalCajitas = cajitas.length;
-        const maxIndex = totalCajitas - 3; 
-
-        function actualizarCarrusel() {
-            const anchoCajita = cajitas[0].getBoundingClientRect().width;
-            const gap = 20;
-            const desplazamiento = currentIndex * (anchoCajita + gap);
-            trackCajitas.style.transform = `translateX(-${desplazamiento}px)`;
-        }
-
-        if (nextBtn && prevBtn) {
-            nextBtn.addEventListener("click", () => {
-                currentIndex = currentIndex < maxIndex ? currentIndex + 1 : 0;
-                actualizarCarrusel();
-            });
-
-            prevBtn.addEventListener("click", () => {
-                currentIndex = currentIndex > 0 ? currentIndex - 1 : maxIndex;
-                actualizarCarrusel();
-            });
-        }
-    }
-
-
-    /* ===================================================================== */
-    /* 6. FILTROS Y DESPLEGABLE DEL BLOG                                     */
-    /* ===================================================================== */
-    const btnToggleFiltro = document.getElementById("btn-filtro-toggle");
-    const panelFiltro = document.getElementById("blog-filtro-panel");
-    const botonesFiltro = document.querySelectorAll(".filtro-tag");
-    const tarjetasBlog = document.querySelectorAll(".blog-card");
-
-    if (btnToggleFiltro && panelFiltro) {
-        btnToggleFiltro.addEventListener("click", (e) => {
-            e.stopPropagation();
-            panelFiltro.classList.toggle("activo");
-        });
-
-        document.addEventListener("click", () => {
-            panelFiltro.classList.remove("activo");
-        });
-
-        panelFiltro.addEventListener("click", (e) => e.stopPropagation());
-    }
-
-    if (botonesFiltro.length > 0 && tarjetasBlog.length > 0) {
-        botonesFiltro.forEach(boton => {
-            boton.addEventListener("click", () => {
-                botonesFiltro.forEach(b => b.classList.remove("activo"));
-                boton.classList.add("activo");
-
-                const categoriaSeleccionada = boton.getAttribute("data-filtro");
-
-                tarjetasBlog.forEach(tarjeta => {
-                    const categoriaTarjeta = tarjeta.getAttribute("data-categoria");
-                    if (categoriaSeleccionada === "todos" || categoriaTarjeta === categoriaSeleccionada) {
-                        tarjeta.style.display = "flex";
-                    } else {
-                        tarjeta.style.display = "none";
-                    }
-                });
-
-                panelFiltro.classList.remove("activo");
-            });
-        });
-    }
-
-
-    /* ===================================================================== */
-    /* 7. CONTROLADOR GLOBAL DE TOOLTIPS (SELLOS DE IA)                      */
-    /* ===================================================================== */
-    const sellosIA = document.querySelectorAll(".sello-ia-advertencia-img");
-    let tooltipGlobal = document.createElement("div");
-    tooltipGlobal.className = "tooltip-ia-global";
-    document.body.appendChild(tooltipGlobal);
-
-    sellosIA.forEach(sello => {
-        const textoTooltip = sello.getAttribute("data-tooltip");
-
-        sello.addEventListener("mouseenter", () => {
-            tooltipGlobal.textContent = textoTooltip;
-            tooltipGlobal.classList.add("activo");
-            
-            const rect = sello.getBoundingClientRect();
-            // Se ubica justo arriba del sello, sin taparlo (así no parpadea al pasar el mouse)
-            tooltipGlobal.style.top = `${rect.top - tooltipGlobal.offsetHeight - 8}px`;
-            tooltipGlobal.style.left = `${rect.left - 160}px`;
-        });
-
-        sello.addEventListener("mouseleave", () => {
-            tooltipGlobal.classList.remove("activo");
-        });
+if (pupilas && !movimientoReducido && window.matchMedia('(pointer: fine)').matches) {
+  let pendiente = false;
+  window.addEventListener('pointermove', (e) => {
+    if (pendiente) return;
+    pendiente = true;
+    requestAnimationFrame(() => {
+      const r = iso.getBoundingClientRect();
+      const dx = e.clientX - (r.left + r.width * 0.3);
+      const dy = e.clientY - (r.top + r.height * 0.25);
+      const d = Math.hypot(dx, dy) || 1;
+      const alcance = Math.min(1, d / 300) * 3.2;
+      pupilas.style.transform = `translate(${(dx / d) * alcance}px, ${(dy / d) * alcance}px)`;
+      pendiente = false;
     });
+  });
+}
 
+/* 3. Frase que cambia en el hero ----------------------------------------- */
+const rotativo = document.querySelector('.hero-rotativo');
 
-    /* ===================================================================== */
-    /* 8. REPRODUCTOR DE PODCAST                                             */
-    /* ===================================================================== */
-    const audioPodcast = document.getElementById("audio-podcast");
-    const btnPodcast = document.getElementById("btn-reproducir-podcast");
-    const iconoAudio = document.getElementById("icono-audio");
-    const btnRewind = document.getElementById("btn-rewind");
-    const btnForward = document.getElementById("btn-forward");
-    const tiempoActualEl = document.getElementById("tiempo-actual");
-    const tiempoTotalEl = document.getElementById("tiempo-total");
-    const barraProgreso = document.getElementById("barra-progreso");
-    const progresoFill = document.getElementById("progreso-fill");
+if (rotativo && !movimientoReducido) {
+  const frases = JSON.parse(rotativo.dataset.frases || '[]');
+  let i = 0;
+  if (frases.length > 1) {
+    setInterval(() => {
+      rotativo.classList.add('saliendo');
+      setTimeout(() => {
+        i = (i + 1) % frases.length;
+        rotativo.textContent = frases[i];
+        rotativo.classList.remove('saliendo');
+      }, 350);
+    }, 3200);
+  }
+}
 
-    if (audioPodcast && btnPodcast) {
-        function formatearTiempo(segundos) {
-            let min = Math.floor(segundos / 60);
-            let seg = Math.floor(segundos % 60);
-            return `${min}:${seg < 10 ? '0' : ''}${seg}`;
-        }
-
-        audioPodcast.addEventListener("loadedmetadata", () => {
-            tiempoTotalEl.textContent = formatearTiempo(audioPodcast.duration);
-        });
-
-        btnPodcast.addEventListener("click", () => {
-            if (audioPodcast.paused) {
-                audioPodcast.play();
-                iconoAudio.className = "fa-solid fa-pause";
-            } else {
-                audioPodcast.pause();
-                iconoAudio.className = "fa-solid fa-play";
-            }
-        });
-
-        audioPodcast.addEventListener("timeupdate", () => {
-            tiempoActualEl.textContent = formatearTiempo(audioPodcast.currentTime);
-            let porcentaje = (audioPodcast.currentTime / audioPodcast.duration) * 100;
-            progresoFill.style.width = `${porcentaje}%`;
-        });
-
-        if (btnRewind) {
-            btnRewind.addEventListener("click", () => {
-                audioPodcast.currentTime = Math.max(0, audioPodcast.currentTime - 10);
-            });
-        }
-
-        if (btnForward) {
-            btnForward.addEventListener("click", () => {
-                audioPodcast.currentTime = Math.min(audioPodcast.duration, audioPodcast.currentTime + 10);
-            });
-        }
-
-        if (barraProgreso) {
-            barraProgreso.addEventListener("click", (e) => {
-                const rect = barraProgreso.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const porcentajeClick = clickX / rect.width;
-                audioPodcast.currentTime = porcentajeClick * audioPodcast.duration;
-            });
-        }
-
-        audioPodcast.addEventListener("ended", () => {
-            iconoAudio.className = "fa-solid fa-play";
-            progresoFill.style.width = "0%";
-        });
-    }
-
-    const btnHamburguesa = document.getElementById("btn-hamburguesa");
-    const menuLinks = document.getElementById("menu-links"); 
-
-    if (btnHamburguesa && menuLinks) {
-        btnHamburguesa.addEventListener("click", (e) => {
-            e.stopPropagation();
-            menuLinks.classList.toggle("nav-activo");
-        });
-
-        window.addEventListener("click", () => {
-            if (menuLinks.classList.contains("nav-activo")) {
-                menuLinks.classList.remove("nav-activo");
-            }
-        });
-    }
-    
-    /* ===================================================================== */
-    /* VISOR DE IMÁGENES (LIGHTBOX) GLOBAL Y ULTRA-ROBUSTO CON FLECHAS       */
-    /* ===================================================================== */
-
-    if (!document.getElementById('lightbox-modal')) {
-        const lightboxHtml = `
-            <div id="lightbox-modal" class="lightbox-overlay">
-                <div class="lightbox-imagen-contenedor">
-                    <button type="button" id="lightbox-cerrar" class="lightbox-cerrar">&times;</button>
-                    <button type="button" id="lightbox-prev" class="lightbox-flecha lightbox-prev">&#10094;</button>
-                    <button type="button" id="lightbox-next" class="lightbox-flecha lightbox-next">&#10095;</button>
-                    <img id="lightbox-img" src="" alt="Imagen ampliada del portfolio">
-                </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', lightboxHtml);
-    }
-
-    let imagenesArray = [];
-    let indiceImagenActual = 0;
-
-    window.addEventListener('click', function(e) {
-        const lightbox = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-img');
-        
-        const imgTarget = e.target.closest('.recuadro-screenshot img, .portfolio-img-container img, .flyer-slot img');
-        
-        if (imgTarget && lightbox && lightboxImg) {
-            e.preventDefault();
-            const contenedorPadre = imgTarget.closest('.cajita-branding, .panel-desplegable, .portfolio-grid');
-            const selectorBusqueda = contenedorPadre ? contenedorPadre.querySelectorAll('img') : document.querySelectorAll('.cajita-grid-expandida img');
-            
-            imagenesArray = Array.from(selectorBusqueda);
-            indiceImagenActual = imagenesArray.indexOf(imgTarget);
-
-            lightboxImg.src = imgTarget.src;
-            lightbox.classList.add('activo');
-            return;
-        }
-
-        if (e.target.id === 'lightbox-next' || e.target.closest('#lightbox-next')) {
-            if (imagenesArray.length > 0) {
-                indiceImagenActual = (indiceImagenActual + 1) % imagenesArray.length;
-                lightboxImg.src = imagenesArray[indiceImagenActual].src;
-            }
-        }
-
-        if (e.target.id === 'lightbox-prev' || e.target.closest('#lightbox-prev')) {
-            if (imagenesArray.length > 0) {
-                indiceImagenActual = (indiceImagenActual - 1 + imagenesArray.length) % imagenesArray.length;
-                lightboxImg.src = imagenesArray[indiceImagenActual].src;
-            }
-        }
-
-        if (e.target.id === 'lightbox-cerrar' || e.target.id === 'lightbox-modal') {
-            if (lightbox && lightboxImg) {
-                lightbox.classList.remove('activo');
-                lightboxImg.src = '';
-            }
-        }
+/* 4. Carruseles ---------------------------------------------------------- */
+document.querySelectorAll('.carrusel').forEach((carrusel) => {
+  const pista = carrusel.querySelector('.carrusel-pista');
+  carrusel.querySelectorAll('[data-carrusel]').forEach((boton) => {
+    boton.addEventListener('click', () => {
+      const paso = pista.firstElementChild.getBoundingClientRect().width + 14;
+      pista.scrollBy({ left: Number(boton.dataset.carrusel) * paso, behavior: movimientoReducido ? 'auto' : 'smooth' });
     });
-
-    window.addEventListener('keydown', function(e) {
-        const lightbox = document.getElementById('lightbox-modal');
-        const lightboxImg = document.getElementById('lightbox-img');
-        
-        if (lightbox && lightbox.classList.contains('activo')) {
-            if (e.key === 'Escape') {
-                lightbox.classList.remove('activo');
-                lightboxImg.src = '';
-            } else if (e.key === 'ArrowRight' && imagenesArray.length > 0) {
-                indiceImagenActual = (indiceImagenActual + 1) % imagenesArray.length;
-                lightboxImg.src = imagenesArray[indiceImagenActual].src;
-            } else if (e.key === 'ArrowLeft' && imagenesArray.length > 0) {
-                indiceImagenActual = (indiceImagenActual - 1 + imagenesArray.length) % imagenesArray.length;
-                lightboxImg.src = imagenesArray[indiceImagenActual].src;
-            }
-        }
-    });
-
-
-    /* ===================================================================== */
-    /* MACRO-VENTANA MODAL DE BRANDING Y VISOR DE DETALLE (LUPA)             */
-    /* ===================================================================== */
-    if (!document.getElementById('branding-macro-modal')) {
-        const macroModalHtml = `
-            <div id="branding-macro-modal" class="branding-modal-overlay">
-                <div class="branding-modal-contenedor">
-                    <button type="button" id="branding-cerrar" class="branding-modal-cerrar">&times;</button>
-                    
-                    <div class="branding-modal-header-mobile-wrap">
-                        <span id="macro-categoria">Identidad Completa</span>
-                        <h2 id="macro-titulo">Nombre del Proyecto</h2>
-                    </div>
-                    
-                    <div class="branding-modal-left">
-                        <img id="macro-img-principal" src="" alt="Vista previa ampliada">
-                    </div>
-
-                    <div id="macro-grid-minianturas" class="branding-modal-grid-scroll">
-                    </div>
-                </div>
-            </div>
-        `;
-        document.body.insertAdjacentHTML('beforeend', macroModalHtml);
-    }
-
-    window.addEventListener('click', function(e) {
-        const trigger = e.target.closest('.trigger-modal-branding');
-        
-        if (trigger) {
-            e.preventDefault();
-            const cajitaBranding = trigger.closest('.cajita-branding');
-            
-            if (cajitaBranding) {
-                const tituloProyecto = cajitaBranding.querySelector('h3').textContent;
-                const subtituloProyecto = cajitaBranding.querySelector('.cajita-header-preview span').textContent;
-                
-                const imagenesOcultas = cajitaBranding.querySelectorAll('.galeria-completa-proyecto img');
-                
-                const modalActivo = document.getElementById('branding-macro-modal');
-                const imgPrincipalActiva = document.getElementById('macro-img-principal');
-                const tituloActivo = document.getElementById('macro-titulo');
-                const catActiva = document.getElementById('macro-categoria');
-                const gridActivo = document.getElementById('macro-grid-minianturas');
-                
-                if (imagenesOcultas.length > 0 && modalActivo) {
-                    tituloActivo.textContent = tituloProyecto;
-                    catActiva.textContent = subtituloProyecto;
-                    gridActivo.innerHTML = '';
-
-                    gridActivo.className = window.innerWidth <= 991 ? "branding-modal-grid-scroll mobile-carrusel-miniaturas" : "branding-modal-grid-scroll";
-
-                    imgPrincipalActiva.src = imagenesOcultas[0].src;
-
-                    imagenesOcultas.forEach((img, index) => {
-                        const thumbDiv = document.createElement('div');
-                        thumbDiv.className = `thumb-miniatura ${index === 0 ? 'activo' : ''}`;
-                        thumbDiv.innerHTML = `<img src="${img.src}" alt="miniatura">`;
-
-                        thumbDiv.addEventListener('click', function() {
-                            imgPrincipalActiva.src = img.src;
-                            document.querySelectorAll('.thumb-miniatura').forEach(t => t.classList.remove('activo'));
-                            thumbDiv.classList.add('activo');
-                        });
-
-                        gridActivo.appendChild(thumbDiv);
-                    });
-
-                    modalActivo.classList.add('activo');
-                }
-            }
-        }
-    });
-
-    const visualizadorLeft = document.querySelector('.branding-modal-left');
-    const imgPrincipal = document.getElementById('macro-img-principal');
-
-    if (visualizadorLeft && imgPrincipal) {
-        visualizadorLeft.addEventListener('mousemove', function(e) {
-            if (window.innerWidth > 991) {
-                const rect = visualizadorLeft.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-
-                const xPercent = (x / rect.width) * 100;
-                const yPercent = (y / rect.height) * 100;
-
-                imgPrincipal.style.transformOrigin = `${xPercent}% ${yPercent}%`;
-                imgPrincipal.style.transform = "scale(2.5)";
-            }
-        });
-
-        visualizadorLeft.addEventListener('mouseleave', function() {
-            imgPrincipal.style.transformOrigin = "center center";
-            imgPrincipal.style.transform = "scale(1)";
-        });
-    }
-
-    function cerrarMacroModal() {
-        const modal = document.getElementById('branding-macro-modal');
-        if (modal) {
-            modal.classList.remove('activo');
-        }
-    }
-
-    window.addEventListener('click', function(e) {
-        const modal = document.getElementById('branding-macro-modal');
-        if (e.target.id === 'branding-cerrar' || e.target === modal) {
-            cerrarMacroModal();
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            cerrarMacroModal();
-        }
-    });
-
-
-    /* ===================================================================== */
-    /* FORMULARIO DEL FOOTER                                                 */
-    /* ===================================================================== */
-
-    const formFooter = document.getElementById("form-contacto-footer");
-    const contenidoFormFooter = document.getElementById("contenido-formulario-footer");
-    const mensajeExitoFooter = document.getElementById("mensaje-exito-footer");
-    const btnReiniciarFooter = document.getElementById("btn-reiniciar-footer");
-
-    if (formFooter && contenidoFormFooter && mensajeExitoFooter) {
-
-        formFooter.addEventListener("submit", async function (e) {
-
-            e.preventDefault();
-
-            const submitButton = formFooter.querySelector('button[type="submit"]');
-
-            if (submitButton) {
-                submitButton.disabled = true;
-                submitButton.textContent = "Enviando...";
-            }
-
-            try {
-
-                const response = await fetch(formFooter.action, {
-                    method: "POST",
-                    body: new FormData(formFooter),
-                    headers: {
-                        "Accept": "application/json"
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error("Formspree no pudo procesar el formulario.");
-                }
-
-                formFooter.reset();
-
-                contenidoFormFooter.hidden = true;
-                mensajeExitoFooter.hidden = false;
-
-            } catch (error) {
-
-                console.error("Error en formulario:", error);
-
-                alert(
-                    "Hubo un problema al enviar el mensaje. " +
-                    "Verificá tu conexión e intentá nuevamente."
-                );
-
-            } finally {
-
-                if (submitButton) {
-                    submitButton.disabled = false;
-                    submitButton.textContent = "Enviar mensaje";
-                }
-
-            }
-
-        });
-
-
-        if (btnReiniciarFooter) {
-
-            btnReiniciarFooter.addEventListener("click", function () {
-
-                mensajeExitoFooter.hidden = true;
-                contenidoFormFooter.hidden = false;
-
-            });
-
-        }
-
-    }
-
+  });
 });
+
+/* 5. Filtros del blog ---------------------------------------------------- */
+const filtros = document.querySelectorAll('.filtro');
+
+filtros.forEach((filtro) => {
+  filtro.addEventListener('click', () => {
+    filtros.forEach((f) => f.setAttribute('aria-pressed', String(f === filtro)));
+    const categoria = filtro.dataset.filtro;
+    let visibles = 0;
+    document.querySelectorAll('.tarjeta-post').forEach((t) => {
+      const mostrar = categoria === 'todas' || t.dataset.categoria === categoria;
+      t.hidden = !mostrar;
+      if (mostrar) visibles += 1;
+    });
+    const aviso = document.getElementById('filtro-resultado');
+    if (aviso) aviso.textContent = `${visibles} ${visibles === 1 ? 'artículo' : 'artículos'}`;
+  });
+});
+
+/* 6. Visor de imágenes (galerías del portfolio) -------------------------- */
+const visor = document.getElementById('visor');
+
+if (visor) {
+  const img = visor.querySelector('img');
+  const leyenda = visor.querySelector('figcaption');
+  const titulo = visor.querySelector('.visor-titulo');
+  const nav = visor.querySelector('.visor-nav');
+  let imagenes = [];
+  let actual = 0;
+  let origen = null;
+
+  const mostrar = (n) => {
+    actual = (n + imagenes.length) % imagenes.length;
+    const it = imagenes[actual];
+    img.src = it.src;
+    img.alt = it.alt || '';
+    leyenda.textContent = imagenes.length > 1 ? `${it.alt || ''} (${actual + 1} de ${imagenes.length})` : (it.alt || '');
+  };
+
+  const abrir = (lista, inicio, nombre, boton) => {
+    imagenes = lista;
+    origen = boton;
+    titulo.textContent = nombre || '';
+    nav.hidden = lista.length < 2;
+    mostrar(inicio);
+    visor.showModal();
+  };
+
+  document.addEventListener('click', (e) => {
+    const disparador = e.target.closest('[data-visor]');
+    if (!disparador) return;
+    const grupo = disparador.dataset.visor;
+    if (disparador.dataset.imagenes) {
+      abrir(JSON.parse(disparador.dataset.imagenes), 0, disparador.dataset.titulo, disparador);
+    } else {
+      const del_grupo = [...document.querySelectorAll(`[data-visor="${grupo}"]`)].filter((b) => b.dataset.src);
+      abrir(del_grupo.map((b) => ({ src: b.dataset.src, alt: b.dataset.alt })), del_grupo.indexOf(disparador), disparador.dataset.titulo, disparador);
+    }
+  });
+
+  visor.querySelector('[data-visor-anterior]').addEventListener('click', () => mostrar(actual - 1));
+  visor.querySelector('[data-visor-siguiente]').addEventListener('click', () => mostrar(actual + 1));
+  visor.querySelector('[data-visor-cerrar]').addEventListener('click', () => visor.close());
+  visor.addEventListener('click', (e) => { if (e.target === visor) visor.close(); });
+  visor.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') mostrar(actual + 1);
+    if (e.key === 'ArrowLeft') mostrar(actual - 1);
+  });
+  visor.addEventListener('close', () => { img.removeAttribute('src'); if (origen) origen.focus(); });
+}
+
+/* 7. Videos cortos: se reproducen solo cuando están en pantalla ---------- */
+const videos = document.querySelectorAll('video[data-auto]');
+
+if (videos.length && !movimientoReducido && 'IntersectionObserver' in window) {
+  const observador = new IntersectionObserver((entradas) => {
+    entradas.forEach((en) => {
+      if (en.isIntersecting) en.target.play().catch(() => {});
+      else en.target.pause();
+    });
+  }, { threshold: 0.4 });
+  videos.forEach((v) => observador.observe(v));
+} else {
+  videos.forEach((v) => { v.controls = true; });
+}
+
+/* 8. Videos de YouTube: se cargan recién al tocar play ------------------- */
+document.querySelectorAll('.video-fachada[data-youtube]').forEach((boton) => {
+  boton.addEventListener('click', () => {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${boton.dataset.youtube}?autoplay=1&rel=0`;
+    iframe.title = boton.getAttribute('aria-label') || 'Video';
+    iframe.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    boton.replaceChildren(iframe);
+    boton.removeAttribute('aria-label');
+  }, { once: true });
+});
+
+/* 9. Reproductor del podcast --------------------------------------------- */
+document.querySelectorAll('[data-podcast]').forEach((caja) => {
+  const audio = caja.querySelector('audio');
+  const play = caja.querySelector('.podcast-play');
+  const barra = caja.querySelector('.podcast-barra');
+  const actual = caja.querySelector('[data-actual]');
+  const total = caja.querySelector('[data-total]');
+  const formato = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+
+  play.addEventListener('click', () => {
+    if (audio.paused) audio.play().catch(() => {});
+    else audio.pause();
+  });
+  audio.addEventListener('play', () => { caja.classList.add('sonando'); play.setAttribute('aria-label', 'Pausar'); });
+  audio.addEventListener('pause', () => { caja.classList.remove('sonando'); play.setAttribute('aria-label', 'Reproducir'); });
+  audio.addEventListener('loadedmetadata', () => { total.textContent = formato(audio.duration); });
+  audio.addEventListener('timeupdate', () => {
+    actual.textContent = formato(audio.currentTime);
+    if (audio.duration) barra.value = (audio.currentTime / audio.duration) * 100;
+  });
+  barra.addEventListener('input', () => {
+    if (audio.duration) audio.currentTime = (barra.value / 100) * audio.duration;
+  });
+  caja.querySelectorAll('[data-saltar]').forEach((b) => {
+    b.addEventListener('click', () => {
+      audio.currentTime = Math.max(0, Math.min(audio.duration || 0, audio.currentTime + Number(b.dataset.saltar)));
+    });
+  });
+});
+
+/* 10. Formulario de contacto (Formspree) --------------------------------- */
+const formulario = document.querySelector('form[data-formspree]');
+
+if (formulario) {
+  const estado = formulario.querySelector('.formulario-estado');
+  const enviar = formulario.querySelector('button[type="submit"]');
+  formulario.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    estado.className = 'formulario-estado';
+    estado.textContent = 'Enviando…';
+    enviar.disabled = true;
+    try {
+      const r = await fetch(formulario.action, { method: 'POST', body: new FormData(formulario), headers: { Accept: 'application/json' } });
+      if (!r.ok) throw new Error('respuesta no válida');
+      formulario.reset();
+      estado.classList.add('ok');
+      estado.textContent = '¡Gracias! Recibí tu mensaje y te respondo a la brevedad.';
+    } catch {
+      estado.classList.add('error');
+      estado.textContent = 'No se pudo enviar. Revisá tu conexión o escribime por WhatsApp.';
+    } finally {
+      enviar.disabled = false;
+    }
+  });
+}
+
+/* 11. Tablero de ejemplo: detalle al pasar el mouse o con el teclado ------ */
+const grafico = document.querySelector('.grafico[data-tooltip]');
+
+if (grafico) {
+  const tip = grafico.querySelector('.grafico-tooltip');
+  const mostrarTip = (col) => {
+    tip.innerHTML = col.dataset.detalle;
+    const g = grafico.getBoundingClientRect();
+    const c = col.getBoundingClientRect();
+    tip.style.left = `${c.left - g.left + c.width / 2}px`;
+    tip.style.top = `${c.top - g.top}px`;
+    tip.hidden = false;
+  };
+  grafico.querySelectorAll('.columna').forEach((col) => {
+    col.addEventListener('pointerenter', () => mostrarTip(col));
+    col.addEventListener('focus', () => mostrarTip(col));
+    col.addEventListener('pointerleave', () => { tip.hidden = true; });
+    col.addEventListener('blur', () => { tip.hidden = true; });
+  });
+}

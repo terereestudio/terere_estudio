@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Ventana de navegador con pestañas verticales a la izquierda">
+  <rect width="1200" height="630" fill="#1E1A1B"/>
+  <rect x="190" y="95" width="820" height="440" rx="18" fill="#2A2526" stroke="#3A3435" stroke-width="2"/>
+  <rect x="190" y="95" width="820" height="54" rx="18" fill="#332D2E"/>
+  <rect x="190" y="130" width="820" height="19" fill="#332D2E"/>
+  <circle cx="226" cy="122" r="8" fill="#5A5355"/><circle cx="254" cy="122" r="8" fill="#5A5355"/><circle cx="282" cy="122" r="8" fill="#5A5355"/>
+  <rect x="190" y="149" width="210" height="386" fill="#252021"/>
+  <rect x="212" y="172" width="166" height="38" rx="9" fill="#9FBD2B"/>
+  <rect x="212" y="226" width="166" height="38" rx="9" fill="#3A3435"/>
+  <rect x="212" y="280" width="166" height="38" rx="9" fill="#3A3435"/>
+  <rect x="212" y="334" width="166" height="38" rx="9" fill="#3A3435"/>
+  <rect x="212" y="388" width="120" height="38" rx="9" fill="#3A3435"/>
+  <rect x="440" y="185" width="420" height="26" rx="6" fill="#F3E9DA"/>
+  <rect x="440" y="235" width="520" height="14" rx="5" fill="#5A5355"/>
+  <rect x="440" y="263" width="490" height="14" rx="5" fill="#5A5355"/>
+  <rect x="440" y="291" width="505" height="14" rx="5" fill="#5A5355"/>
+  <rect x="440" y="340" width="250" height="150" rx="12" fill="#3A3435"/>
+  <rect x="710" y="340" width="250" height="150" rx="12" fill="#3A3435"/>
+  <path d="M395 191 l-22 0" stroke="#161415" stroke-width="5" stroke-linecap="round"/>
+</svg>

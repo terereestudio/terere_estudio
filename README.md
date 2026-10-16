@@ -1,160 +1,48 @@
-### Hi there 👋, I'm Leonardo Lavrovic! 
+# Tereré Estudio — versión 2
 
-Welcome to my GitHub repository. I'm part of **tereré estudio**, and I'm currently on an exciting journey learning web development.
+Sitio de **Tereré Estudio**, la marca profesional de Leonardo Lavrovic (Corrientes, Argentina): páginas web, tiendas online y tableros de datos para negocios.
 
-#### 🚀 About Me
-* 📍 I'm **27 years old**, based in **Corrientes, Argentina**.
-* 🎨 Self-taught, creative, and passionate about continuous learning every single day.
-* 💼 I currently work in **e-commerce, digital marketing, and graphic design**, and I'm actively leveling up my skills to transition into professional web development.
+Hecho a mano en **HTML, CSS y JavaScript**, sin frameworks ni dependencias. Publicado en Netlify.
 
-#### 🛠️ Tech Stack & Tools
-* **Languages & Core:** `HTML5`, `CSS3`, `JavaScript`
-* **Design & E-commerce:** `UI/UX Design`, `TiendaNube`, `WooCommerce`, `MercadoLibre`
-* **Version Control:** `Git`, `GitHub`
+## Cómo está organizado
 
-#### 📫 Let's Connect
-* **LinkedIn:** [Leonardo Lavrovic](https://www.linkedin.com/in/leonardo-lavrovic)
-* **Portfolio / Studio:** [tereré estudio](https://www.terereestudio.com.ar)
+| Carpeta o archivo | Qué es |
+| --- | --- |
+| `src/paginas/` | El contenido de cada página. **Acá se edita.** |
+| `src/partes/` | Lo que se repite en todas las páginas: `head`, `header`, `footer`, plantilla de artículo y podcast. |
+| `src/estilos.css` | Los estilos, con los colores y medidas como variables en `:root`. |
+| `src/blog.json` | La lista de artículos del blog (título, fecha, categoría, imagen). |
+| `build.mjs` | Arma el sitio: junta páginas y partes y escribe el HTML final en la raíz. |
+| `*.html`, `blog/`, `css/` | **Archivos generados.** No editarlos a mano: se pisan con cada build. |
+| `img/`, `video/`, `audio/` | Imágenes en WebP, videos cortos y el podcast, ya optimizados. |
+| `js/main.js` | Todo el JavaScript del sitio. |
+| `v1/` | La primera versión del sitio, guardada como archivo histórico. |
+| `_headers`, `_redirects`, `robots.txt` | Configuración de Netlify, seguridad y SEO. |
 
----
-*⚡ "Always building, always learning."*
+## Cómo hacer un cambio
 
-# 🌿 Tereré Studio
+1. Editá lo que necesites en `src/` (o `js/main.js`).
+2. Corré el armado (necesita Node.js, sin instalar nada más):
+   ```
+   node build.mjs
+   ```
+3. Revisá el resultado abriendo `index.html` o con un servidor local.
+4. Subí todo con Git: Netlify publica solo.
 
-> Landing page personal, portfolio y espacio de experimentación para desarrollo web.
+### Sumar un artículo al blog
 
-## 📌 Sobre el proyecto
+1. Creá el archivo en `src/paginas/blog/`, copiando el formato de uno existente (empieza con un bloque `<!--meta {...} -->`).
+2. Agregá el artículo a `src/blog.json`.
+3. Corré `node build.mjs`. El artículo aparece en el blog y, si es de los tres más nuevos, en el inicio.
 
-**Tereré Studio** es mi sitio web personal y portfolio, creado como parte de mi proceso de aprendizaje y crecimiento en el desarrollo web.
+## Pendientes para completar el sitio
 
-El proyecto funciona como un espacio donde puedo presentar mis trabajos, experimentar con nuevas tecnologías y documentar mi experiencia mientras continúo formándome como desarrollador.
+- Video de presentación: en `src/paginas/index.html`, buscá "VIDEO DE PRESENTACIÓN".
+- Testimonios reales: buscá "TESTIMONIOS" en el mismo archivo.
+- Resultados del caso IPRI Bijou: buscá "RESULTADOS" (con autorización de la marca).
+- CV en PDF (español e inglés) y enlaces a certificados: en `src/paginas/sobre-mi.html`.
+- Confirmar el dominio principal: está en `build.mjs` (`DOMINIO`), `robots.txt` y en el enlace del sello HTML de "Sobre mí".
 
-La idea no es solamente mostrar proyectos terminados, sino también compartir el proceso detrás de ellos: qué aprendí, qué problemas encontré y cómo fui resolviéndolos.
+## Créditos
 
-🌐 **Sitio web:** [tererestudio.com.ar](https://tererestudio.com.ar)
-
----
-
-## 🎯 Objetivos
-
-El proyecto tiene como principales objetivos:
-
-- Crear una presencia profesional en internet.
-- Construir y mantener un portfolio personal.
-- Mostrar proyectos de desarrollo web y diseño.
-- Practicar HTML, CSS y JavaScript.
-- Experimentar con nuevas herramientas y tecnologías.
-- Documentar mi proceso de aprendizaje.
-- Utilizar el sitio como laboratorio para probar nuevas ideas.
-
----
-
-## 🧩 Secciones del sitio
-
-Actualmente, el proyecto está pensado alrededor de diferentes secciones:
-
-### 🏠 Inicio
-
-Presentación personal y una introducción al proyecto.
-
-### 💼 Portfolio
-
-Espacio destinado a mostrar proyectos realizados, experimentos y trabajos seleccionados.
-
-Cada proyecto busca mostrar no solamente el resultado final, sino también las herramientas y conocimientos utilizados.
-
-### ✍️ Blog
-
-Sección destinada a documentar mi experiencia durante el proceso de aprendizaje.
-
-Algunos contenidos pueden estar relacionados con:
-
-- Desarrollo web.
-- HTML y CSS.
-- JavaScript.
-- Diseño web.
-- Inteligencia artificial.
-- Herramientas para desarrolladores.
-- E-commerce.
-- Experiencias y aprendizajes personales.
-
-### 👤 Sobre mí
-
-Una presentación de mi recorrido profesional, intereses y proceso de formación en desarrollo web.
-
----
-
-## 🛠️ Tecnologías
-
-El proyecto se desarrolla principalmente utilizando tecnologías web fundamentales:
-
-- HTML5
-- CSS3
-- JavaScript
-- Git
-- GitHub
-
-A medida que el proyecto evolucione, se incorporarán nuevas herramientas y tecnologías.
-
----
-
-## 📱 Diseño y enfoque
-
-El sitio busca mantener una estética:
-
-- Simple
-- Clara
-- Responsive
-- Funcional
-- Visualmente cuidada
-
-El objetivo es priorizar una buena experiencia de usuario sin sobrecargar la interfaz con elementos innecesarios.
-
-El diseño también funciona como espacio de experimentación para aplicar conceptos de **Mobile First, responsive design, accesibilidad y buenas prácticas de desarrollo web**.
-
----
-
-## 🚀 Estado del proyecto
-
-🟢 **En desarrollo**
-
-Tereré Studio es un proyecto vivo.
-
-El sitio irá evolucionando junto con mis conocimientos y experiencia como desarrollador. Por este motivo, algunas secciones, proyectos o funcionalidades pueden encontrarse en proceso de desarrollo.
-
----
-
-## 📚 Aprendizaje
-
-Este proyecto forma parte de mi proceso de formación en desarrollo web.
-
-Más que intentar construir un sitio perfecto desde el comienzo, la intención es utilizarlo para aprender haciendo:
-
-> **Construir → probar → equivocarme → aprender → mejorar.**
-
-Cada nueva versión representa una etapa diferente de ese proceso.
-
----
-
-## 🗂️ Próximas mejoras
-
-Algunas funcionalidades que quiero incorporar progresivamente:
-
-- [ ] Mejorar y ampliar el portfolio.
-- [ ] Incorporar nuevos proyectos.
-- [ ] Crear la sección de blog.
-- [ ] Publicar artículos sobre mi proceso de aprendizaje.
-- [ ] Mejorar la experiencia responsive.
-- [ ] Optimizar accesibilidad.
-- [ ] Mejorar SEO.
-- [ ] Incorporar nuevas tecnologías.
-- [ ] Documentar los proyectos de manera más detallada.
-
----
-
-
-## 📄 Licencia
-
-Este proyecto es de uso personal y forma parte de mi portfolio.
-
-El código puede utilizarse como referencia educativa, pero los contenidos, diseños, textos e identidad visual pertenecen a su respectivo autor.
+Íconos: [Font Awesome Free](https://fontawesome.com) 6.4.0, licencia CC BY 4.0.

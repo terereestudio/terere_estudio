@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="88" height="31" viewBox="0 0 88 31" role="img" aria-label="¡HTML Válido!">
+  <rect x="0.5" y="0.5" width="87" height="30" rx="2" fill="#FFFFFF" stroke="#B5B5B5"/>
+  <rect x="3" y="3" width="40" height="25" rx="2" fill="#E44D26"/>
+  <text x="23" y="19.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="bold" fill="#FFFFFF">HTML5</text>
+  <text x="47" y="19.5" font-family="Arial, Helvetica, sans-serif" font-size="9.5" font-weight="bold" fill="#333333">válido</text>
+  <path d="M77.5 15.5l2.4 2.6 4.4-5.6" fill="none" stroke="#2A7AB0" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,92 @@
+[
+ {
+  "href": "blog/herramientas-ia-programar-aplicaciones.html",
+  "titulo": "Las mejores herramientas de inteligencia artificial para programar aplicaciones en 2026",
+  "fecha": "2026-10-13",
+  "categoria": "ia",
+  "etiqueta": "Inteligencia artificial",
+  "imagen": "img/blog/robots-ia-programar.webp",
+  "selloIA": false,
+  "resumen": "La inteligencia artificial está transformando la forma en que desarrollamos software. Hoy existen herramientas capaces de sugerir código, analizar proyectos completos, generar interfaces y construir aplicaciones a partir de instrucciones en lenguaje natural."
+ },
+ {
+  "href": "blog/contexto-inteligencia-artificial.html",
+  "titulo": "Contexto: la nueva moneda de la inteligencia artificial",
+  "fecha": "2026-10-08",
+  "categoria": "ia",
+  "etiqueta": "Inteligencia artificial",
+  "imagen": "img/blog/robot.webp",
+  "selloIA": false,
+  "resumen": "No todo lo que le damos a una IA vale lo mismo. Entender cómo funciona el contexto puede cambiar completamente la forma en que trabajamos con ella."
+ },
+ {
+  "href": "blog/ciberseguridad-web-basica-security-headers.html",
+  "titulo": "Ciberseguridad web básica: cómo protegí mi primera página web con Security Headers",
+  "fecha": "2026-09-28",
+  "categoria": "ciberseguridad",
+  "etiqueta": "Ciberseguridad",
+  "imagen": "img/blog/ciberseguridad.webp",
+  "selloIA": false,
+  "resumen": "Una primera aproximación a la seguridad web desde la experiencia de un desarrollador junior."
+ },
+ {
+  "href": "blog/minimalismo_desarrollo_web.html",
+  "titulo": "Minimalismo en el Diseño UX/UI",
+  "fecha": "2026-09-22",
+  "categoria": "diseno-ux",
+  "etiqueta": "Diseño UX/UI",
+  "imagen": "img/blog/portada-minimalismo.svg",
+  "selloIA": true,
+  "resumen": "Es una filosofía que prioriza la claridad, la función y la experiencia del usuario por encima del ruido visual."
+ },
+ {
+  "href": "blog/cambio_google_pestañas.html",
+  "titulo": "Rediseñando la mirada: ¿Qué hay detrás del cambio de Google y su salto a la barra lateral?",
+  "fecha": "2026-09-18",
+  "categoria": "diseno-ux",
+  "etiqueta": "Diseño UX/UI",
+  "imagen": "img/blog/portada-pestanas.svg",
+  "selloIA": true,
+  "resumen": "Si sos de los que entra a Google o navega por la web con frecuencia, es muy probable que hayas notado un cambio sutil pero profundo en la interfaz. Google decidió mover aquellas clásicas pestañas horizontales de la parte superior (Imágenes, Noticias, Videos, etc.) hacia una columna lateral en el lado izquierdo , un movimiento que también resuena con los cambios recientes en la gestión de interfaces y navegadores."
+ },
+ {
+  "href": "blog/valepenaaprendercoding.html",
+  "titulo": "¿Vale la pena aprender a codear en 2026?",
+  "fecha": "2026-09-15",
+  "categoria": "desarrollo-web",
+  "etiqueta": "Desarrollo web",
+  "imagen": "img/blog/programador-ia.webp",
+  "selloIA": true,
+  "resumen": "Si estás pensando en aprender a programar hay una pregunta que te frena en seco."
+ },
+ {
+  "href": "blog/Entrevista_IA/nos_van_a_reemplazar.html",
+  "titulo": "Entrevista con la IA: ¿Nos van a reemplazar?",
+  "fecha": "2026-09-14",
+  "categoria": "ia",
+  "etiqueta": "Inteligencia artificial",
+  "imagen": "img/blog/ia-reemplazar.webp",
+  "selloIA": false,
+  "resumen": "En esta entrevista tendremos repuesta a una de la preguntas más polémicas del siglo XXI según distintas inteligencias artificiales."
+ },
+ {
+  "href": "blog/VibeCoding.html",
+  "titulo": "¿Qué es el VibeCoding?",
+  "fecha": "2026-09-14",
+  "categoria": "desarrollo-web",
+  "etiqueta": "Desarrollo web",
+  "imagen": "img/blog/portada-vibecoding.svg",
+  "selloIA": true,
+  "resumen": "Programar con la IA como puente técnico."
+ },
+ {
+  "href": "blog/Defensa_VibeCoding.html",
+  "titulo": "En Construcción",
+  "fecha": "2026-09-14",
+  "categoria": "desarrollo-web",
+  "etiqueta": "Desarrollo web",
+  "imagen": "img/blog/defensa-vibecoding.webp",
+  "selloIA": false,
+  "resumen": "En construcción"
+ }
+]

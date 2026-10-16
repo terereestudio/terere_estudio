@@ -1,0 +1,24 @@
+<!--meta {"titulo": "Blog", "descripcion": "Artículos sobre desarrollo web, diseño UX/UI, ciberseguridad e inteligencia artificial, escritos por Leonardo Lavrovic de Tereré Estudio.", "activo": "blog"} -->
+
+<header class="cabecera-pagina">
+  <div class="contenedor">
+    <h1>Blog</h1>
+    <p>Lo que voy aprendiendo sobre desarrollo web, diseño e inteligencia artificial, contado en simple.</p>
+  </div>
+</header>
+
+<div class="seccion">
+  <div class="contenedor">
+    <div class="filtros" role="group" aria-label="Filtrar por tema">
+      <button class="filtro" type="button" data-filtro="todas" aria-pressed="true">Todos</button>
+      <button class="filtro" type="button" data-filtro="ia" aria-pressed="false">Inteligencia artificial</button>
+      <button class="filtro" type="button" data-filtro="desarrollo-web" aria-pressed="false">Desarrollo web</button>
+      <button class="filtro" type="button" data-filtro="diseno-ux" aria-pressed="false">Diseño UX/UI</button>
+      <button class="filtro" type="button" data-filtro="ciberseguridad" aria-pressed="false">Ciberseguridad</button>
+    </div>
+    <p class="visualmente-oculto" id="filtro-resultado" role="status" aria-live="polite"></p>
+    <div class="grilla-posts">
+<!--blog:lista-->
+    </div>
+  </div>
+</div>

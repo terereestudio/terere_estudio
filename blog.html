@@ -1,308 +1,212 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-AR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>tereré estudio - Blog & Bitácora</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" href="img/favicon.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blog | Tereré Estudio</title>
+<meta name="description" content="Artículos sobre desarrollo web, diseño UX/UI, ciberseguridad e inteligencia artificial, escritos por Leonardo Lavrovic de Tereré Estudio.">
+<link rel="canonical" href="https://terereestudio.com.ar/blog.html">
+
+<meta name="theme-color" content="#161415">
+<meta property="og:locale" content="es_AR">
+<meta property="og:site_name" content="Tereré Estudio">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog | Tereré Estudio">
+<meta property="og:description" content="Artículos sobre desarrollo web, diseño UX/UI, ciberseguridad e inteligencia artificial, escritos por Leonardo Lavrovic de Tereré Estudio.">
+<meta property="og:url" content="https://terereestudio.com.ar/blog.html">
+<meta property="og:image" content="https://terereestudio.com.ar/img/marca/og-terere-estudio.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="img/marca/isotipo-verde.svg" type="image/svg+xml">
+<link rel="icon" href="img/marca/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="img/marca/apple-touch-icon.png">
+<link rel="stylesheet" href="css/estilos.css">
+<script src="js/main.js" defer></script>
+
+
 </head>
-<body class="portfolio-body-editorial">
-
-    <!--// HEADER //-->
-    <header>
-        <a href="index.html" class="logo-link">
-            <img src="img/logo_blanco_transparente.png" alt="Logo Tereré Estudio">
-        </a>
-        <!-- Botón hamburguesa -->
-        <button class="menu-hamburguesa" id="btn-hamburguesa" aria-label="Abrir menú">
-            <i class="fa-solid fa-bars" aria-hidden="true"><svg viewBox="0 0 448 512" fill="currentColor"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></i>
-        </button>
-        <!-- Menú desplegable aplanado (sin subpestaña "Más") -->
-        <nav id="menu-links">
-            <a href="index.html">Inicio</a>
-            <a href="index.html#servicios">Servicios</a>
-            <a href="portfolio.html">Portfolio</a>
-            <a href="blog.html">Blog</a>
-            <a href="index.html#contacto">Contacto</a>
-        </nav>
-    </header>
-
-    <!--// HERO DEL BLOG CON FILTROS //-->
-    <section class="portfolio-hero-editorial">
-        <div class="hero-editorial-contenido">
-            <span class="etiqueta-autor">Tereré Estudio / Blog & Bitácora</span>
-            <h1>Notas sobre código, diseño y desarrollo.</h1>
-            <p>Pensamientos, tutoriales y reflexiones ordenados por temáticas.</p>
-            
-            <div class="blog-filtro-dropdown">
-                <button type="button" class="btn-filtro-toggle" id="btn-filtro-toggle">
-                    <i class="fa-solid fa-filter" aria-hidden="true"><svg viewBox="0 0 512 512" fill="currentColor"><path d="M3.9 54.9C10.5 40.9 24.5 32 40 32H472c15.5 0 29.5 8.9 36.1 22.9s4.6 30.5-5.2 42.5L320 320.9V448c0 12.1-6.8 23.2-17.7 28.6s-23.8 4.3-33.5-3l-64-48c-8.1-6-12.8-15.5-12.8-25.6V320.9L9 97.3C-.7 85.4-2.8 68.8 3.9 54.9z"/></svg></i> Filtrar entradas <i class="fa-solid fa-chevron-down" aria-hidden="true"><svg viewBox="0 0 512 512" fill="currentColor"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></svg></i>
-                </button>
-                <div class="blog-filtro-panel" id="blog-filtro-panel">
-                    <div class="grupo-filtro">
-                        <span>Por Tema:</span>
-                        <button class="filtro-tag activo" data-filtro="todos">Todos</button>
-                        <button class="filtro-tag" data-filtro="ia">Inteligencia Artificial</button>
-                        <button class="filtro-tag" data-filtro="desarrollo-web">Desarrollo Web</button>
-                        <button class="filtro-tag" data-filtro="diseno-ux">Diseño UX/UI</button>
-                        <button class="filtro-tag" data-filtro="coding">Coding</button>
-                        <button class="filtro-tag" data-filtro="ciberseguridad">Ciberseguridad</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--// GRILLA DE ARTÍCULOS //-->
-    <main class="portfolio-editorial-main">
-        <div class="blog-grilla-tarjetas">
-
-            <article class="blog-card" data-categoria="ia">
-                <div class="blog-card-img">
-                    <img src="img/blog/blog_robots_mejor_ia_programar.png" alt="Programador contemplando a la inteligencia artificial">
-                    <span class="blog-tag-etiqueta">Inteligencia Artificial</span>
-                </div>
-                <div class="blog-card-body">
-                    <span class="blog-card-fecha">13 Oct 2026</span>
-                    <h2>Las mejores herramientas de inteligencia artificial para programar aplicaciones en 2026</h2>
-                    <p>Elegir la herramienta adecuada depende de nuestra experiencia, del proyecto que queremos desarrollar y del nivel de control técnico que necesitamos.</p>
-                    <a href="blog/herramientas-ia-programar-aplicaciones.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
-                </div>
-            </article>
-            
-            <article class="blog-card" data-categoria="ia">
-                <div class="blog-card-img">
-                    <img src="img/blog/blog_robot.png" alt="Programador contemplando a la inteligencia artificial">
-                    <span class="blog-tag-etiqueta">Inteligencia Artificial</span>
-                </div>
-                <div class="blog-card-body">
-                    <span class="blog-card-fecha">8 Oct 2026</span>
-                    <h2>Contexto: la moneda de cambio de la IA</h2>
-                    <p>No todo lo que le damos a una IA vale lo mismo. Entender cómo funciona el contexto puede cambiar completamente la forma en que trabajamos con ella.</p>
-                    <a href="blog/contexto-inteligencia-artificial.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
-                </div>
-            </article>
-
-
-            <article class="blog-card" data-categoria="diseno-ux">
-                <div class="blog-card-img">
-                    <img src="https://fotografias-2.larazon.es/assets/2026/04/google-chrome-para-escritorio-por-fin-permite-pestanas-laterales.jpg?width=1600&height=900" alt="Logos de Google">
-                    <span class="blog-tag-etiqueta">Diseño UX/UI</span>
-                    <div class="sello-ia-advertencia-img" data-tooltip="TEXTO GENERADO CON IA    PRÁCTICA DE PROMPTING">
-                        <img src="img/rotulo_exceso_IA.png" alt="Exceso de Inteligencia Artificial">
-                    </div>
-                </div>
-                <div class="blog-card-body">
-                    <span class="blog-card-fecha">18 Sept 2026</span>
-                    <h2>Rediseñando la mirada</h2>
-                    <p>¿Qué hay detrás del cambio de Google y su salto a la barra lateral?</p>
-                    <a href="blog/cambio_google_pestañas.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
-                </div>
-            </article>
-
-            <article class="blog-card" data-categoria="ia">
-                <div class="blog-card-img">
-                    <img src="img/blog/blog_banner_IA_reemplaza_humanos_Gemini_Generated_Image_7uxbmv7uxbmv7uxb.jpg" alt="Código puro">
-                    <span class="blog-tag-etiqueta">Inteligencia Artificial</span>
-                </div>
-                <div class="blog-card-body">
-                    <span class="blog-card-fecha">14 Sep 2026</span>
-                    <h2>Entrevista con la IA:<br>¿Nos van a reemplazar?</h2>
-                    <p>En esta entrevista tendremos respuesta a una de la preguntas más polémicas del siglo XXI según distintas inteligencias artificiales</p>
-                    <a href="blog/Entrevista_IA/nos_van_a_reemplazar.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
-                </div>
-            </article>
-
-            <article class="blog-card" data-categoria="diseno-ux">
-                <div class="blog-card-img">
-                    <img src="https://uploads7.wikiart.org/images/ad-reinhardt/study-for-a-painting-1939-1.jpg" alt="Study for a Painting por Ad Reinhardt">
-                    <span class="blog-tag-etiqueta">Diseño UX/UI</span>
-                    <div class="sello-ia-advertencia-img" data-tooltip="TEXTO GENERADO CON IA    PRÁCTICA DE PROMPTING">
-                        <img src="img/rotulo_exceso_IA.png" alt="Exceso de Inteligencia Artificial">
-                    </div>                    
-                </div>
-                <div class="blog-card-body">
-                    <span class="blog-card-fecha">22 Sep 2026</span>
-                    <h2>Minimalismo en el Diseño UX/UI</h2>
-                    <p>Es una filosofía que prioriza la claridad, la función y la experiencia del usuario por encima del ruido visual</p>
-                    <a href="blog/minimalismo_desarrollo_web.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
-                </div>
-            </article>
-
-            <article class="blog-card" data-categoria="coding">
-                <div class="blog-card-img">
-                    <img src="https://www.differencebetween.net/wp-content/uploads/2018/01/Difference-between-Coding-and-Programming.jpg" alt="Imagen con código de programación">
-                    <span class="blog-tag-etiqueta">Coding</span>
-                    <div class="sello-ia-advertencia-img" data-tooltip="TEXTO GENERADO CON IA    PRÁCTICA DE PROMPTING">
-                        <img src="img/rotulo_exceso_IA.png" alt="Exceso de Inteligencia Artificial">
-                    </div>
-                </div>
-                <div class="blog-card-body">
-                    <span class="blog-card-fecha">14 Sep 2026</span>
-                    <h2>¿Qué es el VibeCoding?</h2>
-                    <p>Programar con la IA como puente técnico.</p>
-                    <a href="blog/VibeCoding.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
-                </div>
-            </article>
-
-            <article class="blog-card" data-categoria="coding">
-                <div class="blog-card-img">
-                    <img src="img/blog/blog_banner_programmer_ai_contemplation.jpg" alt="Programador contemplando a la inteligencia artificial">
-                    <span class="blog-tag-etiqueta">Coding</span>
-                    <div class="sello-ia-advertencia-img" data-tooltip="TEXTO GENERADO CON IA    PRÁCTICA DE PROMPTING">
-                        <img src="img/rotulo_exceso_IA.png" alt="Exceso de Inteligencia Artificial">
-                    </div>
-                </div>
-                <div class="blog-card-body">
-                    <span class="blog-card-fecha">15 Sep 2026</span>
-                    <h2>¿Vale la pena aprender <br> a codear en 2026?</h2>
-                    <p>Si estás pensando en aprender a programar hay una pregunta que te frena en seco.</p>
-                    <a href="blog/valepenaaprendercoding.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
-                </div>
-            </article>
-
-            <article class="blog-card" data-categoria="ciberseguridad">
-                <div class="blog-card-img">
-                    <img src="img/blog/blog_banner_ciberseguridad.png" alt="Programador contemplando a la inteligencia artificial">
-                    <span class="blog-tag-etiqueta">Ciberseguridad</span>
-                </div>
-                <div class="blog-card-body">
-                    <span class="blog-card-fecha">28 Sep 2026</span>
-                    <h2>Ciberseguridad web básica<br>para principiantes: Security Headers</h2>
-                    <p>Aprendí qué son los HTTP Security Headers y cómo implementar HSTS, X-Frame-Options, Referrer-Policy y otras medidas de seguridad en una web con Netlify.</p>
-                    <a href="blog/ciberseguridad-web-basica-security-headers.html" class="btn-enlace-verde">Leer artículo &rarr;</a>
-                </div>
-            </article>
-
-        </div>
-    </main>
-
-        <!--// FOOTER INSTITUCIONAL //-->
-        <footer id="contacto" class="footer-estudio">
-            <div class="footer-contenido footer-con-validadores">
-                <div class="footer-info">
-                    <a href="index.html" class="footer-logo-link">
-                        <img src="img/logo_blanco_transparente.png" alt="Tereré Estudio" class="footer-logo">
-                    </a>
-                    <p>Desarrollo web minimalista, ultra rápido y enfocado en la conversión real de tu negocio.</p>
-                    
-                    <div class="footer-social-ubicacion">
-                        <div class="footer-redes">
-                            <a href="https://instagram.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
-                                <i class="fa-brands fa-instagram" aria-hidden="true"><svg viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg></i> <span>@terere.ecommerce</span>
-                            </a>
-                            <a href="https://facebook.com/terere.ecommerce" target="_blank" rel="noopener noreferrer" class="social-link">
-                                <i class="fa-brands fa-facebook" aria-hidden="true"><svg viewBox="0 0 512 512" fill="currentColor"><path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"/></svg></i> <span>@terere.ecommerce</span>
-                            </a>
-                            <a href="https://www.linkedin.com/in/leonardo-lavrovic/" target="_blank" rel="noopener noreferrer" class="social-link">
-                                <i class="fa-brands fa-linkedin" aria-hidden="true"><svg viewBox="0 0 448 512" fill="currentColor"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg></i> <span>Leonardo Lavrovic</span>
-                            </a>
-                            <a href="https://github.com/terereestudio" target="_blank" rel="noopener noreferrer" class="social-link">
-                                <i class="fa-brands fa-github" aria-hidden="true"><svg viewBox="0 0 496 512" fill="currentColor"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></i> <span>tereré estudio</span>
-                            </a>                            
-                        </div>
-                        
-                        <div class="footer-ubicacion">
-                            <p><i class="fa-solid fa-location-dot" aria-hidden="true"><svg viewBox="0 0 384 512" fill="currentColor"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg></i> Corrientes, Argentina</p>
-                        </div>
-                    </div>
-                </div>
-
-                <form id="form-contacto-footer"
-                    action="https://formspree.io/f/mvkolbbj"
-                    method="POST">
-
-                    <!-- ESTADO: FORMULARIO -->
-                    <div id="contenido-formulario-footer" class="footer-form-view">
-
-                        <h3>Trabajemos juntos</h3>
-
-                        <p>
-                            Dejanos tu mensaje y nos ponemos en contacto.
-                        </p>
-
-                        <div class="footer-form-field">
-                            <label for="footer-nombre">Tu nombre</label>
-                            <input
-                                type="text"
-                                id="footer-nombre"
-                                name="nombre"
-                                required
-                                placeholder="Nombre y Apellido"
-                            >
-                        </div>
-
-                        <div class="footer-form-field">
-                            <label for="footer-email">Correo electrónico</label>
-                            <input
-                                type="email"
-                                id="footer-email"
-                                name="email"
-                                required
-                                placeholder="tu@email.com"
-                            >
-                        </div>
-
-                        <div class="footer-form-field">
-                            <label for="footer-mensaje">Mensaje</label>
-                            <textarea
-                                id="footer-mensaje"
-                                name="mensaje"
-                                rows="4"
-                                required
-                                placeholder="Comentanos un poco sobre tu idea"
-                            ></textarea>
-                        </div>
-
-                        <button type="submit">
-                            Enviar mensaje
-                        </button>
-
-                    </div>
-
-
-                    <!-- ESTADO: ÉXITO -->
-                    <div id="mensaje-exito-footer" class="footer-success-view" hidden>
-
-                        <h3>¡Muchas gracias!</h3>
-
-                        <p>
-                            Brevemente estaremos en contacto.
-                        </p>
-
-                        <button
-                            type="button"
-                            id="btn-reiniciar-footer"
-                            class="btn-cta"
-                        >
-                            ¡Genial!
-                        </button>
-
-                    </div>
-
-                </form>
-
-                <!-- VALIDADORES W3C -->
-                <div class="footer-validadores">
-                    <a href="https://validator.w3.org/nu/?doc=https%3A%2F%2Fterereestudio.com.ar%2Fblog.html">
-                        <img src="img/validadores/html5-valido.svg" width="88" height="31" alt="¡HTML Válido!">
-                    </a>
-                    <a href="https://jigsaw.w3.org/css-validator/check/referer">
-                        <img src="https://jigsaw.w3.org/css-validator/images/vcss-blue" width="88" height="31" alt="¡CSS Válido!">
-                    </a>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Tereré Estudio. Todos los derechos reservados.</p>
-            </div>
-        </footer>
-
-    <!--// WHATSAPP FLOTANTE //-->
-    <a href="https://wa.me/5493644328260?text=Hola%20Tereré%20Estudio,%20quiero%20consultar%20sobre%20su%20blog" class="btn-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-        <img src="img/icono_whatsapp.png" alt="WhatsApp Tereré Estudio">
+<body class="">
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<header class="encabezado">
+  <div class="encabezado-interior">
+    <a class="marca" href="index.html" aria-label="Tereré Estudio, ir al inicio">
+      <svg class="iso" fill="currentColor" viewBox="0 0 325.8 202.8" aria-hidden="true"><path fill-rule="evenodd" d="M324 42.9L323.1 41L322.1 37L320.6 33.8L317.2 27.7L315 24.5L312.2 21.1L308.8 17.7L303 12.8L300.7 11.5L299.3 10.2L288.8 5.3L281.7 3L274.4 1L271.8 0.7L269.9 0L273.7 3.7L280.4 11.1L283.8 15.7L285.6 19.1L286.6 20.3L287.8 23.7L289.4 26.8L291 32.8L291.2 40.5L290.6 42.5L290.5 44.3L289.4 46.7L289.4 48.1L288.9 48.4L288.5 49.8L287.1 52.2L286.1 53.2L284.7 56L281.9 59.3L280.9 60.1L279.2 60.1L277 58.4L275.5 57.8L274.5 56.8L273 56.2L268.2 53.1L266 52.1L260 48L258.1 47.2L256.4 45.8L254.9 45.6L256.6 53.4L256.8 56L257.3 56.8L257.8 60.7L258.4 62.5L258.7 65.5L259.3 67.1L259.6 70.7L260.4 71.9L260.5 73.8L260.1 74.7L259.5 74.5L258.3 73.2L255.8 71.4L244.9 60.6L240 56.2L238.4 55.2L238.3 62.3L237.8 68.1L237.4 85.4L237.1 85.7L235.9 84.5L234.2 81.9L233.3 80L229.3 74.2L221.7 61.8L221.1 61.5L220.4 62.3L220 64.4L218.5 68L218.2 70.4L217.5 71.7L216.6 75.2L215.8 77L214.7 82L213.9 83.6L213 87.9L212.4 89.4L211.5 89.5L210.5 87.7L208.9 83.2L208.4 82.6L204.5 73.1L202.6 69.3L201.7 66.3L201 64.9L200.5 64.6L198.4 68.6L198 70.6L196.9 71.4L196.9 72.4L196.3 74.1L193.4 79.4L192.8 81.7L191.9 82.5L192 83.3L190.2 86.5L189.2 89L188.4 89.9L188.3 90.8L187.8 91.4L186.8 91.7L185.8 89.1L184.4 79.9L183.7 78.2L182.8 71.4L182 69.4L180.8 62.9L180 63.2L178 66.1L175.9 68.4L175.4 69.5L173.2 72.1L172 74.1L170.1 76.1L164.8 83.2L163.2 84.9L162.8 86L160.9 87.9L160.3 87.9L159.8 87.5L159.4 85.6L158.8 75L158.1 70.2L157.4 59.7L149.9 66.9L149.7 67.4L143.1 73.8L137.6 79.7L136.1 80.9L135 81.1L133.4 80.3L129.6 79.3L123.4 76.6L121.5 76.2L118.7 74.7L115.8 73.8L115.3 73.3L115.2 72.8L115.8 72.2L118 71.2L120.3 69.4L123.5 65.8L124.4 63.8L125.3 58.8L125.1 55L123.7 51.6L121.1 48.1L118.4 45.6L116 44.5L112.4 43.5L107.1 43.2L103.1 43.9L102.6 44.4L101.2 44.8L100.8 45.3L98.4 46.4L96.2 48.3L94 51.5L92.9 53.9L92.7 57L92.2 58.8L92.2 60.5L92.9 61.5L92.9 62.4L92.6 62.9L91.5 62.8L81.7 57.7L80.9 56.9L81.2 56.3L82.5 56.1L86 54.4L88.5 52.7L92.5 46.9L93 43.3L92.6 37.1L91 33.8L89.2 31.6L87 29.6L82 27.1L78.5 26.4L72.9 26.6L68.4 28.4L65.1 31.1L63.1 33.3L61.1 38.1L60.4 44.8L59.4 45.1L57.9 43.9L52 40.9L48.2 38L46.4 37.1L40.4 32.2L39.4 31.7L31 23.3L23.9 14.4L18.8 9.6L16.8 8.6L13.9 7.8L11.2 7.7L9 8.2L6.3 9.6L2.9 13L0.8 18.1L0 25.9L0.7 28L0.8 29.9L3.7 34.6L3.6 35.6L2.5 37.5L1.8 40.7L1.8 46.8L2.5 48.7L2.6 50.3L3.5 51.6L3.7 53.4L4.8 55.8L5.7 56.5L6.4 55.6L7.3 52.7L9.6 48.1L12.3 44.7L12.8 44.4L13.9 44.5L15.2 45.7L15.2 46.7L12.6 51.5L12.4 56.4L12.6 61.3L15.7 68.9L16.3 69.1L16.6 68.8L17.3 66.1L18.7 63.4L18.9 62.3L19.8 61.4L20.7 59.6L23.2 56.4L25.1 55.5L26.7 56.6L28.1 58.4L28.1 59.2L27.4 60.2L26.5 63.3L26.3 69.4L27.2 70.5L27.4 73.5L29.1 76.5L30.3 79.7L34.4 70.7L35.7 69.4L36.2 68.1L37.3 66.7L38.3 66.4L39.4 67.2L40.6 67.5L41.7 68.7L43.6 69.6L44.7 70.8L46.2 71.3L47.7 72.7L50.6 74L52.5 75.5L55.2 76.7L57 77.9L63.5 81.1L65.6 81.6L67.9 82.9L69.2 83L73.4 84.5L75 84.6L75.5 85L74.9 85.7L68 86.6L64.8 87.6L61.1 88.3L52.5 91L49.2 91.4L46.3 89.6L42.6 85.3L40.9 82.4L39.6 78.5L38.6 77.2L37.6 78.7L37.2 80.4L36.3 81.8L35.1 88.3L35.3 93L36.4 96.9L35.9 97.5L33.9 98.3L32.4 96.9L31.1 96.2L29.1 94.1L25.7 88L24.8 85L23.7 83.7L22.9 85.2L22.5 87.2L21.8 88.2L21.7 89.2L20.9 91L20.8 92.8L20.2 94.8L20.2 97.6L21.8 103.4L21.8 104.6L20.7 105.4L19.6 105.7L15.7 102.5L13.2 99.4L10.7 94.7L10.5 93.5L9.8 92.1L9.1 91.8L7.4 94.5L7.2 96.2L6.5 97.1L5.5 102.7L5.6 105.6L6.2 108.5L8.7 112.8L8.3 113.7L7.4 114.6L5.8 115.3L1 118.9L10.4 119.2L99.7 119.5L100 119.7L97.4 125.2L96.4 128.5L96.4 130.4L95.9 131.2L88.7 134.7L86.3 135.3L80.8 138.3L77.8 139.4L76.7 140.7L88 142.2L89.7 142.8L91.9 143L92.2 143.6L82.8 150.1L78.6 153.3L85.1 153L92.7 152L100.5 151.4L101.1 151.8L101.6 153L102 158.2L102.8 158.7L102.9 159.2L104 158.5L110.8 151.6L114.8 146.7L119.5 142.7L122.7 138.3L125 133.6L126 133.5L129.6 135L130 135.5L130 136.2L127.2 140.4L125.7 144.1L124.7 148L123.8 153.9L123.7 162.7L107.9 178.7L108.1 179L113.4 179.1L116.9 178.6L124.2 178.4L124.8 178.9L118.1 188L117.1 189.9L114.8 192.4L114.5 193.5L113.3 194.3L117.6 193L119.3 192.1L120.9 191.9L123.1 190.6L125.5 190L128.2 188.6L133 186.9L135 186.5L136.1 187.8L137.5 191.7L138 192.3L138.6 194.7L139.6 195.7L142.6 189.4L143 187.7L145.4 183.2L145.6 181.7L148 177.4L148.4 175.6L149.9 172.5L150.8 171.5L151.5 168.8L152.5 166.5L153 162.5L153.6 161.1L153.5 151.7L153 149.8L152.8 147L151.9 146.3L152.5 145.8L161.7 149.2L162.9 149.3L164 150L165.1 150L167.5 151L175.9 153L177.1 153.7L179.6 153.8L189.9 155.4L208.3 155.6L211.4 155L216.9 154.7L219.6 153.9L222.4 153.6L226.7 152.6L227.6 152.7L228.4 153.6L230.2 157.3L230.9 159.6L230.2 162.4L229.5 163.7L223.5 187L224.9 186.6L235 178.5L238.3 175.5L239.3 175.2L239.2 178.4L237.6 186.7L236.4 196.3L235.8 197.8L235.9 198.1L236.3 198L239 194.5L240.2 192.3L243.3 188.5L245.3 185.3L246.5 184.1L247.6 182.1L249.2 180.4L249.7 179.1L252.5 175.4L253.5 175.5L259.4 180.2L260.7 181.6L261.1 181.5L261.4 175.5L261.1 172.2L261 147.6L260.7 142.3L262.4 141.6L263 142.1L263.2 143.5L263.9 144.4L264.1 145.6L265.5 148.4L270.2 155.3L270.6 156.4L273 159.5L275.8 162.3L275 193.4L277.2 191.8L277.9 190.4L281.3 186.6L283.9 183L285.4 181.6L287.8 177.9L288.5 177.8L289 178.4L289.4 179.8L289.6 183.5L290.5 188.1L292.1 202.7L295.2 196.1L295.8 193.9L297 191.6L297.5 189.7L303.2 175.3L303.8 174.8L305.3 175.2L307.7 176.8L313.3 179.6L314.9 179.7L314.1 178L313.9 176.1L312.3 172.2L312.2 170.8L311.3 168.6L311.2 167.6L310.6 166.6L310.4 164.7L309.5 163.3L309.4 161.8L308.8 160.9L307.9 156.9L307.2 155.6L304.4 145.5L302.2 139.4L301 136.8L300.6 136.6L299.5 133.9L297.7 131.5L297 130L293.7 125.5L291.2 123L290.8 122.1L298.8 114.9L308.3 104.3L315.2 94.1L318.5 88L318.4 86.9L319.4 86.2L319.6 85.2L321.3 82.1L321.5 80.5L322.2 79.2L324 73L325 67.5L325.7 60L325.5 51.8L324.1 44.7ZM106.9 47.4L109.3 47.4L111.2 47.8L114.5 49.5L116.5 51.5L118 53.7L119 57.9L118 62.3L116.3 64.6L113.3 67.1L111.2 68L109.6 68.3L105.3 68L101.7 66.2L99.6 64L98 61L97.6 59.2L97.6 56.3L98.3 54L99.6 51.7L101.7 49.5L103 48.6ZM76.3 31.3L80.5 31.9L84.1 34.4L86.1 36.8L87.3 40.8L87.3 42.7L86.5 45.6L84.4 49L80.8 51.6L77.3 52.6L72.9 51.8L71.2 51L68.6 48.9L66.2 45.7L65.4 42.3L66.2 37.9L67.1 36.9L67.8 35.2L69.7 33.5L71.9 32.2Z"/><g class="iso-pupilas"><path d="M77.4 34.6L74.4 35.2L72.3 36.3L70.5 38.4L69.4 40.7L69.5 42.6L71.1 46.1L72.9 47.6L74.6 48.2L78 48.2L79.9 47.7L81.8 45.8L82.7 44.2L82.9 40.7L82.2 37.9L81 36.5Z"/><path d="M107.4 50.8L105 51.4L103 53L101.9 54.7L101.2 57L101.2 58L102 60.5L103.2 62.3L106.8 64.3L109 64.3L111.1 63.6L113 62.5L113.5 61.9L114.6 59.5L114.6 56.6L114.2 55.2L112.8 53L111.1 51.6L109.4 50.9Z"/></g><g class="iso-parpados"><ellipse class="iso-parpado" cx="76.4" cy="42" rx="12" ry="11.7"/><ellipse class="iso-parpado" cx="108.35" cy="57.9" rx="11.75" ry="11.5"/></g></svg>
+      <span class="marca-texto"><strong>tereré</strong> estudio</span>
     </a>
+    <button class="menu-boton" type="button" aria-expanded="false" aria-controls="menu-principal">
+      <svg class="icono" fill="currentColor" aria-hidden="true"><use href="img/iconos.svg#menu"/></svg>
+      <span class="menu-boton-texto">Menú</span>
+    </button>
+    <nav class="menu" id="menu-principal" aria-label="Principal">
+      <ul>
+        <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="blog.html" aria-current="page">Blog</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+        <li><a class="boton boton-chico" href="index.html#contacto">Contame tu proyecto</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-    <script src="js/main.js" defer></script>
+<main id="contenido">
+
+<header class="cabecera-pagina">
+  <div class="contenedor">
+    <h1>Blog</h1>
+    <p>Lo que voy aprendiendo sobre desarrollo web, diseño e inteligencia artificial, contado en simple.</p>
+  </div>
+</header>
+
+<div class="seccion">
+  <div class="contenedor">
+    <div class="filtros" role="group" aria-label="Filtrar por tema">
+      <button class="filtro" type="button" data-filtro="todas" aria-pressed="true">Todos</button>
+      <button class="filtro" type="button" data-filtro="ia" aria-pressed="false">Inteligencia artificial</button>
+      <button class="filtro" type="button" data-filtro="desarrollo-web" aria-pressed="false">Desarrollo web</button>
+      <button class="filtro" type="button" data-filtro="diseno-ux" aria-pressed="false">Diseño UX/UI</button>
+      <button class="filtro" type="button" data-filtro="ciberseguridad" aria-pressed="false">Ciberseguridad</button>
+    </div>
+    <p class="visualmente-oculto" id="filtro-resultado" role="status" aria-live="polite"></p>
+    <div class="grilla-posts">
+<article class="tarjeta-post" data-categoria="ia">
+  <a class="tarjeta-post-enlace" href="blog/herramientas-ia-programar-aplicaciones.html">
+    <div class="tarjeta-post-imagen"><img src="img/blog/robots-ia-programar-chica.webp" srcset="img/blog/robots-ia-programar-chica.webp 600w, img/blog/robots-ia-programar.webp 1200w" sizes="(max-width: 700px) 100vw, 360px" width="600" height="315" alt="" loading="lazy" decoding="async"></div>
+    <div class="tarjeta-post-cuerpo">
+      <p class="tarjeta-post-meta"><span>Inteligencia artificial</span> <time datetime="2026-10-13">13 oct 2026</time></p>
+      <h2>Las mejores herramientas de inteligencia artificial para programar aplicaciones en 2026</h2>
+      <p>La inteligencia artificial está transformando la forma en que desarrollamos software. Hoy existen herramientas capaces de sugerir código, analizar…</p>
+      
+    </div>
+  </a>
+</article>
+<article class="tarjeta-post" data-categoria="ia">
+  <a class="tarjeta-post-enlace" href="blog/contexto-inteligencia-artificial.html">
+    <div class="tarjeta-post-imagen"><img src="img/blog/robot-chica.webp" srcset="img/blog/robot-chica.webp 600w, img/blog/robot.webp 1200w" sizes="(max-width: 700px) 100vw, 360px" width="600" height="315" alt="" loading="lazy" decoding="async"></div>
+    <div class="tarjeta-post-cuerpo">
+      <p class="tarjeta-post-meta"><span>Inteligencia artificial</span> <time datetime="2026-10-08">8 oct 2026</time></p>
+      <h2>Contexto: la nueva moneda de la inteligencia artificial</h2>
+      <p>No todo lo que le damos a una IA vale lo mismo. Entender cómo funciona el contexto puede cambiar completamente la forma en que trabajamos con ella.</p>
+      
+    </div>
+  </a>
+</article>
+<article class="tarjeta-post" data-categoria="ciberseguridad">
+  <a class="tarjeta-post-enlace" href="blog/ciberseguridad-web-basica-security-headers.html">
+    <div class="tarjeta-post-imagen"><img src="img/blog/ciberseguridad-chica.webp" srcset="img/blog/ciberseguridad-chica.webp 600w, img/blog/ciberseguridad.webp 1200w" sizes="(max-width: 700px) 100vw, 360px" width="600" height="315" alt="" loading="lazy" decoding="async"></div>
+    <div class="tarjeta-post-cuerpo">
+      <p class="tarjeta-post-meta"><span>Ciberseguridad</span> <time datetime="2026-09-28">28 sep 2026</time></p>
+      <h2>Ciberseguridad web básica: cómo protegí mi primera página web con Security Headers</h2>
+      <p>Una primera aproximación a la seguridad web desde la experiencia de un desarrollador junior.</p>
+      
+    </div>
+  </a>
+</article>
+<article class="tarjeta-post" data-categoria="diseno-ux">
+  <a class="tarjeta-post-enlace" href="blog/minimalismo_desarrollo_web.html">
+    <div class="tarjeta-post-imagen"><img src="img/blog/portada-minimalismo.svg" width="1200" height="630" alt="" loading="lazy" decoding="async"></div>
+    <div class="tarjeta-post-cuerpo">
+      <p class="tarjeta-post-meta"><span>Diseño UX/UI</span> <time datetime="2026-09-22">22 sep 2026</time></p>
+      <h2>Minimalismo en el Diseño UX/UI</h2>
+      <p>Es una filosofía que prioriza la claridad, la función y la experiencia del usuario por encima del ruido visual.</p>
+      <p class="tarjeta-sello-ia">Texto generado con IA como práctica de prompting</p>
+    </div>
+  </a>
+</article>
+<article class="tarjeta-post" data-categoria="diseno-ux">
+  <a class="tarjeta-post-enlace" href="blog/cambio_google_pestañas.html">
+    <div class="tarjeta-post-imagen"><img src="img/blog/portada-pestanas.svg" width="1200" height="630" alt="" loading="lazy" decoding="async"></div>
+    <div class="tarjeta-post-cuerpo">
+      <p class="tarjeta-post-meta"><span>Diseño UX/UI</span> <time datetime="2026-09-18">18 sep 2026</time></p>
+      <h2>Rediseñando la mirada: ¿Qué hay detrás del cambio de Google y su salto a la barra lateral?</h2>
+      <p>Si sos de los que entra a Google o navega por la web con frecuencia, es muy probable que hayas notado un cambio sutil pero profundo en la interfaz.…</p>
+      <p class="tarjeta-sello-ia">Texto generado con IA como práctica de prompting</p>
+    </div>
+  </a>
+</article>
+<article class="tarjeta-post" data-categoria="desarrollo-web">
+  <a class="tarjeta-post-enlace" href="blog/valepenaaprendercoding.html">
+    <div class="tarjeta-post-imagen"><img src="img/blog/programador-ia-chica.webp" srcset="img/blog/programador-ia-chica.webp 600w, img/blog/programador-ia.webp 1200w" sizes="(max-width: 700px) 100vw, 360px" width="600" height="315" alt="" loading="lazy" decoding="async"></div>
+    <div class="tarjeta-post-cuerpo">
+      <p class="tarjeta-post-meta"><span>Desarrollo web</span> <time datetime="2026-09-15">15 sep 2026</time></p>
+      <h2>¿Vale la pena aprender a codear en 2026?</h2>
+      <p>Si estás pensando en aprender a programar hay una pregunta que te frena en seco.</p>
+      <p class="tarjeta-sello-ia">Texto generado con IA como práctica de prompting</p>
+    </div>
+  </a>
+</article>
+<article class="tarjeta-post" data-categoria="ia">
+  <a class="tarjeta-post-enlace" href="blog/Entrevista_IA/nos_van_a_reemplazar.html">
+    <div class="tarjeta-post-imagen"><img src="img/blog/ia-reemplazar-chica.webp" srcset="img/blog/ia-reemplazar-chica.webp 600w, img/blog/ia-reemplazar.webp 1200w" sizes="(max-width: 700px) 100vw, 360px" width="600" height="315" alt="" loading="lazy" decoding="async"></div>
+    <div class="tarjeta-post-cuerpo">
+      <p class="tarjeta-post-meta"><span>Inteligencia artificial</span> <time datetime="2026-09-14">14 sep 2026</time></p>
+      <h2>Entrevista con la IA: ¿Nos van a reemplazar?</h2>
+      <p>En esta entrevista tendremos repuesta a una de la preguntas más polémicas del siglo XXI según distintas inteligencias artificiales.</p>
+      
+    </div>
+  </a>
+</article>
+<article class="tarjeta-post" data-categoria="desarrollo-web">
+  <a class="tarjeta-post-enlace" href="blog/VibeCoding.html">
+    <div class="tarjeta-post-imagen"><img src="img/blog/portada-vibecoding.svg" width="1200" height="630" alt="" loading="lazy" decoding="async"></div>
+    <div class="tarjeta-post-cuerpo">
+      <p class="tarjeta-post-meta"><span>Desarrollo web</span> <time datetime="2026-09-14">14 sep 2026</time></p>
+      <h2>¿Qué es el VibeCoding?</h2>
+      <p>Programar con la IA como puente técnico.</p>
+      <p class="tarjeta-sello-ia">Texto generado con IA como práctica de prompting</p>
+    </div>
+  </a>
+</article>
+<article class="tarjeta-post" data-categoria="desarrollo-web">
+  <a class="tarjeta-post-enlace" href="blog/Defensa_VibeCoding.html">
+    <div class="tarjeta-post-imagen"><img src="img/blog/defensa-vibecoding-chica.webp" srcset="img/blog/defensa-vibecoding-chica.webp 600w, img/blog/defensa-vibecoding.webp 1200w" sizes="(max-width: 700px) 100vw, 360px" width="600" height="315" alt="" loading="lazy" decoding="async"></div>
+    <div class="tarjeta-post-cuerpo">
+      <p class="tarjeta-post-meta"><span>Desarrollo web</span> <time datetime="2026-09-14">14 sep 2026</time></p>
+      <h2>En Construcción</h2>
+      <p>En construcción</p>
+      
+    </div>
+  </a>
+</article>
+    </div>
+  </div>
+</div>
+
+</main>
+<footer class="pie">
+  <div class="pie-interior">
+    <div class="pie-marca">
+      <img src="img/marca/logo-blanco.svg" width="160" height="64" alt="Tereré Estudio" loading="lazy">
+      <p>Páginas web y herramientas a medida para negocios que quieren vender más. Desde Corrientes, para todo el país.</p>
+    </div>
+    <nav class="pie-columna" aria-label="Secciones">
+      <p class="pie-titulo">Secciones</p>
+      <ul>
+        <li><a href="index.html#servicios">Servicios</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="sobre-mi.html">Sobre mí</a></li>
+      </ul>
+    </nav>
+    <div class="pie-columna">
+      <p class="pie-titulo">Hablemos</p>
+      <ul class="pie-redes">
+        <li><a href="https://wa.me/5493644328260"><svg class="icono" fill="currentColor" aria-hidden="true"><use href="img/iconos.svg#whatsapp"/></svg>+54 9 3644 32-8260</a></li>
+        <li><a href="https://www.linkedin.com/in/leonardo-lavrovic/" rel="noopener"><svg class="icono" fill="currentColor" aria-hidden="true"><use href="img/iconos.svg#linkedin"/></svg>LinkedIn</a></li>
+        <li><a href="https://github.com/terereestudio" rel="noopener"><svg class="icono" fill="currentColor" aria-hidden="true"><use href="img/iconos.svg#github"/></svg>GitHub</a></li>
+        <li><a href="https://instagram.com/terere.ecommerce" rel="noopener"><svg class="icono" fill="currentColor" aria-hidden="true"><use href="img/iconos.svg#instagram"/></svg>Instagram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="pie-base">
+    <p>© 2026 Tereré Estudio. Leonardo Lavrovic, Corrientes, Argentina.</p>
+    <p><a href="v1/index.html">Ver la versión 1 del sitio</a></p>
+  </div>
+</footer>
+<a class="whatsapp-flotante" href="https://wa.me/5493644328260?text=Hola%20Leonardo%2C%20quiero%20consultarte%20por%20un%20proyecto" aria-label="Escribime por WhatsApp">
+  <img src="img/ilustraciones/yacare-telefono.webp" width="64" height="64" alt="">
+</a>
+
 </body>
 </html>
