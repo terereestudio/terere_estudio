@@ -1,4 +1,5 @@
 User-agent: *
 Disallow: /v1/
+Disallow: /soluciones.html
 
 Sitemap: https://terereestudio.com.ar/sitemap.xml
