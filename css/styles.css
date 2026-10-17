@@ -1362,7 +1362,8 @@ a.btn-enlace-verde:hover,
 .flyer-slot.ratio-45 { width: 272px; }
 .flyer-slot.ratio-916 { width: 191px; }
 
-.flyer-slot img {
+.flyer-slot img,
+.flyer-slot video {
     width: 100%;
     height: 100%;
     object-fit: cover;
