@@ -1,5 +1,15 @@
 [
  {
+  "href": "blog/microduck.html",
+  "titulo": "Microduck: el pequeño robot que acerca la IA al mundo físico",
+  "fecha": "2026-10-23",
+  "categoria": "ia",
+  "etiqueta": "Inteligencia artificial",
+  "imagen": "img/blog/microduck.webp",
+  "selloIA": true,
+  "resumen": "Descubrí Microduck, el pequeño robot bípedo de Pollen Robotics que combina inteligencia artificial, aprendizaje por refuerzo y software de código abierto."
+ },
+ {
   "href": "blog/herramientas-ia-programar-aplicaciones.html",
   "titulo": "Las mejores herramientas de inteligencia artificial para programar aplicaciones en 2026",
   "fecha": "2026-10-13",
