@@ -96,7 +96,7 @@ button.item{cursor:pointer}
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
 </style>
 
-<header class="top"><div class="in"><div class="brand"><span class="mark">TE</span><div><h1>Tereré Estudio</h1><p>Clientes, proyectos, pagos y seguimiento</p></div></div></div></header>
+<header class="top"><div class="in"><div class="brand"><span class="mark">TE</span><div><h1>Tereré Estudio</h1><p>Clientes, proyectos, pagos y seguimiento</p></div></div><button id="logout" class="btn ghost small" hidden>Salir</button></div></header>
 
 <main>
   <p class="banner" id="banner" hidden></p>
@@ -151,6 +151,16 @@ button.item{cursor:pointer}
 
 <div id="detalle" class="overlay" hidden></div>
 <div id="sheet" class="overlay" hidden></div>
+<div id="login" class="overlay" hidden>
+  <form class="sheet-box" id="lf">
+    <h2>Ingresar</h2>
+    <p class="meta">Te mandamos un link de acceso al correo. No hace falta contraseña.</p>
+    <label><span>Email</span><input id="lemail" type="email" required autocomplete="email" value="terere.ecom@gmail.com"></label>
+    <p class="err" id="lerr" hidden></p>
+    <p class="meta" id="lok" hidden></p>
+    <div class="row-btns end"><button class="btn" id="lbtn" type="submit">Enviar link</button></div>
+  </form>
+</div>
 <div id="toast" hidden role="status"></div>
 
 <script>
@@ -525,9 +535,34 @@ async function init(){
     return;
   }
   SB = window.supabase.createClient(cfg.url, cfg.anonKey);
-  await cargar();
-  SB.channel('registros').on('postgres_changes', {event:'*', schema:'public', table:'registros'}, () => cargar()).subscribe();
+  let escuchando = false;
+  SB.auth.onAuthStateChange((_ev, session) => {
+    if (session){
+      $('#login').hidden = true; $('#logout').hidden = false;
+      cargar();
+      if (!escuchando){
+        escuchando = true;
+        SB.channel('registros').on('postgres_changes', {event:'*', schema:'public', table:'registros'}, () => cargar()).subscribe();
+      }
+    } else {
+      $('#login').hidden = false; $('#logout').hidden = true;
+    }
+  });
 }
+$('#lf').addEventListener('submit', async e => {
+  e.preventDefault();
+  const btn = $('#lbtn'); btn.disabled = true;
+  const {error} = await SB.auth.signInWithOtp({
+    email: $('#lemail').value.trim(),
+    options: {emailRedirectTo: location.href.split('#')[0].split('?')[0]}
+  });
+  btn.disabled = false;
+  $('#lerr').hidden = !error;
+  $('#lerr').textContent = error ? error.message : '';
+  $('#lok').hidden = !!error;
+  $('#lok').textContent = 'Listo. Revisá tu correo y abrí el link desde este mismo navegador.';
+});
+$('#logout').addEventListener('click', async () => { await SB.auth.signOut(); location.reload(); });
 init();
 </script>
 <script>if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}</script>
