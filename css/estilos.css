@@ -969,3 +969,10 @@ a:hover { color: #B6D43C; }
 }
 
 .plan li + li { margin-top: 6px; }
+
+.planes-nota {
+  max-width: 560px;
+  margin: 20px auto 0;
+  font-size: 0.875rem;
+  color: #ABA49B;
+}

@@ -991,3 +991,10 @@ a:hover { color: var(--verde-claro); }
 }
 
 .plan li + li { margin-top: 6px; }
+
+.planes-nota {
+  max-width: 560px;
+  margin: 20px auto 0;
+  font-size: 0.875rem;
+  color: var(--texto-suave);
+}
