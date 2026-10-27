@@ -141,6 +141,7 @@ for (const archivo of listarPaginas(join(SRC, 'paginas'))) {
     .replaceAll('{{canonical}}', url)
     .replaceAll('{{ogTipo}}', meta.tipo === 'article' ? 'article' : 'website')
     .replaceAll('{{ogImagen}}', `${DOMINIO}/${meta.ogImagen || 'img/marca/og-terere-estudio.jpg'}`)
+    .replaceAll('{{preload}}', meta.preload ? `<link rel="preload" as="image" href="${raiz}${meta.preload}" media="(min-width: 768px)" fetchpriority="high">\n` : '')
     .replaceAll('{{robots}}', meta.noindex ? '<meta name="robots" content="noindex">' : '')
     .replaceAll('{{referrer}}', meta.referrer ? `<meta name="referrer" content="${escapar(meta.referrer)}">` : '')
     .replaceAll('{{jsonld}}', ld ? `<script type="application/ld+json">${JSON.stringify(ld)}</script>` : '');
