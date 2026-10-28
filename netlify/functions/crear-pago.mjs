@@ -43,8 +43,6 @@ export default async (req) => {
       {
         id: plan,
         title: `${PLANES[plan].titulo} - Tereré Estudio`,
-        description: 'Entrada del plan. Las cuotas mensuales se coordinan aparte.',
-        category_id: 'services',
         quantity: 1,
         currency_id: 'ARS',
         unit_price: monto,
@@ -58,7 +56,6 @@ export default async (req) => {
     },
     auto_return: 'approved',
     notification_url: `${base}/api/notificacion-pago`,
-    statement_descriptor: 'TERERE ESTUDIO',
   };
 
   let respuesta;
