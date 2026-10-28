@@ -20,6 +20,13 @@ export default async (req) => {
     return json(500, { error: 'No pudimos iniciar el pago. Escribinos por WhatsApp.' });
   }
 
+  // Protección: el token de producción (APP_USR-) solo puede usarse en el deploy de producción.
+  // Netlify expone el contexto en CONTEXT ('production', 'deploy-preview', 'branch-deploy', 'dev').
+  if (token.startsWith('APP_USR-') && process.env.CONTEXT !== 'production') {
+    console.error('crear-pago: se bloqueó el token de producción fuera del contexto production', process.env.CONTEXT);
+    return json(500, { error: 'No pudimos iniciar el pago. Escribinos por WhatsApp.' });
+  }
+
   let datos;
   try {
     datos = await req.json();
