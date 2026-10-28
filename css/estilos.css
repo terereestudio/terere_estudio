@@ -1028,3 +1028,11 @@ a:hover { color: #B6D43C; }
   font-size: 0.875rem;
   color: #ABA49B;
 }
+
+/* Página de texto legal (política de privacidad de lector.) */
+.texto-legal { max-width: 720px; padding-bottom: clamp(56px, 8vw, 96px); }
+.texto-legal .cabecera-pagina { padding-bottom: clamp(16px, 2.5vw, 24px); }
+.texto-legal-marca { font-family: "Literata", Georgia, serif; font-style: italic; font-size: 1.1rem; margin-top: 0 !important; color: #ABA49B; }
+.texto-legal > p { font-size: 1.05rem; line-height: 1.7; margin: 0 0 1.1em; }
+.texto-legal a { text-decoration: underline; text-underline-offset: 3px; }
+.texto-legal-fecha { font-size: 0.9rem; color: #ABA49B; margin-top: 2em !important; }
