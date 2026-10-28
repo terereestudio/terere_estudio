@@ -146,7 +146,27 @@ for (const archivo of listarPaginas(join(SRC, 'paginas'))) {
     .replaceAll('{{referrer}}', meta.referrer ? `<meta name="referrer" content="${escapar(meta.referrer)}">` : '')
     .replaceAll('{{jsonld}}', ld ? `<script type="application/ld+json">${JSON.stringify(ld)}</script>` : '');
 
-  let html = `<!DOCTYPE html>
+  // Páginas con diseño propio (v2): no usan header, footer, estilos ni JS compartidos.
+  // meta.propia = { css: ["css/inicio.css"], js: ["js/inicio.js"] }
+  let html;
+  if (meta.propia) {
+    const css = (meta.propia.css || []).map((c) => `<link rel="stylesheet" href="${raiz}${c}">`).join('\n');
+    const js = (meta.propia.js || []).map((j) => `<script src="${raiz}${j}" defer></script>`).join('\n');
+    const headPropio = head
+      .replace(/<link rel="stylesheet" href="[^"]*css\/estilos\.css">\n?/, `${css}\n`)
+      .replace(/<script src="[^"]*js\/main\.js" defer><\/script>\n?/, `${js}\n`);
+    html = `<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+${headPropio}
+</head>
+<body class="${meta.claseBody || ''}">
+${cuerpo}
+</body>
+</html>
+`;
+  } else {
+    html = `<!DOCTYPE html>
 <html lang="es-AR">
 <head>
 ${head}
@@ -160,6 +180,7 @@ ${partes.footer}
 </body>
 </html>
 `;
+  }
 
   for (const seccion of ['servicios', 'portfolio', 'blog', 'sobre-mi']) {
     html = html.replaceAll(`{{activo-${seccion}}}`, meta.activo === seccion ? ' aria-current="page"' : '');
