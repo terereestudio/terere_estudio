@@ -1058,3 +1058,7 @@ a:hover { color: var(--verde-claro); }
 .texto-legal > p { font-size: 1.05rem; line-height: 1.7; margin: 0 0 1.1em; }
 .texto-legal a { text-decoration: underline; text-underline-offset: 3px; }
 .texto-legal-fecha { font-size: 0.9rem; color: var(--texto-suave); margin-top: 2em !important; }
+
+/* Página de retorno de Mercado Pago */
+.texto-legal .boton { text-decoration: none; }
+.pago-acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px !important; }

@@ -49,6 +49,13 @@ export default async (req) => {
       },
     ],
     external_reference: referencia,
+    back_urls: {
+      success: `${base}/pago-recibido.html?estado=aprobado`,
+      pending: `${base}/pago-recibido.html?estado=pendiente`,
+      failure: `${base}/pago-recibido.html?estado=rechazado`,
+    },
+    auto_return: 'approved',
+    notification_url: `${base}/api/notificacion-pago`,
   };
 
   let respuesta;

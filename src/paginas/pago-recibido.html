@@ -1,0 +1,43 @@
+<!--meta {"titulo": "Estado de tu pago", "descripcion": "Resultado de tu pago con Mercado Pago en Tereré Estudio.", "noindex": true} -->
+
+<section class="contenedor texto-legal pago-estado">
+  <div data-estado="aprobado" hidden>
+    <header class="cabecera-pagina">
+      <h1>¡Pago recibido!</h1>
+      <p>Gracias por confiar en Tereré Estudio. Mercado Pago me avisa del pago en unos minutos.</p>
+    </header>
+    <p>El próximo paso es charlar sobre tu proyecto. Escribime por WhatsApp y arrancamos.</p>
+  </div>
+
+  <div data-estado="pendiente" hidden>
+    <header class="cabecera-pagina">
+      <h1>Tu pago está pendiente</h1>
+      <p>Mercado Pago todavía no lo acreditó. Si pagaste en efectivo (Rapipago o Pago Fácil), se acredita cuando hagas el pago en el local.</p>
+    </header>
+    <p>Apenas se acredite me llega el aviso. Si querés, escribime por WhatsApp y lo vemos juntos.</p>
+  </div>
+
+  <div data-estado="rechazado" hidden>
+    <header class="cabecera-pagina">
+      <h1>El pago no se pudo completar</h1>
+      <p>Mercado Pago rechazó el pago o lo cancelaste. No se te cobró nada.</p>
+    </header>
+    <p>Podés intentarlo de nuevo con otro medio, o escribirme por WhatsApp y coordinamos otra forma de pago.</p>
+  </div>
+
+  <div data-estado="desconocido">
+    <header class="cabecera-pagina">
+      <h1>Estado de tu pago</h1>
+      <p>No pudimos leer el resultado del pago. Si pagaste, me llega el aviso de Mercado Pago igual.</p>
+    </header>
+    <p>Ante cualquier duda, escribime por WhatsApp.</p>
+  </div>
+
+  <p class="pago-acciones">
+    <a class="boton" id="pago-whatsapp" href="https://wa.me/543644328260" rel="noopener">Hablar por WhatsApp</a>
+    <a class="boton boton-borde" href="{{raiz}}index.html">Volver al inicio</a>
+  </p>
+  <p class="texto-legal-fecha" id="pago-referencia" hidden></p>
+</section>
+
+<script src="{{raiz}}js/pago-recibido.js" defer></script>
