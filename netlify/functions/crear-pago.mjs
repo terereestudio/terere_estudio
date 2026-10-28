@@ -20,13 +20,6 @@ export default async (req) => {
     return json(500, { error: 'No pudimos iniciar el pago. Escribinos por WhatsApp.' });
   }
 
-  // Protección: el token de producción (APP_USR-) solo puede usarse en el deploy de producción.
-  // Netlify expone el contexto en CONTEXT ('production', 'deploy-preview', 'branch-deploy', 'dev').
-  if (token.startsWith('APP_USR-') && process.env.CONTEXT !== 'production') {
-    console.error('crear-pago: se bloqueó el token de producción fuera del contexto production', process.env.CONTEXT);
-    return json(500, { error: 'No pudimos iniciar el pago. Escribinos por WhatsApp.' });
-  }
-
   let datos;
   try {
     datos = await req.json();
@@ -79,8 +72,10 @@ export default async (req) => {
     return json(502, { error: 'No pudimos iniciar el pago. Escribinos por WhatsApp.' });
   }
 
-  // Con credenciales de prueba (TEST-...) se usa la URL de sandbox.
-  const url = token.startsWith('TEST-') ? datosMP.sandbox_init_point : datosMP.init_point;
+  // Fuera de producción se usa la URL de sandbox. En Mercado Pago las credenciales de prueba
+  // empiezan con APP_USR- igual que las de producción, así que se decide por el contexto de Netlify.
+  const esProduccion = process.env.CONTEXT === 'production';
+  const url = esProduccion ? datosMP.init_point : datosMP.sandbox_init_point;
   if (!url) {
     console.error('crear-pago: la respuesta no trae URL de pago', JSON.stringify(datosMP));
     return json(502, { error: 'No pudimos iniciar el pago. Escribinos por WhatsApp.' });
