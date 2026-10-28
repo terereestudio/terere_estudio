@@ -1,0 +1,133 @@
+/* Portfolio v2. Origen: prototipo portfolio.html */
+[hidden] { display: none !important; }
+/* Fuentes alojadas en el sitio (SIL Open Font License, ver fuentes/OFL-*.txt) */
+@font-face { font-family: "JetBrains Mono"; src: url("../fuentes/JetBrainsMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fuentes/JetBrainsMono-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fuentes/JetBrainsMono-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fuentes/JetBrainsMono-ExtraBold.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url("../fuentes/InstrumentSerif-Regular.woff") format("woff"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Instrument Serif"; src: url("../fuentes/InstrumentSerif-Italic.woff") format("woff"); font-weight: 400; font-style: italic; font-display: swap; }
+
+/* Portfolio: gris oscuro del inicio con texto crema, editorial. Cuatro categorías grandes que se abren en su lista de trabajos. */
+:root {
+  --papel: #161415;
+  --papel-2: #1E1A1B;
+  --tinta: #EDEAE3;
+  --gris: #ABA49B;
+  --linea: #3A3435;
+  --f-display: "Instrument Serif", "Times New Roman", serif;
+  --f-texto: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--papel); color: var(--tinta); font: 400 17px/1.6 var(--f-texto); overflow-x: hidden; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { margin: 0; font-weight: 400; line-height: 1; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--tinta); outline-offset: 3px; }
+.envoltura { width: min(100%, 1200px); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mono { font: 400 0.78rem/1.4 var(--f-mono); color: var(--gris); letter-spacing: 0.04em; text-transform: uppercase; }
+
+/* Barra */
+.barra .envoltura { display: flex; justify-content: space-between; align-items: center; padding-block: 22px; border-bottom: 1px solid var(--linea); }
+.barra img { height: 36px; width: auto; }
+.volver { font: 400 0.8rem/1 var(--f-mono); color: var(--tinta); text-decoration: none; text-transform: uppercase; letter-spacing: 0.04em; }
+.volver:hover { text-decoration: underline; }
+
+/* Portada */
+.portada .envoltura { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: end; padding-block: clamp(48px, 7vw, 96px) 56px; }
+.palabra { font: 400 clamp(5rem, 15vw, 13rem)/0.85 var(--f-display); letter-spacing: -0.03em; display: flex; overflow: hidden; padding-bottom: 0.08em; }
+.palabra span { display: inline-block; animation: subeLetra 1s cubic-bezier(.2,.8,.2,1) both; }
+.palabra em { font-style: italic; }
+@keyframes subeLetra { from { transform: translateY(105%); } }
+.intro { display: grid; gap: 18px; animation: aparecer 0.8s 0.7s both; }
+.intro p:not(.mono) { color: var(--gris); font-size: 1.1rem; max-width: 38ch; }
+.intro strong { color: var(--tinta); font-weight: 400; font-family: var(--f-display); font-style: italic; font-size: 1.25em; }
+.cifras { display: flex; gap: 32px; padding-top: 8px; border-top: 1px solid var(--linea); }
+.cifras div { display: grid; }
+.cifras b { font: 400 2.2rem/1 var(--f-display); }
+@keyframes aparecer { from { opacity: 0; transform: translateY(14px); } }
+
+/* Categorías */
+.categorias { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; padding-bottom: 32px; }
+.categoria { position: relative; display: grid; grid-template-rows: 1fr auto; min-height: 340px; padding: 0; border: 1px solid var(--tinta); border-radius: 4px; background: var(--papel); color: var(--tinta); text-align: left; cursor: pointer; overflow: hidden; font: inherit; animation: aparecer 0.7s both; }
+.categoria:nth-child(2) { animation-delay: 0.08s; } .categoria:nth-child(3) { animation-delay: 0.16s; } .categoria:nth-child(4) { animation-delay: 0.24s; }
+.categoria-img { position: relative; overflow: hidden; background: var(--papel-2); }
+.categoria-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(1) contrast(1.05); transform: scale(1.02); transition: filter 0.6s, transform 0.8s cubic-bezier(.2,.8,.2,1); }
+.categoria:hover .categoria-img img, .categoria[aria-expanded="true"] .categoria-img img { filter: grayscale(0); transform: scale(1.07); }
+.categoria-img.vacia { display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--papel-2) 0 12px, var(--papel) 12px 24px); }
+.categoria-img.vacia span { font: 400 0.75rem/1 var(--f-mono); color: var(--gris); text-transform: uppercase; letter-spacing: 0.04em; }
+.categoria-pie { display: flex; justify-content: space-between; align-items: end; gap: 16px; padding: 18px 20px; border-top: 1px solid var(--tinta); background: var(--papel); transition: background 0.3s, color 0.3s; }
+.categoria:hover .categoria-pie, .categoria[aria-expanded="true"] .categoria-pie { background: var(--tinta); color: var(--papel); }
+.categoria h2 { font: 400 clamp(2rem, 3.6vw, 3rem)/1 var(--f-display); }
+.categoria h2 em { font-style: italic; }
+.categoria .num { font: 400 0.8rem/1 var(--f-mono); }
+.categoria .flecha { display: inline-block; transition: transform 0.3s; }
+.categoria[aria-expanded="true"] .flecha { transform: rotate(90deg); }
+
+/* Panel de trabajos */
+.panel { border-top: 1px solid var(--tinta); padding-block: 40px 72px; animation: aparecer 0.5s both; }
+.panel-cabecera { display: flex; justify-content: space-between; align-items: end; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+.panel-cabecera h2 { font: 400 clamp(2.4rem, 5vw, 4rem)/1 var(--f-display); }
+.panel-cabecera h2 em { font-style: italic; }
+.cerrar-panel { font: 400 0.8rem/1 var(--f-mono); text-transform: uppercase; background: none; border: 1px solid var(--tinta); border-radius: 999px; padding: 10px 16px; cursor: pointer; color: var(--tinta); }
+.cerrar-panel:hover { background: var(--tinta); color: var(--papel); }
+.trabajos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px 18px; }
+.trabajo { display: grid; gap: 12px; text-decoration: none; }
+.trabajo-img { aspect-ratio: 4 / 3; overflow: hidden; background: var(--papel-2); border: 1px solid var(--linea); }
+.trabajo-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; filter: grayscale(1); transition: filter 0.5s, transform 0.6s; }
+.trabajo:hover .trabajo-img img { filter: grayscale(0); transform: scale(1.04); }
+.trabajo-img.vacia { display: grid; place-items: center; background: repeating-linear-gradient(135deg, var(--papel-2) 0 12px, var(--papel) 12px 24px); font: 400 0.72rem/1 var(--f-mono); color: var(--gris); text-transform: uppercase; }
+.trabajo h3 { font: 400 1.6rem/1.05 var(--f-display); }
+.trabajo p { color: var(--gris); font-size: 0.92rem; }
+.trabajo .mono { display: flex; justify-content: space-between; }
+
+.trabajo-img.mini { position: relative; }
+.trabajo-img.video { background: #000; }
+.trabajo-img.video video { width: 100%; height: 100%; object-fit: contain; }
+.mini-pista { display: flex; height: 100%; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.mini-pista::-webkit-scrollbar { display: none; }
+.mini-pista img { flex: 0 0 100%; width: 100%; height: 100%; object-fit: cover; scroll-snap-align: start; filter: grayscale(1); transition: filter 0.5s; }
+.trabajo:hover .mini-pista img { filter: grayscale(0); transform: none; }
+.mini-flecha { position: absolute; top: 50%; translate: 0 -50%; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--linea); background: rgba(22,20,21,0.75); color: var(--tinta); cursor: pointer; font: 400 0.9rem/1 var(--f-mono); opacity: 0; transition: opacity 0.2s; }
+.mini-flecha.ant { left: 8px; } .mini-flecha.sig { right: 8px; }
+.trabajo:hover .mini-flecha, .mini-flecha:focus-visible { opacity: 1; }
+.mini-puntos { position: absolute; left: 50%; bottom: 8px; translate: -50% 0; display: flex; gap: 5px; padding: 5px 8px; border-radius: 999px; background: rgba(22,20,21,0.65); pointer-events: none; }
+.mini-puntos i { width: 6px; height: 6px; border-radius: 50%; background: rgba(237,234,227,0.45); transition: width 0.2s, background 0.2s; }
+.mini-puntos i.activo { width: 16px; border-radius: 3px; background: var(--tinta); }
+@media (hover: none) { .mini-flecha { opacity: 1; } }
+
+/* Cierre */
+.cierre { background: var(--tinta); color: var(--papel); }
+.cierre .envoltura { display: flex; gap: 16px; justify-content: space-between; align-items: center; padding-block: 22px; }
+.cierre .boton { padding: 10px 16px; font-size: 0.72rem; white-space: nowrap; }
+.cierre h2 { font: 400 clamp(1.3rem, 2.4vw, 1.9rem)/1.1 var(--f-display); }
+.cierre h2 em { font-style: italic; }
+.boton { display: inline-flex; align-items: center; gap: 10px; padding: 15px 24px; border-radius: 999px; border: 1px solid var(--papel); color: var(--papel); text-decoration: none; font: 400 0.85rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.boton:hover { background: var(--papel); color: var(--tinta); }
+
+@media (max-width: 1100px) {
+  .categorias { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 860px) {
+  .portada .envoltura { grid-template-columns: 1fr; }
+  .trabajos { grid-template-columns: repeat(2, 1fr); }
+  .categorias { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .cierre h2 { font-size: 1.15rem; }
+  .cierre .boton { padding: 9px 12px; font-size: 0.66rem; }
+  .categorias { grid-template-columns: 1fr; }
+  .categoria { min-height: 260px; }
+  .trabajos { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Clases que reemplazan estilos en línea (la CSP no permite style="") */
+.m0-titulo { margin: 0; font-size: 1.6rem; }
+.opaco-80 { opacity: .8; }

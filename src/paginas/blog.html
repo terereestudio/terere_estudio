@@ -1,24 +1,44 @@
-<!--meta {"titulo": "Blog", "descripcion": "Artículos sobre desarrollo web, diseño UX/UI, ciberseguridad e inteligencia artificial, escritos por Leonardo Lavrovic de Tereré Estudio.", "activo": "blog"} -->
-
-<header class="cabecera-pagina">
-  <div class="contenedor">
-    <h1>Blog</h1>
-    <p>Lo que voy aprendiendo sobre desarrollo web, diseño e inteligencia artificial, contado en simple.</p>
+<!--meta {"titulo": "Blog", "descripcion": "Notas sobre desarrollo web, inteligencia artificial y diseño, escritas por Leonardo Lavrovic.", "propia": {"css": ["css/blog.css"], "js": ["js/blog.js"]}} -->
+<header class="barra">
+  <div class="envoltura">
+    <a href="index.html"><img src="img/v2/logo-blanco.svg" width="200" height="80" alt="Tereré Estudio, ir al inicio"></a>
+    <a class="volver" href="index.html">← inicio</a>
   </div>
 </header>
 
-<div class="seccion">
-  <div class="contenedor">
-    <div class="filtros" role="group" aria-label="Filtrar por tema">
-      <button class="filtro" type="button" data-filtro="todas" aria-pressed="true">Todos</button>
-      <button class="filtro" type="button" data-filtro="ia" aria-pressed="false">Inteligencia artificial</button>
-      <button class="filtro" type="button" data-filtro="desarrollo-web" aria-pressed="false">Desarrollo web</button>
-      <button class="filtro" type="button" data-filtro="diseno-ux" aria-pressed="false">Diseño UX/UI</button>
-      <button class="filtro" type="button" data-filtro="ciberseguridad" aria-pressed="false">Ciberseguridad</button>
+<main>
+  <section class="portada" aria-labelledby="titulo-blog">
+    <div class="codigo-fondo" aria-hidden="true"><div id="codigo"></div></div>
+    <div class="envoltura">
+      <div>
+        <p class="palabra-etiqueta">&lt;section <b>id</b>="<b>blog</b>"&gt;</p>
+        <h1 class="palabra" id="titulo-blog" aria-label="Blog"><span>b</span><span>l</span><span>o</span><span>g</span><span class="punto">.</span><i class="cursor" aria-hidden="true"></i></h1>
+      </div>
+      <div class="intro">
+        <p class="mono">// lo que aprendo, lo comparto</p>
+        <p>Notas sobre <strong>inteligencia artificial</strong>, <strong>desarrollo web</strong>, diseño y ciberseguridad. Lo que pruebo en mis proyectos, contado sin vueltas para que también te sirva a vos.</p>
+      </div>
     </div>
-    <p class="visualmente-oculto" id="filtro-resultado" role="status" aria-live="polite"></p>
-    <div class="grilla-posts">
-<!--blog:lista-->
+  </section>
+
+  <section class="entradas-zona" aria-label="Entradas del blog">
+    <div class="envoltura">
+      <div class="filtros" role="group" aria-label="Filtrar por tema">
+        <button class="filtro" type="button" data-filtro="todas" aria-pressed="true">todas</button>
+        <button class="filtro" type="button" data-filtro="ia" aria-pressed="false">inteligencia artificial</button>
+        <button class="filtro" type="button" data-filtro="desarrollo-web" aria-pressed="false">desarrollo web</button>
+        <button class="filtro" type="button" data-filtro="diseno-ux" aria-pressed="false">diseño ux/ui</button>
+        <button class="filtro" type="button" data-filtro="ciberseguridad" aria-pressed="false">ciberseguridad</button>
+      </div>
+      <div class="entradas" id="entradas"></div>
+      <p class="vacio" id="vacio" hidden>// no hay entradas de este tema todavía</p>
     </div>
-  </div>
-</div>
+  </section>
+
+  <section class="suscribir" aria-label="Contacto">
+    <div class="envoltura">
+      <h2>¿Querés que tu negocio <em>aparezca</em> en Google?</h2>
+      <a class="boton" href="index.html#planes">Ver los planes →</a>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Composición minimalista: un cuadrado verde en un gran campo vacío">
+  <rect width="1200" height="630" fill="#F3E9DA"/>
+  <rect x="96" y="96" width="1008" height="438" fill="none" stroke="#231F20" stroke-width="3"/>
+  <rect x="742" y="338" width="132" height="132" fill="#9FBD2B"/>
+  <rect x="160" y="160" width="230" height="10" fill="#231F20"/>
+  <rect x="160" y="186" width="150" height="10" fill="#231F20" opacity=".35"/>
+</svg>

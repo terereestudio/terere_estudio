@@ -1,0 +1,114 @@
+/* Blog v2. Origen: prototipo blog.html */
+[hidden] { display: none !important; }
+/* Fuentes alojadas en el sitio (SIL Open Font License, ver fuentes/OFL-*.txt) */
+@font-face { font-family: "JetBrains Mono"; src: url("../fuentes/JetBrainsMono-Regular.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fuentes/JetBrainsMono-Medium.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fuentes/JetBrainsMono-Bold.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("../fuentes/JetBrainsMono-ExtraBold.woff2") format("woff2"); font-weight: 800; font-style: normal; font-display: swap; }
+
+/* Blog: violeta, negro y blanco. La palabra "blog." entra como código y las entradas flotan. */
+:root {
+  --negro: #0F0D12;
+  --negro-2: #17141C;
+  --linea: #2C2635;
+  --blanco: #F4F1FA;
+  --gris: #A39DB3;
+  --violeta: #8E6CFF;
+  --violeta-claro: #B7A3FF;
+  --violeta-osc: #5B3FD6;
+  --f-texto: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--negro); color: var(--blanco); font: 400 17px/1.6 var(--f-texto); overflow-x: hidden; }
+a { color: inherit; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { margin: 0; line-height: 1.1; text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--violeta); outline-offset: 3px; }
+.envoltura { width: min(100%, 1200px); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.mono { font-family: var(--f-mono); font-size: 0.8rem; color: var(--violeta-claro); letter-spacing: 0.02em; }
+
+/* Barra */
+.barra .envoltura { display: flex; justify-content: space-between; align-items: center; padding-block: 22px; }
+.barra img { height: 36px; width: auto; }
+.volver { font: 500 0.85rem/1 var(--f-mono); color: var(--gris); text-decoration: none; border: 1px solid var(--linea); padding: 10px 14px; border-radius: 999px; }
+.volver:hover { color: var(--violeta-claro); border-color: var(--violeta); }
+
+/* Portada del blog */
+.portada { position: relative; overflow: hidden; }
+.codigo-fondo { position: absolute; inset: 0; pointer-events: none; opacity: 0.12; font: 400 13px/1.7 var(--f-mono); color: var(--violeta); white-space: pre; mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent); }
+.codigo-fondo div { animation: subirCodigo 40s linear infinite; }
+@keyframes subirCodigo { to { transform: translateY(-50%); } }
+.portada .envoltura { position: relative; display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; align-items: end; padding-block: 48px 150px; }
+.palabra { font: 800 clamp(6rem, 21vw, 17rem)/0.82 var(--f-mono); letter-spacing: -0.06em; color: var(--violeta); display: flex; align-items: baseline; }
+.palabra span { display: inline-block; animation: entraLetra 0.9s cubic-bezier(.2,.8,.2,1) both; }
+.palabra span:nth-child(2) { animation-delay: 0.08s; } .palabra span:nth-child(3) { animation-delay: 0.16s; } .palabra span:nth-child(4) { animation-delay: 0.24s; }
+.palabra .punto { color: var(--blanco); animation-delay: 0.36s; }
+.palabra .cursor { width: 0.08em; height: 0.75em; margin-left: 0.04em; background: var(--violeta-claro); align-self: center; animation: entraLetra 0.9s 0.5s both, parpadeo 1s steps(1) 1.4s infinite; }
+@keyframes entraLetra { from { opacity: 0; transform: translateX(60vw); filter: blur(6px); } }
+@keyframes parpadeo { 50% { opacity: 0; } }
+.palabra-etiqueta { font: 400 0.85rem/1 var(--f-mono); color: var(--gris); margin-bottom: 18px; }
+.palabra-etiqueta b { color: var(--violeta-claro); font-weight: 500; }
+.intro { display: grid; gap: 16px; padding-bottom: 16px; animation: aparecer 0.8s 0.6s both; }
+.intro p:not(.mono) { color: var(--gris); font-size: 1.1rem; max-width: 40ch; }
+.intro strong { color: var(--blanco); }
+@keyframes aparecer { from { opacity: 0; transform: translateY(14px); } }
+
+/* Filtros */
+.filtros { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+.filtro { font: 500 0.8rem/1 var(--f-mono); padding: 10px 14px; border-radius: 999px; border: 1px solid var(--linea); background: var(--negro-2); color: var(--gris); cursor: pointer; }
+.filtro:hover { color: var(--blanco); border-color: var(--violeta); }
+.filtro[aria-pressed="true"] { background: var(--violeta); border-color: var(--violeta); color: var(--negro); }
+
+/* Entradas flotantes */
+.entradas-zona { position: relative; margin-top: -110px; padding-bottom: 100px; }
+.entradas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.entrada { --d: 0s; position: relative; display: grid; grid-template-rows: auto 1fr; background: var(--negro-2); border: 1px solid var(--linea); border-radius: 18px; overflow: hidden; text-decoration: none; animation: aparecer 0.6s both, flotar 6s ease-in-out var(--d) infinite; transition: border-color 0.25s, box-shadow 0.25s; }
+.entrada:hover { border-color: var(--violeta); box-shadow: 0 20px 50px rgba(91,63,214,0.35); animation-play-state: paused; }
+@keyframes flotar { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+.entrada-img { position: relative; aspect-ratio: 16 / 10; background: var(--linea); overflow: hidden; }
+.entrada-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; filter: saturate(0.85); }
+.entrada:hover .entrada-img img { transform: scale(1.06); }
+.entrada-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(15,13,18,0.7)); }
+.entrada-cuerpo { display: grid; gap: 10px; align-content: start; padding: 18px; }
+.entrada-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip { font: 500 0.7rem/1 var(--f-mono); padding: 5px 9px; border-radius: 999px; background: rgba(142,108,255,0.15); color: var(--violeta-claro); }
+.fecha { font: 400 0.72rem/1 var(--f-mono); color: var(--gris); }
+.entrada h2 { font-size: 1.12rem; }
+.entrada p { color: var(--gris); font-size: 0.9rem; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.leer { font: 500 0.8rem/1 var(--f-mono); color: var(--violeta-claro); margin-top: 4px; }
+.entrada.destacada { grid-column: span 2; }
+.entrada.destacada .entrada-img { aspect-ratio: 21 / 9; }
+.entrada.destacada h2 { font-size: 1.6rem; }
+.sello-ia { position: absolute; top: 12px; left: 12px; z-index: 1; font: 500 0.66rem/1 var(--f-mono); padding: 5px 8px; border-radius: 999px; background: rgba(15,13,18,0.75); color: var(--blanco); border: 1px solid var(--linea); }
+.vacio { color: var(--gris); font-family: var(--f-mono); }
+
+/* Suscripción */
+.suscribir { border-top: 1px solid var(--linea); }
+.suscribir .envoltura { display: flex; flex-wrap: wrap; gap: 20px 40px; align-items: center; justify-content: space-between; padding-block: 56px; }
+.suscribir h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.suscribir h2 em { font-style: normal; color: var(--violeta); }
+.boton { display: inline-flex; align-items: center; gap: 8px; padding: 14px 22px; border-radius: 999px; background: var(--violeta); color: var(--negro); font-weight: 700; text-decoration: none; }
+.boton:hover { background: var(--violeta-claro); }
+
+@media (max-width: 1000px) {
+  .entradas { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .portada .envoltura { grid-template-columns: 1fr; padding-block: 24px 130px; }
+  .entradas { grid-template-columns: 1fr; }
+  .codigo-fondo { opacity: 0.07; }
+  .entrada.destacada .entrada-img { aspect-ratio: 16 / 10; }
+  .entrada.destacada { grid-column: auto; grid-row: auto; }
+  .entrada.destacada h2 { font-size: 1.3rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Clases que reemplazan estilos en línea (la CSP no permite style="") */
+.m0-titulo { margin: 0; font-size: 1.6rem; }
+.opaco-80 { opacity: .8; }

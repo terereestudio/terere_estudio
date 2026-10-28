@@ -1,0 +1,236 @@
+<!--meta {"titulo": "Laboratorio", "descripcion": "Laboratorio de Tereré Estudio: aplicaciones y proyectos propios en desarrollo, como lector. y NEO Gestión.", "propia": {"css": ["css/laboratorio.css"], "js": ["js/laboratorio.js"]}} -->
+<header class="barra">
+  <div class="envoltura">
+    <a href="index.html"><img src="img/v2/logo-negro.svg" width="200" height="80" alt="Tereré Estudio, ir al inicio"></a>
+    <a class="volver" href="index.html">← Inicio</a>
+  </div>
+</header>
+
+<main class="escritorio">
+  <section class="cabecera" aria-labelledby="titulo-lab">
+    <div class="envoltura">
+      <div>
+        <div class="ficha-top"><span class="vivo">En desarrollo</span><span>Tereré Estudio · Lab</span></div>
+        <h1 class="palabra" id="titulo-lab" aria-label="Laboratorio"><span>l</span><span>a</span><span>b</span><span>o</span><span>r</span><span>a</span><span>t</span><span>o</span><span>r</span><span>i</span><span>o</span><span>.</span></h1>
+      </div>
+      <div class="cabecera-texto">
+        <p class="mono">// software propio, en construcción</p>
+        <p>Abrí las carpetas para ver las aplicaciones que estoy desarrollando. Algunas todavía son secretas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="estante" aria-label="Proyectos">
+    <div class="envoltura">
+      <div class="flechas">
+        <button class="flecha" type="button" data-mover="-1" aria-label="Ver carpetas anteriores">←</button>
+        <button class="flecha" type="button" data-mover="1" aria-label="Ver más carpetas">→</button>
+      </div>
+      <div class="carpetas" id="carpetas">
+        <button class="carpeta abierta" type="button" data-proyecto="neo" aria-label="Abrir la carpeta de NEO Gestión">
+          <div class="carpeta-cuerpo">
+            <div class="c-fondo"></div>
+            <div class="c-hoja principal">
+              <div class="archivo">
+                <span class="archivo-cab"><img src="img/v2/neo-logo.webp" width="400" height="280" alt="">neo-landing.html</span>
+                <div class="archivo-mini"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+            <div class="c-hoja"></div>
+            <div class="c-frente">
+              <span class="c-nombre">neo-gestion/</span>
+              <span class="c-meta">exp. 01 · en pruebas</span>
+            </div>
+          </div>
+        </button>
+        <button class="carpeta clasificada" type="button" data-efecto="estrellas" aria-label="Carpeta clasificada: cosmo.app">
+          <div class="carpeta-cuerpo">
+            <div class="c-fondo"></div>
+            <div class="c-hoja principal"></div>
+            <div class="c-frente">
+              <svg class="candado" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0110 0v3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor"/></svg>
+              <span class="sello">CLASIFICADO</span>
+              <span class="c-nombre">cosmo.app</span>
+              <span class="c-meta">exp. 02 · acceso restringido</span>
+            </div>
+          </div>
+        </button>
+        <button class="carpeta abierta" type="button" data-proyecto="lector" aria-label="Abrir la carpeta de lector.">
+          <div class="carpeta-cuerpo">
+            <div class="c-fondo"></div>
+            <div class="c-hoja principal">
+              <div class="archivo">
+                <span class="archivo-cab">lector.apk · Microsoft Store</span>
+                <div class="archivo-lector"><span>lector.</span></div>
+              </div>
+            </div>
+            <div class="c-hoja"></div>
+            <div class="c-frente">
+              <span class="c-nombre">lector.</span>
+              <span class="c-meta">exp. 03 · disponible</span>
+            </div>
+          </div>
+        </button>
+      </div>
+      <div class="indicadores" id="indicadores" aria-hidden="true"></div>
+      <p class="pista">// pasá el mouse para espiar · hacé clic para abrir</p>
+    </div>
+  </section>
+
+  <footer class="pie-lab">
+    <div class="envoltura">
+      <p class="pie-pregunta"><span class="solo-pc">¿Necesitás una solución específica para tu negocio?</span><span class="solo-mob">¿Necesitás una solución<br>para tu negocio?</span></p>
+      <a class="boton" href="https://wa.me/543644328260?text=Hola%20Leonardo%2C%20vi%20el%20laboratorio%20y%20tengo%20una%20idea%20para%20desarrollar." target="_blank" rel="noopener noreferrer">Desarrollemos tu idea →</a>
+    </div>
+  </footer>
+</main>
+
+<dialog id="ventana" aria-labelledby="neo-titulo">
+  <div class="modal">
+    <div class="modal-barra">
+      <button class="volver" type="button" id="atras">← Volver a las carpetas</button>
+      <span class="modal-ruta" id="ruta">lab / <b>neo-gestion</b> / ficha</span>
+    </div>
+    <div class="vista" id="vista-ficha">
+      <div class="ficha">
+        <div class="ficha-texto">
+          <p class="mono">Experimento 01 · Aplicación web</p>
+          <h2 id="neo-titulo"><img src="img/v2/neo-logo.webp" width="400" height="280" alt="">NEO Gestión</h2>
+          <p class="lema">Vendé, cobrá y facturá desde tu celular.</p>
+          <span class="estado">En pruebas</span>
+          <p>Un sistema de gestión para negocios chicos: escaneás los productos con la cámara, cobrás y mandás el comprobante por WhatsApp. Un asesor te lo deja configurado.</p>
+          <ul class="funciones">
+            <li>Cargás un producto con una foto: la IA completa nombre, categoría y código.</li>
+            <li>Cobrás sin computadora: QR, cuotas, Posnet o efectivo con vuelto automático.</li>
+            <li>Factura electrónica de ARCA con CAE, a tu CUIT.</li>
+          </ul>
+          <div class="acciones">
+            <button class="boton" type="button" id="ver-web">Ver la página web →</button>
+          </div>
+          <div class="tester">
+            <h3>¿Quisieras sumarte como tester? Escribime.</h3>
+            <div class="acciones">
+              <a class="boton" href="mailto:neogestion.app@gmail.com?subject=Quiero%20ser%20tester%20de%20NEO%20Gesti%C3%B3n">Quiero ser tester →</a>
+              <span class="correo"><span id="correo">neogestion.app@gmail.com</span><button class="copiar" type="button" id="copiar">Copiar</button></span>
+            </div>
+            <p class="aviso" id="aviso" role="status" hidden>Correo copiado</p>
+          </div>
+        </div>
+        <div class="escena" aria-hidden="true">
+          <div class="telefono">
+            <div class="pantalla">
+              <div class="neo-marca"><img src="img/v2/neo-logo.webp" width="400" height="280" alt=""><b>NEO Gestión</b><span>Tu negocio en orden</span></div>
+              <div class="neo-form"><div class="neo-campo">Email o celular</div><div class="neo-campo">Contraseña</div><div class="neo-boton">Ingresar</div></div>
+              <p class="neo-pie">¿No tenés usuario? Pedíselo a tu asesor NEO.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="vista" id="vista-lector" hidden>
+      <div class="lector">
+        <header class="lx-cabecera">
+          <h2 class="lx-logo">lector.</h2>
+          <p class="lx-frase">Abrí un archivo y leelo. Nada más.</p>
+        </header>
+        <div class="lx-cuerpo">
+          <p class="lx-aviso-sistema" id="lx-aviso" hidden>Por ahora lector. está disponible para Windows y Android.</p>
+          <div class="lx-descargas">
+            <section class="lx-opcion" id="lx-windows" aria-labelledby="lx-t-win">
+              <span class="lx-etiqueta" hidden>Para tu equipo</span>
+              <h3 id="lx-t-win">Windows <small>Microsoft Store</small></h3>
+              <a class="lx-store" href="https://apps.microsoft.com/detail/9NJZ3LNQ793K" target="_blank" rel="noopener noreferrer" aria-label="Obtener lector. en Microsoft Store">
+                <!-- En el sitio real va la insignia oficial de https://apps.microsoft.com/badge (imagen o componente ms-store-badge). -->
+                <span class="lx-store-ph">Insignia oficial<br><b>Obtener en Microsoft Store</b></span>
+              </a>
+              <p class="lx-instruccion">Se instala desde la Microsoft Store y se actualiza sola.</p>
+            </section>
+            <section class="lx-opcion" id="lx-android" aria-labelledby="lx-t-and">
+              <span class="lx-etiqueta" hidden>Para tu equipo</span>
+              <h3 id="lx-t-and">Android <small>APK · ~1,9 MB</small></h3>
+              <a class="lx-boton" href="descarga/lector.apk" download>
+                <svg class="lx-android" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 4.3 5.9 2.1a.4.4 0 0 1 .7-.4l1.3 2.3A8.3 8.3 0 0 1 12 3c1.5 0 2.9.4 4.1 1L17.4 1.7a.4.4 0 0 1 .7.4l-1.3 2.2A7.4 7.4 0 0 1 20 10H4a7.4 7.4 0 0 1 3.2-5.7ZM8.5 7.6a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Zm7 0a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8ZM4 11h16v8a1.6 1.6 0 0 1-1.6 1.6H17V23a1.3 1.3 0 0 1-2.6 0v-2.4H9.6V23A1.3 1.3 0 0 1 7 23v-2.4H5.6A1.6 1.6 0 0 1 4 19v-8Z" fill="currentColor"/></svg>
+                Descargar para Android
+              </a>
+              <p class="lx-instruccion">Al instalar, permití instalar apps de fuentes desconocidas.</p>
+              <p class="lx-instruccion">Por ahora las actualizaciones no son automáticas: cuando haya una versión nueva, la vas a encontrar acá. Muy pronto, lector. va a estar en Google Play.</p>
+              <div class="lx-hash">
+                <div class="lx-hash-fila"><code>5e52cecee15173ba9409e085a1ae6f98e837554697cb27b804ded9c9cb48dd0a</code><button class="lx-copiar" type="button">Copiar</button></div>
+                <p>SHA-256: sirve para verificar que el archivo no fue modificado.</p>
+              </div>
+            </section>
+          </div>
+          <div>
+            <h4>Qué hace</h4>
+            <ul class="lx-lista">
+              <li>Abre PDF, DOCX, DOC, TXT, MD y RTF.</li>
+              <li>Funciona sin internet: el archivo nunca sale de tu dispositivo.</li>
+              <li>Sin cuentas y sin anuncios.</li>
+              <li>Podés elegirlo para abrir tus PDF y documentos ("Abrir con").</li>
+              <li>Es gratis.</li>
+            </ul>
+          </div>
+          <p class="lx-firma"><a href="lector/privacidad.html">Política de privacidad</a> · Desarrollado por Tereré Estudio</p>
+          <p class="lx-firma">El robot de Android se reproduce a partir de un trabajo creado y compartido por Google.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="vista" id="vista-web" hidden>
+      <div class="navegador">
+        <div class="nav-chrome">
+          <span class="puntos-ventana" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="url">https://neogestionlandingpage.netlify.app/</span>
+          <a class="copiar" href="https://neogestionlandingpage.netlify.app/" target="_blank" rel="noopener noreferrer">Abrir ↗</a>
+        </div>
+        <div class="nav-sitio">
+          <div class="ns-barra">
+            <span class="ns-marca"><img src="img/v2/neo-logo.webp" width="400" height="280" alt="">NEO Gestión</span>
+            <span class="ns-links"><span>Líneas</span><span>Funciones</span><span>Precios</span><span>Seguridad</span><span>Preguntas</span></span>
+            <span class="ns-btn">Hablá con un asesor</span>
+          </div>
+          <div class="ns-hero">
+            <div>
+              <h3>Vendé, cobrá y facturá <em>desde tu celular.</em></h3>
+              <p>El sistema de gestión para negocios chicos: rápido, práctico y confiable. Escaneás con la cámara, cobrás y mandás el comprobante por WhatsApp.</p>
+              <div class="ns-acciones"><span class="ns-btn">Hablá con un asesor</span><span class="ns-btn sec">Ver cómo funciona</span></div>
+              <div class="ns-sellos"><span>Primer mes gratis</span><span>Factura ARCA oficial</span><span>Hecho en Argentina</span></div>
+            </div>
+            <img class="ns-logo-grande" src="img/v2/neo-logo.webp" width="400" height="280" alt="">
+          </div>
+          <div class="ns-seccion">
+            <h4>Lo que vas a poder hacer</h4>
+            <div class="ns-grilla">
+              <div class="ns-card"><b>Una foto y el producto queda cargado</b><p>La IA reconoce el producto y completa nombre, categoría y código.</p></div>
+              <div class="ns-card"><b>Cobrá sin computadora</b><p>QR, cuotas, Posnet o efectivo con vuelto automático.</p></div>
+              <div class="ns-card"><b>Factura ARCA automática</b><p>Facturas electrónicas con CAE a tu CUIT, por WhatsApp o email.</p></div>
+            </div>
+          </div>
+          <div class="ns-seccion">
+            <h4>Empezás a vender en 3 pasos</h4>
+            <div class="ns-grilla">
+              <div class="ns-card"><span class="ns-num">01</span><b>Hablás con un asesor</b><p>Le contás cómo es tu negocio.</p></div>
+              <div class="ns-card"><span class="ns-num">02</span><b>Te lo dejamos configurado</b><p>Cuenta, rubro y conexión con ARCA.</p></div>
+              <div class="ns-card"><span class="ns-num">03</span><b>Cargás y vendés</b><p>Una foto por producto y abrís la caja desde el celular.</p></div>
+            </div>
+          </div>
+          <div class="ns-seccion">
+            <h4>Líneas</h4>
+            <div class="ns-grilla">
+              <div class="ns-card"><b>NEO Comercio</b><p>Kioscos, almacenes, ropa, librerías, cosmética.</p><span class="ns-chip">disponible</span></div>
+              <div class="ns-card"><b>NEO Gastronomía</b><p>Bares, restaurantes, cafés, delivery.</p><span class="ns-chip pronto">próximamente</span></div>
+              <div class="ns-card"><b>NEO Servicios</b><p>Consultorios, peluquerías, profesionales, gimnasios.</p><span class="ns-chip pronto">próximamente</span></div>
+            </div>
+          </div>
+          <div class="ns-cta">
+            <h4 class="m0-titulo">¿Querés probar NEO Gestión?</h4>
+            <p class="opaco-80">Primer mes gratis. Cupos limitados en el programa Primeros Locales.</p>
+            <span class="ns-btn">Quiero sumar mi local</span>
+          </div>
+          <div class="ns-pie"><span>NEO Gestión · Tu negocio en orden · Hecho en Argentina</span><span>neogestion.app@gmail.com</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</dialog>
