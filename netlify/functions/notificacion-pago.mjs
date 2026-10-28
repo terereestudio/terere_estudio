@@ -38,21 +38,62 @@ export default async (req) => {
     return new Response('retry', { status: 500 });
   }
 
-  // Por ahora solo queda registrado en los logs de Netlify.
-  // Falta definir el canal para avisarte (correo o WhatsApp); ver la nota en el documento de precios.
-  console.log(
-    'pago',
-    JSON.stringify({
-      id: pago.id,
-      estado: pago.status,
-      detalle: pago.status_detail,
-      referencia: pago.external_reference,
-      monto: pago.transaction_amount,
-      moneda: pago.currency_id,
-    }),
-  );
+  const resumen = {
+    id: pago.id,
+    estado: pago.status,
+    detalle: pago.status_detail,
+    referencia: pago.external_reference,
+    monto: pago.transaction_amount,
+    moneda: pago.currency_id,
+  };
+  console.log('pago', JSON.stringify(resumen));
+
+  if (pago.status === 'approved') {
+    await avisarPorCorreo(resumen, pago.payer?.email);
+  }
 
   return new Response('ok', { status: 200 });
 };
+
+// Aviso por correo con Resend. Si falla, no reintentamos el webhook: el pago ya quedó registrado en los logs.
+async function avisarPorCorreo(resumen, emailCliente) {
+  const apiKey = process.env.RESEND_API_KEY;
+  const destino = process.env.AVISOS_EMAIL;
+  const remitente = process.env.AVISOS_REMITENTE || 'Tereré Estudio <onboarding@resend.dev>';
+  if (!apiKey || !destino) {
+    console.error('notificacion-pago: faltan RESEND_API_KEY o AVISOS_EMAIL; no se envió el aviso');
+    return;
+  }
+
+  const monto = new Intl.NumberFormat('es-AR', { style: 'currency', currency: resumen.moneda || 'ARS' }).format(
+    resumen.monto ?? 0,
+  );
+  const texto = [
+    'Pago aprobado en Mercado Pago.',
+    '',
+    `Referencia: ${resumen.referencia ?? '(sin referencia)'}`,
+    `Monto: ${monto}`,
+    `ID de pago: ${resumen.id}`,
+    emailCliente ? `Correo del cliente: ${emailCliente}` : '',
+  ]
+    .filter((linea) => linea !== '')
+    .join('\n');
+
+  try {
+    const r = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: remitente,
+        to: [destino],
+        subject: `Pago aprobado: ${resumen.referencia ?? resumen.id}`,
+        text: texto,
+      }),
+    });
+    if (!r.ok) console.error('notificacion-pago: Resend respondió', r.status, await r.text());
+  } catch (err) {
+    console.error('notificacion-pago: error al enviar el correo', err);
+  }
+}
 
 export const config = { path: '/api/notificacion-pago' };
