@@ -5,6 +5,10 @@
 /dashboards.html       /#tablero     301
 /jardinrecursos.html   /             301
 
+# Páginas eliminadas en la v2
+/sobre-mi.html        /             301
+/soluciones.html      /             301
+
 # Archivos de trabajo que no hace falta publicar
 /src/*                 /404.html     404
 /build.mjs             /404.html     404

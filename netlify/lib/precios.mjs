@@ -6,7 +6,7 @@ export const TIPO_DE_CAMBIO = 1500; // ARS por USD, referencia fija
 
 export const PLANES = {
   base: { titulo: 'Plan Base', ars: 150000, usd: 100 },
-  emprendedor: { titulo: 'Plan Emprendedor', ars: 100000, usd: 70 },
+  emprendedor: { titulo: 'Plan Catálogo', ars: 100000, usd: 70 },
   servicios: { titulo: 'Plan Servicios', ars: 100000, usd: 70 },
 };
 

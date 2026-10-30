@@ -13,7 +13,7 @@ const PLANES = {
     temporalidad: "Pagás una sola vez y la página es tuya. Dominio y hosting incluidos durante el primer año."
   },
   emprendedor: {
-    nombre: "Plan Emprendedor", sub: "// catálogo con pedido por WhatsApp", para: "Para emprendedores que venden por WhatsApp y quieren mostrar sus productos.",
+    nombre: "Plan Catálogo", sub: "// catálogo con pedido por WhatsApp", para: "Para emprendedores que venden por WhatsApp y quieren mostrar sus productos.",
     detalle: "Entrada",
     entrega: "≈ 10 días hábiles",
     destacado: true,
@@ -46,7 +46,7 @@ const PLANES = {
 
 const EN_PLANES = {
   base: { nombre: "Base Plan", sub: "// static landing page", corto: "For professionals and businesses", monto: "USD 100", detalle: "One-time payment", cuota: "Later changes quoted separately", entrega: "same day · 2 business days max", puntos: ["Custom page in pure code", "Domain and hosting for one year", "First month of changes included", "WhatsApp button and basic SEO"] },
-  emprendedor: { nombre: "Entrepreneur Plan", sub: "// catalog with WhatsApp orders", corto: "For entrepreneurs who sell on WhatsApp", monto: "USD 70", detalle: "Setup", cuota: "+ USD 18 per month", entrega: "≈ 10 business days", puntos: ["Catalog with photos, prices and variants", "Cart that builds the order", "Orders arrive on your WhatsApp", "I add and edit your products every month"] },
+  emprendedor: { nombre: "Catalog Plan", sub: "// catalog with WhatsApp orders", corto: "For entrepreneurs who sell on WhatsApp", monto: "USD 70", detalle: "Setup", cuota: "+ USD 18 per month", entrega: "≈ 10 business days", puntos: ["Catalog with photos, prices and variants", "Cart that builds the order", "Orders arrive on your WhatsApp", "I add and edit your products every month"] },
   tienda: { nombre: "Online Store Plan", sub: "// your own online store", corto: "For businesses that want to sell online", monto: "USD 350", detalle: "From", cuota: "Maintenance to be agreed", entrega: "depends on the catalog", puntos: ["Your own store in pure code", "Cart and online payments", "Panel to manage products", "Domain, hosting and security"] },
   servicios: { nombre: "Services Plan", sub: "// online booking", corto: "For professionals who take bookings", monto: "USD 70", detalle: "Setup", cuota: "+ USD 18 per month", entrega: "≈ 2 business days", puntos: ["Your services with prices", "Booking by day and time", "Panel to manage your bookings", "Payment arranged on WhatsApp"] }
 };
@@ -55,7 +55,7 @@ let idioma = "es";
 const lista = document.getElementById("lista-planes");
 const PT_PLANES = {
   base: { nombre: "Plano Base", sub: "// landing page estática", corto: "Para profissionais e negócios", monto: "USD 100", detalle: "Pagamento único", cuota: "Alterações posteriores: a combinar", entrega: "no mesmo dia · até 2 dias úteis", puntos: ["Página sob medida em código puro", "Domínio e hospedagem por um ano", "Primeiro mês de alterações incluído", "Botão de WhatsApp e SEO básico"] },
-  emprendedor: { nombre: "Plano Empreendedor", sub: "// catálogo com pedido pelo WhatsApp", corto: "Para empreendedores que vendem pelo WhatsApp", monto: "USD 70", detalle: "Entrada", cuota: "+ USD 18 por mês", entrega: "≈ 10 dias úteis", puntos: ["Catálogo com fotos, preços e variações", "Carrinho que monta o pedido", "O pedido chega no seu WhatsApp", "Cadastro e edito seus produtos todo mês"] },
+  emprendedor: { nombre: "Plano Catálogo", sub: "// catálogo com pedido pelo WhatsApp", corto: "Para empreendedores que vendem pelo WhatsApp", monto: "USD 70", detalle: "Entrada", cuota: "+ USD 18 por mês", entrega: "≈ 10 dias úteis", puntos: ["Catálogo com fotos, preços e variações", "Carrinho que monta o pedido", "O pedido chega no seu WhatsApp", "Cadastro e edito seus produtos todo mês"] },
   servicios: { nombre: "Plano Serviços", sub: "// agendamento online", corto: "Para profissionais que trabalham com horário marcado", monto: "USD 70", detalle: "Entrada", cuota: "+ USD 18 por mês", entrega: "≈ 2 dias úteis", puntos: ["Seus serviços com preço", "Agendamento por dia e horário", "Painel para gerenciar seus horários", "Pagamento combinado pelo WhatsApp"] },
   tienda: { nombre: "Plano Loja Online", sub: "// sua própria loja online", corto: "Para negócios que querem vender online", monto: "USD 350", detalle: "A partir de", cuota: "Manutenção a combinar", entrega: "conforme o catálogo", puntos: ["Loja própria em código puro", "Carrinho e pagamento online", "Painel de produtos", "Domínio, hospedagem e segurança"] }
 };

@@ -67,7 +67,7 @@ function jsonLd(meta, url) {
       '@context': 'https://schema.org', '@type': 'BlogPosting',
       headline: meta.titulo, description: meta.descripcion, datePublished: meta.fecha,
       image: `${DOMINIO}/${meta.imagen}`, url, inLanguage: 'es-AR',
-      author: { '@type': 'Person', name: 'Leonardo Lavrovic', url: `${DOMINIO}/sobre-mi.html` },
+      author: { '@type': 'Person', name: 'Leonardo Lavrovic', url: `${DOMINIO}/` },
       publisher: { '@type': 'Organization', name: 'Tereré Estudio', url: DOMINIO },
     };
   }
@@ -82,7 +82,7 @@ function jsonLd(meta, url) {
       },
       {
         '@context': 'https://schema.org', '@type': 'Person', name: 'Leonardo Lavrovic',
-        jobTitle: 'Desarrollador web', url: `${DOMINIO}/sobre-mi.html`,
+        jobTitle: 'Desarrollador web', url: `${DOMINIO}/`,
         address: { '@type': 'PostalAddress', addressLocality: 'Corrientes', addressCountry: 'AR' },
         sameAs: ['https://www.linkedin.com/in/leonardo-lavrovic/', 'https://github.com/terereestudio', 'https://instagram.com/terere.ecommerce'],
       },

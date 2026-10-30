@@ -102,9 +102,12 @@ const mostrarVista = v => {
   vistaActual = v;
 };
 let vistaActual = "ficha";
-document.querySelector('[data-proyecto="neo"]').addEventListener("click", () => { mostrarVista("ficha"); ventana.showModal(); });
+// Laboratorio bloqueado: las tres carpetas están clasificadas. Para reabrir una, poné LAB_BLOQUEADO = false
+// y devolvele la clase "abierta" en src/paginas/laboratorio.html.
+const LAB_BLOQUEADO = true;
+if (!LAB_BLOQUEADO) document.querySelector('[data-proyecto="neo"]').addEventListener("click", () => { mostrarVista("ficha"); ventana.showModal(); });
 const carpetaLector = document.querySelector('[data-proyecto="lector"]');
-carpetaLector.addEventListener("click", () => {
+if (!LAB_BLOQUEADO) carpetaLector.addEventListener("click", () => {
   if (!reducido) { const r = carpetaLector.getBoundingClientRect(); lepisma(r.left + r.width / 2, r.top + r.height * 0.4); }
   setTimeout(() => { mostrarVista("lector"); ventana.showModal(); }, reducido ? 0 : 450);
 });
