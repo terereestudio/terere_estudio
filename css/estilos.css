@@ -1040,3 +1040,4 @@ a:hover { color: #B6D43C; }
 /* Página de retorno de Mercado Pago */
 .texto-legal .boton { text-decoration: none; }
 .pago-acciones { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px !important; }
+.pago-titulo { margin: 0; font-size: clamp(2.6rem, 6vw, 4.8rem); }

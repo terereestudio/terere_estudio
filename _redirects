@@ -1,14 +1,17 @@
 # Las páginas de servicios de la v1 ahora son una sección del inicio
-/ecommerce.html        /#servicios   301
-/landingpage.html      /#servicios   301
-/redes-sociales.html   /#servicios   301
-/dashboards.html       /#tablero     301
+/ecommerce.html        /#planes      301
+/landingpage.html      /#planes      301
+/redes-sociales.html   /#planes      301
+/dashboards.html       /#planes      301
 /jardinrecursos.html   /             301
 
-# Páginas eliminadas en la v2
-/sobre-mi.html        /             301
-/soluciones.html      /             301
+# Páginas eliminadas en la v2: no existen (404), sin redirección
+/sobre-mi.html        /404.html     404!
+/sobre-mi             /404.html     404!
+/soluciones.html      /404.html     404!
+/soluciones           /404.html     404!
 
 # Archivos de trabajo que no hace falta publicar
 /src/*                 /404.html     404
 /build.mjs             /404.html     404
+/herramientas/*        /404.html     404
