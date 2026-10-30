@@ -167,30 +167,33 @@
           <p class="lx-frase">Abrí un archivo y leelo. Nada más.</p>
         </header>
         <div class="lx-cuerpo">
-          <p class="lx-aviso-sistema" id="lx-aviso" hidden>Por ahora lector. está disponible para Windows y Android.</p>
+          <p class="lx-presentacion"><span class="lx-presentacion-logo">lector.</span> — abrí el archivo y leelo. Sin cuentas, sin publicidad, sin internet. PDF, Word, TXT y más.</p>
+          <p class="lx-aviso-sistema" id="lx-aviso" hidden>Por ahora lector. está disponible para Android.</p>
           <div class="lx-descargas">
-            <section class="lx-opcion" id="lx-windows" aria-labelledby="lx-t-win">
-              <span class="lx-etiqueta" hidden>Para tu equipo</span>
-              <h3 id="lx-t-win">Windows <small>Microsoft Store</small></h3>
-              <a class="lx-store" href="https://apps.microsoft.com/detail/9NJZ3LNQ793K" target="_blank" rel="noopener noreferrer" aria-label="Obtener lector. en Microsoft Store">
-                <!-- En el sitio real va la insignia oficial de https://apps.microsoft.com/badge (imagen o componente ms-store-badge). -->
-                <span class="lx-store-ph">Insignia oficial<br><b>Obtener en Microsoft Store</b></span>
-              </a>
-              <p class="lx-instruccion">Se instala desde la Microsoft Store y se actualiza sola.</p>
-            </section>
-            <section class="lx-opcion" id="lx-android" aria-labelledby="lx-t-and">
-              <span class="lx-etiqueta" hidden>Para tu equipo</span>
-              <h3 id="lx-t-and">Android <small>APK · ~1,9 MB</small></h3>
-              <a class="lx-boton" href="descarga/lector.apk" download>
-                <svg class="lx-android" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 4.3 5.9 2.1a.4.4 0 0 1 .7-.4l1.3 2.3A8.3 8.3 0 0 1 12 3c1.5 0 2.9.4 4.1 1L17.4 1.7a.4.4 0 0 1 .7.4l-1.3 2.2A7.4 7.4 0 0 1 20 10H4a7.4 7.4 0 0 1 3.2-5.7ZM8.5 7.6a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Zm7 0a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8ZM4 11h16v8a1.6 1.6 0 0 1-1.6 1.6H17V23a1.3 1.3 0 0 1-2.6 0v-2.4H9.6V23A1.3 1.3 0 0 1 7 23v-2.4H5.6A1.6 1.6 0 0 1 4 19v-8Z" fill="currentColor"/></svg>
+            <section class="lx-opcion" id="lx-android" data-estado="disponible" aria-labelledby="lx-t-and">
+              <span class="lx-estado">Disponible</span>
+              <h3 id="lx-t-and">Android</h3>
+              <a class="lx-boton" href="descarga/lector.apk" download="lector.apk" type="application/vnd.android.package-archive">
+                <svg class="lx-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.2 4.3 5.9 2.1a.4.4 0 0 1 .7-.4l1.3 2.3A8.3 8.3 0 0 1 12 3c1.5 0 2.9.4 4.1 1L17.4 1.7a.4.4 0 0 1 .7.4l-1.3 2.2A7.4 7.4 0 0 1 20 10H4a7.4 7.4 0 0 1 3.2-5.7ZM8.5 7.6a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8Zm7 0a.9.9 0 1 0 0-1.8.9.9 0 0 0 0 1.8ZM4 11h16v8a1.6 1.6 0 0 1-1.6 1.6H17V23a1.3 1.3 0 0 1-2.6 0v-2.4H9.6V23A1.3 1.3 0 0 1 7 23v-2.4H5.6A1.6 1.6 0 0 1 4 19v-8Z" fill="currentColor"/></svg>
                 Descargar para Android
               </a>
-              <p class="lx-instruccion">Al instalar, permití instalar apps de fuentes desconocidas.</p>
-              <p class="lx-instruccion">Por ahora las actualizaciones no son automáticas: cuando haya una versión nueva, la vas a encontrar acá. Muy pronto, lector. va a estar en Google Play.</p>
+              <p class="lx-meta">Versión 2.0 · 1,9 MB · Android</p>
+              <p class="lx-instruccion">Las actualizaciones no son automáticas: para tener la última versión, volvé a descargarla desde acá. Próximamente en Google Play.</p>
+              <p class="lx-instruccion">Si Android lo pide, permití instalar apps desde tu navegador.</p>
               <div class="lx-hash">
-                <div class="lx-hash-fila"><code>5e52cecee15173ba9409e085a1ae6f98e837554697cb27b804ded9c9cb48dd0a</code><button class="lx-copiar" type="button">Copiar</button></div>
+                <div class="lx-hash-fila"><code>addf9e0579ab5aaf8a6e1c33e7bd0e91838a4aa09f7351824c2925d1e4186d3f</code><button class="lx-copiar" type="button">Copiar</button></div>
                 <p>SHA-256: sirve para verificar que el archivo no fue modificado.</p>
               </div>
+            </section>
+            <!-- Windows: para activarlo, cambiá data-estado="pronto" por "disponible". El enlace sale de data-store. -->
+            <section class="lx-opcion" id="lx-windows" data-estado="pronto" data-store="https://apps.microsoft.com/detail/9PB2NCC5HBJP" aria-labelledby="lx-t-win">
+              <span class="lx-estado">Próximamente</span>
+              <h3 id="lx-t-win">Windows</h3>
+              <a class="lx-boton" id="lx-win-boton" role="link" aria-disabled="true">
+                <svg class="lx-icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.1 10.4 4v7.2H3V5.1Zm0 13.8 7.4 1.1v-7.1H3v6Zm8.3 1.2L21 21.5v-8.6h-9.7v7.2Zm0-16.2v7.3H21V2.5l-9.7 1.4Z" fill="currentColor"/></svg>
+                <span id="lx-win-texto">Próximamente en Microsoft Store</span>
+              </a>
+              <p class="lx-instruccion" id="lx-win-nota">Cuando esté aprobada, se va a instalar desde la Microsoft Store y se va a actualizar sola.</p>
             </section>
           </div>
           <div>

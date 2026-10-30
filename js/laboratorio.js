@@ -111,14 +111,24 @@ if (!LAB_BLOQUEADO) carpetaLector.addEventListener("click", () => {
   if (!reducido) { const r = carpetaLector.getBoundingClientRect(); lepisma(r.left + r.width / 2, r.top + r.height * 0.4); }
   setTimeout(() => { mostrarVista("lector"); ventana.showModal(); }, reducido ? 0 : 450);
 });
-// lector.: destacar la descarga según el sistema del visitante
+// lector.: estado de Windows (data-estado en el HTML) y descarga destacada según el sistema
 (() => {
+  const win = $("lx-windows"), wb = $("lx-win-boton");
+  if (win.dataset.estado === "disponible") {
+    wb.href = win.dataset.store; wb.target = "_blank"; wb.rel = "noopener noreferrer";
+    wb.removeAttribute("aria-disabled"); wb.removeAttribute("role");
+    $("lx-win-texto").textContent = "Descargar en Microsoft Store";
+    win.querySelector(".lx-estado").textContent = "Disponible";
+    $("lx-win-nota").textContent = "Se instala desde la Microsoft Store y se actualiza sola.";
+    $("lx-aviso").textContent = "Por ahora lector. está disponible para Windows y Android.";
+  } else {
+    wb.addEventListener("click", e => e.preventDefault());
+  }
   const ua = navigator.userAgent;
   const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
   const mac = /Macintosh|Mac OS X/.test(ua) && !ios;
-  const destacar = id => { const c = $(id); c.classList.add("destacada"); c.querySelector(".lx-etiqueta").hidden = false; };
-  if (/Android/i.test(ua)) destacar("lx-android");
-  else if (/Windows/i.test(ua)) destacar("lx-windows");
+  if (/Android/i.test(ua)) $("lx-android").classList.add("destacada");
+  else if (/Windows/i.test(ua) && win.dataset.estado === "disponible") win.classList.add("destacada");
   else if (ios || mac) $("lx-aviso").hidden = false;
   document.querySelectorAll(".lx-copiar").forEach(b => b.addEventListener("click", () => {
     const code = b.parentElement.querySelector("code");

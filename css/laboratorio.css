@@ -179,20 +179,19 @@ dialog::backdrop { background: rgba(26,23,24,0.55); backdrop-filter: blur(3px); 
 .lx-aviso-sistema { padding: 14px 16px; border: 1px solid var(--lx-linea); border-radius: 8px; background: var(--lx-tarjeta); font-size: 0.95rem; }
 .lx-descargas { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .lx-opcion { display: grid; gap: 12px; align-content: start; padding: 20px; border: 1px solid var(--lx-linea); border-radius: 8px; background: var(--lx-tarjeta); }
-.lx-opcion.destacada { border-color: var(--lx-negro); }
 .lx-opcion h3 { font: 600 1.25rem/1.2 "Literata", Georgia, serif; display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
 .lx-opcion h3 small { font: 400 0.8rem/1 "Figtree", sans-serif; color: var(--lx-gris); }
-.lx-etiqueta { justify-self: start; font-size: 0.72rem; font-weight: 600; padding: 3px 8px; border-radius: 6px; background: var(--lx-negro); color: var(--lx-blanco); }
-.lx-android { width: 20px; height: 20px; flex: none; }
-.lx-store { display: inline-flex; justify-self: start; text-decoration: none; color: inherit; }
-.lx-store-ph { display: grid; gap: 2px; padding: 10px 16px; border-radius: 8px; background: #000; color: #fff; border: 1px solid #555; font: 400 0.68rem/1.3 "Figtree", sans-serif; text-align: left; }
-.lx-store-ph b { font-size: 0.95rem; font-weight: 600; }
 .lx-firma a { color: inherit; }
-.lx-boton { display: inline-flex; gap: 10px; justify-content: center; align-items: center; padding: 13px 18px; border-radius: 8px; border: 1px solid var(--lx-linea); background: var(--lx-blanco); color: var(--lx-negro); text-decoration: none; font-weight: 600; font-size: 0.95rem; }
-.lx-boton:hover { border-color: var(--lx-negro); }
-.lx-opcion.destacada .lx-boton { background: var(--lx-negro); border-color: var(--lx-negro); color: var(--lx-blanco); }
-.lx-opcion.destacada { box-shadow: 0 0 0 1px var(--lx-negro); }
-.lx-opcion.destacada .lx-boton:hover { opacity: 0.85; }
+.lx-presentacion { margin: 0; font-size: 1.05rem; line-height: 1.5; }
+.lx-presentacion-logo { font: italic 500 1.25em/1 "Literata", Georgia, serif; }
+.lx-estado { justify-self: start; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; padding: 4px 9px; border-radius: 8px; background: var(--lx-negro); color: var(--lx-blanco); }
+.lx-opcion[data-estado="pronto"] .lx-estado { background: transparent; color: var(--lx-gris); box-shadow: inset 0 0 0 1px var(--lx-linea); }
+.lx-opcion.destacada { box-shadow: 0 0 0 1px var(--lx-negro); border-color: var(--lx-negro); }
+.lx-icono { width: 20px; height: 20px; flex: none; }
+.lx-boton { display: inline-flex; gap: 10px; justify-content: center; align-items: center; padding: 14px 18px; border-radius: 8px; border: 1px solid var(--lx-negro); background: var(--lx-negro); color: var(--lx-blanco); text-decoration: none; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: opacity .2s; }
+.lx-boton:hover { opacity: 0.85; }
+.lx-boton[aria-disabled="true"] { background: var(--lx-linea); border-color: var(--lx-linea); color: var(--lx-gris); cursor: not-allowed; opacity: 1; }
+.lx-meta { font-size: 0.78rem; color: var(--lx-gris); margin-top: -4px; }
 .lx-instruccion { font-size: 0.88rem; color: var(--lx-gris); }
 .lx-hash { display: grid; gap: 6px; padding-top: 12px; border-top: 1px solid var(--lx-linea); }
 .lx-hash-fila { display: flex; gap: 8px; align-items: center; min-width: 0; }
