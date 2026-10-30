@@ -1,3 +1,5 @@
+> **Rama `version-1` — archivo.** Acá queda guardada la primera versión del sitio de Tereré Estudio (septiembre–octubre 2026), hecha a mano en HTML, CSS y JavaScript como trabajo para la UTN, aprobada con 10. El sitio actual vive en la rama `main`; esta versión también se puede ver en [terereestudio.com.ar/v1/](https://terereestudio.com.ar/v1/).
+
 ### Hi there 👋, I'm Leonardo Lavrovic! 
 
 Welcome to my GitHub repository. I'm part of **tereré estudio**, and I'm currently on an exciting journey learning web development.

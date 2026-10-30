@@ -5233,3 +5233,33 @@ a.btn-enlace-verde {
 #icono-audio.fa-pause .ico-play {
     display: none;
 }
+
+/* ========================================================================= */
+/* ARCHIVO: cartel que avisa que esta es una versión anterior del sitio      */
+/* ========================================================================= */
+.aviso-archivo {
+    background: #FFF4C2;
+    color: #231F20;
+    border-bottom: 2px solid #9FBD2B;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    text-align: center;
+}
+.aviso-archivo p { margin: 0; }
+.aviso-archivo strong {
+    display: inline-block;
+    background: #231F20;
+    color: #FFF4C2;
+    border-radius: 4px;
+    padding: 1px 8px;
+    margin-right: 6px;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.aviso-archivo a { color: #231F20; font-weight: 700; text-decoration: underline; }
+@media (max-width: 600px) {
+    .aviso-archivo { font-size: 0.85rem; padding: 8px 14px; }
+    .aviso-archivo-texto { display: none; }
+}
