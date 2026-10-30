@@ -102,12 +102,12 @@ const mostrarVista = v => {
   vistaActual = v;
 };
 let vistaActual = "ficha";
-// Laboratorio bloqueado: las tres carpetas están clasificadas. Para reabrir una, poné LAB_BLOQUEADO = false
-// y devolvele la clase "abierta" en src/paginas/laboratorio.html.
-const LAB_BLOQUEADO = true;
-if (!LAB_BLOQUEADO) document.querySelector('[data-proyecto="neo"]').addEventListener("click", () => { mostrarVista("ficha"); ventana.showModal(); });
+// Carpetas bloqueadas: NEO y cosmo siguen clasificadas; lector. está abierta.
+// Para abrir una, poné su valor en false y devolvele la clase "abierta" en src/paginas/laboratorio.html.
+const BLOQUEADA = { neo: true, lector: false };
+if (!BLOQUEADA.neo) document.querySelector('[data-proyecto="neo"]').addEventListener("click", () => { mostrarVista("ficha"); ventana.showModal(); });
 const carpetaLector = document.querySelector('[data-proyecto="lector"]');
-if (!LAB_BLOQUEADO) carpetaLector.addEventListener("click", () => {
+if (!BLOQUEADA.lector) carpetaLector.addEventListener("click", () => {
   if (!reducido) { const r = carpetaLector.getBoundingClientRect(); lepisma(r.left + r.width / 2, r.top + r.height * 0.4); }
   setTimeout(() => { mostrarVista("lector"); ventana.showModal(); }, reducido ? 0 : 450);
 });
@@ -148,3 +148,6 @@ $("copiar").addEventListener("click", () => {
   const seleccionar = () => { const r = document.createRange(); r.selectNodeContents($("correo")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
   if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(texto).then(listo).catch(seleccionar); else seleccionar();
 });
+
+// Enlace directo: laboratorio.html#lector abre la ficha de descargas
+if (location.hash === "#lector" && !BLOQUEADA.lector) { mostrarVista("lector"); ventana.showModal(); }
