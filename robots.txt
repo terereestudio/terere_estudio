@@ -1,5 +1,23 @@
 User-agent: *
+Allow: /
 Disallow: /v1/
-Disallow: /soluciones.html
+Disallow: /src/
+Disallow: /herramientas/
+
+# Buscadores de asistentes de IA: bienvenidos (el sitio se arma para aparecer en sus respuestas)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
 
 Sitemap: https://terereestudio.com.ar/sitemap.xml

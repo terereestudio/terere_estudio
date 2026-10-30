@@ -27,6 +27,7 @@
 
 </head>
 <body class="">
+<a class="salto" href="#contenido">Saltar al contenido</a>
 <header class="barra">
   <div class="envoltura">
     <a href="index.html"><img src="img/v2/logo-negro.svg" width="200" height="80" alt="Tereré Estudio, ir al inicio"></a>
@@ -34,7 +35,7 @@
   </div>
 </header>
 
-<main class="escritorio">
+<main class="escritorio" id="contenido">
   <section class="cabecera" aria-labelledby="titulo-lab">
     <div class="envoltura">
       <div>
@@ -55,7 +56,7 @@
         <button class="flecha" type="button" data-mover="1" aria-label="Ver más carpetas">→</button>
       </div>
       <div class="carpetas" id="carpetas">
-        <button class="carpeta clasificada" type="button" data-proyecto="neo" aria-label="Carpeta clasificada: NEO Gestión">
+        <button class="carpeta abierta pronto" type="button" data-proyecto="neo" aria-label="Abrir la carpeta de NEO Gestión: pronto, anotate para probarlo">
           <div class="carpeta-cuerpo">
             <div class="c-fondo"></div>
             <div class="c-hoja principal">
@@ -66,10 +67,9 @@
             </div>
             <div class="c-hoja"></div>
             <div class="c-frente">
-              <svg class="candado" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0110 0v3" fill="none" stroke="currentColor" stroke-width="2"/><rect x="5" y="11" width="14" height="10" rx="2" fill="currentColor"/></svg>
-              <span class="sello">CLASIFICADO</span>
+              <span class="sello sello-pronto">PRONTO</span>
               <span class="c-nombre">neo-gestion/</span>
-              <span class="c-meta">exp. 01 · acceso restringido</span>
+              <span class="c-meta">exp. 01 · anotate para probarlo</span>
             </div>
           </div>
         </button>
@@ -267,6 +267,7 @@
     </div>
   </div>
 </dialog>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "MobileApplication", "name": "lector.", "description": "Lector de documentos gratis para Android: abre PDF, Word, TXT, MD y RTF. Sin cuentas, sin publicidad y sin internet.", "operatingSystem": "Android", "applicationCategory": "UtilitiesApplication", "softwareVersion": "2.0", "fileSize": "1.9MB", "inLanguage": "es", "downloadUrl": "https://terereestudio.com.ar/descarga/lector.apk", "url": "https://terereestudio.com.ar/laboratorio.html#lector", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "ARS"}, "author": {"@type": "ProfessionalService", "name": "Tereré Estudio", "url": "https://terereestudio.com.ar/"}, "privacyPolicy": "https://terereestudio.com.ar/lector/privacidad.html"}, {"@type": "SoftwareApplication", "name": "NEO Gestión", "description": "Sistema de gestión para negocios en cuatro versiones: NEO Comercio, NEO Servicios, NEO Gastronomía y NEO Propiedades. Programa de primeros locales con el primer mes gratis.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "author": {"@type": "ProfessionalService", "name": "Tereré Estudio", "url": "https://terereestudio.com.ar/"}}]}</script>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-// Inicio v2. Origen: prototipo terere-v2.html
+// Inicio v2. Origen: prototipo terere-v3.html
 "use strict";
 const WA = "543644328260";
 const PLANES = {
@@ -95,39 +95,104 @@ function resumenDe(id) {
   if (id === "tienda") return [["Desde", q.monto], ["Mantenimiento", "A convenir"], ["Entrega", "Según el catálogo"]];
   return [["Entrada", q.monto], ["Cuota", q.cuota.replace(/^\+ /, "")], ["Entrega", PLANES[id].entrega]];
 }
+// ===== Planes: carrusel 3D con números y detalle =====
+const DETALLE = {
+  base: { clase: "base", tag: "Pago único", para: "Tu presencia propia en internet, lista en uno o dos días.", bajada: "Una página que trabaja por vos: te presenta, te posiciona y lleva cada visita a tu WhatsApp.",
+    puntos: [["Tu nombre propio en internet", "Una dirección que es tuya, como tunegocio.com.ar. Tu marca deja de depender de una red social y gana un lugar que nadie te puede apagar."],
+      ["Lista en uno o dos días", "Diseño a medida, adaptada a celular y computadora, sin plantillas. Mientras otros esperan semanas, vos ya estás en línea."],
+      ["Encontrable en Google y en la IA", "Títulos, descripción, datos estructurados y velocidad pensados para buscadores (SEO) y para asistentes como ChatGPT o Gemini (GEO)."],
+      ["Un año resuelto", "Dominio, hosting, certificado de seguridad y el primer mes de cambios incluidos. Después, cada ajuste se cotiza aparte."]],
+    entrega: "En el día o, como máximo, en dos días hábiles." },
+  emprendedor: { clase: "catalogo", tag: "El más pedido", para: "Tu vidriera abierta las 24 horas, con pedidos directo a tu WhatsApp.", bajada: "El comercio de hoy pasa por el celular. Tu catálogo, ordenado y siempre abierto, convierte cada visita en un pedido.",
+    puntos: [["Una vidriera que no cierra", "Tus productos por categoría, con fotos, precios y variantes como talle o color. Se encuentran en segundos, a cualquier hora."],
+      ["El pedido llega armado", "Tu cliente elige, el carrito suma y el pedido te llega listo por WhatsApp. Vos confirmás y cerrás la venta a tu manera, sin comisiones por venta."],
+      ["Productos que aparecen cuando los buscan", "Cada producto con nombre, descripción y datos estructurados para que Google y los asistentes de IA lo muestren a quien lo busca."],
+      ["Siempre actualizado", "Cada mes cargo, edito y marco agotados. Promos y temporadas sin que tengas que tocar una línea de código."]],
+    entrega: "Alrededor de diez días hábiles, según la cantidad de productos." },
+  servicios: { clase: "servicios", tag: "Turnos online", para: "Tus servicios a la vista y tu agenda llenándose sola.", bajada: "Tu agenda trabaja aunque estés atendiendo: tus clientes eligen día y horario en tu página.",
+    puntos: [["Lo que hacés, explicado con claridad", "Cada servicio con su precio, duración y fotos. Tu cliente llega sabiendo qué quiere y cuánto cuesta."],
+      ["Turnos las 24 horas", "Reservan por día y horario desde el celular, incluso fuera de tu horario de atención."],
+      ["Para que te encuentren cerca", "SEO local para aparecer cuando alguien busca tu servicio en tu ciudad, en Google, en Maps y en los asistentes de IA."],
+      ["Tu agenda bajo control", "Un panel para ver y gestionar los turnos, con aviso por WhatsApp para que nadie se olvide."]],
+    entrega: "Alrededor de dos días hábiles." }
+};
+const PAGO_TXT = "Con Mercado Pago (tarjetas, dinero en cuenta y cuotas sin tarjeta) o por transferencia, a convenir.";
+const TXT_CF = { es: ["Ver qué incluye", "Contratar"], en: ["What's included", "Get the plan"], pt: ["O que inclui", "Quero este plano"] };
+let planActual = 1, idsVisibles = [];
 function dibujarPlanes() {
-  const t = TXT_PLAN[idioma] || TXT_PLAN.es;
   const extra = idioma === "en" ? EN_PLANES : idioma === "pt" ? PT_PLANES : null;
   const precios = PRECIOS[monedaActual()];
+  const [tVer, tContratar] = TXT_CF[idioma] || TXT_CF.es;
+  idsVisibles = Object.keys(PLANES).filter(id => !PLANES[id].oculto);
   lista.replaceChildren();
-  for (const [id, base] of Object.entries(PLANES)) {
-    if (base.oculto) continue;
-    const p = { ...base, corto: CORTO[id], ...precios[id], ...(extra ? extra[id] : {}) };
-    const art = document.createElement("article");
-    art.className = "plan" + (p.destacado ? " destacado" : "");
-    if (p.destacado) { const e = document.createElement("span"); e.className = "plan-etiqueta"; e.textContent = t.rec; art.append(e); }
-    const sub = document.createElement("p"); sub.className = "mono"; sub.textContent = p.sub;
-    const h = document.createElement("h3"); h.textContent = p.nombre;
-    const para = document.createElement("p"); para.className = "plan-para"; para.textContent = extra ? p.corto + "." : p.para;
-    const corto = document.createElement("p"); corto.className = "plan-corto"; corto.textContent = p.corto;
-    const pr = document.createElement("div"); pr.className = "precio";
-    const det = document.createElement("span"); det.className = "precio-detalle"; det.textContent = p.detalle;
-    const m = document.createElement("span"); m.className = "precio-monto"; m.textContent = p.monto;
-    const cu = document.createElement("span"); cu.className = "precio-detalle precio-cuota"; cu.textContent = p.cuota;
-    pr.append(det, m, cu);
-    const ul = document.createElement("ul");
-    p.puntos.forEach(x => { const li = document.createElement("li"); li.textContent = x; ul.append(li); });
-    const ent = document.createElement("p"); ent.className = "plan-entrega"; ent.textContent = t.entrega + p.entrega;
-    const acc = document.createElement("div"); acc.className = "plan-acciones";
-    const vm = document.createElement("button"); vm.className = "boton boton-borde ver-mas"; vm.type = "button"; vm.textContent = t.verMas; vm.addEventListener("click", () => abrir(id, 1));
-    const b = document.createElement("button"); b.className = "boton"; b.type = "button"; b.textContent = t.conseguir; b.addEventListener("click", () => abrir(id, window.matchMedia("(max-width: 767px)").matches ? 2 : 1));
-    acc.append(vm, b);
-    art.append(sub, h, para, corto, pr, ul, ent, acc);
-    art.addEventListener("pointermove", ev => { const r = art.getBoundingClientRect(); art.style.setProperty("--mx", (ev.clientX - r.left) + "px"); art.style.setProperty("--my", (ev.clientY - r.top) + "px"); });
-    lista.append(art);
-  }
+  const numeros = $("cf-numeros"); numeros.replaceChildren();
+  idsVisibles.forEach((id, i) => {
+    const p = { ...PLANES[id], corto: CORTO[id], ...precios[id], ...(extra ? extra[id] : {}) };
+    const d = DETALLE[id] || {};
+    const t = document.createElement("article");
+    t.className = "cf-tarjeta " + (d.clase || id);
+    t.dataset.i = i;
+    t.innerHTML = `<div class="cf-top"><span class="cf-num">0${i + 1}</span><span class="cf-tag"></span></div><h3></h3><p class="cf-para"></p><div class="cf-precio"><span class="det"></span><b></b><span class="cuota"></span></div><ul></ul><div class="cf-acciones"><button type="button" class="boton boton-borde ver"></button><button type="button" class="boton contratar"></button></div>`;
+    t.querySelector(".cf-tag").textContent = d.tag || "";
+    t.querySelector("h3").textContent = p.nombre;
+    t.querySelector(".cf-para").textContent = extra ? p.corto + "." : (d.para || p.para);
+    t.querySelector(".det").textContent = p.detalle;
+    t.querySelector(".cf-precio b").textContent = p.monto;
+    t.querySelector(".cuota").textContent = p.cuota;
+    t.querySelector("ul").replaceChildren(...p.puntos.map(x => Object.assign(document.createElement("li"), { textContent: x })));
+    t.querySelector(".ver").textContent = tVer;
+    t.querySelector(".contratar").textContent = tContratar;
+    t.querySelector(".ver").addEventListener("click", e => { e.stopPropagation(); irPlan(i); abrirDetalle(); });
+    t.querySelector(".contratar").addEventListener("click", e => { e.stopPropagation(); abrir(id, 2); });
+    t.addEventListener("click", () => { if (i !== planActual) irPlan(i); });
+    lista.append(t);
+    const n = document.createElement("button");
+    n.type = "button"; n.setAttribute("role", "tab"); n.innerHTML = `<b>0${i + 1}</b><span></span>`;
+    n.querySelector("span").textContent = p.nombre;
+    n.addEventListener("click", () => irPlan(i));
+    numeros.append(n);
+  });
+  irPlan(Math.min(planActual, idsVisibles.length - 1));
 }
-dibujarPlanes();
+function irPlan(n) {
+  const total = idsVisibles.length;
+  planActual = Math.max(0, Math.min(total - 1, n));
+  [...lista.children].forEach((t, i) => {
+    const d = i - planActual, ad = Math.abs(d);
+    t.style.setProperty("--d", d); t.style.setProperty("--ad", ad); t.style.setProperty("--op", ad > 1 ? 0 : 1);
+    t.classList.toggle("activa", d === 0); t.inert = d !== 0; t.setAttribute("aria-hidden", String(d !== 0));
+  });
+  [...$("cf-numeros").children].forEach((b, i) => { b.setAttribute("aria-selected", String(i === planActual)); b.tabIndex = i === planActual ? 0 : -1; });
+  document.querySelector(".cf-barra").style.setProperty("--k", planActual);
+  document.querySelector(".cf-barra i").style.width = `calc(100% / ${total})`;
+  $("cf-n").textContent = "0" + (planActual + 1);
+  document.querySelector(".cf-cuenta span").textContent = "/ 0" + total;
+  $("cf-ant").disabled = planActual === 0; $("cf-sig").disabled = planActual === total - 1;
+  llenarDetalle();
+}
+function llenarDetalle() {
+  const id = idsVisibles[planActual], p = PLANES[id], d = DETALLE[id];
+  if (!d) return;
+  $("det-titulo").textContent = `${p.nombre}, punto por punto`;
+  $("det-bajada").textContent = d.bajada;
+  $("det-lista").replaceChildren(...d.puntos.map(([h, t], i) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<b>0${i + 1}</b><div><h4></h4><p></p></div>`;
+    li.querySelector("h4").textContent = h; li.querySelector("p").textContent = t;
+    return li;
+  }));
+  $("det-datos").replaceChildren(...[["¿Cuánto tarda?", d.entrega], ["¿Cómo pago?", PAGO_TXT]].map(([k, v]) => {
+    const div = document.createElement("div"), dt = document.createElement("dt"), dd = document.createElement("dd");
+    dt.textContent = k; dd.textContent = v; div.append(dt, dd); return div;
+  }));
+  $("det-contratar").textContent = `Contratar el ${p.nombre}`;
+  const q = $("det-consulta"); q.href = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola Leonardo, tengo una duda sobre el ${p.nombre}.`)}`; q.target = "_blank"; q.rel = "noopener noreferrer";
+}
+function abrirDetalle() {
+  const det = $("detalle");
+  det.classList.remove("abierto"); void det.offsetWidth; det.classList.add("abierto");
+  setTimeout(() => det.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" }), 250);
+}
 
 const ventana = document.getElementById("ventana");
 let actual = null;
@@ -230,38 +295,6 @@ if (deco && !reducido) {
   setTimeout(tick, 300);
 }
 
-const carrusel = document.getElementById("carrusel-clientes");
-const pasoCarrusel = () => carrusel.firstElementChild.getBoundingClientRect().width + parseFloat(getComputedStyle(carrusel).columnGap || 16);
-const moverCarrusel = dir => {
-  const fin = carrusel.scrollWidth - carrusel.clientWidth - 4;
-  if (dir > 0 && carrusel.scrollLeft >= fin) carrusel.scrollTo({ left: 0, behavior: reducido ? "auto" : "smooth" });
-  else if (dir < 0 && carrusel.scrollLeft <= 4) carrusel.scrollTo({ left: fin + 4, behavior: reducido ? "auto" : "smooth" });
-  else carrusel.scrollBy({ left: dir * pasoCarrusel(), behavior: reducido ? "auto" : "smooth" });
-};
-document.querySelectorAll("[data-mover]").forEach(b => b.addEventListener("click", () => moverCarrusel(Number(b.dataset.mover))));
-// Avance automático: se pausa con el mouse encima, al tocar o mantener pulsado, o con el foco; retoma solo.
-let pausado = false, carruselVisible = false, reanudar = null;
-const pausar = () => { pausado = true; clearTimeout(reanudar); };
-const soltar = (demora = 2500) => { clearTimeout(reanudar); reanudar = setTimeout(() => { pausado = false; }, demora); };
-carrusel.addEventListener("mouseenter", pausar);
-carrusel.addEventListener("mouseleave", () => soltar(600));
-carrusel.addEventListener("pointerdown", pausar);
-carrusel.addEventListener("touchstart", pausar, { passive: true });
-carrusel.addEventListener("touchend", () => soltar());
-carrusel.addEventListener("pointerup", e => { if (e.pointerType !== "mouse") soltar(); });
-carrusel.addEventListener("focusin", pausar);
-carrusel.addEventListener("focusout", () => soltar(600));
-new IntersectionObserver(([e]) => { carruselVisible = e.isIntersecting; }, { threshold: 0.4 }).observe(carrusel);
-if (!reducido) setInterval(() => { if (!pausado && carruselVisible && !document.hidden) moverCarrusel(1); }, 3200);
-
-// En pantallas táctiles, el primer toque muestra el mensaje del cliente y el segundo abre su página.
-carrusel.querySelectorAll(".cliente").forEach(c => {
-  c.addEventListener("click", e => {
-    if (!window.matchMedia("(hover: none)").matches) return;
-    if (!c.classList.contains("activo")) { e.preventDefault(); carrusel.querySelectorAll(".cliente.activo").forEach(o => o.classList.remove("activo")); c.classList.add("activo"); pausar(); soltar(4000); }
-  });
-});
-
 // Video del saludo: se carga después de la página, solo con buena conexión y sin movimiento reducido.
 const conexion = navigator.connection || {};
 const conexionLenta = conexion.saveData || /(^|-)2g|3g/.test(conexion.effectiveType || "");
@@ -279,44 +312,10 @@ if (!reducido && !conexionLenta) {
   if (document.readyState === "complete") setTimeout(iniciarVideo, 300); else window.addEventListener("load", () => setTimeout(iniciarVideo, 300), { once: true });
 }
 
-// Recorrido de "Cómo trabajo"
-const recorrido = $("recorrido");
-const pasosLi = [...recorrido.querySelectorAll(".pasos li")];
-const progreso = recorrido.querySelector(".progreso");
-const vertical = () => window.matchMedia("(max-width: 767px)").matches;
-const puntoCentro = li => { const r = li.querySelector(".punto").getBoundingClientRect(), c = recorrido.getBoundingClientRect(); return { x: r.left - c.left + r.width / 2, y: r.top - c.top + r.height / 2 }; };
-const pista = recorrido.querySelector(".pista");
-function ajustarPista() {
-  const a = puntoCentro(pasosLi[0]), z = puntoCentro(pasosLi[pasosLi.length - 1]);
-  if (vertical()) { pista.style.width = "2px"; pista.style.height = (z.y - a.y) + "px"; }
-  else { pista.style.height = "2px"; pista.style.width = (z.x - a.x) + "px"; }
-}
-function marcar(n) {
-  ajustarPista();
-  pasosLi.forEach((li, i) => li.classList.toggle("lleno", i <= n));
-  const a = puntoCentro(pasosLi[0]), b = puntoCentro(pasosLi[Math.max(n, 0)]);
-  if (vertical()) { progreso.style.width = "2px"; progreso.style.height = (n < 0 ? 0 : b.y - a.y) + "px"; }
-  else { progreso.style.height = "2px"; progreso.style.width = (n < 0 ? 0 : b.x - a.x) + "px"; }
-}
-if (reducido) marcar(pasosLi.length - 1);
-else {
-  let paso = -1, enPantalla = false;
-  new IntersectionObserver(([e]) => { enPantalla = e.isIntersecting; }, { threshold: 0.3 }).observe(recorrido);
-  const ciclo = () => {
-    if (enPantalla && !document.hidden) {
-      paso = paso >= pasosLi.length - 1 ? -1 : paso + 1;
-      marcar(paso);
-    }
-    setTimeout(ciclo, paso === pasosLi.length - 1 ? 2200 : paso === -1 ? 700 : 1300);
-  };
-  ciclo();
-  window.addEventListener("resize", () => marcar(paso));
-}
-
 // Idiomas: traducción propia (sin el traductor del navegador)
 const EN = {
-  verPlanes: "See plans", ceja: "// pure code, made in Corrientes, Argentina", h1a: "Websites and landing pages", h1b: "made to measure", h1c: ", in pure code",
-  bajada: "I design and build fast, secure websites ready to sell, for businesses in Argentina and around the world.",
+  verPlanes: "See plans", ceja: "// from Corrientes to the world", h1a: "Your business, on a page that", h1b: "sells", h1c: ".",
+  bajada: "Custom landing pages in pure code. Fast, easy to find on Google and AI, and built so people reach out.",
   btnPlan: "Get your plan →", btnTrabajos: "See my work", item2: "WhatsApp catalogs", item3: "Online booking", hola: "Hi, I'm ", founder: "founder of Tereré Estudio",
   mPlanes: "// plans", hPlanes: "Pick your plan and let's start today", pPlanes: "Clear prices, short timelines and direct contact with me. Tap a plan to see everything it includes.",
   medidaA: "Looking for something custom?", medidaB: "Message me on WhatsApp and we'll plan your project together.", cotizar: "Chat on WhatsApp →", cpServicios: "Services Plan", cpBase: "Base Plan", cdSilk: "Website with online booking", cdHR: "Brand identity and landing page", cpVacio: "plan", cdVacio: "Project description", promoVacio: "Client promo message →", capPend: "screenshot pending",
@@ -329,7 +328,7 @@ const EN = {
   v3m: "trust", v3h: "You talk to me", v3p: "Clear prices and everything agreed in writing before we start.",
   v4m: "innovation", v4h: "New tools", v4p: "I use artificial intelligence so your business moves faster.",
   v5m: "creativity", v5h: "Made for you", v5p: "Design with your brand's identity, not just another template.",
-  mPasos: "// how I work", hPasos: "From idea to website, in four steps",
+  mPasos: "// how I work", hPasos: "From idea to website, in five steps",
   p1h: "You pick a plan", p1p: "Tell me your idea and pay here or arrange it on WhatsApp.",
   p2h: "Custom design", p2p: "I build the proposal with your brand, texts and photos.",
   p3h: "We review together", p3p: "We adjust whatever is needed before going live.",
@@ -339,8 +338,8 @@ const EN = {
   ps1: "Looking for hair removal?", ps2: "Book with Flor →", pm1: "Laser hair removal", pm2: "with Flor →", promoHR: "Got a legal problem? HR Estudio Jurídico can help you in Chaco, Argentina →", globo: "Want to know more? Tap here", pronto: "soon", d6: "Lab", m1: "Plans", m2: "Work", m3: "How I work", m4: "Contact", m6: "Lab", d1: "Plans", d2: "Work", d3: "How I work", d4: "Contact"
 };
 const PT = {
-  verPlanes: "Ver planos", ceja: "// código puro, feito em Corrientes, Argentina", h1a: "Sites e landing pages", h1b: "sob medida", h1c: ", em código puro",
-  bajada: "Desenho e desenvolvo sites rápidos, seguros e prontos para vender, para negócios da Argentina e do mundo.",
+  verPlanes: "Ver planos", ceja: "// de Corrientes para o mundo", h1a: "Seu negócio, numa página que", h1b: "vende", h1c: ".",
+  bajada: "Landing pages sob medida, em código puro. Rápidas, fáceis de achar no Google e na IA, e feitas para que te chamem.",
   btnPlan: "Quero meu plano →", btnTrabajos: "Ver trabalhos", item2: "Catálogos com WhatsApp", item3: "Agendamento online", hola: "Oi, eu sou ", founder: "fundador da Tereré Estudio",
   mPlanes: "// planos", hPlanes: "Escolha seu plano e começamos hoje", pPlanes: "Preços claros, prazos curtos e contato direto comigo. Toque em um plano para ver tudo o que inclui.",
   medidaA: "Procura algo sob medida?", medidaB: "Me chama no WhatsApp e montamos seu projeto juntos.", cotizar: "Falar no WhatsApp →", cpServicios: "Plano Serviços", cpBase: "Plano Base", cdSilk: "Site com agendamento online", cdHR: "Identidade visual e landing page", cpVacio: "plano", cdVacio: "Descrição do trabalho", promoVacio: "Mensagem promocional do cliente →", capPend: "captura pendente",
@@ -353,7 +352,7 @@ const PT = {
   v3m: "confiança", v3h: "Você fala comigo", v3p: "Preços claros e tudo combinado por escrito antes de começar.",
   v4m: "inovação", v4h: "Ferramentas novas", v4p: "Uso inteligência artificial para o seu negócio avançar mais rápido.",
   v5m: "criatividade", v5h: "Feito para você", v5p: "Design com a identidade da sua marca, não só mais um template.",
-  mPasos: "// como trabalho", hPasos: "Da ideia ao seu site, em quatro passos",
+  mPasos: "// como trabalho", hPasos: "Da ideia ao seu site, em cinco passos",
   p1h: "Você escolhe o plano", p1p: "Me conta sua ideia e paga por aqui ou combinamos pelo WhatsApp.",
   p2h: "Design sob medida", p2p: "Monto a proposta com sua marca, seus textos e suas fotos.",
   p3h: "Revisamos juntos", p3p: "Ajustamos o que for preciso antes de publicar.",
@@ -400,6 +399,202 @@ if (cv && !reducido) {
   };
   requestAnimationFrame(dibujar);
 }
+
+// ===== Capa inmersiva (vista previa) =====
+(() => {
+  const red = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const hover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+  const movil = () => window.matchMedia("(max-width: 767px)").matches;
+  const prog = document.createElement("div"); prog.className = "inm-progreso"; document.body.append(prog);
+  const luz = document.createElement("div"); luz.className = "inm-luz"; document.body.prepend(luz);
+
+  const io = new IntersectionObserver((es) => es.forEach((e) => {
+    if (!e.isIntersecting) return;
+    const t = e.target; t.classList.add("inm-visto"); io.unobserve(t);
+    setTimeout(() => t.classList.add("inm-listo"), 1400);
+  }), { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+  const inclinar = (el) => {
+    el.classList.add("inm-tilt");
+    el.addEventListener("pointermove", (ev) => {
+      const r = el.getBoundingClientRect();
+      const x = (ev.clientX - r.left) / r.width - 0.5, y = (ev.clientY - r.top) / r.height - 0.5;
+      el.style.setProperty("--ry", (x * 10).toFixed(2) + "deg");
+      el.style.setProperty("--rx", (-y * 10).toFixed(2) + "deg");
+    });
+    el.addEventListener("pointerleave", () => { el.style.setProperty("--rx", "0deg"); el.style.setProperty("--ry", "0deg"); });
+  };
+  const marcar = (lista, { grupo = false, tilt = false } = {}) => lista.forEach((el, i) => {
+    if (!el || el.dataset.inm !== undefined) return;
+    el.dataset.inm = ""; el.style.setProperty("--i", grupo ? i % 6 : 0);
+    if (tilt && hover) inclinar(el);
+    io.observe(el);
+  });
+  const $$ = (s) => [...document.querySelectorAll(s)];
+  function aplicar() {
+    marcar($$("main .seccion h2"));
+    marcar($$("main .seccion .mono").filter((e) => !e.closest(".plan")));
+    marcar($$(".pie-cta"));
+  }
+  if (!red) {
+    aplicar();
+    new MutationObserver(aplicar).observe(document.getElementById("lista-planes"), { childList: true });
+    if (hover) addEventListener("pointermove", (e) => {
+      luz.style.setProperty("--mx", e.clientX + "px"); luz.style.setProperty("--my", e.clientY + "px");
+    }, { passive: true });
+  }
+
+  const hero = document.querySelector(".hero"), pista = document.querySelector(".inm-cinta-pista");
+  let pendiente = false;
+  const tick = () => {
+    pendiente = false;
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    prog.style.setProperty("--inm-p", max > 0 ? (y / max).toFixed(4) : 0);
+    if (red) return;
+    if (hero) hero.style.setProperty("--hs", Math.min(1, Math.max(0, y / hero.offsetHeight)).toFixed(3));
+    if (pista) { const mitad = pista.scrollWidth / 2; pista.style.setProperty("--cx", (-((y * 0.6) % mitad)).toFixed(1) + "px"); }
+  };
+  addEventListener("scroll", () => { if (!pendiente) { pendiente = true; requestAnimationFrame(tick); } }, { passive: true });
+  addEventListener("resize", tick); tick();
+})();
+
+dibujarPlanes();
+
+// ===== v3: controles de planes, cartelera, onda de clientes, valores, auditoría y pasos =====
+(() => {
+  const q = s => document.querySelector(s), qq = s => [...document.querySelectorAll(s)];
+  const red = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+  qq("[data-wa]").forEach(a => { a.href = wa(a.dataset.wa); a.target = "_blank"; a.rel = "noopener noreferrer"; });
+
+  // Planes
+  $("cf-ant").addEventListener("click", () => irPlan(planActual - 1));
+  $("cf-sig").addEventListener("click", () => irPlan(planActual + 1));
+  $("cf-numeros").addEventListener("keydown", e => { if (e.key === "ArrowRight") { irPlan(planActual + 1); $("cf-numeros").children[planActual].focus(); } if (e.key === "ArrowLeft") { irPlan(planActual - 1); $("cf-numeros").children[planActual].focus(); } });
+  $("det-contratar").addEventListener("click", () => abrir(idsVisibles[planActual], 2));
+  let x0 = null;
+  lista.addEventListener("pointerdown", e => { x0 = e.clientX; });
+  lista.addEventListener("pointerup", e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) irPlan(planActual + (dx < 0 ? 1 : -1)); });
+
+  // Cartelera viva
+  const cart = $("cartelera"), escenas = qq(".escena"), tabs = qq(".cart-pestanas [role=tab]"), pausa = q(".cart-pausa");
+  let actual = 0, timer = null, pausadaUsuario = false, enVista = true, ticks = [];
+  const limpiar = () => { ticks.forEach(clearInterval); ticks = []; };
+  const flash = el => { el.classList.remove("c-flash"); void el.offsetWidth; el.classList.add("c-flash"); };
+  const NEO = [
+    ["Comercio", [["Yerba 1 kg · stock", "24"], ["Azúcar 1 kg · stock", "31"], ["Ventas de hoy", "$186.400"]]],
+    ["Servicios", [["Turno 10:30 · corte", "confirmado"], ["Turno 11:15 · color", "confirmado"], ["Agenda de hoy", "8 turnos"]]],
+    ["Gastronomía", [["Mesa 4 · comanda", "en cocina"], ["Delivery #318", "en camino"], ["Caja del turno", "$94.200"]]],
+    ["Propiedades", [["Depto. centro · alquiler", "al día"], ["Casa norte · visita", "jueves 17 h"], ["Cobros del mes", "12 de 14"]]]
+  ];
+  const alEntrar = {
+    "esc-1": () => { let p = 12, s = 48; ticks.push(setInterval(() => { p++; s = Math.max(0, s - 2); $("c-pedidos").textContent = p; $("c-stock").textContent = s; flash($("c-neo")); }, 2400)); },
+    "esc-2": () => {
+      let v = 0; const chips = qq("#n-verticales span");
+      const pintar = () => { chips.forEach((c, i) => c.classList.toggle("on", i === v)); $("n-tabla").replaceChildren(...NEO[v][1].map(([a, b]) => { const f = document.createElement("div"); f.className = "n-fila"; f.innerHTML = "<span></span><span></span>"; f.children[0].textContent = a; f.children[1].textContent = b; return f; })); v = (v + 1) % NEO.length; };
+      pintar(); ticks.push(setInterval(pintar, 2400));
+    },
+    "esc-3": () => { let n = 1240; ticks.push(setInterval(() => { n += Math.ceil(Math.random() * 9); $("m-likes").textContent = n.toLocaleString("es-AR"); }, 700)); },
+    "esc-5": () => {
+      const frases = [["Promo", "Esta semana: 2×1 en bizcochitos."], ["Feriado", "Abrimos el lunes de 9 a 13 h."], ["Nuevo", "Llegaron los termos de acero."], ["Turnos", "Quedan turnos para el sábado."]];
+      let i = 0, j = 0, borrando = false; const t = $("l-titulo"), promo = $("l-promo"), hora = $("l-hora");
+      const reloj = () => hora.textContent = "editado " + new Date().toLocaleTimeString("es-AR", { hour: "2-digit", minute: "2-digit" });
+      t.textContent = ""; promo.textContent = frases[0][0]; reloj();
+      ticks.push(setInterval(() => { const f = frases[i][1];
+        if (!borrando) { j++; t.textContent = f.slice(0, j); if (j >= f.length) { borrando = true; j = f.length + 18; } }
+        else { j--; if (j <= f.length) t.textContent = f.slice(0, Math.max(0, j)); if (j <= 0) { borrando = false; i = (i + 1) % frases.length; promo.textContent = frases[i][0]; reloj(); } } }, 55));
+    }
+  };
+  function mostrar(n, foco = false) {
+    limpiar(); actual = (n + escenas.length) % escenas.length;
+    escenas.forEach((e, i) => { const on = i === actual; e.classList.toggle("activa", on); e.setAttribute("aria-hidden", String(!on)); e.inert = !on; });
+    tabs.forEach((t, i) => { const on = i === actual; t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1; t.querySelector("i").getAnimations?.({ subtree: true }).forEach(a => a.cancel()); });
+    cart.style.setProperty("--dur", (escenas[actual].dataset.dur || 8) + "s");
+    if (foco) tabs[actual].focus();
+    if (!red) alEntrar[escenas[actual].id]?.();
+    programar();
+  }
+  function restante() { const a = tabs[actual].querySelector("i")?.getAnimations?.({ subtree: true })?.[0]; if (!a || a.currentTime == null) return 1; return Math.max(0.05, 1 - a.currentTime / a.effect.getTiming().duration); }
+  function programar() { clearTimeout(timer); const corre = !pausadaUsuario && enVista && !document.hidden && !red; cart.classList.toggle("pausada", !corre); if (corre) timer = setTimeout(() => mostrar(actual + 1), (escenas[actual].dataset.dur || 8) * 1000 * restante()); }
+  tabs.forEach((t, i) => { t.addEventListener("click", () => mostrar(i)); t.addEventListener("keydown", e => { if (e.key === "ArrowRight") mostrar(actual + 1, true); if (e.key === "ArrowLeft") mostrar(actual - 1, true); }); });
+  pausa.addEventListener("click", () => { pausadaUsuario = !pausadaUsuario; pausa.setAttribute("aria-pressed", String(pausadaUsuario)); pausa.textContent = pausadaUsuario ? "Reanudar" : "Pausar"; programar(); });
+  cart.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") { enVista = false; programar(); } });
+  cart.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") { enVista = true; programar(); } });
+  cart.addEventListener("focusin", () => { enVista = false; programar(); });
+  cart.addEventListener("focusout", () => { enVista = true; programar(); });
+  new IntersectionObserver(([e]) => { enVista = e.isIntersecting; programar(); }, { threshold: 0.3 }).observe(cart);
+  document.addEventListener("visibilitychange", programar);
+  if (red) { pausadaUsuario = true; pausa.hidden = true; }
+  mostrar(0);
+
+  // Clientes en onda 3D
+  const ola = $("ola"), clis = qq("#ola .cli").filter(c => !c.hidden);
+  if (clis.length > 1) { ola.classList.add("varias"); if (!red) setInterval(() => { if (!ola.matches(":hover")) { const fin = ola.scrollLeft + ola.clientWidth >= ola.scrollWidth - 4; ola.scrollTo({ left: fin ? 0 : ola.scrollLeft + clis[0].offsetWidth + 28, behavior: "smooth" }); } }, 4200); }
+  let pend = false;
+  const olaTick = () => { pend = false; if (red) return; const vh = innerHeight, vw = innerWidth;
+    clis.forEach(c => { const r = c.getBoundingClientRect(); const dy = (r.top + r.height / 2 - vh / 2) / vh, dx = (r.left + r.width / 2 - vw / 2) / vw;
+      const cerca = Math.max(0, 1 - Math.min(1, Math.hypot(dy * 1.4, dx * 1.6)));
+      c.style.setProperty("--c", cerca.toFixed(3)); c.style.setProperty("--t", Math.max(-1, Math.min(1, dy)).toFixed(3)); c.style.setProperty("--hx", Math.max(-1, Math.min(1, dx)).toFixed(3)); }); };
+  const pedir = () => { if (!pend) { pend = true; requestAnimationFrame(olaTick); } };
+  addEventListener("scroll", pedir, { passive: true }); ola.addEventListener("scroll", pedir, { passive: true }); addEventListener("resize", pedir); olaTick();
+
+  // Por qué Tereré: se encienden solas
+  const vals = qq(".val"); let vi = 0, vt = null;
+  const encender = () => { vals.forEach((v, i) => v.classList.toggle("encendida", i === vi)); vi = (vi + 1) % vals.length; };
+  if (!red) new IntersectionObserver(([e]) => { clearInterval(vt); if (e.isIntersecting) { encender(); vt = setInterval(encender, 2600); } }, { threshold: 0.3 }).observe($("valores"));
+
+  // Auditoría SEO / GEO en vivo
+  function auditar() {
+    const meta = n => document.querySelector(`meta[name="${n}"]`)?.content || "", og = p => document.querySelector(`meta[property="${p}"]`)?.content || "";
+    const titulo = document.title, desc = meta("description"), h1 = qq("h1").length;
+    const niveles = qq("h1,h2,h3,h4").filter(h => !h.closest("[hidden],dialog")).map(h => +h.tagName[1]);
+    const saltos = niveles.some((n, i) => i > 0 && n - niveles[i - 1] > 1);
+    const imgs = qq("img"), sinAlt = imgs.filter(i => !i.hasAttribute("alt")).length;
+    const ld = qq('script[type="application/ld+json"]').map(s => { try { return JSON.parse(s.textContent); } catch { return null; } }).filter(Boolean);
+    const tipos = new Set(); const juntar = o => { if (Array.isArray(o)) o.forEach(juntar); else if (o && typeof o === "object") { if (o["@type"]) [].concat(o["@type"]).forEach(t => tipos.add(t)); Object.values(o).forEach(juntar); } }; juntar(ld);
+    const nav = performance.getEntriesByType("navigation")[0], carga = nav ? Math.round(nav.domContentLoadedEventEnd) : null;
+    const items = [
+      ["SEO", titulo.length >= 30 && titulo.length <= 65, "Título", `${titulo.length} caracteres (ideal: 30 a 65)`, 1],
+      ["SEO", desc.length >= 70 && desc.length <= 160, "Descripción", `${desc.length} caracteres (ideal: 70 a 160)`, 1],
+      ["SEO", h1 === 1, "Un solo título principal", `${h1} H1 en la página`],
+      ["SEO", !saltos, "Jerarquía de títulos", saltos ? "Hay saltos de nivel" : "Ordenada, sin saltos"],
+      ["SEO", sinAlt === 0, "Textos alternativos", `${imgs.length - sinAlt} de ${imgs.length} imágenes con descripción`],
+      ["SEO", !!document.querySelector('link[rel="canonical"]'), "URL canónica", document.querySelector('link[rel="canonical"]') ? "Definida" : "Falta"],
+      ["SEO", !!og("og:title") && !!og("og:image"), "Vista al compartir", og("og:title") ? "Título e imagen para redes" : "Falta Open Graph"],
+      ["GEO", tipos.has("ProfessionalService") || tipos.has("LocalBusiness"), "Negocio identificado", "Datos estructurados del estudio", 1],
+      ["GEO", tipos.has("Offer"), "Planes con precio", "Ofertas legibles por la IA", 1],
+      ["GEO", /Corrientes/.test(JSON.stringify(ld)), "Ubicación", "Corrientes, para búsquedas locales"],
+      ["Velocidad", carga !== null && carga < 2500, "Carga inicial", carga !== null ? `${(carga / 1000).toFixed(2)} s` : "Sin dato", 1],
+      ["Seguridad", location.protocol === "https:", "Conexión segura", location.protocol === "https:" ? "HTTPS" : "Sin HTTPS"],
+      ["Seguridad", !!document.querySelector('meta[name="viewport"]'), "Apta para celular", "Diseño adaptable"]
+    ];
+    const fila = ([g, ok, nombre, det], i) => { const li = document.createElement("li"); li.innerHTML = `<span class="${ok ? "ok" : "ojo"}">${ok ? "✓" : "!"}</span><div><strong></strong><span class="det"></span></div>`; li.querySelector("strong").textContent = nombre; li.querySelector(".det").textContent = det; setTimeout(() => li.classList.add("listo"), red ? 0 : 120 + i * 90); return li; };
+    $("audit-resumen").replaceChildren(...items.filter(x => x[4]).map(fila));
+    const resto = $("audit-lista"); resto.replaceChildren(); let grupo = "";
+    items.filter(x => !x[4]).forEach((x, i) => { if (x[0] !== grupo) { grupo = x[0]; resto.append(Object.assign(document.createElement("p"), { className: "audit-tipo", textContent: grupo })); } resto.append(fila(x, i)); });
+    const puntaje = Math.round(items.filter(x => x[1]).length / items.length * 100), n = $("audit-n");
+    if (red) { n.textContent = puntaje; return; }
+    const t0 = performance.now(), dur = 1200; const paso = t => { const k = Math.min(1, (t - t0) / dur); n.textContent = Math.round(puntaje * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(paso); }; requestAnimationFrame(paso);
+  }
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); auditar(); } }, { threshold: 0.3 }).observe($("auditoria"));
+  $("audit-ver").addEventListener("click", e => { const b = e.currentTarget, abierto = $("audit-mas").classList.toggle("abierto"); b.setAttribute("aria-expanded", String(abierto)); b.textContent = abierto ? "Ver menos" : "Ver más"; });
+
+  // Cómo trabajo: avanza solo y celebra en el paso 5
+  const pasos = qq("#pasos li"), pista = $("pasos"), frase = $("pasos-frase"), barra = $("pasos-progreso");
+  const FRASES = ["Tu negocio, abierto las 24 horas.", "Te encuentran en Google y en la IA.", "Vendés incluso mientras dormís.", "Tu marca, con nombre propio en internet."];
+  let pi = -1, pt = null, fi = 0;
+  const confeti = li => { const col = ["#231F20", "#F3E9DA", "#4A5F12", "#FFFFFF"]; for (let k = 0; k < 34; k++) { const c = document.createElement("i"); c.className = "confeti"; c.style.left = Math.random() * 100 + "%"; c.style.background = col[k % col.length]; c.style.setProperty("--cx", (Math.random() * 120 - 60).toFixed(0) + "px"); c.style.setProperty("--cr", (Math.random() * 720 - 360).toFixed(0) + "deg"); c.style.setProperty("--cdur", (1.2 + Math.random() * 1.1).toFixed(2) + "s"); c.style.animationDelay = (Math.random() * 0.25).toFixed(2) + "s"; li.append(c); setTimeout(() => c.remove(), 2800); } };
+  function avanzar() {
+    pi = (pi + 1) % (pasos.length + 2); const k = Math.min(pi, pasos.length - 1);
+    pasos.forEach((li, i) => { li.classList.toggle("hecho", i <= k); li.classList.toggle("actual", i === k); });
+    barra.style.setProperty("--pp", ((k + 1) / pasos.length).toFixed(3));
+    if (matchMedia("(max-width: 860px)").matches) pista.scrollTo({ left: pasos[k].offsetLeft - (pista.clientWidth - pasos[k].offsetWidth) / 2, behavior: "smooth" });
+    if (pi === pasos.length - 1) { confeti(pasos[k]); frase.replaceChildren(Object.assign(document.createElement("span"), { textContent: FRASES[fi++ % FRASES.length] })); }
+    if (pi === 0) frase.textContent = "";
+  }
+  if (red) { pasos.forEach(li => li.classList.add("hecho")); barra.style.setProperty("--pp", 1); }
+  else new IntersectionObserver(([e]) => { clearInterval(pt); if (e.isIntersecting) { avanzar(); pt = setInterval(avanzar, 2200); } }, { threshold: 0.35 }).observe($("como-trabajo"));
+})();
 
 // Pago con Mercado Pago Checkout Pro: el servidor define el monto y devuelve la URL de pago.
 $("link-pago").addEventListener("click", async (e) => {

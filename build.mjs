@@ -21,6 +21,7 @@ const partes = {
   header: leer('partes/header.html'),
   footer: leer('partes/footer.html'),
   articulo: leer('partes/articulo.html'),
+  articuloV2: leer('partes/articulo-v2.html'),
 };
 const posts = JSON.parse(leer('blog.json')).sort((a, b) => b.fecha.localeCompare(a.fecha));
 
@@ -105,25 +106,41 @@ for (const archivo of listarPaginas(join(SRC, 'paginas'))) {
   if (meta.raizAbsoluta) raiz = '/'; // la página 404 se muestra en cualquier ruta
   let cuerpo = fuente.slice(m[0].length);
 
-  // Artículos del blog: se envuelven en la plantilla de artículo
+  // Artículos del blog: plantilla v2 (título y portada fijos, texto a la derecha, audio y accesibilidad)
   if (meta.tipo === 'article') {
-    const indice = meta.indice?.length
-      ? `<nav class="articulo-indice" aria-label="En esta nota"><p>En esta nota</p><ol>${meta.indice.map(([h, t]) => `<li><a href="${h}">${t.trim()}</a></li>`).join('')}</ol></nav>`
-      : '';
     const podcast = meta.podcast ? leer('partes/podcast.html') : '';
-    const sello = meta.selloIA
-      ? '<p class="articulo-sello-ia">Este texto fue generado con IA como práctica de prompting.</p>'
-      : '';
-    cuerpo = partes.articulo
-      .replace('{{etiqueta}}', meta.etiqueta)
-      .replace('{{fechaISO}}', meta.fecha)
-      .replace('{{fecha}}', fechaLegible(meta.fecha))
-      .replace('{{tituloArticulo}}', meta.titulo)
-      .replace('{{lead}}', meta.lead)
-      .replace('{{selloIA}}', sello)
-      .replace('{{podcast}}', podcast)
-      .replace('{{indice}}', indice)
-      .replace('{{contenido}}', cuerpo);
+    const sello = meta.selloIA ? '<p class="sello-ia">Texto generado con IA como práctica de prompting.</p>' : '';
+    // Si el artículo abre con una figura de la misma imagen que la portada, se quita del texto
+    // (la portada ya la muestra) y su epígrafe pasa a la portada.
+    let epigrafe = '';
+    const fig = cuerpo.match(/^\s*<figure class="articulo-figura">([\s\S]*?)<\/figure>/);
+    if (fig) {
+      const base = meta.imagen.replace(/\.(webp|svg|png|jpe?g)$/, '');
+      const misma = fig[1].includes(base) || /<video/.test(fig[1]);
+      if (misma) {
+        epigrafe = (fig[1].match(/<figcaption[\s\S]*?<\/figcaption>/) || [''])[0];
+        cuerpo = cuerpo.slice(fig[0].length);
+      }
+    }
+    const nota = meta.podcast
+      ? 'Esta entrada tiene versión en podcast; el texto completo de la nota está acá abajo para quien no pueda escucharlo.'
+      : 'Esta entrada es solo texto: no tiene audio ni video que necesite subtítulos.';
+    const valores = {
+      '{{etiqueta}}': meta.etiqueta, '{{fechaISO}}': meta.fecha, '{{fecha}}': fechaLegible(meta.fecha),
+      '{{tituloArticulo}}': meta.titulo, '{{lead}}': meta.lead, '{{selloIA}}': sello, '{{podcast}}': podcast,
+      '{{imagen}}': meta.imagen, '{{altImagen}}': escapar(meta.altImagen || `Portada de la nota: ${meta.titulo}`),
+      '{{epigrafe}}': epigrafe, '{{notaAccesible}}': nota, '{{contenido}}': cuerpo,
+    };
+    cuerpo = partes.articuloV2.replace(/\{\{(etiqueta|fechaISO|fecha|tituloArticulo|lead|selloIA|podcast|imagen|altImagen|epigrafe|notaAccesible|contenido)\}\}/g, (k) => valores[k]);
+    meta.propia = { css: ['css/articulo.css'], js: ['js/articulo.js'] };
+  }
+
+  // Datos estructurados del blog, a partir de blog.json (sin las notas en construcción)
+  if (cuerpo.includes('<!--ld:blog-->')) {
+    const ldBlog = { '@context': 'https://schema.org', '@type': 'Blog', name: 'Blog de Tereré Estudio', url: `${DOMINIO}/blog.html`, inLanguage: 'es-AR',
+      publisher: { '@type': 'Organization', name: 'Tereré Estudio', url: DOMINIO },
+      blogPost: posts.filter((p) => !/construcci/i.test(p.titulo)).map((p) => ({ '@type': 'BlogPosting', headline: p.titulo, url: `${DOMINIO}/${encodeURI(p.href)}`, datePublished: p.fecha, image: `${DOMINIO}/${p.imagen}` })) };
+    cuerpo = cuerpo.replace('<!--ld:blog-->', () => `<script type="application/ld+json">${JSON.stringify(ldBlog)}</script>`);
   }
 
   // Listados del blog

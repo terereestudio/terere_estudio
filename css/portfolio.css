@@ -131,3 +131,7 @@ p { margin: 0; }
 /* Clases que reemplazan estilos en línea (la CSP no permite style="") */
 .m0-titulo { margin: 0; font-size: 1.6rem; }
 .opaco-80 { opacity: .8; }
+
+/* Enlace para saltar al contenido (teclado y lectores de pantalla) */
+.salto { position: absolute; left: -9999px; top: 12px; z-index: 100; padding: 10px 14px; border-radius: 999px; background: #F4F1FA; color: #0F0D12; font-weight: 700; }
+.salto:focus { left: 12px; }

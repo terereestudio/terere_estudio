@@ -1,0 +1,49 @@
+<a class="salto" href="#texto">Saltar al texto</a>
+<header class="barra">
+  <a href="{{raiz}}index.html" aria-label="Tereré Estudio, inicio"><img src="{{raiz}}img/v2/logo-blanco.svg" width="200" height="80" alt=""></a>
+  <div class="barra-acciones">
+    <a class="chip-btn" href="{{raiz}}blog.html">← blog</a>
+    <button class="chip-btn" type="button" id="a11y-abrir" aria-expanded="false" aria-controls="panel">Accesibilidad</button>
+  </div>
+  <span class="progreso" aria-hidden="true"></span>
+</header>
+
+<section class="panel" id="panel" role="dialog" aria-labelledby="panel-titulo" hidden>
+  <h2 id="panel-titulo">Accesibilidad</h2>
+  <p>Ajustá la lectura a tu medida. Se guarda para tus próximas visitas.</p>
+  <div class="panel-fila"><span>Tamaño del texto</span><div class="grupo"><button class="op" type="button" data-texto="-1" aria-label="Achicar texto">A−</button><button class="op" type="button" data-texto="0" aria-label="Tamaño normal">A</button><button class="op" type="button" data-texto="1" aria-label="Agrandar texto">A+</button></div></div>
+  <div class="panel-fila"><span>Alto contraste</span><button class="op" type="button" data-op="a-contraste" aria-pressed="false">No</button></div>
+  <div class="panel-fila"><span>Lectura espaciada (dislexia)</span><button class="op" type="button" data-op="a-dislexia" aria-pressed="false">No</button></div>
+  <div class="panel-fila"><span>Sin animaciones</span><button class="op" type="button" data-op="a-quieto" aria-pressed="false">No</button></div>
+  <div class="panel-fila"><span>Subrayar enlaces</span><button class="op" type="button" data-op="a-enlaces" aria-pressed="false">No</button></div>
+  <p class="panel-nota">{{notaAccesible}} Podés escucharla con el botón "Escuchar". Funciona con lectores de pantalla y con teclado.</p>
+</section>
+
+<main class="entrada">
+  <aside class="lateral" aria-label="Datos de la entrada">
+    <p class="meta"><span class="etiqueta">{{etiqueta}}</span><time datetime="{{fechaISO}}">{{fecha}}</time><span id="minutos"></span></p>
+    {{selloIA}}
+    <h1>{{tituloArticulo}}<span class="cursor" aria-hidden="true"></span></h1>
+    <p class="bajada">{{lead}}</p>
+    <figure class="portada" id="portada"><img src="{{raiz}}{{imagen}}" width="1200" height="750" alt="{{altImagen}}">{{epigrafe}}</figure>
+    <div class="lector-voz" id="voz" aria-label="Escuchar esta entrada">
+      <div class="voz-fila">
+        <button class="voz-play" type="button" id="voz-play" aria-pressed="false"><span class="ondas" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="voz-texto">Escuchar</span></button>
+        <button class="voz-btn" type="button" id="voz-stop" aria-label="Detener lectura">■</button>
+        <button class="voz-btn" type="button" id="voz-vel" aria-label="Velocidad de lectura: 1x">1x</button>
+      </div>
+      <p class="voz-estado" id="voz-estado" aria-live="polite">Lectura en voz alta con la voz de tu dispositivo.</p>
+    </div>
+    {{podcast}}
+    <nav class="indice" aria-label="En esta entrada"><p>En esta entrada</p><ol id="indice"></ol></nav>
+  </aside>
+
+  <article class="texto" id="texto" tabindex="-1">
+{{contenido}}
+    <aside class="cierre" aria-labelledby="cierre-t">
+      <h2 id="cierre-t" class="sin-numero">¿Tenés un proyecto en mente?</h2>
+      <p>Te ayudo a llevarlo a la web, en código puro y preparado para Google y la IA.</p>
+      <a href="https://wa.me/543644328260?text=Hola%20Leonardo%2C%20le%C3%AD%20tu%20blog%20y%20quiero%20hablar%20de%20mi%20proyecto." target="_blank" rel="noopener noreferrer">Contame tu proyecto →</a>
+    </aside>
+  </article>
+</main>

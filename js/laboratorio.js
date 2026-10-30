@@ -102,9 +102,9 @@ const mostrarVista = v => {
   vistaActual = v;
 };
 let vistaActual = "ficha";
-// Carpetas bloqueadas: NEO y cosmo siguen clasificadas; lector. está abierta.
+// Carpetas: lector. abierta, NEO "pronto" (abre su ficha con el botón para anotarse), cosmo clasificada.
 // Para abrir una, poné su valor en false y devolvele la clase "abierta" en src/paginas/laboratorio.html.
-const BLOQUEADA = { neo: true, lector: false };
+const BLOQUEADA = { neo: false, lector: false };
 if (!BLOQUEADA.neo) document.querySelector('[data-proyecto="neo"]').addEventListener("click", () => { mostrarVista("ficha"); ventana.showModal(); });
 const carpetaLector = document.querySelector('[data-proyecto="lector"]');
 if (!BLOQUEADA.lector) carpetaLector.addEventListener("click", () => {
