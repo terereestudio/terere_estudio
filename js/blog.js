@@ -104,7 +104,7 @@ function dibujar(filtro) {
     a.style.setProperty("--d", (-(i * 0.9) % 6) + "s");
     a.style.animationDelay = (i * 0.06) + "s, " + (-(i * 0.9) % 6) + "s";
     const fig = document.createElement("div"); fig.className = "entrada-img";
-    const img = document.createElement("img"); img.src = e.img; img.alt = ""; img.loading = i < 3 ? "eager" : "lazy"; img.width = 640; img.height = 400;
+    const img = document.createElement("img"); img.src = e.img; img.alt = ""; img.loading = i === 0 ? "eager" : "lazy"; img.decoding = "async"; img.width = 640; img.height = 400;
     fig.append(img);
     if (e.ia) { const s = document.createElement("span"); s.className = "sello-ia"; s.textContent = "hecho con IA"; fig.append(s); }
     const c = document.createElement("div"); c.className = "entrada-cuerpo";

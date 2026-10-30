@@ -113,7 +113,7 @@ for (const archivo of listarPaginas(join(SRC, 'paginas'))) {
     // Si el artículo abre con una figura de la misma imagen que la portada, se quita del texto
     // (la portada ya la muestra) y su epígrafe pasa a la portada.
     let epigrafe = '';
-    const fig = cuerpo.match(/^\s*<figure class="articulo-figura">([\s\S]*?)<\/figure>/);
+    const fig = cuerpo.match(/^\s*(?:<!--[\s\S]*?-->\s*)*<figure class="articulo-figura">([\s\S]*?)<\/figure>/);
     if (fig) {
       const base = meta.imagen.replace(/\.(webp|svg|png|jpe?g)$/, '');
       const misma = fig[1].includes(base) || /<video/.test(fig[1]);

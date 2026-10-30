@@ -32,6 +32,20 @@ recorrer(R);
     const ids = {}; document.querySelectorAll('[id]').forEach(e => ids[e.id] = (ids[e.id] || 0) + 1);
     Object.entries(ids).filter(([, n]) => n > 1).forEach(([i]) => out.push('Id duplicado: ' + i));
     document.querySelectorAll('img:not([alt])').forEach(i => out.push('Imagen sin alt: ' + i.getAttribute('src')));
+    // Carga diferida: lo que está debajo de la primera pantalla va con loading="lazy";
+    // lo que se ve al abrir la página, NO (si no, la página tarda más en mostrarse).
+    // Solo se exige "sin lazy" a la imagen más grande de la primera pantalla (la que el navegador
+    // usa para medir cuándo la página "ya se ve"); las otras visibles pueden llevarlo igual.
+    let mayor = null, area = 0;
+    document.querySelectorAll('img').forEach(i => {
+      const r = i.getBoundingClientRect();
+      if (!r.width) return; // imagen oculta (ventana cerrada, pestaña sin abrir)
+      const lazy = i.getAttribute('loading') === 'lazy';
+      if (r.top > innerHeight * 1.5 && !lazy) out.push('Imagen debajo de la primera pantalla sin loading="lazy": ' + i.getAttribute('src'));
+      const visible = Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0)) * r.width;
+      if (visible > area) { area = visible; mayor = i; }
+    });
+    if (mayor && area > 40000 && mayor.getAttribute('loading') === 'lazy') out.push('La imagen principal de la primera pantalla tiene loading="lazy" (sacáselo): ' + mayor.getAttribute('src'));
     document.querySelectorAll('a[href^="#"]').forEach(a => { const h = a.getAttribute('href'); if (h.length > 1 && !document.getElementById(decodeURIComponent(h.slice(1)))) out.push('Ancla rota: ' + h); });
     const meta = {
       titulo: document.title, desc: document.querySelector('meta[name=description]')?.content || '',

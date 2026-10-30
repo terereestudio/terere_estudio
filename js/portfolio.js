@@ -38,7 +38,7 @@ let abierta = null;
 CATEGORIAS.forEach((c, i) => {
   const b = el("button", "categoria"); b.type = "button"; b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", "panel-zona");
   const fig = el("div", "categoria-img" + (c.img ? "" : " vacia"));
-  if (c.img) { const img = el("img"); img.src = c.img; img.alt = ""; img.loading = "lazy"; fig.append(img); } else fig.append(el("span", "", "próximamente"));
+  if (c.img) { const img = el("img"); img.src = c.img; img.alt = ""; img.loading = "eager"; /* las 4 portadas se ven al abrir la página */ fig.append(img); } else fig.append(el("span", "", "próximamente"));
   const pie = el("div", "categoria-pie");
   const izq = el("div"); izq.append(el("span", "num", String(i + 1).padStart(2, "0")));
   const h = el("h2"); h.append(document.createTextNode(c.titulo)); const em = el("em", "", c.cursiva); h.append(em); izq.append(h);
