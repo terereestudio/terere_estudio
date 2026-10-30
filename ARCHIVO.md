@@ -1,5 +1,10 @@
 # Tereré Estudio — Archivo de versiones
 
+> **Estado: guardado, sin publicar.** Por ahora la V2 se luce sola. La página
+> `versiones.html` y la carpeta `v1/` están en el repositorio pero devuelven 404
+> (`_redirects`) y no hay enlaces hacia ellas. Cómo activarlas: ver el comentario
+> al principio de `src/paginas/versiones.html`.
+
 Cada vez que el sitio pasa a una versión nueva, la anterior se guarda tal como
 estaba, en dos lugares:
 
