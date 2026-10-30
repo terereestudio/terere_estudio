@@ -225,6 +225,8 @@ img { max-width: 100%; }
 /* Firma */
 .firma-te { background: var(--noche); padding-block: 14px calc(14px + env(safe-area-inset-bottom, 0px)); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); text-align: center; }
 .firma-te a { position: relative; display: inline-flex; align-items: center; gap: 10px; color: var(--texto); text-decoration: none; font: 500 14px/1 var(--f-texto); }
+.firma-te .firma-versiones { display: block; width: max-content; margin: 8px auto 0; color: #8D877E; font: 400 12px/1.4 var(--f-texto); text-underline-offset: 3px; }
+.firma-te .firma-versiones:hover, .firma-te .firma-versiones:focus-visible { color: var(--texto); }
 .firma-te img { height: 28px; width: auto; opacity: 0.9; }
 .firma-te a:hover img, .firma-te a:focus-visible img { opacity: 1; }
 .firma-tip { position: absolute; left: 50%; bottom: calc(100% + 12px); transform: translate(-50%, 6px); width: max-content; max-width: 80vw; padding: 9px 13px; border-radius: 10px; background: var(--texto); color: var(--tinta); font-size: 0.85rem; font-weight: 700; opacity: 0; visibility: hidden; transition: opacity 0.2s, transform 0.2s, visibility 0.2s; pointer-events: none; }

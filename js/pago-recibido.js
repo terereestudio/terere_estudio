@@ -22,6 +22,6 @@
       rechazado: `Hola Leonardo, intenté pagar pero no se pudo completar. Referencia: ${referencia}.`,
     };
     const texto = textos[estado] || `Hola Leonardo, tengo una consulta sobre mi pago. Referencia: ${referencia}.`;
-    document.getElementById('pago-whatsapp').href = `https://wa.me/543644328260?text=${encodeURIComponent(texto)}`;
+    document.getElementById('pago-whatsapp').href = `https://wa.me/5493644328260?text=${encodeURIComponent(texto)}`;
   }
 })();

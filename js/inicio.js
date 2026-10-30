@@ -1,6 +1,6 @@
 // Inicio v2. Origen: prototipo terere-v3.html
 "use strict";
-const WA = "543644328260";
+const WA = "5493644328260";
 const PLANES = {
   base: {
     nombre: "Plan Base", sub: "// landing page estática", para: "Para profesionales y negocios que quieren presentar sus servicios.",
@@ -334,7 +334,7 @@ const EN = {
   p3h: "We review together", p3p: "We adjust whatever is needed before going live.",
   p4h: "Your site goes live", p4p: "I publish your site with domain, hosting and security ready.",
   mPie: "// let's talk", hPie: "Shall we build your website?", pPie: "Message me, tell me your idea and I'll get back to you shortly.", btnWa: "Message me on WhatsApp →",
-  mFeed: "// latest on instagram", desarrollado: "Developed by", firmaTip: "It ain't much, but it's honest work",
+  mFeed: "// latest on instagram", desarrollado: "Developed by", firmaTip: "It ain't much, but it's honest work", versiones: "Previous versions of this site",
   ps1: "Looking for hair removal?", ps2: "Book with Flor →", pm1: "Laser hair removal", pm2: "with Flor →", promoHR: "Got a legal problem? HR Estudio Jurídico can help you in Chaco, Argentina →", globo: "Want to know more? Tap here", pronto: "soon", d6: "Lab", m1: "Plans", m2: "Work", m3: "How I work", m4: "Contact", m6: "Lab", d1: "Plans", d2: "Work", d3: "How I work", d4: "Contact"
 };
 const PT = {
@@ -358,7 +358,7 @@ const PT = {
   p3h: "Revisamos juntos", p3p: "Ajustamos o que for preciso antes de publicar.",
   p4h: "Seu site no ar", p4p: "Publico seu site com domínio, hospedagem e segurança prontos.",
   mPie: "// vamos conversar", hPie: "Vamos criar seu site?", pPie: "Me chama, conta sua ideia e eu respondo o quanto antes.", btnWa: "Falar no WhatsApp →",
-  mFeed: "// últimas publicações no instagram", desarrollado: "Desenvolvido por", firmaTip: "Não é muito, mas é trabalho honesto",
+  mFeed: "// últimas publicações no instagram", desarrollado: "Desenvolvido por", firmaTip: "Não é muito, mas é trabalho honesto", versiones: "Versões anteriores do site",
   globo: "Quer saber mais? Toque aqui", pronto: "em breve", d6: "Laboratório", m1: "Planos", m2: "Trabalhos", m3: "Como trabalho", m4: "Contato", m6: "Laboratório",
   d1: "Planos", d2: "Trabalhos", d3: "Como trabalho", d4: "Contato"
 };
