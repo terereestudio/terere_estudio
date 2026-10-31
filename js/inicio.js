@@ -7,7 +7,7 @@ const PLANES = {
     detalle: "Pago único",
     entrega: "en el día · máximo 2 días hábiles",
     destacado: false,
-    puntos: ["Página a medida en código puro", "Dominio y hosting por un año", "Primer mes de cambios incluido", "Botón de WhatsApp y SEO básico"],
+    puntos: ["Diseño a tu medida", "Dominio y hosting por 1 año", "Primer mes de cambios", "WhatsApp y SEO básico"],
     incluye: ["Diseño a medida de una página", "Versión para celular y PC", "Dominio y hosting por un año", "Certificado de seguridad (HTTPS)", "Mantenimiento y personalización del primer mes", "Botón de WhatsApp y formulario de contacto"],
     noIncluye: ["Cambios después del primer mes", "Catálogo de productos o turnos", "Cobros en línea"],
     temporalidad: "Pagás una sola vez y la página es tuya. Dominio y hosting incluidos durante el primer año."
@@ -17,7 +17,7 @@ const PLANES = {
     detalle: "Entrada",
     entrega: "≈ 10 días hábiles",
     destacado: true,
-    puntos: ["Catálogo con fotos, precios y variantes", "Carrito que arma el pedido", "El pedido llega a tu WhatsApp", "Cargo y edito tus productos cada mes"],
+    puntos: ["Fotos, precios y variantes", "Carrito que arma el pedido", "Pedidos a tu WhatsApp", "Carga mensual de productos"],
     incluye: ["Catálogo con fotos, precios y variantes (talle, color)", "Carrito guardado en el navegador del cliente", "Pedido armado que llega a tu WhatsApp", "Carga, edición y baja de productos cada mes", "Productos agotados y banners de temporada"],
     noIncluye: ["Control de stock automático", "Cobro en línea dentro de la página (se suma como adicional)"],
     temporalidad: "Pagás los meses que quieras. Si dejás la cuota, el sitio sigue siendo tuyo, pero ya no se actualiza."
@@ -27,7 +27,7 @@ const PLANES = {
     nombre: "Plan Tienda Online", sub: "// tienda online propia", para: "Para negocios que quieren vender y cobrar en línea con su propia tienda.",
     detalle: "Desde",
     entrega: "a definir según el catálogo", destacado: false,
-    puntos: ["Tienda propia en código puro", "Carrito y cobro en línea", "Panel para gestionar productos", "Dominio, hosting y seguridad"],
+    puntos: ["Tienda en código puro", "Carrito y cobro en línea", "Panel de productos", "Dominio y seguridad"],
     incluye: ["Tienda online propia en código puro", "Carrito de compras", "Cobro en línea con pasarela de pagos", "Panel para gestionar productos", "Dominio, hosting y certificado de seguridad"],
     noIncluye: ["Comisiones de la pasarela de pagos (las cobra la pasarela)"],
     temporalidad: "Plan preparado, pero oculto hasta tener la primera tienda propia publicada."
@@ -37,7 +37,7 @@ const PLANES = {
     detalle: "Entrada",
     entrega: "≈ 2 días hábiles",
     destacado: false,
-    puntos: ["Tus servicios con precio", "Reserva de turnos por día y horario", "Panel para gestionar tus turnos", "Pago coordinado por WhatsApp"],
+    puntos: ["Servicios con precio", "Turnos por día y horario", "Panel de turnos", "Pago por WhatsApp"],
     incluye: ["Página con tus servicios y precios", "Reserva de turnos online por día y horario", "Panel para ver y gestionar tus turnos", "Aviso del turno por WhatsApp", "Mantenimiento mensual"],
     noIncluye: ["Cobro en línea (Mercado Pago, como adicional)", "Catálogo de productos"],
     temporalidad: "Pagás los meses que quieras. La agenda de turnos funciona mientras la cuota esté activa."
@@ -45,19 +45,19 @@ const PLANES = {
 };
 
 const EN_PLANES = {
-  base: { nombre: "Base Plan", sub: "// static landing page", corto: "For professionals and businesses", monto: "USD 100", detalle: "One-time payment", cuota: "Later changes quoted separately", entrega: "same day · 2 business days max", puntos: ["Custom page in pure code", "Domain and hosting for one year", "First month of changes included", "WhatsApp button and basic SEO"] },
-  emprendedor: { nombre: "Catalog Plan", sub: "// catalog with WhatsApp orders", corto: "For entrepreneurs who sell on WhatsApp", monto: "USD 70", detalle: "Setup", cuota: "+ USD 18 per month", entrega: "≈ 10 business days", puntos: ["Catalog with photos, prices and variants", "Cart that builds the order", "Orders arrive on your WhatsApp", "I add and edit your products every month"] },
-  tienda: { nombre: "Online Store Plan", sub: "// your own online store", corto: "For businesses that want to sell online", monto: "USD 350", detalle: "From", cuota: "Maintenance to be agreed", entrega: "depends on the catalog", puntos: ["Your own store in pure code", "Cart and online payments", "Panel to manage products", "Domain, hosting and security"] },
-  servicios: { nombre: "Services Plan", sub: "// online booking", corto: "For professionals who take bookings", monto: "USD 70", detalle: "Setup", cuota: "+ USD 18 per month", entrega: "≈ 2 business days", puntos: ["Your services with prices", "Booking by day and time", "Panel to manage your bookings", "Payment arranged on WhatsApp"] }
+  base: { nombre: "Base Plan", sub: "// static landing page", corto: "For professionals and businesses", monto: "USD 100", detalle: "One-time payment", cuota: "Later changes quoted separately", entrega: "same day · 2 business days max", puntos: ["Custom design", "Domain and hosting, 1 year", "First month of changes", "WhatsApp and basic SEO"] },
+  emprendedor: { nombre: "Catalog Plan", sub: "// catalog with WhatsApp orders", corto: "For entrepreneurs who sell on WhatsApp", monto: "USD 70", detalle: "Setup", cuota: "+ USD 10 per month", entrega: "≈ 10 business days", puntos: ["Photos, prices and variants", "Cart that builds the order", "Orders on your WhatsApp", "Monthly product updates"] },
+  tienda: { nombre: "Online Store Plan", sub: "// your own online store", corto: "For businesses that want to sell online", monto: "USD 350", detalle: "From", cuota: "Maintenance to be agreed", entrega: "depends on the catalog", puntos: ["Store in pure code", "Cart and online payments", "Product panel", "Domain and security"] },
+  servicios: { nombre: "Services Plan", sub: "// online booking", corto: "For professionals who take bookings", monto: "USD 70", detalle: "Setup", cuota: "+ USD 10 per month", entrega: "≈ 2 business days", puntos: ["Services with prices", "Booking by day and time", "Booking panel", "Payment on WhatsApp"] }
 };
 const CORTO = { tienda: "Para negocios que quieren vender en línea", base: "Para profesionales y negocios", emprendedor: "Para emprendedores que venden por WhatsApp", servicios: "Para profesionales que trabajan con turnos" };
 let idioma = "es";
 const lista = document.getElementById("lista-planes");
 const PT_PLANES = {
-  base: { nombre: "Plano Base", sub: "// landing page estática", corto: "Para profissionais e negócios", monto: "USD 100", detalle: "Pagamento único", cuota: "Alterações posteriores: a combinar", entrega: "no mesmo dia · até 2 dias úteis", puntos: ["Página sob medida em código puro", "Domínio e hospedagem por um ano", "Primeiro mês de alterações incluído", "Botão de WhatsApp e SEO básico"] },
-  emprendedor: { nombre: "Plano Catálogo", sub: "// catálogo com pedido pelo WhatsApp", corto: "Para empreendedores que vendem pelo WhatsApp", monto: "USD 70", detalle: "Entrada", cuota: "+ USD 18 por mês", entrega: "≈ 10 dias úteis", puntos: ["Catálogo com fotos, preços e variações", "Carrinho que monta o pedido", "O pedido chega no seu WhatsApp", "Cadastro e edito seus produtos todo mês"] },
-  servicios: { nombre: "Plano Serviços", sub: "// agendamento online", corto: "Para profissionais que trabalham com horário marcado", monto: "USD 70", detalle: "Entrada", cuota: "+ USD 18 por mês", entrega: "≈ 2 dias úteis", puntos: ["Seus serviços com preço", "Agendamento por dia e horário", "Painel para gerenciar seus horários", "Pagamento combinado pelo WhatsApp"] },
-  tienda: { nombre: "Plano Loja Online", sub: "// sua própria loja online", corto: "Para negócios que querem vender online", monto: "USD 350", detalle: "A partir de", cuota: "Manutenção a combinar", entrega: "conforme o catálogo", puntos: ["Loja própria em código puro", "Carrinho e pagamento online", "Painel de produtos", "Domínio, hospedagem e segurança"] }
+  base: { nombre: "Plano Base", sub: "// landing page estática", corto: "Para profissionais e negócios", monto: "USD 100", detalle: "Pagamento único", cuota: "Alterações posteriores: a combinar", entrega: "no mesmo dia · até 2 dias úteis", puntos: ["Design sob medida", "Domínio e hospedagem, 1 ano", "Primeiro mês de alterações", "WhatsApp e SEO básico"] },
+  emprendedor: { nombre: "Plano Catálogo", sub: "// catálogo com pedido pelo WhatsApp", corto: "Para empreendedores que vendem pelo WhatsApp", monto: "USD 70", detalle: "Entrada", cuota: "+ USD 10 por mês", entrega: "≈ 10 dias úteis", puntos: ["Fotos, preços e variações", "Carrinho que monta o pedido", "Pedidos no seu WhatsApp", "Produtos atualizados todo mês"] },
+  servicios: { nombre: "Plano Serviços", sub: "// agendamento online", corto: "Para profissionais que trabalham com horário marcado", monto: "USD 70", detalle: "Entrada", cuota: "+ USD 10 por mês", entrega: "≈ 2 dias úteis", puntos: ["Serviços com preço", "Horários por dia e hora", "Painel de horários", "Pagamento pelo WhatsApp"] },
+  tienda: { nombre: "Plano Loja Online", sub: "// sua própria loja online", corto: "Para negócios que querem vender online", monto: "USD 350", detalle: "A partir de", cuota: "Manutenção a combinar", entrega: "conforme o catálogo", puntos: ["Loja em código puro", "Carrinho e pagamento online", "Painel de produtos", "Domínio e segurança"] }
 };
 const TXT_PLAN = {
   es: { rec: "recomendado", verMas: "Ver más", conseguir: "Conseguir el plan", entrega: "entrega: " },
@@ -69,14 +69,14 @@ const TXT_PLAN = {
 const PRECIOS = {
   ars: {
     base: { monto: "$150.000", cuota: "Cambios posteriores desde $25.000" },
-    emprendedor: { monto: "$100.000", cuota: "+ $25.000 por mes" },
-    servicios: { monto: "$100.000", cuota: "+ $25.000 por mes" },
+    emprendedor: { monto: "$100.000", cuota: "+ $15.000 por mes" },
+    servicios: { monto: "$100.000", cuota: "+ $15.000 por mes" },
     tienda: { monto: "$500.000", cuota: "Mantenimiento a convenir" }
   },
   usd: {
     base: { monto: "USD 100", cuota: "Cambios posteriores: a definir" },
-    emprendedor: { monto: "USD 70", cuota: "+ USD 18 por mes" },
-    servicios: { monto: "USD 70", cuota: "+ USD 18 por mes" },
+    emprendedor: { monto: "USD 70", cuota: "+ USD 10 por mes" },
+    servicios: { monto: "USD 70", cuota: "+ USD 10 por mes" },
     tienda: { monto: "USD 350", cuota: "Mantenimiento a convenir" }
   }
 };
@@ -97,19 +97,19 @@ function resumenDe(id) {
 }
 // ===== Planes: carrusel 3D con números y detalle =====
 const DETALLE = {
-  base: { clase: "base", tag: "Pago único", para: "Tu presencia propia en internet, lista en uno o dos días.", bajada: "Una página que trabaja por vos: te presenta, te posiciona y lleva cada visita a tu WhatsApp.",
+  base: { clase: "base", tag: "Pago único", para: "Tu lugar propio en internet, listo en 1 o 2 días.", bajada: "Una página que trabaja por vos: te presenta, te posiciona y lleva cada visita a tu WhatsApp.",
     puntos: [["Tu nombre propio en internet", "Una dirección que es tuya, como tunegocio.com.ar. Tu marca deja de depender de una red social y gana un lugar que nadie te puede apagar."],
       ["Lista en uno o dos días", "Diseño a medida, adaptada a celular y computadora, sin plantillas. Mientras otros esperan semanas, vos ya estás en línea."],
       ["Encontrable en Google y en la IA", "Títulos, descripción, datos estructurados y velocidad pensados para buscadores (SEO) y para asistentes como ChatGPT o Gemini (GEO)."],
       ["Un año resuelto", "Dominio, hosting, certificado de seguridad y el primer mes de cambios incluidos. Después, cada ajuste se cotiza aparte."]],
     entrega: "En el día o, como máximo, en dos días hábiles." },
-  emprendedor: { clase: "catalogo", tag: "El más pedido", para: "Tu vidriera abierta las 24 horas, con pedidos directo a tu WhatsApp.", bajada: "El comercio de hoy pasa por el celular. Tu catálogo, ordenado y siempre abierto, convierte cada visita en un pedido.",
+  emprendedor: { clase: "catalogo", tag: "El más pedido", para: "Tu vidriera abierta 24 h, con pedidos a tu WhatsApp.", bajada: "El comercio de hoy pasa por el celular. Tu catálogo, ordenado y siempre abierto, convierte cada visita en un pedido.",
     puntos: [["Una vidriera que no cierra", "Tus productos por categoría, con fotos, precios y variantes como talle o color. Se encuentran en segundos, a cualquier hora."],
       ["El pedido llega armado", "Tu cliente elige, el carrito suma y el pedido te llega listo por WhatsApp. Vos confirmás y cerrás la venta a tu manera, sin comisiones por venta."],
       ["Productos que aparecen cuando los buscan", "Cada producto con nombre, descripción y datos estructurados para que Google y los asistentes de IA lo muestren a quien lo busca."],
       ["Siempre actualizado", "Cada mes cargo, edito y marco agotados. Promos y temporadas sin que tengas que tocar una línea de código."]],
     entrega: "Alrededor de diez días hábiles, según la cantidad de productos." },
-  servicios: { clase: "servicios", tag: "Turnos online", para: "Tus servicios a la vista y tu agenda llenándose sola.", bajada: "Tu agenda trabaja aunque estés atendiendo: tus clientes eligen día y horario en tu página.",
+  servicios: { clase: "servicios", tag: "Turnos online", para: "Tus servicios a la vista y tu agenda al día.", bajada: "Tu agenda trabaja aunque estés atendiendo: tus clientes eligen día y horario en tu página.",
     puntos: [["Lo que hacés, explicado con claridad", "Cada servicio con su precio, duración y fotos. Tu cliente llega sabiendo qué quiere y cuánto cuesta."],
       ["Turnos las 24 horas", "Reservan por día y horario desde el celular, incluso fuera de tu horario de atención."],
       ["Para que te encuentren cerca", "SEO local para aparecer cuando alguien busca tu servicio en tu ciudad, en Google, en Maps y en los asistentes de IA."],
@@ -334,7 +334,7 @@ const EN = {
   p3h: "We review together", p3p: "We adjust whatever is needed before going live.",
   p4h: "Your site goes live", p4p: "I publish your site with domain, hosting and security ready.",
   mPie: "// let's talk", hPie: "Shall we build your website?", pPie: "Message me, tell me your idea and I'll get back to you shortly.", btnWa: "Message me on WhatsApp →",
-  mFeed: "// latest on instagram", desarrollado: "Developed by", firmaTip: "It ain't much, but it's honest work", versiones: "Previous versions of this site",
+  mFeed: "// latest on instagram", verIg: "See what's new on Instagram →", desarrollado: "Developed by", firmaTip: "It ain't much, but it's honest work", versiones: "Previous versions of this site",
   ps1: "Looking for hair removal?", ps2: "Book with Flor →", pm1: "Laser hair removal", pm2: "with Flor →", promoHR: "Got a legal problem? HR Estudio Jurídico can help you in Chaco, Argentina →", globo: "Want to know more? Tap here", pronto: "soon", d6: "Lab", m1: "Plans", m2: "Work", m3: "How I work", m4: "Contact", m6: "Lab", d1: "Plans", d2: "Work", d3: "How I work", d4: "Contact"
 };
 const PT = {
@@ -358,7 +358,7 @@ const PT = {
   p3h: "Revisamos juntos", p3p: "Ajustamos o que for preciso antes de publicar.",
   p4h: "Seu site no ar", p4p: "Publico seu site com domínio, hospedagem e segurança prontos.",
   mPie: "// vamos conversar", hPie: "Vamos criar seu site?", pPie: "Me chama, conta sua ideia e eu respondo o quanto antes.", btnWa: "Falar no WhatsApp →",
-  mFeed: "// últimas publicações no instagram", desarrollado: "Desenvolvido por", firmaTip: "Não é muito, mas é trabalho honesto", versiones: "Versões anteriores do site",
+  mFeed: "// últimas publicações no instagram", verIg: "Veja as novidades no Instagram →", desarrollado: "Desenvolvido por", firmaTip: "Não é muito, mas é trabalho honesto", versiones: "Versões anteriores do site",
   globo: "Quer saber mais? Toque aqui", pronto: "em breve", d6: "Laboratório", m1: "Planos", m2: "Trabalhos", m3: "Como trabalho", m4: "Contato", m6: "Laboratório",
   d1: "Planos", d2: "Trabalhos", d3: "Como trabalho", d4: "Contato"
 };
@@ -472,6 +472,34 @@ dibujarPlanes();
   $("cf-sig").addEventListener("click", () => irPlan(planActual + 1));
   $("cf-numeros").addEventListener("keydown", e => { if (e.key === "ArrowRight") { irPlan(planActual + 1); $("cf-numeros").children[planActual].focus(); } if (e.key === "ArrowLeft") { irPlan(planActual - 1); $("cf-numeros").children[planActual].focus(); } });
   $("det-contratar").addEventListener("click", () => abrir(idsVisibles[planActual], 2));
+  // Productos con IA: el mismo carrusel 3D que los planes
+  const prodLista = $("lista-productos");
+  if (prodLista) {
+    const prods = [...prodLista.children], CORTOS = ["Asistente", "Agentes", "Auditoría", "Automatiza"];
+    let prodActual = 0;
+    const irProd = n => {
+      prodActual = Math.max(0, Math.min(prods.length - 1, n));
+      prods.forEach((t, i) => { const d = i - prodActual, ad = Math.abs(d); t.style.setProperty("--d", d); t.style.setProperty("--ad", ad); t.style.setProperty("--op", ad > 1 ? 0 : 1); t.classList.toggle("activa", d === 0); t.inert = d !== 0; t.setAttribute("aria-hidden", String(d !== 0)); });
+      [...$("prod-numeros").children].forEach((b, i) => { b.setAttribute("aria-selected", String(i === prodActual)); b.tabIndex = i === prodActual ? 0 : -1; });
+      const barra = $("prod-barra"); barra.style.setProperty("--k", prodActual); barra.style.setProperty("--n", prods.length);
+      $("prod-n").textContent = "0" + (prodActual + 1);
+      $("prod-ant").disabled = prodActual === 0; $("prod-sig").disabled = prodActual === prods.length - 1;
+    };
+    prods.forEach((t, i) => {
+      const b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab");
+      b.innerHTML = `<b>0${i + 1}</b>`; b.append(CORTOS[i] || t.querySelector("h3").textContent);
+      b.setAttribute("aria-label", t.querySelector("h3").textContent);
+      b.addEventListener("click", () => irProd(i)); $("prod-numeros").append(b);
+      t.addEventListener("click", () => { if (i !== prodActual) irProd(i); });
+    });
+    $("prod-ant").addEventListener("click", () => irProd(prodActual - 1));
+    $("prod-sig").addEventListener("click", () => irProd(prodActual + 1));
+    $("prod-numeros").addEventListener("keydown", e => { if (e.key === "ArrowRight") { irProd(prodActual + 1); $("prod-numeros").children[prodActual].focus(); } if (e.key === "ArrowLeft") { irProd(prodActual - 1); $("prod-numeros").children[prodActual].focus(); } });
+    let px = null;
+    prodLista.addEventListener("pointerdown", e => { px = e.clientX; });
+    prodLista.addEventListener("pointerup", e => { if (px === null) return; const dx = e.clientX - px; px = null; if (Math.abs(dx) > 40) irProd(prodActual + (dx < 0 ? 1 : -1)); });
+    irProd(0);
+  }
   let x0 = null;
   lista.addEventListener("pointerdown", e => { x0 = e.clientX; });
   lista.addEventListener("pointerup", e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) irPlan(planActual + (dx < 0 ? 1 : -1)); });
@@ -541,8 +569,29 @@ dibujarPlanes();
 
   // Por qué Tereré: se encienden solas
   const vals = qq(".val"); let vi = 0, vt = null;
-  const encender = () => { vals.forEach((v, i) => v.classList.toggle("encendida", i === vi)); vi = (vi + 1) % vals.length; };
-  if (!red) new IntersectionObserver(([e]) => { clearInterval(vt); if (e.isIntersecting) { encender(); vt = setInterval(encender, 2600); } }, { threshold: 0.3 }).observe($("valores"));
+  const caja = $("valores"), celu = matchMedia("(max-width: 700px)");
+  let tocando = false, autoScroll = false;
+  // Puntitos del carrusel (solo se ven en el celular)
+  const puntos = document.createElement("div"); puntos.className = "val-puntos";
+  const botones = vals.map((v, i) => { const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", "Ver " + v.querySelector("h3").textContent); b.addEventListener("click", () => { marcar(i); centrar(i); }); puntos.append(b); return b; });
+  caja.after(puntos);
+  function marcar(i) { vals.forEach((v, j) => v.classList.toggle("encendida", j === i)); botones.forEach((b, j) => b.setAttribute("aria-current", String(j === i))); vi = i; }
+  function centrar(i) { if (!celu.matches) return; const v = vals[i]; autoScroll = true; caja.scrollTo({ left: v.offsetLeft - (caja.clientWidth - v.offsetWidth) / 2, behavior: red ? "auto" : "smooth" }); setTimeout(() => { autoScroll = false; }, 700); }
+  const encender = () => { if (tocando) return; const i = vi; marcar(i); centrar(i); vi = (i + 1) % vals.length; };
+  // Si la persona desliza a mano, se enciende la tarjeta que quedó al centro y la animación espera un rato
+  let esperaVal = null;
+  caja.addEventListener("pointerdown", () => { tocando = true; clearTimeout(esperaVal); });
+  caja.addEventListener("scroll", () => {
+    if (autoScroll || !celu.matches) return;
+    tocando = true; clearTimeout(esperaVal);
+    esperaVal = setTimeout(() => {
+      const centro = caja.scrollLeft + caja.clientWidth / 2;
+      let cerca = 0; vals.forEach((v, i) => { if (Math.abs(v.offsetLeft + v.offsetWidth / 2 - centro) < Math.abs(vals[cerca].offsetLeft + vals[cerca].offsetWidth / 2 - centro)) cerca = i; });
+      marcar(cerca); vi = (cerca + 1) % vals.length; tocando = false;
+    }, 1800);
+  }, { passive: true });
+  marcar(0); vi = 0;
+  if (!red) new IntersectionObserver(([e]) => { clearInterval(vt); if (e.isIntersecting) { encender(); vt = setInterval(encender, 2600); } }, { threshold: 0.3 }).observe(caja);
 
   // Auditoría SEO / GEO en vivo
   function auditar() {
@@ -622,3 +671,27 @@ $("link-pago").addEventListener("click", async (e) => {
     $("link-wa").hidden = false;
   }
 });
+
+
+// ===== Instagram: últimas publicaciones en el pie =====
+// Si la conexión con Instagram no está lista o falla, queda el acceso al perfil.
+(async () => {
+  const feed = document.getElementById("feed-instagram");
+  if (!feed) return;
+  try {
+    const r = await fetch("/api/instagram");
+    if (!r.ok) return;
+    const { publicaciones = [] } = await r.json();
+    if (!publicaciones.length) return;
+    feed.replaceChildren(...publicaciones.slice(0, 6).map(p => {
+      const a = document.createElement("a");
+      a.href = p.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+      if (p.video) a.className = "video";
+      const img = document.createElement("img");
+      img.src = p.imagen; img.alt = p.texto ? "Instagram: " + p.texto : "Publicación de Instagram de Tereré Estudio";
+      img.width = 320; img.height = 320; img.loading = "lazy"; img.decoding = "async";
+      a.append(img); return a;
+    }));
+    feed.hidden = false;
+  } catch { /* queda el acceso al perfil */ }
+})();

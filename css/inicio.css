@@ -219,6 +219,14 @@ img { max-width: 100%; }
 .feed { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
 .feed a { position: relative; aspect-ratio: 1; border-radius: 10px; background: repeating-linear-gradient(135deg, var(--carbon-2) 0 8px, var(--noche) 8px 16px); display: grid; place-items: center; font: 400 0.65rem/1 var(--f-mono); color: var(--suave); text-decoration: none; border: 1px solid var(--borde); }
 .feed a:hover { border-color: var(--verde); }
+.feed a { overflow: hidden; border: 1px solid var(--borde); }
+.feed img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+.feed a:hover img { transform: scale(1.06); }
+.feed-perfil { display: inline-flex; align-items: center; gap: 14px; padding: 14px 18px; border: 1px solid var(--borde); border-radius: 16px; background: var(--carbon); color: var(--texto); text-decoration: none; transition: border-color .2s; }
+.feed-perfil:hover, .feed-perfil:focus-visible { border-color: var(--verde); }
+.feed-perfil svg { width: 30px; height: 30px; fill: var(--verde); flex: none; }
+.feed-perfil span { display: grid; gap: 2px; }
+.feed-perfil small { color: var(--suave); font-size: 0.85rem; }
 .feed a.video::before { content: "▶"; position: absolute; top: 6px; right: 7px; font-size: 0.6rem; color: var(--verde); }
 .pie-base { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 32px; padding-block: 20px; border-top: 1px solid var(--borde); color: var(--suave); font-size: 0.88rem; }
 
@@ -527,7 +535,7 @@ html, body { overflow-x: clip; }
 .cf-flecha:hover:not(:disabled) { border-color: var(--verde); color: var(--verde); }
 .cf-flecha:disabled { opacity: .35; cursor: default; }
 .cf-barra { position: relative; height: 1.5px; background: var(--linea-s); }
-.cf-barra i { position: absolute; top: -2px; height: 5px; width: calc(100% / 3); border-radius: 3px; background: var(--verde); left: calc(var(--k, 0) * 100% / 3); transition: left .6s cubic-bezier(.2,.8,.2,1); }
+.cf-barra i { position: absolute; top: -2px; height: 5px; width: calc(100% / var(--n, 3)); border-radius: 3px; background: var(--verde); left: calc(var(--k, 0) * 100% / var(--n, 3)); transition: left .6s cubic-bezier(.2,.8,.2,1); }
 .cf-cuenta { font: 500 1.3rem var(--f-mono); font-variant-numeric: tabular-nums; }
 .cf-cuenta span { color: var(--suave); }
 @media (max-width: 640px) { .cf-control { grid-template-columns: auto 1fr auto; } .cf-cuenta { grid-column: 1 / -1; } }
@@ -588,6 +596,17 @@ html, body { overflow-x: clip; }
 .val.encendida p { color: var(--tinta); } .val.encendida svg { stroke: var(--tinta); animation: brinco .9s cubic-bezier(.3,1.6,.5,1); }
 @keyframes brinco { 40% { transform: scale(1.18) rotate(-8deg); } }
 @media (max-width: 960px) { .valores2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } .val:last-child { grid-column: 1 / -1; } }
+/* Celular: carrusel deslizable; la tarjeta encendida se acomoda sola y se puede deslizar a mano */
+.val-puntos { display: none; }
+@media (max-width: 700px) {
+  .valores2 { position: relative; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 80%; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 20px; scrollbar-width: none; padding: 16px 20px 26px; margin-inline: -20px; }
+  .valores2::-webkit-scrollbar { display: none; }
+  .val, .val:last-child { grid-column: auto; scroll-snap-align: center; }
+  .val.encendida { transform: translateY(-6px); }
+  .val-puntos { display: flex; justify-content: center; gap: 8px; margin-top: 4px; }
+  .val-puntos button { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 999px; background: var(--borde); cursor: pointer; transition: width .3s, background .3s; }
+  .val-puntos button[aria-current="true"] { width: 22px; background: var(--verde); }
+}
 
 /* Auditoría compacta con Ver más */
 .audit { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(20px, 4vw, 48px); padding: clamp(22px, 4vw, 36px); border-radius: 24px; background: var(--carbon); border: 1px solid var(--borde); }
@@ -642,7 +661,13 @@ html, body { overflow-x: clip; }
 @media (max-width: 860px) { .pasos5::after { content: ""; flex: 0 0 8vw; } }
 
 /* Productos y automatizaciones con IA */
-.productos { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+/* Productos: carrusel 3D, igual que los planes */
+.cf-numeros-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.cf-prod { height: 600px; }
+.cf-prod .cf-tarjeta.prod { height: 560px; padding: 18px 18px 22px; gap: 10px; transition: transform .75s cubic-bezier(.2,.8,.2,1), opacity .5s, filter .5s, border-color .3s; }
+.cf-prod .cf-tarjeta.prod:hover { transform: translateX(calc(var(--d, 0) * 66%)) translateZ(calc(var(--ad, 0) * -200px)) rotateY(calc(var(--d, 0) * -26deg)) scale(calc(1 - var(--ad, 0) * 0.05)); box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
+.cf-prod .cf-tarjeta.prod.activa { border-color: var(--verde); }
+@media (max-width: 640px) { .cf-numeros-4 { gap: 6px; } .cf-numeros-4 button { padding: 8px; font-size: 0.72rem; } }
 .prod { display: flex; flex-direction: column; gap: 10px; padding: 16px 16px 20px; border-radius: 20px; border: 1px solid var(--borde); background: var(--carbon); transition: border-color .3s, transform .4s cubic-bezier(.2,.8,.2,1), box-shadow .4s; }
 .prod:hover { border-color: var(--verde); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
 .prod h3 { margin: 4px 0 0; font-size: 1.3rem; letter-spacing: -0.02em; }

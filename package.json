@@ -1,0 +1,8 @@
+{
+  "name": "terere-estudio",
+  "private": true,
+  "description": "Sitio de Tereré Estudio. Este archivo solo existe para que Netlify instale la librería que guarda el token de Instagram (Netlify Blobs).",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
