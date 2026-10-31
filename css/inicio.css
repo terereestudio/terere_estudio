@@ -278,7 +278,9 @@ img { max-width: 100%; }
 .dock-menu a span { font: 400 0.75rem/1 var(--f-mono); color: var(--verde); }
 .dock-menu a:hover { border-color: var(--verde); }
 .dock-menu li { animation: subir 0.25s ease both; }
-.dock-menu li:nth-child(2) { animation-delay: 0.03s; } .dock-menu li:nth-child(3) { animation-delay: 0.06s; } .dock-menu li:nth-child(4) { animation-delay: 0.09s; } .dock-menu li:nth-child(5) { animation-delay: 0.12s; }
+/* Escalonado de 01 a 10: cada opción aparece 0,03 s después de la anterior */
+.dock-menu li { animation-delay: calc(var(--i, 0) * 0.03s); }
+.dock-menu li:nth-child(2) { --i: 1; } .dock-menu li:nth-child(3) { --i: 2; } .dock-menu li:nth-child(4) { --i: 3; } .dock-menu li:nth-child(5) { --i: 4; } .dock-menu li:nth-child(6) { --i: 5; } .dock-menu li:nth-child(7) { --i: 6; } .dock-menu li:nth-child(8) { --i: 7; } .dock-menu li:nth-child(9) { --i: 8; } .dock-menu li:nth-child(10) { --i: 9; }
 @keyframes subir { from { opacity: 0; transform: translateY(8px); } }
 
 /* Ventana del plan */
