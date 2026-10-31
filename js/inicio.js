@@ -549,6 +549,8 @@ dibujarPlanes();
     let prodEnPantalla = false;
     const moverYac = () => yacs.forEach((s, i) => { if (!s || !s.pauseAnimations) return; if (prodEnPantalla && !quieto.matches && i === prodActual) s.unpauseAnimations(); else s.pauseAnimations(); });
     yacs.forEach(s => s && s.pauseAnimations && s.pauseAnimations());
+    const saludo = document.querySelector("svg.yac-saludo");
+    if (saludo && saludo.pauseAnimations) { saludo.pauseAnimations(); new IntersectionObserver(([e]) => { if (e.isIntersecting && !quieto.matches) saludo.unpauseAnimations(); else saludo.pauseAnimations(); }).observe(saludo); }
     new IntersectionObserver(([e]) => { prodEnPantalla = e.isIntersecting; moverYac(); }).observe(prodLista);
     const irProd = n => {
       prodActual = ((n % prods.length) + prods.length) % prods.length;

@@ -110,7 +110,20 @@ const flujo = svg('0 0 172 150', `
   ${brazo('yf-b', tecla([80, 106, 100, 128, 130, 128, 150, 114], [80, 106, 100, 132, 130, 136, 152, 120]), '.36s', { keyTimes: '0;.5;1' })}
   </g>`, 'yac-flujo');
 
-const escenas = { wa, agentes, visible, flujo };
+// 5. Saludo del encabezado de Productos (solo PC): mira hacia el título, saluda y titilan estrellas
+const estrella = (x, y, r, b, color) => `<path d="M${x} ${y - r} Q${x} ${y} ${x + r} ${y} Q${x} ${y} ${x} ${y + r} Q${x} ${y} ${x - r} ${y} Q${x} ${y} ${x} ${y - r}Z" fill="${color}"><animateTransform attributeName="transform" type="rotate" values="0 ${x} ${y};90 ${x} ${y}" dur="3s" begin="${b}s" repeatCount="indefinite"/><animate attributeName="opacity" values=".15;1;.15" dur="2s" begin="${b}s" repeatCount="indefinite"/></path>`;
+const saludo = svg('-10 0 190 170', `
+  ${luz(96, 100, 64, C.marca, .14)}
+  <circle cx="160" cy="34" r="9" fill="${C.panza}" stroke="${C.tinta}" stroke-width="2.4"/><ellipse cx="160" cy="34" rx="16" ry="4.5" fill="none" stroke="${C.marca}" stroke-width="2.4" transform="rotate(-20 160 34)"/>
+  ${estrella(70, 10, 6, 0, C.panza)}${estrella(150, 82, 5, .7, C.marca)}${estrella(36, 70, 4, 1.3, C.crema)}${estrella(120, 14, 4, .4, C.crema)}
+  <g><animateTransform attributeName="transform" type="translate" values="0 0;0 -3;0 0" dur="1.2s" repeatCount="indefinite" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1"/>
+  <g transform="translate(160 26) scale(-1 1)">
+  ${brazo('ys-a', [[44, 104, 34, 114, 30, 124, 40, 130]], '1s')}
+  ${cuerpo('s', { mirada: 'values="2 -1;2 -1" dur="1s" repeatCount="indefinite"' })}
+  ${brazo('ys-b', [[80, 106, 116, 104, 136, 84, 134, 50], [80, 106, 120, 110, 150, 92, 152, 60], [80, 106, 116, 104, 136, 84, 134, 50]], '.9s', { extra: `<path d="M-6 -12 q-4 -4 -2 -9 M2 -14 q2 -5 6 -6" fill="none" stroke="${C.crema}" stroke-width="2" stroke-linecap="round"><animate attributeName="opacity" values="0;1;0" dur=".9s" repeatCount="indefinite"/></path>` })}
+  </g></g>`, 'yac-saludo');
+
+const escenas = { wa, agentes, visible, flujo, saludo };
 const archivo = path.join(R, 'src/paginas/index.html');
 let html = fs.readFileSync(archivo, 'utf8');
 for (const [n, s] of Object.entries(escenas)) {
