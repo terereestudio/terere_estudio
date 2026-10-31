@@ -1,6 +1,90 @@
 // Inicio v2. Origen: prototipo terere-v3.html
 "use strict";
 const WA = "5493644328260";
+
+// ===== Idiomas =====
+// El español está en la página. Los demás idiomas viven en idiomas/<código>.json y se cargan
+// solo cuando alguien los elige. Cada texto de la página se reconoce solo (por su contenido en
+// español), así que si un texto cambia y todavía no tiene traducción, queda en español.
+const IDIOMAS = {
+  es: { nombre: "Español", lang: "es-AR", buscar: "español castellano spanish espanol" },
+  en: { nombre: "English", lang: "en", buscar: "inglés ingles english" },
+  pt: { nombre: "Português", lang: "pt-BR", buscar: "portugués portugues portuguese brasil brazil" },
+  fr: { nombre: "Français", lang: "fr", buscar: "francés frances french francais" },
+  de: { nombre: "Deutsch", lang: "de", buscar: "alemán aleman german deutsch" },
+  it: { nombre: "Italiano", lang: "it", buscar: "italiano italian" },
+  zh: { nombre: "中文", lang: "zh-CN", buscar: "chino chinese mandarín mandarin zhongwen" },
+  ja: { nombre: "日本語", lang: "ja", buscar: "japonés japones japanese nihongo" },
+  hi: { nombre: "हिन्दी", lang: "hi", buscar: "hindi hindú indio india" },
+  ar: { nombre: "العربية", lang: "ar", dir: "rtl", buscar: "árabe arabe arabic" },
+  ru: { nombre: "Русский", lang: "ru", buscar: "ruso russian russkiy" },
+  gn: { nombre: "Avañe'ẽ", lang: "gn", beta: true, buscar: "guaraní guarani avanee paraguay" }
+};
+// Textos que arma el JavaScript (en español). Las traducciones están en la sección "ui" de cada JSON.
+const UI = {
+  verQueIncluye: "Ver qué incluye", contratar: "Contratar", detTitulo: "{plan}, punto por punto",
+  cuantoTarda: "¿Cuánto tarda?", comoPago: "¿Cómo pago?",
+  pagoTxt: "Con Mercado Pago (tarjetas, dinero en cuenta y cuotas sin tarjeta) o por transferencia, a convenir.",
+  detContratar: "Contratar el {plan}", waDuda: "Hola Leonardo, tengo una duda sobre el {plan}.",
+  pago: "Pago", pagoUnico: "{m} único", despues: "Después", entrega: "Entrega", desde: "Desde", mantenimiento: "Mantenimiento",
+  aConvenir: "A convenir", segunCatalogo: "Según el catálogo", entrada: "Entrada", cuota: "Cuota",
+  cuotaMes: "+ {m} por mes", cambiosDesde: "Cambios posteriores desde {m}", cambiosDefinir: "Cambios posteriores: a definir", mantConvenir: "Mantenimiento a convenir",
+  errNombre: "Escribí tu nombre completo para que sepa con quién hablo.", errAcepto: "Para seguir, aceptá el uso de tus datos para responderte.",
+  msgConvenir: "Hola Leonardo, quiero contratar el {plan} de Tereré Estudio y coordinar el pago.", msgContrate: "Hola Leonardo, acabo de contratar el {plan} de Tereré Estudio.",
+  msgSoy: "Soy {nombre}{rubro}.", tuNombre: "(tu nombre)", msgIdea: "Mi idea: {idea}", msgPago: "Forma de pago: {pago}.",
+  escribirLeo: "Escribirle a Leonardo →", yaPague: "Ya pagué: avisarle a Leonardo →", pagarCon: "Pagar con {pago}", noDisponible: "Este medio de pago todavía no está disponible",
+  pasosConvenir: ["Tocá el botón y se abre WhatsApp con tu pedido.", "Coordinamos la transferencia o el pago en efectivo.", "Arrancamos con tu proyecto."],
+  pasosMP: ["Tocá \"Pagar con Mercado Pago\": te llevamos a Mercado Pago para pagar.", "Al terminar volvés a mi página y me avisás por WhatsApp con un toque.", "Confirmo el pago y arrancamos."],
+  pasosNo: ["Este medio de pago todavía no está disponible.", "Elegí Mercado Pago o A convenir."],
+  waGeneral: "Hola Leonardo, vi tu página y quiero hacerte una consulta.", waCotizar: "Hola Leonardo, busco algo a mi medida y quiero armar mi proyecto.",
+  enlacePendiente: "Enlace pendiente", abrirMenu: "Abrir menú", cerrarMenu: "Cerrar menú", conectandoMP: "Conectando con Mercado Pago…",
+  verMas: "Ver más", verMenos: "Ver menos", verX: "Ver {x}",
+  productosCortos: ["Asistente", "Agentes", "Auditoría", "Automatiza"],
+  frases: ["Tu negocio, abierto las 24 horas.", "Te encuentran en Google y en la IA.", "Vendés incluso mientras dormís.", "Tu marca, con nombre propio en internet."],
+  igAlt: "Publicación de Instagram de Tereré Estudio",
+  aTitulo: "Título", aTituloDet: "{n} caracteres (ideal: 30 a 65)", aDesc: "Descripción", aDescDet: "{n} caracteres (ideal: 70 a 160)",
+  aH1: "Un solo título principal", aH1Det: "{n} H1 en la página", aJerarquia: "Jerarquía de títulos", aSaltos: "Hay saltos de nivel", aOrdenada: "Ordenada, sin saltos",
+  aAlt: "Textos alternativos", aAltDet: "{a} de {b} imágenes con descripción", aCanonica: "URL canónica", aDefinida: "Definida", aFalta: "Falta",
+  aCompartir: "Vista al compartir", aCompartirOk: "Título e imagen para redes", aCompartirNo: "Falta Open Graph",
+  aNegocio: "Negocio identificado", aNegocioDet: "Datos estructurados del estudio", aPlanes: "Planes con precio", aPlanesDet: "Ofertas legibles por la IA",
+  aUbicacion: "Ubicación", aUbicacionDet: "Corrientes, para búsquedas locales", aVelocidad: "Velocidad", aCarga: "Carga inicial", aSinDato: "Sin dato",
+  aSeguridad: "Seguridad", aConexion: "Conexión segura", aSinHttps: "Sin HTTPS", aCelular: "Apta para celular", aAdaptable: "Diseño adaptable",
+  buscarIdioma: "Buscar idioma…", sinIdioma: "No encontré ese idioma", beta: "beta"
+};
+let DIC = null; // diccionario del idioma elegido (null = español)
+const REFRESCAR = []; // funciones que vuelven a dibujar textos armados por JavaScript
+function t(clave, vars = {}) {
+  const v = (DIC && DIC.ui && DIC.ui[clave] !== undefined) ? DIC.ui[clave] : UI[clave];
+  if (Array.isArray(v)) return v;
+  return String(v ?? clave).replace(/\{(\w+)\}/g, (_, n) => vars[n] ?? "");
+}
+const planTx = id => ({ ...PLANES[id], ...((DIC && DIC.planes && DIC.planes[id]) || {}) });
+const detTx = id => ({ ...(DETALLE[id] || {}), ...((DIC && DIC.detalle && DIC.detalle[id]) || {}) });
+
+// Reconocer los textos de la página (antes de que el JavaScript dibuje nada)
+const huella = s => { let h = 0x811c9dc5; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 0x01000193); } return (h >>> 0).toString(36); };
+const normal = s => s.replace(/\s+/g, " ").trim();
+const LETRA = /\p{L}/u;
+const EN_LINEA = new Set(["B", "STRONG", "EM", "I", "SPAN", "SMALL", "BR", "CODE", "MARK", "SUP", "SUB", "ABBR", "TIME", "KBD", "S", "U", "Q", "WBR"]);
+const SALTEAR = new Set(["SCRIPT", "STYLE", "SVG", "CANVAS", "VIDEO", "AUDIO", "NOSCRIPT", "TEMPLATE", "TEXTAREA", "SELECT", "IFRAME", "INPUT"]);
+const ATRIBUTOS = ["alt", "aria-label", "title", "placeholder", "data-wa"];
+const UNIDADES = [], ATRS = [];
+const noTraducir = el => el.hasAttribute("data-no-traducir") || el.getAttribute("translate") === "no";
+function soloEnLinea(el) { for (const c of el.children) if (!EN_LINEA.has(c.tagName) || c.id || noTraducir(c) || !soloEnLinea(c)) return false; return true; }
+function atributos(el) { ATRIBUTOS.forEach(a => { const v = el.getAttribute(a); if (v && LETRA.test(v)) ATRS.push({ el, attr: a, es: v, clave: huella(normal(v)) }); }); }
+function recolectar(el) {
+  for (const n of [...el.childNodes]) {
+    if (n.nodeType === 3) { if (el.children.length && LETRA.test(n.data)) UNIDADES.push({ modo: "nodo", nodo: n, es: n.data, clave: huella(normal(n.data)) }); continue; }
+    if (n.nodeType !== 1 || SALTEAR.has(n.tagName.toUpperCase()) || noTraducir(n)) continue;
+    atributos(n);
+    if (LETRA.test(n.textContent) && soloEnLinea(n)) {
+      const html = n.innerHTML, modo = n.children.length ? "html" : "texto";
+      UNIDADES.push({ modo, el: n, es: modo === "html" ? html : n.textContent, clave: huella(normal(html)) });
+      n.querySelectorAll("*").forEach(atributos);
+    } else recolectar(n);
+  }
+}
+recolectar(document.body);
 const PLANES = {
   base: {
     nombre: "Plan Base", sub: "// landing page estática", para: "Para profesionales y negocios que quieren presentar sus servicios.",
@@ -44,40 +128,22 @@ const PLANES = {
   }
 };
 
-const EN_PLANES = {
-  base: { nombre: "Base Plan", sub: "// static landing page", corto: "For professionals and businesses", monto: "USD 100", detalle: "One-time payment", cuota: "Later changes quoted separately", entrega: "same day · 2 business days max", puntos: ["Custom design", "Domain and hosting, 1 year", "First month of changes", "WhatsApp and basic SEO"] },
-  emprendedor: { nombre: "Catalog Plan", sub: "// catalog with WhatsApp orders", corto: "For entrepreneurs who sell on WhatsApp", monto: "USD 70", detalle: "Setup", cuota: "+ USD 10 per month", entrega: "≈ 10 business days", puntos: ["Photos, prices and variants", "Cart that builds the order", "Orders on your WhatsApp", "Monthly product updates"] },
-  tienda: { nombre: "Online Store Plan", sub: "// your own online store", corto: "For businesses that want to sell online", monto: "USD 350", detalle: "From", cuota: "Maintenance to be agreed", entrega: "depends on the catalog", puntos: ["Store in pure code", "Cart and online payments", "Product panel", "Domain and security"] },
-  servicios: { nombre: "Services Plan", sub: "// online booking", corto: "For professionals who take bookings", monto: "USD 70", detalle: "Setup", cuota: "+ USD 10 per month", entrega: "≈ 2 business days", puntos: ["Services with prices", "Booking by day and time", "Booking panel", "Payment on WhatsApp"] }
-};
-const CORTO = { tienda: "Para negocios que quieren vender en línea", base: "Para profesionales y negocios", emprendedor: "Para emprendedores que venden por WhatsApp", servicios: "Para profesionales que trabajan con turnos" };
 let idioma = "es";
 const lista = document.getElementById("lista-planes");
-const PT_PLANES = {
-  base: { nombre: "Plano Base", sub: "// landing page estática", corto: "Para profissionais e negócios", monto: "USD 100", detalle: "Pagamento único", cuota: "Alterações posteriores: a combinar", entrega: "no mesmo dia · até 2 dias úteis", puntos: ["Design sob medida", "Domínio e hospedagem, 1 ano", "Primeiro mês de alterações", "WhatsApp e SEO básico"] },
-  emprendedor: { nombre: "Plano Catálogo", sub: "// catálogo com pedido pelo WhatsApp", corto: "Para empreendedores que vendem pelo WhatsApp", monto: "USD 70", detalle: "Entrada", cuota: "+ USD 10 por mês", entrega: "≈ 10 dias úteis", puntos: ["Fotos, preços e variações", "Carrinho que monta o pedido", "Pedidos no seu WhatsApp", "Produtos atualizados todo mês"] },
-  servicios: { nombre: "Plano Serviços", sub: "// agendamento online", corto: "Para profissionais que trabalham com horário marcado", monto: "USD 70", detalle: "Entrada", cuota: "+ USD 10 por mês", entrega: "≈ 2 dias úteis", puntos: ["Serviços com preço", "Horários por dia e hora", "Painel de horários", "Pagamento pelo WhatsApp"] },
-  tienda: { nombre: "Plano Loja Online", sub: "// sua própria loja online", corto: "Para negócios que querem vender online", monto: "USD 350", detalle: "A partir de", cuota: "Manutenção a combinar", entrega: "conforme o catálogo", puntos: ["Loja em código puro", "Carrinho e pagamento online", "Painel de produtos", "Domínio e segurança"] }
-};
-const TXT_PLAN = {
-  es: { rec: "recomendado", verMas: "Ver más", conseguir: "Conseguir el plan", entrega: "entrega: " },
-  en: { rec: "recommended", verMas: "See more", conseguir: "Get the plan", entrega: "delivery: " },
-  pt: { rec: "recomendado", verMas: "Ver mais", conseguir: "Quero este plano", entrega: "entrega: " }
-};
 // Precios por moneda. ARS solo para visitantes de Argentina que navegan en español;
 // en cualquier otro caso (otro país o idioma distinto de español) se muestra USD.
 const PRECIOS = {
   ars: {
-    base: { monto: "$150.000", cuota: "Cambios posteriores desde $25.000" },
-    emprendedor: { monto: "$100.000", cuota: "+ $15.000 por mes" },
-    servicios: { monto: "$100.000", cuota: "+ $15.000 por mes" },
-    tienda: { monto: "$500.000", cuota: "Mantenimiento a convenir" }
+    base: { monto: "$150.000", cuota: () => t("cambiosDesde", { m: "$25.000" }) },
+    emprendedor: { monto: "$100.000", cuota: () => t("cuotaMes", { m: "$15.000" }) },
+    servicios: { monto: "$100.000", cuota: () => t("cuotaMes", { m: "$15.000" }) },
+    tienda: { monto: "$500.000", cuota: () => t("mantConvenir") }
   },
   usd: {
-    base: { monto: "USD 100", cuota: "Cambios posteriores: a definir" },
-    emprendedor: { monto: "USD 70", cuota: "+ USD 10 por mes" },
-    servicios: { monto: "USD 70", cuota: "+ USD 10 por mes" },
-    tienda: { monto: "USD 350", cuota: "Mantenimiento a convenir" }
+    base: { monto: "USD 100", cuota: () => t("cambiosDefinir") },
+    emprendedor: { monto: "USD 70", cuota: () => t("cuotaMes", { m: "USD 10" }) },
+    servicios: { monto: "USD 70", cuota: () => t("cuotaMes", { m: "USD 10" }) },
+    tienda: { monto: "USD 350", cuota: () => t("mantConvenir") }
   }
 };
 function esArgentina() {
@@ -90,10 +156,10 @@ function monedaActual() {
   return idioma === "es" && esArgentina() ? "ars" : "usd";
 }
 function resumenDe(id) {
-  const q = PRECIOS[monedaActual()][id];
-  if (id === "base") return [["Pago", q.monto + " único"], ["Después", q.cuota], ["Entrega", PLANES.base.entrega]];
-  if (id === "tienda") return [["Desde", q.monto], ["Mantenimiento", "A convenir"], ["Entrega", "Según el catálogo"]];
-  return [["Entrada", q.monto], ["Cuota", q.cuota.replace(/^\+ /, "")], ["Entrega", PLANES[id].entrega]];
+  const q = PRECIOS[monedaActual()][id], p = planTx(id);
+  if (id === "base") return [[t("pago"), t("pagoUnico", { m: q.monto })], [t("despues"), q.cuota()], [t("entrega"), p.entrega]];
+  if (id === "tienda") return [[t("desde"), q.monto], [t("mantenimiento"), t("aConvenir")], [t("entrega"), t("segunCatalogo")]];
+  return [[t("entrada"), q.monto], [t("cuota"), q.cuota().replace(/^\+ /, "")], [t("entrega"), p.entrega]];
 }
 // ===== Planes: carrusel 3D con números y detalle =====
 const DETALLE = {
@@ -116,29 +182,26 @@ const DETALLE = {
       ["Tu agenda bajo control", "Un panel para ver y gestionar los turnos, con aviso por WhatsApp para que nadie se olvide."]],
     entrega: "Alrededor de dos días hábiles." }
 };
-const PAGO_TXT = "Con Mercado Pago (tarjetas, dinero en cuenta y cuotas sin tarjeta) o por transferencia, a convenir.";
-const TXT_CF = { es: ["Ver qué incluye", "Contratar"], en: ["What's included", "Get the plan"], pt: ["O que inclui", "Quero este plano"] };
 let planActual = 1, idsVisibles = [];
 function dibujarPlanes() {
-  const extra = idioma === "en" ? EN_PLANES : idioma === "pt" ? PT_PLANES : null;
   const precios = PRECIOS[monedaActual()];
-  const [tVer, tContratar] = TXT_CF[idioma] || TXT_CF.es;
+  const tVer = t("verQueIncluye"), tContratar = t("contratar");
   idsVisibles = Object.keys(PLANES).filter(id => !PLANES[id].oculto);
   lista.replaceChildren();
   const numeros = $("cf-numeros"); numeros.replaceChildren();
   idsVisibles.forEach((id, i) => {
-    const p = { ...PLANES[id], corto: CORTO[id], ...precios[id], ...(extra ? extra[id] : {}) };
-    const d = DETALLE[id] || {};
+    const p = { ...planTx(id), ...precios[id] };
+    const d = detTx(id);
     const t = document.createElement("article");
     t.className = "cf-tarjeta " + (d.clase || id);
     t.dataset.i = i;
     t.innerHTML = `<div class="cf-top"><span class="cf-num">0${i + 1}</span><span class="cf-tag"></span></div><h3></h3><p class="cf-para"></p><div class="cf-precio"><span class="det"></span><b></b><span class="cuota"></span></div><ul></ul><div class="cf-acciones"><button type="button" class="boton boton-borde ver"></button><button type="button" class="boton contratar"></button></div>`;
     t.querySelector(".cf-tag").textContent = d.tag || "";
     t.querySelector("h3").textContent = p.nombre;
-    t.querySelector(".cf-para").textContent = extra ? p.corto + "." : (d.para || p.para);
+    t.querySelector(".cf-para").textContent = d.para || p.para;
     t.querySelector(".det").textContent = p.detalle;
     t.querySelector(".cf-precio b").textContent = p.monto;
-    t.querySelector(".cuota").textContent = p.cuota;
+    t.querySelector(".cuota").textContent = p.cuota();
     t.querySelector("ul").replaceChildren(...p.puntos.map(x => Object.assign(document.createElement("li"), { textContent: x })));
     t.querySelector(".ver").textContent = tVer;
     t.querySelector(".contratar").textContent = tContratar;
@@ -171,9 +234,9 @@ function irPlan(n) {
   llenarDetalle();
 }
 function llenarDetalle() {
-  const id = idsVisibles[planActual], p = PLANES[id], d = DETALLE[id];
+  const id = idsVisibles[planActual], p = planTx(id), d = DETALLE[id] && detTx(id);
   if (!d) return;
-  $("det-titulo").textContent = `${p.nombre}, punto por punto`;
+  $("det-titulo").textContent = t("detTitulo", { plan: p.nombre });
   $("det-bajada").textContent = d.bajada;
   $("det-lista").replaceChildren(...d.puntos.map(([h, t], i) => {
     const li = document.createElement("li");
@@ -181,12 +244,12 @@ function llenarDetalle() {
     li.querySelector("h4").textContent = h; li.querySelector("p").textContent = t;
     return li;
   }));
-  $("det-datos").replaceChildren(...[["¿Cuánto tarda?", d.entrega], ["¿Cómo pago?", PAGO_TXT]].map(([k, v]) => {
+  $("det-datos").replaceChildren(...[[t("cuantoTarda"), d.entrega], [t("comoPago"), t("pagoTxt")]].map(([k, v]) => {
     const div = document.createElement("div"), dt = document.createElement("dt"), dd = document.createElement("dd");
     dt.textContent = k; dd.textContent = v; div.append(dt, dd); return div;
   }));
-  $("det-contratar").textContent = `Contratar el ${p.nombre}`;
-  const q = $("det-consulta"); q.href = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola Leonardo, tengo una duda sobre el ${p.nombre}.`)}`; q.target = "_blank"; q.rel = "noopener noreferrer";
+  $("det-contratar").textContent = t("detContratar", { plan: p.nombre });
+  const q = $("det-consulta"); q.href = `https://wa.me/${WA}?text=${encodeURIComponent(t("waDuda", { plan: p.nombre }))}`; q.target = "_blank"; q.rel = "noopener noreferrer";
 }
 function abrirDetalle() {
   const det = $("detalle");
@@ -206,13 +269,13 @@ function irA(n) {
   if (n === 3) actualizarFinal();
 }
 function abrir(id, paso = 1) {
-  actual = id; const p = PLANES[id];
+  actual = id; const p = planTx(id);
   $("ventana-titulo").textContent = p.nombre; $("ventana-sub").textContent = p.sub;
   $("resumen").replaceChildren(...resumenDe(id).map(([k, v]) => { const d = document.createElement("div"); const dt = document.createElement("dt"); dt.textContent = k; const dd = document.createElement("dd"); dd.textContent = v; d.append(dt, dd); return d; }));
   llenarLista($("incluye"), p.incluye); llenarLista($("no-incluye"), p.noIncluye);
   $("temporalidad").textContent = p.temporalidad;
   irA(paso);
-  ventana.showModal();
+  if (!ventana.open) ventana.showModal();
 }
 ventana.addEventListener("click", e => {
   if (e.target === ventana || e.target.closest("[data-cerrar]")) ventana.close();
@@ -223,8 +286,8 @@ $("form-datos").addEventListener("submit", e => {
   e.preventDefault();
   const nombre = $("f-nombre").value.trim();
   const err = $("error-datos");
-  if (nombre.length < 3) { err.textContent = "Escribí tu nombre completo para que sepa con quién hablo."; err.hidden = false; $("f-nombre").focus(); return; }
-  if (!$("f-acepto").checked) { err.textContent = "Para seguir, aceptá el uso de tus datos para responderte."; err.hidden = false; return; }
+  if (nombre.length < 3) { err.textContent = t("errNombre"); err.hidden = false; $("f-nombre").focus(); return; }
+  if (!$("f-acepto").checked) { err.textContent = t("errAcepto"); err.hidden = false; return; }
   err.hidden = true;
   datos.nombre = nombre; datos.rubro = $("f-rubro").value.trim(); datos.idea = $("f-idea").value.trim();
   irA(3);
@@ -233,45 +296,45 @@ $("form-pago").addEventListener("change", actualizarFinal);
 
 function actualizarFinal() {
   if (!actual) return;
-  const p = PLANES[actual];
+  const p = planTx(actual);
   const pago = new FormData($("form-pago")).get("pago");
   const convenir = pago === "A convenir";
+  const pagoNombre = convenir ? t("aConvenir") : pago;
   const lineas = [
-    convenir ? `Hola Leonardo, quiero contratar el ${p.nombre} de Tereré Estudio y coordinar el pago.` : `Hola Leonardo, acabo de contratar el ${p.nombre} de Tereré Estudio.`,
-    `Soy ${datos.nombre || "(tu nombre)"}${datos.rubro ? ` (${datos.rubro})` : ""}.`,
-    datos.idea ? `Mi idea: ${datos.idea}` : "",
-    `Forma de pago: ${pago}.`
+    t(convenir ? "msgConvenir" : "msgContrate", { plan: p.nombre }),
+    t("msgSoy", { nombre: datos.nombre || t("tuNombre"), rubro: datos.rubro ? ` (${datos.rubro})` : "" }),
+    datos.idea ? t("msgIdea", { idea: datos.idea }) : "",
+    t("msgPago", { pago: pagoNombre })
   ].filter(Boolean);
   const texto = lineas.join("\n");
   $("previa").textContent = texto;
   $("link-wa").href = `https://wa.me/${WA}?text=${encodeURIComponent(texto)}`;
-  $("link-wa").textContent = convenir ? "Escribirle a Leonardo →" : "Ya pagué: avisarle a Leonardo →";
+  $("link-wa").textContent = t(convenir ? "escribirLeo" : "yaPague");
   const lp = $("link-pago");
   const esMP = pago === "Mercado Pago";
   lp.hidden = convenir;
-  lp.textContent = `Pagar con ${pago}`;
+  lp.textContent = t("pagarCon", { pago });
   lp.removeAttribute("target");
   if (esMP) { lp.removeAttribute("aria-disabled"); lp.removeAttribute("title"); }
-  else { lp.setAttribute("aria-disabled", "true"); lp.title = "Este medio de pago todavía no está disponible"; }
+  else { lp.setAttribute("aria-disabled", "true"); lp.title = t("noDisponible"); }
   $("link-wa").hidden = esMP;
   $("error-pago").hidden = true;
-  const pasos = convenir
-    ? ["Tocá el botón y se abre WhatsApp con tu pedido.", "Coordinamos la transferencia o el pago en efectivo.", "Arrancamos con tu proyecto."]
-    : esMP
-      ? ["Tocá \"Pagar con Mercado Pago\": te llevamos a Mercado Pago para pagar.", "Al terminar volvés a mi página y me avisás por WhatsApp con un toque.", "Confirmo el pago y arrancamos."]
-      : ["Este medio de pago todavía no está disponible.", "Elegí Mercado Pago o A convenir."];
+  const pasos = t(convenir ? "pasosConvenir" : esMP ? "pasosMP" : "pasosNo");
   llenarLista($("instrucciones"), pasos);
 }
 
-const waGeneral = `https://wa.me/${WA}?text=${encodeURIComponent("Hola Leonardo, vi tu página y quiero hacerte una consulta.")}`;
-document.querySelectorAll("[data-whatsapp]").forEach(a => { a.href = waGeneral; a.target = "_blank"; a.rel = "noopener noreferrer"; });
-$("cotizar").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola Leonardo, busco algo a mi medida y quiero armar mi proyecto.")}`;
-$("cotizar").target = "_blank"; $("cotizar").rel = "noopener noreferrer";
+const enlacesWa = () => {
+  const general = `https://wa.me/${WA}?text=${encodeURIComponent(t("waGeneral"))}`;
+  document.querySelectorAll("[data-whatsapp]").forEach(a => { a.href = general; a.target = "_blank"; a.rel = "noopener noreferrer"; });
+  $("cotizar").href = `https://wa.me/${WA}?text=${encodeURIComponent(t("waCotizar"))}`;
+  $("cotizar").target = "_blank"; $("cotizar").rel = "noopener noreferrer";
+};
+enlacesWa(); REFRESCAR.push(enlacesWa, () => { if (ventana.open && actual) { abrir(actual, Number([...ventana.querySelectorAll("[data-paso]")].find(x => !x.hidden)?.dataset.paso || 1)); } });
 
-document.querySelectorAll("[data-pendiente]").forEach(a => { a.title = "Enlace pendiente"; a.addEventListener("click", e => e.preventDefault()); });
+document.querySelectorAll("[data-pendiente]").forEach(a => { a.title = t("enlacePendiente"); a.addEventListener("click", e => e.preventDefault()); });
 const dockBoton = document.querySelector(".dock-boton"), dockMenu = $("dock-menu");
-const cerrarDock = () => { dockMenu.hidden = true; dockBoton.setAttribute("aria-expanded", "false"); dockBoton.setAttribute("aria-label", "Abrir menú"); };
-dockBoton.addEventListener("click", () => { const abrirlo = dockMenu.hidden; dockMenu.hidden = !abrirlo; dockBoton.setAttribute("aria-expanded", String(abrirlo)); dockBoton.setAttribute("aria-label", abrirlo ? "Cerrar menú" : "Abrir menú"); });
+const cerrarDock = () => { dockMenu.hidden = true; dockBoton.setAttribute("aria-expanded", "false"); dockBoton.setAttribute("aria-label", t("abrirMenu")); };
+dockBoton.addEventListener("click", () => { const abrirlo = dockMenu.hidden; dockMenu.hidden = !abrirlo; dockBoton.setAttribute("aria-expanded", String(abrirlo)); dockBoton.setAttribute("aria-label", t(abrirlo ? "cerrarMenu" : "abrirMenu")); });
 dockMenu.addEventListener("click", e => { if (e.target.closest("a")) cerrarDock(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") cerrarDock(); });
 document.addEventListener("click", e => { if (!e.target.closest(".dock")) cerrarDock(); });
@@ -312,75 +375,59 @@ if (!reducido && !conexionLenta) {
   if (document.readyState === "complete") setTimeout(iniciarVideo, 300); else window.addEventListener("load", () => setTimeout(iniciarVideo, 300), { once: true });
 }
 
-// Idiomas: traducción propia (sin el traductor del navegador)
-const EN = {
-  verPlanes: "See plans", ceja: "// from Corrientes to the world", h1a: "Your business, on a page that", h1b: "sells", h1c: ".",
-  bajada: "Custom landing pages in pure code. Fast, easy to find on Google and AI, and built so people reach out.",
-  btnPlan: "Get your plan →", btnTrabajos: "See my work", item2: "WhatsApp catalogs", item3: "Online booking", hola: "Hi, I'm ", founder: "founder of Tereré Estudio",
-  mPlanes: "// plans", hPlanes: "Pick your plan and let's start today", pPlanes: "Clear prices, short timelines and direct contact with me. Tap a plan to see everything it includes.",
-  medidaA: "Looking for something custom?", medidaB: "Message me on WhatsApp and we'll plan your project together.", cotizar: "Chat on WhatsApp →", cpServicios: "Services Plan", cpBase: "Base Plan", cdSilk: "Website with online booking", cdHR: "Brand identity and landing page", cpVacio: "plan", cdVacio: "Project description", promoVacio: "Client promo message →", capPend: "screenshot pending",
-  nota: "* Prices in US dollars for clients outside Argentina. This is a starting price and may change depending on what your project needs.",
-  pagarCon: "You can pay with", chip1: "Digital wallets", chip2: "Installments", chip3: "Bank transfer", chip4: "Cash",
-  mClientes: "// clients", hClientes: "They trusted me", verPortfolio: "See the full portfolio →",
-  mValores: "// why tereré", hValores: "What you'll notice",
-  v1m: "security", v1h: "Secure from day one", v1p: "Encryption, anti-spam forms and best practices against common attacks.",
-  v2m: "speed", v2h: "Loads instantly", v2p: "Pure code, no templates or plugins. Fast even on a weak signal.",
-  v3m: "trust", v3h: "You talk to me", v3p: "Clear prices and everything agreed in writing before we start.",
-  v4m: "innovation", v4h: "New tools", v4p: "I use artificial intelligence so your business moves faster.",
-  v5m: "creativity", v5h: "Made for you", v5p: "Design with your brand's identity, not just another template.",
-  mPasos: "// how I work", hPasos: "From idea to website, in five steps",
-  p1h: "You pick a plan", p1p: "Tell me your idea and pay here or arrange it on WhatsApp.",
-  p2h: "Custom design", p2p: "I build the proposal with your brand, texts and photos.",
-  p3h: "We review together", p3p: "We adjust whatever is needed before going live.",
-  p4h: "Your site goes live", p4p: "I publish your site with domain, hosting and security ready.",
-  mPie: "// let's talk", hPie: "Shall we build your website?", pPie: "Message me, tell me your idea and I'll get back to you shortly.", btnWa: "Message me on WhatsApp →",
-  mFeed: "// latest on instagram", verIg: "See what's new on Instagram →", desarrollado: "Developed by", firmaTip: "It ain't much, but it's honest work", versiones: "Previous versions of this site",
-  ps1: "Looking for hair removal?", ps2: "Book with Flor →", pm1: "Laser hair removal", pm2: "with Flor →", promoHR: "Got a legal problem? HR Estudio Jurídico can help you in Chaco, Argentina →", globo: "Want to know more? Tap here", pronto: "soon", d6: "Lab", m1: "Plans", m2: "Work", m3: "How I work", m4: "Contact", m6: "Lab", d1: "Plans", d2: "Work", d3: "How I work", d4: "Contact"
-};
-const PT = {
-  verPlanes: "Ver planos", ceja: "// de Corrientes para o mundo", h1a: "Seu negócio, numa página que", h1b: "vende", h1c: ".",
-  bajada: "Landing pages sob medida, em código puro. Rápidas, fáceis de achar no Google e na IA, e feitas para que te chamem.",
-  btnPlan: "Quero meu plano →", btnTrabajos: "Ver trabalhos", item2: "Catálogos com WhatsApp", item3: "Agendamento online", hola: "Oi, eu sou ", founder: "fundador da Tereré Estudio",
-  mPlanes: "// planos", hPlanes: "Escolha seu plano e começamos hoje", pPlanes: "Preços claros, prazos curtos e contato direto comigo. Toque em um plano para ver tudo o que inclui.",
-  medidaA: "Procura algo sob medida?", medidaB: "Me chama no WhatsApp e montamos seu projeto juntos.", cotizar: "Falar no WhatsApp →", cpServicios: "Plano Serviços", cpBase: "Plano Base", cdSilk: "Site com agendamento online", cdHR: "Identidade visual e landing page", cpVacio: "plano", cdVacio: "Descrição do trabalho", promoVacio: "Mensagem promocional do cliente →", capPend: "captura pendente",
-  pagarCon: "Você pode pagar com", chip1: "Carteiras digitais", chip3: "Transferência", chip4: "Dinheiro",
-  mClientes: "// clientes", hClientes: "Confiaram em mim", verPortfolio: "Ver todo o portfólio →",
-  ps1: "Quer se depilar?", ps2: "Agende com a Flor →", pm1: "Depilação a laser", pm2: "com a Flor →", promoHR: "Tem algum problema jurídico? O HR Estudio Jurídico pode te ajudar no Chaco, Argentina →",
-  mValores: "// por que tereré", hValores: "O que você vai notar",
-  v1m: "segurança", v1h: "Nasce protegido", v1p: "Criptografia, formulários antispam e boas práticas contra ataques comuns.",
-  v2m: "velocidade", v2h: "Carrega num instante", v2p: "Código puro, sem templates nem plugins. Rápido mesmo com sinal fraco.",
-  v3m: "confiança", v3h: "Você fala comigo", v3p: "Preços claros e tudo combinado por escrito antes de começar.",
-  v4m: "inovação", v4h: "Ferramentas novas", v4p: "Uso inteligência artificial para o seu negócio avançar mais rápido.",
-  v5m: "criatividade", v5h: "Feito para você", v5p: "Design com a identidade da sua marca, não só mais um template.",
-  mPasos: "// como trabalho", hPasos: "Da ideia ao seu site, em cinco passos",
-  p1h: "Você escolhe o plano", p1p: "Me conta sua ideia e paga por aqui ou combinamos pelo WhatsApp.",
-  p2h: "Design sob medida", p2p: "Monto a proposta com sua marca, seus textos e suas fotos.",
-  p3h: "Revisamos juntos", p3p: "Ajustamos o que for preciso antes de publicar.",
-  p4h: "Seu site no ar", p4p: "Publico seu site com domínio, hospedagem e segurança prontos.",
-  mPie: "// vamos conversar", hPie: "Vamos criar seu site?", pPie: "Me chama, conta sua ideia e eu respondo o quanto antes.", btnWa: "Falar no WhatsApp →",
-  mFeed: "// últimas publicações no instagram", verIg: "Veja as novidades no Instagram →", desarrollado: "Desenvolvido por", firmaTip: "Não é muito, mas é trabalho honesto", versiones: "Versões anteriores do site",
-  globo: "Quer saber mais? Toque aqui", pronto: "em breve", d6: "Laboratório", m1: "Planos", m2: "Trabalhos", m3: "Como trabalho", m4: "Contato", m6: "Laboratório",
-  d1: "Planos", d2: "Trabalhos", d3: "Como trabalho", d4: "Contato"
-};
-const ES = {};
-document.querySelectorAll("[data-i18n]").forEach(el => { ES[el.dataset.i18n] = el.textContent; });
-function aplicarIdioma(lang) {
-  idioma = lang;
-  const dic = lang === "en" ? EN : lang === "pt" ? PT : ES;
-  document.querySelectorAll("[data-i18n]").forEach(el => { const t = dic[el.dataset.i18n]; if (t !== undefined) el.textContent = t; });
-  document.documentElement.lang = { en: "en", pt: "pt-BR" }[lang] || "es-AR";
+// Idiomas: aplicar, menú y buscador
+const CACHE_IDIOMAS = {};
+const cargarIdioma = lang => (CACHE_IDIOMAS[lang] ||= fetch(`idiomas/${lang}.json`).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); }));
+async function aplicarIdioma(lang, guardar = true) {
+  if (!IDIOMAS[lang]) lang = "es";
+  let D = null;
+  if (lang !== "es") { try { D = await cargarIdioma(lang); } catch (e) { delete CACHE_IDIOMAS[lang]; return; } }
+  idioma = lang; DIC = D;
+  const tx = D ? (D.texto || {}) : {}, hx = D ? (D.html || {}) : {}, ax = D ? (D.attr || {}) : {};
+  UNIDADES.forEach(u => {
+    if (u.modo === "nodo") { const tr = tx[u.clave]; if (tr === undefined) { u.nodo.data = u.es; return; } const [, a, , b] = u.es.match(/^(\s*)([\s\S]*?)(\s*)$/); u.nodo.data = a + tr + b; }
+    else if (u.modo === "html") u.el.innerHTML = hx[u.clave] ?? u.es;
+    else u.el.textContent = tx[u.clave] ?? u.es;
+  });
+  ATRS.forEach(a => a.el.setAttribute(a.attr, ax[a.clave] ?? a.es));
+  const info = IDIOMAS[lang];
+  document.documentElement.lang = info.lang;
+  document.documentElement.dir = info.dir || "ltr";
   $("idioma-actual").textContent = lang.toUpperCase();
-  document.querySelectorAll("[data-idioma]").forEach(b => b.setAttribute("aria-checked", String(b.dataset.idioma === lang)));
+  document.querySelectorAll("[data-idioma]").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.idioma === lang)));
   dibujarPlanes();
-  try { localStorage.setItem("terere-idioma", lang); } catch (e) {}
+  REFRESCAR.forEach(f => { try { f(); } catch (e) {} });
+  if (guardar) try { localStorage.setItem("terere-idioma", lang); } catch (e) {}
 }
-const idiomaBoton = document.querySelector(".idioma-boton"), idiomaMenu = $("idioma-menu");
+const idiomaBoton = document.querySelector(".idioma-boton"), idiomaMenu = $("idioma-menu"), idiomaLista = $("idioma-lista"), idiomaBuscar = $("idioma-buscar");
+// Botones de la lista (los nombres van en su propio idioma)
+idiomaLista.replaceChildren(...Object.entries(IDIOMAS).map(([cod, info]) => {
+  const li = document.createElement("li"), b = document.createElement("button");
+  b.type = "button"; b.dataset.idioma = cod; b.lang = info.lang; b.setAttribute("aria-pressed", String(cod === idioma));
+  b.innerHTML = `<span></span><small>${cod.toUpperCase()}</small>`; b.querySelector("span").textContent = info.nombre;
+  if (info.beta) { const e = document.createElement("em"); e.className = "idioma-beta"; e.dataset.ui = "beta"; e.textContent = t("beta"); b.querySelector("span").append(" ", e); }
+  li.dataset.buscar = (info.nombre + " " + cod + " " + info.buscar).normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+  li.append(b); return li;
+}));
+const sinIdioma = document.createElement("li"); sinIdioma.className = "idioma-vacio"; sinIdioma.hidden = true; idiomaLista.append(sinIdioma);
+const filtrarIdiomas = () => {
+  const q = idiomaBuscar.value.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+  let hay = 0; idiomaLista.querySelectorAll("li[data-buscar]").forEach(li => { const ok = !q || li.dataset.buscar.includes(q); li.hidden = !ok; if (ok) hay++; });
+  sinIdioma.textContent = t("sinIdioma"); sinIdioma.hidden = hay > 0;
+};
+idiomaBuscar.addEventListener("input", filtrarIdiomas);
+idiomaBuscar.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); idiomaLista.querySelector("li[data-buscar]:not([hidden]) button")?.click(); } if (e.key === "ArrowDown") { e.preventDefault(); idiomaLista.querySelector("li[data-buscar]:not([hidden]) button")?.focus(); } });
+REFRESCAR.push(() => { idiomaBuscar.placeholder = t("buscarIdioma"); idiomaLista.querySelectorAll("[data-ui='beta']").forEach(e => { e.textContent = t("beta"); }); });
+idiomaBuscar.placeholder = t("buscarIdioma");
 const cerrarIdioma = () => { idiomaMenu.hidden = true; idiomaBoton.setAttribute("aria-expanded", "false"); };
-idiomaBoton.addEventListener("click", () => { const abrirlo = idiomaMenu.hidden; idiomaMenu.hidden = !abrirlo; idiomaBoton.setAttribute("aria-expanded", String(abrirlo)); });
-idiomaMenu.addEventListener("click", e => { const b = e.target.closest("[data-idioma]"); if (b) { aplicarIdioma(b.dataset.idioma); cerrarIdioma(); } });
+idiomaBoton.addEventListener("click", () => {
+  const abrirlo = idiomaMenu.hidden; idiomaMenu.hidden = !abrirlo; idiomaBoton.setAttribute("aria-expanded", String(abrirlo));
+  if (abrirlo) { idiomaBuscar.value = ""; filtrarIdiomas(); if (matchMedia("(pointer: fine)").matches) idiomaBuscar.focus(); }
+});
+idiomaLista.addEventListener("click", e => { const b = e.target.closest("[data-idioma]"); if (b) { aplicarIdioma(b.dataset.idioma); cerrarIdioma(); idiomaBoton.focus(); } });
 document.addEventListener("click", e => { if (!e.target.closest(".idioma")) cerrarIdioma(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") cerrarIdioma(); });
-try { const guardado = localStorage.getItem("terere-idioma"); if (guardado === "en" || guardado === "pt") aplicarIdioma(guardado); } catch (e) {}
+try { const guardado = localStorage.getItem("terere-idioma"); if (guardado && guardado !== "es" && IDIOMAS[guardado]) aplicarIdioma(guardado, false); } catch (e) {}
 
 const cv = $("lluvia");
 if (cv && !reducido) {
@@ -475,7 +522,7 @@ dibujarPlanes();
   // Productos con IA: el mismo carrusel 3D que los planes
   const prodLista = $("lista-productos");
   if (prodLista) {
-    const prods = [...prodLista.children], CORTOS = ["Asistente", "Agentes", "Auditoría", "Automatiza"];
+    const prods = [...prodLista.children];
     let prodActual = 0;
     const irProd = n => {
       prodActual = Math.max(0, Math.min(prods.length - 1, n));
@@ -487,8 +534,7 @@ dibujarPlanes();
     };
     prods.forEach((t, i) => {
       const b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab");
-      b.innerHTML = `<b>0${i + 1}</b>`; b.append(CORTOS[i] || t.querySelector("h3").textContent);
-      b.setAttribute("aria-label", t.querySelector("h3").textContent);
+      b.innerHTML = `<b>0${i + 1}</b><span></span>`;
       b.addEventListener("click", () => irProd(i)); $("prod-numeros").append(b);
       t.addEventListener("click", () => { if (i !== prodActual) irProd(i); });
     });
@@ -498,6 +544,8 @@ dibujarPlanes();
     let px = null;
     prodLista.addEventListener("pointerdown", e => { px = e.clientX; });
     prodLista.addEventListener("pointerup", e => { if (px === null) return; const dx = e.clientX - px; px = null; if (Math.abs(dx) > 40) irProd(prodActual + (dx < 0 ? 1 : -1)); });
+    const rotular = () => [...$("prod-numeros").children].forEach((b, i) => { b.querySelector("span").textContent = t("productosCortos")[i] || prods[i].querySelector("h3").textContent; b.setAttribute("aria-label", prods[i].querySelector("h3").textContent); });
+    rotular(); REFRESCAR.push(rotular);
     irProd(0);
   }
   let x0 = null;
@@ -573,8 +621,9 @@ dibujarPlanes();
   let tocando = false, autoScroll = false;
   // Puntitos del carrusel (solo se ven en el celular)
   const puntos = document.createElement("div"); puntos.className = "val-puntos";
-  const botones = vals.map((v, i) => { const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", "Ver " + v.querySelector("h3").textContent); b.addEventListener("click", () => { marcar(i); centrar(i); }); puntos.append(b); return b; });
+  const botones = vals.map((v, i) => { const b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", t("verX", { x: v.querySelector("h3").textContent })); b.addEventListener("click", () => { marcar(i); centrar(i); }); puntos.append(b); return b; });
   caja.after(puntos);
+  REFRESCAR.push(() => botones.forEach((b, i) => b.setAttribute("aria-label", t("verX", { x: vals[i].querySelector("h3").textContent }))));
   function marcar(i) { vals.forEach((v, j) => v.classList.toggle("encendida", j === i)); botones.forEach((b, j) => b.setAttribute("aria-current", String(j === i))); vi = i; }
   function centrar(i) { if (!celu.matches) return; const v = vals[i]; autoScroll = true; caja.scrollTo({ left: v.offsetLeft - (caja.clientWidth - v.offsetWidth) / 2, behavior: red ? "auto" : "smooth" }); setTimeout(() => { autoScroll = false; }, 700); }
   const encender = () => { if (tocando) return; const i = vi; marcar(i); centrar(i); vi = (i + 1) % vals.length; };
@@ -604,19 +653,19 @@ dibujarPlanes();
     const tipos = new Set(); const juntar = o => { if (Array.isArray(o)) o.forEach(juntar); else if (o && typeof o === "object") { if (o["@type"]) [].concat(o["@type"]).forEach(t => tipos.add(t)); Object.values(o).forEach(juntar); } }; juntar(ld);
     const nav = performance.getEntriesByType("navigation")[0], carga = nav ? Math.round(nav.domContentLoadedEventEnd) : null;
     const items = [
-      ["SEO", titulo.length >= 30 && titulo.length <= 65, "Título", `${titulo.length} caracteres (ideal: 30 a 65)`, 1],
-      ["SEO", desc.length >= 70 && desc.length <= 160, "Descripción", `${desc.length} caracteres (ideal: 70 a 160)`, 1],
-      ["SEO", h1 === 1, "Un solo título principal", `${h1} H1 en la página`],
-      ["SEO", !saltos, "Jerarquía de títulos", saltos ? "Hay saltos de nivel" : "Ordenada, sin saltos"],
-      ["SEO", sinAlt === 0, "Textos alternativos", `${imgs.length - sinAlt} de ${imgs.length} imágenes con descripción`],
-      ["SEO", !!document.querySelector('link[rel="canonical"]'), "URL canónica", document.querySelector('link[rel="canonical"]') ? "Definida" : "Falta"],
-      ["SEO", !!og("og:title") && !!og("og:image"), "Vista al compartir", og("og:title") ? "Título e imagen para redes" : "Falta Open Graph"],
-      ["GEO", tipos.has("ProfessionalService") || tipos.has("LocalBusiness"), "Negocio identificado", "Datos estructurados del estudio", 1],
-      ["GEO", tipos.has("Offer"), "Planes con precio", "Ofertas legibles por la IA", 1],
-      ["GEO", /Corrientes/.test(JSON.stringify(ld)), "Ubicación", "Corrientes, para búsquedas locales"],
-      ["Velocidad", carga !== null && carga < 2500, "Carga inicial", carga !== null ? `${(carga / 1000).toFixed(2)} s` : "Sin dato", 1],
-      ["Seguridad", location.protocol === "https:", "Conexión segura", location.protocol === "https:" ? "HTTPS" : "Sin HTTPS"],
-      ["Seguridad", !!document.querySelector('meta[name="viewport"]'), "Apta para celular", "Diseño adaptable"]
+      ["SEO", titulo.length >= 30 && titulo.length <= 65, t("aTitulo"), t("aTituloDet", { n: titulo.length }), 1],
+      ["SEO", desc.length >= 70 && desc.length <= 160, t("aDesc"), t("aDescDet", { n: desc.length }), 1],
+      ["SEO", h1 === 1, t("aH1"), t("aH1Det", { n: h1 })],
+      ["SEO", !saltos, t("aJerarquia"), t(saltos ? "aSaltos" : "aOrdenada")],
+      ["SEO", sinAlt === 0, t("aAlt"), t("aAltDet", { a: imgs.length - sinAlt, b: imgs.length })],
+      ["SEO", !!document.querySelector('link[rel="canonical"]'), t("aCanonica"), t(document.querySelector('link[rel="canonical"]') ? "aDefinida" : "aFalta")],
+      ["SEO", !!og("og:title") && !!og("og:image"), t("aCompartir"), t(og("og:title") ? "aCompartirOk" : "aCompartirNo")],
+      ["GEO", tipos.has("ProfessionalService") || tipos.has("LocalBusiness"), t("aNegocio"), t("aNegocioDet"), 1],
+      ["GEO", tipos.has("Offer"), t("aPlanes"), t("aPlanesDet"), 1],
+      ["GEO", /Corrientes/.test(JSON.stringify(ld)), t("aUbicacion"), t("aUbicacionDet")],
+      [t("aVelocidad"), carga !== null && carga < 2500, t("aCarga"), carga !== null ? `${(carga / 1000).toFixed(2)} s` : t("aSinDato"), 1],
+      [t("aSeguridad"), location.protocol === "https:", t("aConexion"), location.protocol === "https:" ? "HTTPS" : t("aSinHttps")],
+      [t("aSeguridad"), !!document.querySelector('meta[name="viewport"]'), t("aCelular"), t("aAdaptable")]
     ];
     const fila = ([g, ok, nombre, det], i) => { const li = document.createElement("li"); li.innerHTML = `<span class="${ok ? "ok" : "ojo"}">${ok ? "✓" : "!"}</span><div><strong></strong><span class="det"></span></div>`; li.querySelector("strong").textContent = nombre; li.querySelector(".det").textContent = det; setTimeout(() => li.classList.add("listo"), red ? 0 : 120 + i * 90); return li; };
     $("audit-resumen").replaceChildren(...items.filter(x => x[4]).map(fila));
@@ -626,12 +675,13 @@ dibujarPlanes();
     if (red) { n.textContent = puntaje; return; }
     const t0 = performance.now(), dur = 1200; const paso = t => { const k = Math.min(1, (t - t0) / dur); n.textContent = Math.round(puntaje * (1 - Math.pow(1 - k, 3))); if (k < 1) requestAnimationFrame(paso); }; requestAnimationFrame(paso);
   }
-  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); auditar(); } }, { threshold: 0.3 }).observe($("auditoria"));
-  $("audit-ver").addEventListener("click", e => { const b = e.currentTarget, abierto = $("audit-mas").classList.toggle("abierto"); b.setAttribute("aria-expanded", String(abierto)); b.textContent = abierto ? "Ver menos" : "Ver más"; });
+  let auditado = false;
+  new IntersectionObserver(([e], o) => { if (e.isIntersecting) { o.disconnect(); auditado = true; auditar(); } }, { threshold: 0.3 }).observe($("auditoria"));
+  $("audit-ver").addEventListener("click", e => { const b = e.currentTarget, abierto = $("audit-mas").classList.toggle("abierto"); b.setAttribute("aria-expanded", String(abierto)); b.textContent = t(abierto ? "verMenos" : "verMas"); });
+  REFRESCAR.push(() => { if (auditado) auditar(); const b = $("audit-ver"); b.textContent = t(b.getAttribute("aria-expanded") === "true" ? "verMenos" : "verMas"); });
 
   // Cómo trabajo: avanza solo y celebra en el paso 5
   const pasos = qq("#pasos li"), pista = $("pasos"), frase = $("pasos-frase"), barra = $("pasos-progreso");
-  const FRASES = ["Tu negocio, abierto las 24 horas.", "Te encuentran en Google y en la IA.", "Vendés incluso mientras dormís.", "Tu marca, con nombre propio en internet."];
   let pi = -1, pt = null, fi = 0;
   const confeti = li => { const col = ["#231F20", "#F3E9DA", "#4A5F12", "#FFFFFF"]; for (let k = 0; k < 34; k++) { const c = document.createElement("i"); c.className = "confeti"; c.style.left = Math.random() * 100 + "%"; c.style.background = col[k % col.length]; c.style.setProperty("--cx", (Math.random() * 120 - 60).toFixed(0) + "px"); c.style.setProperty("--cr", (Math.random() * 720 - 360).toFixed(0) + "deg"); c.style.setProperty("--cdur", (1.2 + Math.random() * 1.1).toFixed(2) + "s"); c.style.animationDelay = (Math.random() * 0.25).toFixed(2) + "s"; li.append(c); setTimeout(() => c.remove(), 2800); } };
   function avanzar() {
@@ -639,7 +689,7 @@ dibujarPlanes();
     pasos.forEach((li, i) => { li.classList.toggle("hecho", i <= k); li.classList.toggle("actual", i === k); });
     barra.style.setProperty("--pp", ((k + 1) / pasos.length).toFixed(3));
     if (matchMedia("(max-width: 860px)").matches) pista.scrollTo({ left: pasos[k].offsetLeft - (pista.clientWidth - pasos[k].offsetWidth) / 2, behavior: "smooth" });
-    if (pi === pasos.length - 1) { confeti(pasos[k]); frase.replaceChildren(Object.assign(document.createElement("span"), { textContent: FRASES[fi++ % FRASES.length] })); }
+    if (pi === pasos.length - 1) { confeti(pasos[k]); frase.replaceChildren(Object.assign(document.createElement("span"), { textContent: t("frases")[fi++ % t("frases").length] })); }
     if (pi === 0) frase.textContent = "";
   }
   if (red) { pasos.forEach(li => li.classList.add("hecho")); barra.style.setProperty("--pp", 1); }
@@ -654,7 +704,7 @@ $("link-pago").addEventListener("click", async (e) => {
   if (pago !== "Mercado Pago" || lp.getAttribute("aria-disabled") === "true" || lp.dataset.cargando) return;
   const texto = lp.textContent;
   lp.dataset.cargando = "1";
-  lp.textContent = "Conectando con Mercado Pago…";
+  lp.textContent = t("conectandoMP");
   try {
     const r = await fetch("/api/crear-pago", {
       method: "POST",
@@ -688,7 +738,7 @@ $("link-pago").addEventListener("click", async (e) => {
       a.href = p.url; a.target = "_blank"; a.rel = "noopener noreferrer";
       if (p.video) a.className = "video";
       const img = document.createElement("img");
-      img.src = p.imagen; img.alt = p.texto ? "Instagram: " + p.texto : "Publicación de Instagram de Tereré Estudio";
+      img.src = p.imagen; img.alt = p.texto ? "Instagram: " + p.texto : t("igAlt");
       img.width = 320; img.height = 320; img.loading = "lazy"; img.decoding = "async";
       a.append(img); return a;
     }));

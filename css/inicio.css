@@ -247,10 +247,16 @@ img { max-width: 100%; }
 .idioma-boton { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--borde); background: rgba(22,20,21,0.6); color: var(--texto); font: 500 0.85rem/1 var(--f-mono); cursor: pointer; }
 .idioma-boton:hover { border-color: var(--verde); }
 .idioma-boton svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; }
-.idioma-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 190px; max-height: min(70vh, 520px); overflow-y: auto; margin: 0; padding: 6px; list-style: none; background: var(--carbon-2); border: 1px solid var(--borde); border-radius: 12px; box-shadow: 0 14px 30px rgba(0,0,0,0.5); z-index: 30; }
+.idioma-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 230px; max-height: min(70vh, 520px); overflow-y: auto; margin: 0; padding: 6px; list-style: none; background: var(--carbon-2); border: 1px solid var(--borde); border-radius: 12px; box-shadow: 0 14px 30px rgba(0,0,0,0.5); z-index: 30; }
 .idioma-menu button { width: 100%; display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 0; border-radius: 8px; background: transparent; color: var(--texto); font: 400 0.95rem/1 var(--f-texto); cursor: pointer; text-align: left; }
 .idioma-menu button:hover { background: var(--carbon); }
-.idioma-menu button[aria-checked="true"] { color: var(--verde); font-weight: 700; }
+.idioma-menu button[aria-pressed="true"] { color: var(--verde); font-weight: 700; }
+.idioma-lista { margin: 0; padding: 0; list-style: none; }
+.idioma-buscar { position: sticky; top: 0; z-index: 1; width: 100%; margin: 0 0 6px; padding: 9px 12px; border: 1px solid var(--borde); border-radius: 8px; background: var(--noche); color: var(--texto); font: 400 0.9rem var(--f-texto); }
+.idioma-buscar:focus { outline: none; border-color: var(--verde); }
+.idioma-buscar::placeholder { color: var(--suave); }
+.idioma-beta { font: 500 0.62rem var(--f-mono); font-style: normal; color: var(--verde); border: 1px solid rgba(159,189,43,0.4); border-radius: 999px; padding: 1px 6px; vertical-align: middle; }
+.idioma-vacio { padding: 10px 12px; color: var(--suave); font-size: 0.85rem; }
 .idioma-menu button:disabled { color: var(--suave); cursor: default; }
 .idioma-menu small { font-family: var(--f-mono); font-size: 0.7rem; color: var(--suave); }
 
