@@ -112,15 +112,36 @@ html.a-contraste .texto p, html.a-contraste .texto li { color: #FFFFFF; }
 }
 html.a-quieto *, html.a-quieto *::before, html.a-quieto *::after { animation: none !important; transition: none !important; }
 
-/* Celular */
+/* Título compacto: solo existe en celular (ver abajo) */
+.titulo-fijo { display: none; }
+
+/* Celular: la portada es la cabecera, todo lo demás se va con el scroll
+   y solo queda fijo el título compacto debajo de la barra */
 @media (max-width: 900px) {
-  .entrada { grid-template-columns: minmax(0, 1fr); }
+  .entrada { --borde: clamp(16px, 4vw, 40px); grid-template-columns: minmax(0, 1fr); padding-top: 0; }
   .lateral { position: static; max-height: none; overflow: visible; }
   .indice { display: none; }
-  .lector-voz { position: sticky; top: 64px; z-index: 10; box-shadow: 0 12px 28px rgba(0,0,0,0.5); }
+  .portada { order: -1; margin: 0 calc(var(--borde) * -1) 4px; border: 0; border-bottom: 1px solid var(--linea); border-radius: 0; transform: none; }
+  .portada img { aspect-ratio: 16 / 10; max-height: 62vh; }
+  .portada::after { background: linear-gradient(180deg, transparent 45%, rgba(15,13,18,0.85)); }
+  .portada figcaption { left: var(--borde); right: var(--borde); }
   .texto .articulo-texto > p:first-of-type::first-letter, .texto > p:first-of-type::first-letter { font-size: 3.4em; }
   .leyendo::before { left: -10px; }
+  .texto, .texto h2 { scroll-margin-top: 140px; }
+
+  .titulo-fijo { display: block; position: absolute; left: 0; right: 0; top: 100%; margin: 0; padding: 10px var(--borde-barra, 16px) 11px; padding-left: calc(var(--borde-barra, 16px) + 14px); background: rgba(15,13,18,0.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--linea); box-shadow: 0 10px 24px rgba(0,0,0,0.45); opacity: 0; visibility: hidden; pointer-events: none; }
+  .titulo-fijo::before { content: ""; position: absolute; left: var(--borde-barra, 16px); top: 12px; bottom: 13px; width: 3px; border-radius: 2px; background: var(--violeta); }
+  .titulo-fijo::after { content: ""; position: absolute; left: 0; bottom: -1px; height: 3px; width: 100%; background: var(--violeta); transform-origin: 0 50%; transform: scaleX(var(--p, 0)); box-shadow: 0 0 12px var(--violeta); }
+  .titulo-fijo span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; font: 700 0.9rem/1.3 var(--f-mono); letter-spacing: -0.02em; color: var(--blanco); }
+  html.con-titulo .titulo-fijo { opacity: 1; visibility: visible; }
+  html.con-titulo .barra .progreso { opacity: 0; }
 }
+.barra { --borde-barra: clamp(16px, 4vw, 40px); }
+@media (max-width: 900px) and (prefers-reduced-motion: no-preference) {
+  html:not(.a-quieto) .titulo-fijo { transform: translateY(-6px); transition: opacity .2s ease, transform .2s ease, visibility 0s linear .2s; }
+  html.con-titulo:not(.a-quieto) .titulo-fijo { transform: none; transition: opacity .2s ease, transform .2s ease, visibility 0s; }
+}
+html.a-contraste .titulo-fijo { background: #000000; }
 
 /* Piezas propias de los artículos del sitio */
 .texto figure { margin: 0 0 1.6em; }

@@ -26,6 +26,14 @@ if (matchMedia("(hover: hover)").matches) {
   portada.addEventListener("pointerleave", () => { portada.style.setProperty("--rx", "0deg"); portada.style.setProperty("--ry", "0deg"); });
 }
 
+// Celular: cuando el título real se va por arriba, aparece el título compacto debajo de la barra
+const barra = $(".barra"), h1 = $(".lateral h1");
+if (barra && h1 && $(".titulo-fijo")) {
+  const ioTitulo = new IntersectionObserver(es => es.forEach(e => raiz.classList.toggle("con-titulo", !e.isIntersecting && e.boundingClientRect.top < (e.rootBounds ? e.rootBounds.top : 0) + 1)), { rootMargin: `-${Math.round(barra.offsetHeight)}px 0px 0px 0px` });
+  ioTitulo.observe(h1);
+}
+const tapaArriba = () => barra ? barra.getBoundingClientRect().bottom + (raiz.classList.contains("con-titulo") ? $(".titulo-fijo").offsetHeight : 0) + 12 : 90;
+
 // Aparición del texto
 const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visto"); io.unobserve(e.target); } }), { threshold: 0.08 });
 const revelables = [...texto.querySelectorAll(":scope > figure, :scope > p, :scope > h2, :scope > ul, :scope > ol, :scope > blockquote, .articulo-texto > *, .articulo-texto section > *, .cierre")];
@@ -56,7 +64,7 @@ const bloques = [...texto.querySelectorAll("p, h2, h3, li, blockquote")].filter(
 const VELOCIDADES = [1, 1.25, 1.5, 0.85];
 let vel = 0, actual = 0, sonando = false, pausado = false, vozElegida = null;
 function elegirVoz() { const vs = habla.getVoices(); vozElegida = vs.find(v => /es[-_]AR/i.test(v.lang)) || vs.find(v => /es[-_](MX|US|419)/i.test(v.lang)) || vs.find(v => /^es/i.test(v.lang)) || null; }
-function marcar(i) { bloques.forEach(b => b.classList.remove("leyendo")); if (bloques[i]) { bloques[i].classList.add("leyendo"); const r = bloques[i].getBoundingClientRect(); if (r.top < 90 || r.bottom > innerHeight - 40) bloques[i].scrollIntoView({ block: "center", behavior: raiz.classList.contains("a-quieto") ? "auto" : "smooth" }); } }
+function marcar(i) { bloques.forEach(b => b.classList.remove("leyendo")); if (bloques[i]) { bloques[i].classList.add("leyendo"); const r = bloques[i].getBoundingClientRect(); if (r.top < tapaArriba() || r.bottom > innerHeight - 40) bloques[i].scrollIntoView({ block: "center", behavior: raiz.classList.contains("a-quieto") ? "auto" : "smooth" }); } }
 function decir(i) {
   if (i >= bloques.length) { detener(); estado.textContent = "Terminó la lectura."; return; }
   actual = i; marcar(i);
