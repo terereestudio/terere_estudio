@@ -9,6 +9,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from 'node:fs';
 import { join, dirname, relative, sep } from 'node:path';
+import { createHash } from 'node:crypto';
 
 const DOMINIO = 'https://terereestudio.com.ar';
 const RAIZ = dirname(new URL(import.meta.url).pathname);
@@ -92,6 +93,7 @@ function jsonLd(meta, url) {
   return null;
 }
 
+const escritas = []; // páginas generadas, para ponerles la versión a CSS y JS al final
 const generadas = [];
 
 for (const archivo of listarPaginas(join(SRC, 'paginas'))) {
@@ -207,6 +209,7 @@ ${partes.footer}
   const destino = join(RAIZ, rel);
   mkdirSync(dirname(destino), { recursive: true });
   writeFileSync(destino, html);
+  escritas.push(destino);
   if (!meta.noindex) generadas.push({ url, fecha: meta.fecha });
   console.log('✓', rel);
 }
@@ -226,6 +229,20 @@ ${partes.footer}
   mkdirSync(join(RAIZ, 'css'), { recursive: true });
   writeFileSync(join(RAIZ, 'css', 'estilos.css'), css);
   console.log('✓ css/estilos.css');
+}
+
+// Versión en CSS y JS: cada enlace lleva ?v=<huella del archivo>. Cuando un archivo cambia,
+// cambia la huella y el navegador baja la versión nueva en lugar de usar la que tenía guardada.
+{
+  const huellas = {};
+  const huella = (ruta) => (huellas[ruta] ??= createHash('sha256').update(readFileSync(join(RAIZ, ruta))).digest('hex').slice(0, 10));
+  for (const archivo of escritas) {
+    const html = readFileSync(archivo, 'utf8').replace(/((?:href|src)="(?:\.\.\/)*)((?:css|js)\/[\w.-]+\.(?:css|js))(?:\?v=\w+)?"/g, (m, pre, ruta) => {
+      try { return `${pre}${ruta}?v=${huella(ruta)}"`; } catch { return m; }
+    });
+    writeFileSync(archivo, html);
+  }
+  console.log('✓ versiones de CSS y JS');
 }
 
 // sitemap.xml

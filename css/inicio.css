@@ -243,18 +243,30 @@ img { max-width: 100%; }
 
 /* Idiomas */
 .barra-acciones { display: flex; align-items: center; gap: 10px; }
-.idioma { position: relative; }
-.idioma-boton { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--borde); background: rgba(22,20,21,0.6); color: var(--texto); font: 500 0.85rem/1 var(--f-mono); cursor: pointer; }
-.idioma-boton:hover { border-color: var(--verde); }
-.idioma-boton svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; }
-.idioma-menu { position: absolute; right: 0; top: calc(100% + 8px); min-width: 230px; max-height: min(70vh, 520px); overflow-y: auto; margin: 0; padding: 6px; list-style: none; background: var(--carbon-2); border: 1px solid var(--borde); border-radius: 12px; box-shadow: 0 14px 30px rgba(0,0,0,0.5); z-index: 30; }
+.idioma { position: relative; display: flex; justify-content: flex-end; }
+/* El botón de idiomas se estira y se convierte en buscador; el globo se vuelve lupa */
+.idioma-caja { display: flex; align-items: center; height: 40px; width: 82px; border: 1px solid var(--borde); border-radius: 999px; background: rgba(22,20,21,0.6); backdrop-filter: blur(8px); overflow: hidden; transition: width .4s cubic-bezier(.2,.8,.2,1), border-color .25s, background .25s; }
+.idioma-caja:hover { border-color: var(--verde); }
+.idioma.abierta .idioma-caja { width: min(280px, calc(100vw - 170px)); border-color: var(--verde); background: var(--carbon-2); }
+.idioma-boton { flex: none; display: inline-flex; align-items: center; gap: 8px; height: 100%; padding: 0 12px 0 14px; border: 0; background: none; color: var(--texto); font: 700 0.85rem var(--f-mono); cursor: pointer; }
+.idioma-icono { position: relative; width: 18px; height: 18px; flex: none; }
+.idioma-icono svg { position: absolute; inset: 0; width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; transition: opacity .3s, transform .4s cubic-bezier(.2,.8,.2,1); }
+.ico-lupa { opacity: 0; transform: rotate(-90deg) scale(.5); color: var(--verde); }
+.idioma.abierta .ico-globo { opacity: 0; transform: rotate(90deg) scale(.5); }
+.idioma.abierta .ico-lupa { opacity: 1; transform: none; }
+#idioma-actual { display: inline-block; max-width: 3ch; overflow: hidden; transition: max-width .3s, opacity .2s; }
+.idioma.abierta #idioma-actual { max-width: 0; opacity: 0; }
+.idioma.abierta .idioma-boton { gap: 0; padding-right: 6px; }
+.idioma-buscar { flex: 1; min-width: 0; height: 100%; padding: 0 14px 0 4px; border: 0; background: none; color: var(--texto); font: 400 0.92rem var(--f-texto); outline: none; opacity: 0; visibility: hidden; transition: opacity .2s, visibility 0s .4s; }
+.idioma-buscar::placeholder { color: var(--suave); }
+.idioma-buscar::-webkit-search-cancel-button { filter: invert(1) opacity(.6); }
+.idioma.abierta .idioma-buscar { opacity: 1; visibility: visible; transition: opacity .25s .15s, visibility 0s; }
+@media (prefers-reduced-motion: reduce) { .idioma-caja, .idioma-icono svg, #idioma-actual, .idioma-buscar { transition: none !important; } }
+.idioma-menu { position: absolute; right: 0; top: calc(100% + 8px); width: min(280px, calc(100vw - 170px)); min-width: 200px; max-height: min(70vh, 520px); overflow-y: auto; margin: 0; padding: 6px; list-style: none; background: var(--carbon-2); border: 1px solid var(--borde); border-radius: 12px; box-shadow: 0 14px 30px rgba(0,0,0,0.5); z-index: 30; }
 .idioma-menu button { width: 100%; display: flex; justify-content: space-between; gap: 10px; padding: 10px 12px; border: 0; border-radius: 8px; background: transparent; color: var(--texto); font: 400 0.95rem/1 var(--f-texto); cursor: pointer; text-align: left; }
 .idioma-menu button:hover { background: var(--carbon); }
 .idioma-menu button[aria-pressed="true"] { color: var(--verde); font-weight: 700; }
 .idioma-lista { margin: 0; padding: 0; list-style: none; }
-.idioma-buscar { position: sticky; top: 0; z-index: 1; width: 100%; margin: 0 0 6px; padding: 9px 12px; border: 1px solid var(--borde); border-radius: 8px; background: var(--noche); color: var(--texto); font: 400 0.9rem var(--f-texto); }
-.idioma-buscar:focus { outline: none; border-color: var(--verde); }
-.idioma-buscar::placeholder { color: var(--suave); }
 .idioma-beta { font: 500 0.62rem var(--f-mono); font-style: normal; color: var(--verde); border: 1px solid rgba(159,189,43,0.4); border-radius: 999px; padding: 1px 6px; vertical-align: middle; }
 .idioma-vacio { padding: 10px 12px; color: var(--suave); font-size: 0.85rem; }
 .idioma-menu button:disabled { color: var(--suave); cursor: default; }
@@ -725,4 +737,4 @@ html, body { overflow-x: clip; }
 /* Árabe (de derecha a izquierda): las flechas de los carruseles se dan vuelta */
 html[dir="rtl"] .cf-flecha { transform: scaleX(-1); }
 /* Árabe e hindi: las letras van unidas, así que sin espaciado extra entre letras */
-html:is([lang="ar"], [lang="hi"]) :is(.mono, h1, h2, h3, .cf-tag, .idioma-boton) { letter-spacing: 0 !important; }
+html:is([lang="ar"], [lang="hi"]) :is(.mono, h1, h2, h3, .cf-tag) { letter-spacing: 0 !important; }

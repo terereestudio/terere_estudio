@@ -419,11 +419,20 @@ idiomaBuscar.addEventListener("input", filtrarIdiomas);
 idiomaBuscar.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); idiomaLista.querySelector("li[data-buscar]:not([hidden]) button")?.click(); } if (e.key === "ArrowDown") { e.preventDefault(); idiomaLista.querySelector("li[data-buscar]:not([hidden]) button")?.focus(); } });
 REFRESCAR.push(() => { idiomaBuscar.placeholder = t("buscarIdioma"); idiomaLista.querySelectorAll("[data-ui='beta']").forEach(e => { e.textContent = t("beta"); }); });
 idiomaBuscar.placeholder = t("buscarIdioma");
-const cerrarIdioma = () => { idiomaMenu.hidden = true; idiomaBoton.setAttribute("aria-expanded", "false"); };
-idiomaBoton.addEventListener("click", () => {
-  const abrirlo = idiomaMenu.hidden; idiomaMenu.hidden = !abrirlo; idiomaBoton.setAttribute("aria-expanded", String(abrirlo));
-  if (abrirlo) { idiomaBuscar.value = ""; filtrarIdiomas(); if (matchMedia("(pointer: fine)").matches) idiomaBuscar.focus(); }
-});
+const cajaIdioma = document.querySelector(".idioma");
+const cerrarIdioma = () => {
+  if (idiomaMenu.hidden) return;
+  idiomaMenu.hidden = true; cajaIdioma.classList.remove("abierta");
+  idiomaBoton.setAttribute("aria-expanded", "false"); idiomaBuscar.tabIndex = -1;
+};
+const abrirIdioma = () => {
+  idiomaBuscar.value = ""; filtrarIdiomas();
+  cajaIdioma.classList.add("abierta"); idiomaMenu.hidden = false;
+  idiomaBoton.setAttribute("aria-expanded", "true"); idiomaBuscar.tabIndex = 0;
+  setTimeout(() => idiomaBuscar.focus({ preventScroll: true }), 120);
+};
+// Tocar el globo abre el buscador; con el buscador abierto, la lupa lo cierra
+idiomaBoton.addEventListener("click", () => { if (idiomaMenu.hidden) abrirIdioma(); else cerrarIdioma(); });
 idiomaLista.addEventListener("click", e => { const b = e.target.closest("[data-idioma]"); if (b) { aplicarIdioma(b.dataset.idioma); cerrarIdioma(); idiomaBoton.focus(); } });
 document.addEventListener("click", e => { if (!e.target.closest(".idioma")) cerrarIdioma(); });
 document.addEventListener("keydown", e => { if (e.key === "Escape") cerrarIdioma(); });

@@ -8,12 +8,17 @@
     <img src="img/v2/logo-blanco.svg" width="200" height="80" alt="Tereré Estudio">
     <div class="barra-acciones">
       <div class="idioma">
-        <button class="idioma-boton" type="button" aria-expanded="false" aria-controls="idioma-menu" aria-label="Cambiar idioma">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.8 3.8 5.8 3.8 9s-1.3 6.2-3.8 9c-2.5-2.8-3.8-5.8-3.8-9S9.5 5.8 12 3z"/></svg>
-          <span id="idioma-actual" data-no-traducir>ES</span>
-        </button>
+        <div class="idioma-caja">
+          <button class="idioma-boton" type="button" aria-expanded="false" aria-controls="idioma-menu" aria-label="Cambiar idioma">
+            <span class="idioma-icono" aria-hidden="true">
+              <svg class="ico-globo" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.8 3.8 5.8 3.8 9s-1.3 6.2-3.8 9c-2.5-2.8-3.8-5.8-3.8-9S9.5 5.8 12 3z"/></svg>
+              <svg class="ico-lupa" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+            </span>
+            <span id="idioma-actual" data-no-traducir>ES</span>
+          </button>
+          <input class="idioma-buscar" id="idioma-buscar" type="search" autocomplete="off" spellcheck="false" aria-label="Buscar idioma" placeholder="Buscar idioma…" tabindex="-1">
+        </div>
         <div class="idioma-menu" id="idioma-menu" hidden>
-          <input class="idioma-buscar" id="idioma-buscar" type="search" autocomplete="off" spellcheck="false" aria-label="Buscar idioma" placeholder="Buscar idioma…">
           <ul class="idioma-lista" id="idioma-lista" data-no-traducir></ul>
         </div>
       </div>
