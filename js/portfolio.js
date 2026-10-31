@@ -12,13 +12,14 @@ const TODAS = [
   { id: "tableros", oculto: true, titulo: "Dash", cursiva: "boards", img: "", trabajos: [
     { nombre: "Tablero comercial (ejemplo)", tipo: "Tablero de datos", texto: "Ventas, pedidos y canales en una sola pantalla. Datos ficticios.", img: "" }
   ]},
-  { id: "branding", titulo: "Bran", cursiva: "ding", img: "img/v2/portfolio/garete-bar-1-chica.webp", trabajos: [
-    { nombre: "Garete Bar", tipo: "Marca ficticia", texto: "Ejercicio de identidad visual y aplicaciones.", img: "img/v2/portfolio/garete-bar-1-chica.webp", imgs: ["img/v2/portfolio/garete-bar-1-chica.webp", "img/v2/portfolio/garete-bar-2-chica.webp", "img/v2/portfolio/garete-bar-3-chica.webp", "img/v2/portfolio/garete-bar-4-chica.webp"] },
-    { nombre: "Panadería Carmona", tipo: "Marca ficticia", texto: "Ejercicio de identidad visual y aplicaciones.", img: "img/v2/portfolio/panaderia-carmona-1-chica.webp", imgs: ["img/v2/portfolio/panaderia-carmona-1-chica.webp", "img/v2/portfolio/panaderia-carmona-2-chica.webp", "img/v2/portfolio/panaderia-carmona-3-chica.webp", "img/v2/portfolio/panaderia-carmona-4-chica.webp"] },
-    { nombre: "R. E. San Francisco de Asís", tipo: "Marca ficticia", texto: "Ejercicio de identidad visual y aplicaciones.", img: "img/v2/portfolio/reserva-san-francisco-1-chica.webp", imgs: ["img/v2/portfolio/reserva-san-francisco-1-chica.webp", "img/v2/portfolio/reserva-san-francisco-2-chica.webp", "img/v2/portfolio/reserva-san-francisco-3-chica.webp", "img/v2/portfolio/reserva-san-francisco-4-chica.webp"] },
-    { nombre: "Caribaux Caza & Pesca", tipo: "Marca ficticia", texto: "Ejercicio de identidad visual y aplicaciones.", img: "img/v2/portfolio/caribaux-caza-pesca-1-chica.webp", imgs: ["img/v2/portfolio/caribaux-caza-pesca-1-chica.webp", "img/v2/portfolio/caribaux-caza-pesca-2-chica.webp", "img/v2/portfolio/caribaux-caza-pesca-3-chica.webp", "img/v2/portfolio/caribaux-caza-pesca-4-chica.webp"] },
-    { nombre: "Supermercados Farelli", tipo: "Marca ficticia", texto: "Ejercicio de identidad visual y aplicaciones.", img: "img/v2/portfolio/supermercados-farelli-1-chica.webp", imgs: ["img/v2/portfolio/supermercados-farelli-1-chica.webp", "img/v2/portfolio/supermercados-farelli-2-chica.webp", "img/v2/portfolio/supermercados-farelli-3-chica.webp", "img/v2/portfolio/supermercados-farelli-4-chica.webp"] },
-    { nombre: "Cardano Transporte", tipo: "Marca ficticia", texto: "Ejercicio de identidad visual y aplicaciones.", img: "img/v2/portfolio/cardano-transporte-1-chica.webp", imgs: ["img/v2/portfolio/cardano-transporte-1-chica.webp", "img/v2/portfolio/cardano-transporte-2-chica.webp", "img/v2/portfolio/cardano-transporte-3-chica.webp", "img/v2/portfolio/cardano-transporte-4-chica.webp"] }
+  { id: "branding", titulo: "Bran", cursiva: "ding", img: "img/v2/portfolio/garete-bar-1-chica.webp", marcas: true, trabajos: [
+    { nombre: "HR Estudio Jurídico", tipo: "Cliente real", texto: "Logo, paleta, tipografía, tarjetas y piezas para redes.", logo: "img/v2/portfolio/branding/hr-estudio-juridico-logo.webp", galeria: ["img/v2/portfolio/branding/hr-estudio-juridico-1.webp", "img/v2/portfolio/branding/hr-estudio-juridico-2.webp", "img/v2/portfolio/branding/hr-estudio-juridico-3.webp", "img/v2/portfolio/branding/hr-estudio-juridico-4.webp", "img/v2/portfolio/branding/hr-estudio-juridico-5.webp", "img/v2/portfolio/branding/hr-estudio-juridico-6.webp", "img/v2/portfolio/branding/hr-estudio-juridico-7.webp", "img/v2/portfolio/branding/hr-estudio-juridico-8.webp", "img/v2/portfolio/branding/hr-estudio-juridico-9.webp"], pies: ["Logo", "Paleta de colores", "Tipografía", "Ícono para la web", "Tarjeta de presentación", "Perfil de Instagram", "Historias de efemérides", "Historias informativas", "Landing page"] },
+    { nombre: "Garete Bar", tipo: "Marca ficticia", texto: "Bar con identidad manuscrita: logo, paleta, uniforme y promo.", logo: "img/v2/portfolio/branding/garete-bar-logo.webp", galeria: ["img/v2/portfolio/branding/garete-bar-1.webp", "img/v2/portfolio/branding/garete-bar-2.webp", "img/v2/portfolio/branding/garete-bar-3.webp", "img/v2/portfolio/branding/garete-bar-4.webp"], pies: ["Logo", "Paleta de colores", "Uniforme", "Flyer de promoción"] },
+    { nombre: "Panadería Carmona", tipo: "Marca ficticia", texto: "Panadería de barrio: logo, tipografía, uniforme y packaging.", logo: "img/v2/portfolio/branding/panaderia-carmona-logo.webp", galeria: ["img/v2/portfolio/branding/panaderia-carmona-1.webp", "img/v2/portfolio/branding/panaderia-carmona-2.webp", "img/v2/portfolio/branding/panaderia-carmona-3.webp", "img/v2/portfolio/branding/panaderia-carmona-4.webp"], pies: ["Logo", "Tipografía", "Uniformes", "Bolsa de papel"] },
+    { nombre: "R. E. San Francisco de Asís", tipo: "Marca ficticia", texto: "Reserva ecológica: logo, paleta, uniforme y cartelería.", logo: "img/v2/portfolio/branding/reserva-san-francisco-logo.webp", galeria: ["img/v2/portfolio/branding/reserva-san-francisco-1.webp", "img/v2/portfolio/branding/reserva-san-francisco-2.webp", "img/v2/portfolio/branding/reserva-san-francisco-3.webp", "img/v2/portfolio/branding/reserva-san-francisco-4.webp"], pies: ["Logo", "Paleta de colores", "Uniformes", "Cartelería"] },
+    { nombre: "Caribaux Caza & Pesca", tipo: "Marca ficticia", texto: "Tienda outdoor: logo, paleta y piezas para redes.", logo: "img/v2/portfolio/branding/caribaux-caza-pesca-logo.webp", galeria: ["img/v2/portfolio/branding/caribaux-caza-pesca-1.webp", "img/v2/portfolio/branding/caribaux-caza-pesca-2.webp", "img/v2/portfolio/branding/caribaux-caza-pesca-3.webp", "img/v2/portfolio/branding/caribaux-caza-pesca-4.webp"], pies: ["Logo", "Paleta de colores", "Post motivacional", "Post de equipamiento"] },
+    { nombre: "Supermercados Farelli", tipo: "Marca ficticia", texto: "Supermercado familiar: logo, paleta, tipografía y aplicación.", logo: "img/v2/portfolio/branding/supermercados-farelli-logo.webp", galeria: ["img/v2/portfolio/branding/supermercados-farelli-1.webp", "img/v2/portfolio/branding/supermercados-farelli-2.webp", "img/v2/portfolio/branding/supermercados-farelli-3.webp", "img/v2/portfolio/branding/supermercados-farelli-4.webp"], pies: ["Logo", "Paleta de colores", "Tipografía", "Aplicación de marca"] },
+    { nombre: "Cardano Transporte", tipo: "Marca ficticia", texto: "Empresa de logística: logo, paleta, valores y flota.", logo: "img/v2/portfolio/branding/cardano-transporte-logo.webp", galeria: ["img/v2/portfolio/branding/cardano-transporte-1.webp", "img/v2/portfolio/branding/cardano-transporte-2.webp", "img/v2/portfolio/branding/cardano-transporte-3.webp", "img/v2/portfolio/branding/cardano-transporte-4.webp"], pies: ["Logo", "Paleta de colores", "Valores de la empresa", "Camión de la flota"] },
   ]},
   { id: "contenido", titulo: "Conte", cursiva: "nido", img: "img/v2/portfolio/pieza-01-chica.webp", piezas: true, trabajos: [
     { nombre: "Basílica de Itatí", tipo: "Folleto · 4:5", texto: "Información para peregrinos: horarios de misas y servicios.", img: "img/v2/portfolio/contenido/basilica-itati-chica.webp", grande: "img/v2/portfolio/contenido/basilica-itati.webp" },
@@ -120,9 +121,19 @@ function abrir(c, boton) {
   const h = el("h2"); h.append(document.createTextNode(c.titulo)); h.append(el("em", "", c.cursiva));
   const cerrar = el("button", "cerrar-panel", "Cerrar ×"); cerrar.type = "button"; cerrar.addEventListener("click", () => abrir(c, boton));
   cab.append(h, cerrar);
-  const lista = el("div", "trabajos" + (c.piezas ? " piezas" : ""));
+  const lista = el("div", "trabajos" + (c.piezas ? " piezas" : "") + (c.marcas ? " marcas" : ""));
   const conVisor = c.trabajos.filter(t => t.grande);
-  c.trabajos.forEach(t => {
+  c.trabajos.forEach((t, i) => {
+    if (t.logo) {
+      // Branding: el logo suelto sobre gris, flotando; al tocarlo se abre la ventana con todas las piezas
+      const a = el("button", "trabajo marca"); a.type = "button"; a.setAttribute("aria-label", `Ver la identidad de ${t.nombre}`);
+      const fig = el("div", "trabajo-img logo"); fig.style.setProperty("--i", i);
+      const img = el("img"); img.src = t.logo; img.alt = `Logo de ${t.nombre}`; img.loading = "lazy"; fig.append(img);
+      const meta = el("p", "mono"); meta.append(el("span", "", t.tipo));
+      a.append(fig, meta, el("h3", "", t.nombre), el("p", "", t.texto));
+      a.addEventListener("click", () => verMarca(t, a));
+      lista.append(a); return;
+    }
     const a = t.imgs ? el("div", "trabajo") : t.grande ? el("button", "trabajo") : el("a", "trabajo");
     if (t.grande) { a.type = "button"; a.setAttribute("aria-label", `Ver en grande: ${t.nombre}`); a.addEventListener("click", () => verPieza(conVisor, conVisor.indexOf(t), a)); }
     else if (!t.imgs) { a.href = t.href || "#"; if (t.href) { a.target = "_blank"; a.rel = "noopener noreferrer"; } }
@@ -172,3 +183,27 @@ visor.addEventListener("close", () => { visor.querySelector("img").removeAttribu
 let visorX = null;
 visor.addEventListener("pointerdown", e => { visorX = e.clientX; });
 visor.addEventListener("pointerup", e => { if (visorX === null) return; const dx = e.clientX - visorX; visorX = null; if (Math.abs(dx) > 50) mostrarPieza(visorI + (dx < 0 ? 1 : -1)); });
+
+// Ventana de una marca: todas sus piezas completas, sin recortar. Se cierra con la X, con Escape o tocando afuera.
+const ventanaMarca = document.createElement("dialog");
+ventanaMarca.className = "ventana-marca";
+ventanaMarca.innerHTML = '<div class="vm-caja"><header class="vm-cab"><img class="vm-logo" alt=""><div><p class="mono"></p><h2></h2><p class="vm-texto"></p></div><button type="button" class="visor-cerrar" aria-label="Cerrar">×</button></header><div class="vm-piezas"></div></div>';
+document.body.append(ventanaMarca);
+let marcaOrigen = null;
+function verMarca(t, origen) {
+  marcaOrigen = origen;
+  ventanaMarca.setAttribute("aria-label", `Identidad de ${t.nombre}`);
+  ventanaMarca.querySelector(".vm-logo").src = t.logo;
+  ventanaMarca.querySelector(".vm-cab .mono").textContent = `${t.tipo} · ${t.galeria.length} piezas`;
+  ventanaMarca.querySelector("h2").textContent = t.nombre;
+  ventanaMarca.querySelector(".vm-texto").textContent = t.texto;
+  ventanaMarca.querySelector(".vm-piezas").replaceChildren(...t.galeria.map((src, k) => {
+    const f = el("figure"), img = el("img"); img.src = src; img.alt = `${t.nombre}: ${t.pies[k] || "pieza " + (k + 1)}`; img.loading = k < 2 ? "eager" : "lazy";
+    f.append(img, el("figcaption", "mono", t.pies[k] || "")); return f;
+  }));
+  ventanaMarca.showModal();
+  ventanaMarca.querySelector(".vm-caja").scrollTop = 0;
+}
+ventanaMarca.querySelector(".visor-cerrar").addEventListener("click", () => ventanaMarca.close());
+ventanaMarca.addEventListener("click", e => { if (e.target === ventanaMarca) ventanaMarca.close(); });
+ventanaMarca.addEventListener("close", () => { if (marcaOrigen) marcaOrigen.focus(); });
