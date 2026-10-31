@@ -123,17 +123,7 @@ function abrir(c, boton) {
   cab.append(h, cerrar);
   const lista = el("div", "trabajos" + (c.piezas ? " piezas" : "") + (c.marcas ? " marcas" : ""));
   const conVisor = c.trabajos.filter(t => t.grande);
-  c.trabajos.forEach((t, i) => {
-    if (t.logo) {
-      // Branding: el logo suelto sobre gris, flotando; al tocarlo se abre la ventana con todas las piezas
-      const a = el("button", "trabajo marca"); a.type = "button"; a.setAttribute("aria-label", `Ver la identidad de ${t.nombre}`);
-      const fig = el("div", "trabajo-img logo"); fig.style.setProperty("--i", i);
-      const img = el("img"); img.src = t.logo; img.alt = `Logo de ${t.nombre}`; img.loading = "lazy"; fig.append(img);
-      const meta = el("p", "mono"); meta.append(el("span", "", t.tipo));
-      a.append(fig, meta, el("h3", "", t.nombre), el("p", "", t.texto));
-      a.addEventListener("click", () => verMarca(t, a));
-      lista.append(a); return;
-    }
+  (c.marcas ? [] : c.trabajos).forEach(t => {
     const a = t.imgs ? el("div", "trabajo") : t.grande ? el("button", "trabajo") : el("a", "trabajo");
     if (t.grande) { a.type = "button"; a.setAttribute("aria-label", `Ver en grande: ${t.nombre}`); a.addEventListener("click", () => verPieza(conVisor, conVisor.indexOf(t), a)); }
     else if (!t.imgs) { a.href = t.href || "#"; if (t.href) { a.target = "_blank"; a.rel = "noopener noreferrer"; } }
@@ -154,7 +144,7 @@ function abrir(c, boton) {
     a.append(fig, meta, el("h3", "", t.nombre), el("p", "", t.texto));
     lista.append(a);
   });
-  panel.append(cab, lista);
+  panel.append(cab, c.marcas ? carruselMarcas(c) : lista);
   zona.append(panel);
   panel.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
 }
@@ -184,26 +174,65 @@ let visorX = null;
 visor.addEventListener("pointerdown", e => { visorX = e.clientX; });
 visor.addEventListener("pointerup", e => { if (visorX === null) return; const dx = e.clientX - visorX; visorX = null; if (Math.abs(dx) > 50) mostrarPieza(visorI + (dx < 0 ? 1 : -1)); });
 
-// Ventana de una marca: todas sus piezas completas, sin recortar. Se cierra con la X, con Escape o tocando afuera.
-const ventanaMarca = document.createElement("dialog");
-ventanaMarca.className = "ventana-marca";
-ventanaMarca.innerHTML = '<div class="vm-caja"><header class="vm-cab"><img class="vm-logo" alt=""><div><p class="mono"></p><h2></h2><p class="vm-texto"></p></div><button type="button" class="visor-cerrar" aria-label="Cerrar">×</button></header><div class="vm-piezas"></div></div>';
-document.body.append(ventanaMarca);
-let marcaOrigen = null;
-function verMarca(t, origen) {
-  marcaOrigen = origen;
-  ventanaMarca.setAttribute("aria-label", `Identidad de ${t.nombre}`);
-  ventanaMarca.querySelector(".vm-logo").src = t.logo;
-  ventanaMarca.querySelector(".vm-cab .mono").textContent = `${t.tipo} · ${t.galeria.length} piezas`;
-  ventanaMarca.querySelector("h2").textContent = t.nombre;
-  ventanaMarca.querySelector(".vm-texto").textContent = t.texto;
-  ventanaMarca.querySelector(".vm-piezas").replaceChildren(...t.galeria.map((src, k) => {
-    const f = el("figure"), img = el("img"); img.src = src; img.alt = `${t.nombre}: ${t.pies[k] || "pieza " + (k + 1)}`; img.loading = k < 2 ? "eager" : "lazy";
-    f.append(img, el("figcaption", "mono", t.pies[k] || "")); return f;
-  }));
-  ventanaMarca.showModal();
-  ventanaMarca.querySelector(".vm-caja").scrollTop = 0;
+
+// Branding: carrusel de logos que pasan solos. Al tocar uno, el carrusel se frena, el logo queda
+// a la izquierda (arriba en el celular) y se despliega a la derecha el panel con las piezas de la marca.
+function carruselMarcas(c) {
+  const escena = el("div", "marcas-escena");
+  const cinta = el("div", "marcas-cinta");
+  const pista = el("div", "marcas-pista");
+  pista.style.setProperty("--n", c.trabajos.length);
+  const logo = (t, copia) => {
+    const b = el("button", "marca-logo"); b.type = "button";
+    const img = el("img"); img.src = t.logo; img.alt = copia ? "" : `Logo de ${t.nombre}`; img.loading = "lazy"; b.append(img);
+    if (copia) { b.tabIndex = -1; b.setAttribute("aria-hidden", "true"); } else b.setAttribute("aria-label", `Ver la identidad de ${t.nombre}`);
+    b.addEventListener("click", () => elegir(t));
+    return b;
+  };
+  // Dos vueltas de logos para que la cinta sea continua
+  c.trabajos.forEach(t => pista.append(logo(t, false)));
+  c.trabajos.forEach(t => pista.append(logo(t, true)));
+  cinta.append(pista);
+
+  const detalle = el("div", "marca-detalle"); detalle.hidden = true;
+  const lado = el("div", "marca-lado"); const ladoImg = el("img"); ladoImg.alt = ""; lado.append(ladoImg);
+  const caja = el("section", "marca-panel");
+  const cab = el("header", "marca-panel-cab");
+  const h = el("h3"), cuenta = el("p", "mono"), cerrar = el("button", "marca-cerrar", "×");
+  cerrar.type = "button"; cerrar.setAttribute("aria-label", "Cerrar y volver al carrusel");
+  const textos = el("div"); textos.append(h, cuenta); cab.append(textos, cerrar);
+  const piezas = el("div", "marca-piezas");
+  caja.append(cab, piezas); detalle.append(lado, caja);
+  escena.append(cinta, detalle);
+
+  let origen = null;
+  function elegir(t) {
+    origen = document.activeElement;
+    ladoImg.src = t.logo; ladoImg.alt = `Logo de ${t.nombre}`;
+    h.textContent = t.nombre; cuenta.textContent = `${t.galeria.length} piezas`;
+    caja.setAttribute("aria-label", `Identidad de ${t.nombre}`);
+    const lista = t.galeria.map((src, k) => ({ grande: src, nombre: `${t.nombre}: ${t.pies[k] || "pieza " + (k + 1)}`, tipo: t.pies[k] || "", texto: "" }));
+    piezas.replaceChildren(...t.galeria.map((src, k) => {
+      const b = el("button", "marca-pieza"); b.type = "button"; b.setAttribute("aria-label", `Ver en grande: ${t.pies[k] || "pieza " + (k + 1)}`);
+      const img = el("img"); img.src = src; img.alt = ""; img.loading = "lazy";
+      b.append(img, el("span", "mono", t.pies[k] || ""));
+      b.addEventListener("click", () => verPieza(lista, k, b));
+      return b;
+    }));
+    escena.classList.add("con-marca"); cinta.hidden = true; detalle.hidden = false;
+    // reinicia la animación de despliegue
+    detalle.classList.remove("abriendo"); void detalle.offsetWidth; detalle.classList.add("abriendo");
+    cerrar.focus({ preventScroll: true });
+    escena.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
+  }
+  function volver() {
+    if (detalle.hidden) return;
+    escena.classList.remove("con-marca"); detalle.hidden = true; cinta.hidden = false;
+    if (origen && origen.isConnected) origen.focus({ preventScroll: true });
+  }
+  cerrar.addEventListener("click", volver);
+  // Tocar afuera del panel (y del visor de imágenes) lo cierra; Escape también
+  document.addEventListener("click", e => { if (!detalle.hidden && escena.isConnected && !e.target.closest(".marca-detalle, .marca-logo, .visor-pieza")) volver(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !detalle.hidden && !document.querySelector(".visor-pieza[open]")) volver(); });
+  return escena;
 }
-ventanaMarca.querySelector(".visor-cerrar").addEventListener("click", () => ventanaMarca.close());
-ventanaMarca.addEventListener("click", e => { if (e.target === ventanaMarca) ventanaMarca.close(); });
-ventanaMarca.addEventListener("close", () => { if (marcaOrigen) marcaOrigen.focus(); });
