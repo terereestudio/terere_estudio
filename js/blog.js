@@ -70,7 +70,7 @@ const ENTRADAS = [
   "fecha": "2026-09-18",
   "titulo": "Rediseñando la mirada: ¿Qué hay detrás del cambio de Google y su salto a la barra lateral?",
   "href": "blog/cambio_google_pestañas.html",
-  "resumen": "Si sos de los que entra a Google o navega por la web con frecuencia, es muy probable que hayas notado un cambio sutil pero profundo en la interfaz. Google decidió mover aquellas clásicas pestañas horizontales de la parte superior (Imágenes, Noticias, Videos, etc.) hacia una columna lateral en el lado izquierdo , un movimiento que también resuena con los cambios recientes en la gestión de interfaces y navegadores.",
+  "resumen": "Si sos de los que entra a Google o navega por la web con frecuencia, es muy probable que hayas notado un cambio sutil pero profundo en la interfaz. Google decidió mover aquellas clásicas pestañas horizontales de la parte superior (Imágenes, Noticias, Videos, etc.) hacia una columna lateral en el lado izquierdo, un movimiento que también resuena con los cambios recientes en la gestión de interfaces y navegadores.",
   "img": "img/v2/blog/portada-pestanas.svg",
   "ia": true
  },
@@ -90,7 +90,7 @@ const ENTRADAS = [
   "fecha": "2026-09-14",
   "titulo": "Entrevista con la IA: ¿Nos van a reemplazar?",
   "href": "blog/Entrevista_IA/nos_van_a_reemplazar.html",
-  "resumen": "En esta entrevista tendremos repuesta a una de la preguntas más polémicas del siglo XXI según distintas inteligencias artificiales.",
+  "resumen": "En esta entrevista tendremos respuesta a una de las preguntas más polémicas del siglo XXI según distintas inteligencias artificiales.",
   "img": "img/v2/blog/ia-reemplazar-chica.webp",
   "ia": false
  },

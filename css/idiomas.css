@@ -31,3 +31,7 @@
 @media (prefers-reduced-motion: reduce) { .idioma-caja, .idioma-icono svg, .idioma-actual, .idioma-buscar { transition: none !important; } }
 html[dir="rtl"] .idioma-menu { right: auto; left: 0; }
 html:is([lang="ar"], [lang="hi"]) body * { letter-spacing: 0 !important; }
+/* Árabe (de derecha a izquierda): los títulos armados letra por letra y los carriles que se
+   mueven de costado se mantienen de izquierda a derecha; el texto de adentro sigue en árabe. */
+html[dir="rtl"] :is(.palabra, .palabra-etiqueta, .carril, .carril-control, .marcas-cinta, .carpetas, .indicadores) { direction: ltr; }
+html[dir="rtl"] :is(.carril, .carpetas) > * { direction: rtl; }

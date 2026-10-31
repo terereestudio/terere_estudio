@@ -21,8 +21,8 @@ body { margin: 0; background: var(--negro); color: var(--blanco); font: 400 1rem
 img { display: block; max-width: 100%; height: auto; }
 a { color: var(--violeta-claro); }
 :focus-visible { outline: 2px solid var(--violeta-claro); outline-offset: 3px; border-radius: 4px; }
-.salto { position: absolute; left: -9999px; top: 12px; z-index: 50; padding: 10px 14px; background: var(--violeta); color: var(--negro); font-weight: 700; border-radius: 8px; }
-.salto:focus { left: 12px; }
+.salto { position: absolute; left: 12px; top: -100px; z-index: 50; padding: 10px 14px; background: var(--violeta); color: var(--negro); font-weight: 700; border-radius: 8px; }
+.salto:focus { top: 12px; }
 .solo-lector { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
 /* Barra superior */
