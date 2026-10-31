@@ -1,0 +1,59 @@
+{
+ "idioma": "en",
+ "texto": {
+  "1mx2um0": "Skip to content",
+  "vwdgci": "← home",
+  "1xgx7ec": "// what i learn, i share",
+  "fji0ow": "all",
+  "1dwk7dh": "artificial intelligence",
+  "dveqqu": "web development",
+  "49q74i": "ux/ui design",
+  "1chtjbo": "cybersecurity",
+  "2sb6wx": "// no posts on this topic yet",
+  "iwjgw1": "See the plans →",
+  "m2ymnj": "read →",
+  "1i78t00": "made with AI",
+  "1c7o19x": "Artificial intelligence",
+  "lre0ff": "Microduck: the little robot bringing AI into the physical world",
+  "dgn0zx": "Meet Microduck, the small bipedal robot from Pollen Robotics that combines artificial intelligence, reinforcement learning and open-source software.",
+  "mmo09b": "The best artificial intelligence tools for building apps in 2026",
+  "1cfgd09": "Artificial intelligence is transforming the way we build software. Today there are tools that can suggest code, analyze entire projects, generate interfaces and build applications from natural-language instructions.",
+  "86h8gp": "Context: the new currency of artificial intelligence",
+  "1mlp12h": "Not everything we give an AI is worth the same. Understanding how context works can completely change the way we work with it.",
+  "5br4ms": "Cybersecurity",
+  "1cc0fnh": "Basic web cybersecurity: how I protected my first website with Security Headers",
+  "1tlc2wj": "A first look at web security from the experience of a junior developer.",
+  "fj2a42": "UX/UI Design",
+  "1oov9r": "Minimalism in UX/UI Design",
+  "16ytrtc": "A philosophy that puts clarity, function and user experience ahead of visual noise.",
+  "2j87p8": "Redesigning the view: what's behind Google's change and its move to a sidebar?",
+  "1sp1ju0": "If you use Google or browse the web often, you've probably noticed a subtle but deep change in the interface. Google decided to move those classic horizontal tabs at the top (Images, News, Videos, etc.) into a side column on the left, a move that also echoes recent changes in how interfaces and browsers are managed.",
+  "7lrssm": "Web development",
+  "rlxgsl": "Is it worth learning to code in 2026?",
+  "1hpd5uc": "If you're thinking about learning to program, there's one question that stops you cold.",
+  "1vtpjkc": "Interview with AI: will it replace us?",
+  "1kjy25": "In this interview, different artificial intelligences answer one of the most controversial questions of the 21st century.",
+  "4hwl1l": "What is VibeCoding?",
+  "flvfn5": "Programming with AI as a technical bridge."
+ },
+ "html": {
+  "anwi3m": "Notes on <strong>artificial intelligence</strong>, <strong>web development</strong>, design and cybersecurity. What I try out in my projects, told straight so it's useful to you too.",
+  "dh8r5k": "<span class=\"pista-rueda\">// scroll the wheel to browse</span><span class=\"pista-dedo\">// swipe to see more</span>",
+  "10ufk34": "Want your business to <em>show up</em> on Google?"
+ },
+ "attr": {
+  "19ecbg": "Tereré Estudio, go to home",
+  "no2zmt": "Filter by topic",
+  "928rdo": "Blog posts",
+  "13pdlfr": "Blog posts, from newest to oldest. Use the arrows to browse them.",
+  "13ybfuv": "Previous posts",
+  "fdu5hz": "Next posts",
+  "1ikkvyc": "Contact"
+ },
+ "ui": {
+  "cambiar": "Change language",
+  "buscar": "Search language…",
+  "sinIdioma": "Language not found",
+  "beta": "beta"
+ }
+}

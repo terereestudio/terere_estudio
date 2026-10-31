@@ -1,0 +1,59 @@
+{
+ "idioma": "it",
+ "texto": {
+  "1mx2um0": "Vai al contenuto",
+  "vwdgci": "← home",
+  "1xgx7ec": "// quello che imparo, lo condivido",
+  "fji0ow": "tutti",
+  "1dwk7dh": "intelligenza artificiale",
+  "dveqqu": "sviluppo web",
+  "49q74i": "design ux/ui",
+  "1chtjbo": "cybersicurezza",
+  "2sb6wx": "// non ci sono ancora articoli su questo tema",
+  "iwjgw1": "Vedi i piani →",
+  "m2ymnj": "leggi →",
+  "1i78t00": "fatto con l'IA",
+  "1c7o19x": "Intelligenza artificiale",
+  "lre0ff": "Microduck: il piccolo robot che avvicina l'IA al mondo fisico",
+  "dgn0zx": "Scopri Microduck, il piccolo robot bipede di Pollen Robotics che unisce intelligenza artificiale, apprendimento per rinforzo e software open source.",
+  "mmo09b": "I migliori strumenti di intelligenza artificiale per programmare app nel 2026",
+  "1cfgd09": "L'intelligenza artificiale sta trasformando il modo in cui sviluppiamo software. Oggi esistono strumenti capaci di suggerire codice, analizzare interi progetti, generare interfacce e costruire applicazioni a partire da istruzioni in linguaggio naturale.",
+  "86h8gp": "Contesto: la nuova moneta dell'intelligenza artificiale",
+  "1mlp12h": "Non tutto quello che diamo a un'IA ha lo stesso valore. Capire come funziona il contesto può cambiare completamente il modo in cui lavoriamo con lei.",
+  "5br4ms": "Cybersicurezza",
+  "1cc0fnh": "Cybersicurezza web di base: come ho protetto il mio primo sito web con Security Headers",
+  "1tlc2wj": "Un primo approccio alla sicurezza web dall'esperienza di uno sviluppatore junior.",
+  "fj2a42": "Design UX/UI",
+  "1oov9r": "Minimalismo nel design UX/UI",
+  "16ytrtc": "È una filosofia che mette chiarezza, funzione ed esperienza utente davanti al rumore visivo.",
+  "2j87p8": "Ridisegnare lo sguardo: cosa c'è dietro il cambiamento di Google e il passaggio alla barra laterale?",
+  "1sp1ju0": "Se usi Google o navighi spesso sul web, probabilmente hai notato un cambiamento sottile ma profondo nell'interfaccia. Google ha deciso di spostare le classiche schede orizzontali in alto (Immagini, Notizie, Video, ecc.) in una colonna laterale a sinistra, una mossa che riecheggia anche i recenti cambiamenti nella gestione di interfacce e browser.",
+  "7lrssm": "Sviluppo web",
+  "rlxgsl": "Vale la pena imparare a programmare nel 2026?",
+  "1hpd5uc": "Se stai pensando di imparare a programmare, c'è una domanda che ti blocca di colpo.",
+  "1vtpjkc": "Intervista con l'IA: ci sostituirà?",
+  "1kjy25": "In questa intervista diverse intelligenze artificiali rispondono a una delle domande più controverse del XXI secolo.",
+  "4hwl1l": "Che cos'è il VibeCoding?",
+  "flvfn5": "Programmare con l'IA come ponte tecnico."
+ },
+ "html": {
+  "anwi3m": "Appunti su <strong>intelligenza artificiale</strong>, <strong>sviluppo web</strong>, design e cybersicurezza. Quello che provo nei miei progetti, raccontato senza giri di parole perché serva anche a te.",
+  "dh8r5k": "<span class=\"pista-rueda\">// gira la rotellina per scorrere</span><span class=\"pista-dedo\">// scorri per vedere altro</span>",
+  "10ufk34": "Vuoi che la tua attività <em>compaia</em> su Google?"
+ },
+ "attr": {
+  "19ecbg": "Tereré Estudio, vai alla home",
+  "no2zmt": "Filtra per tema",
+  "928rdo": "Articoli del blog",
+  "13pdlfr": "Articoli del blog, dal più recente al più vecchio. Usa le frecce per scorrerli.",
+  "13ybfuv": "Articoli precedenti",
+  "fdu5hz": "Articoli successivi",
+  "1ikkvyc": "Contatto"
+ },
+ "ui": {
+  "cambiar": "Cambia lingua",
+  "buscar": "Cerca lingua…",
+  "sinIdioma": "Lingua non trovata",
+  "beta": "beta"
+ }
+}

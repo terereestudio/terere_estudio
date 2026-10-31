@@ -1,0 +1,59 @@
+{
+ "idioma": "fr",
+ "texto": {
+  "1mx2um0": "Aller au contenu",
+  "vwdgci": "← accueil",
+  "1xgx7ec": "// ce que j'apprends, je le partage",
+  "fji0ow": "toutes",
+  "1dwk7dh": "intelligence artificielle",
+  "dveqqu": "développement web",
+  "49q74i": "design ux/ui",
+  "1chtjbo": "cybersécurité",
+  "2sb6wx": "// pas encore d'articles sur ce thème",
+  "iwjgw1": "Voir les offres →",
+  "m2ymnj": "lire →",
+  "1i78t00": "fait avec l'IA",
+  "1c7o19x": "Intelligence artificielle",
+  "lre0ff": "Microduck : le petit robot qui rapproche l'IA du monde physique",
+  "dgn0zx": "Découvrez Microduck, le petit robot bipède de Pollen Robotics qui associe intelligence artificielle, apprentissage par renforcement et logiciel open source.",
+  "mmo09b": "Les meilleurs outils d'intelligence artificielle pour programmer des applications en 2026",
+  "1cfgd09": "L'intelligence artificielle transforme notre façon de développer des logiciels. Il existe aujourd'hui des outils capables de suggérer du code, d'analyser des projets entiers, de générer des interfaces et de créer des applications à partir d'instructions en langage naturel.",
+  "86h8gp": "Le contexte : la nouvelle monnaie de l'intelligence artificielle",
+  "1mlp12h": "Tout ce que nous donnons à une IA n'a pas la même valeur. Comprendre comment fonctionne le contexte peut changer complètement notre façon de travailler avec elle.",
+  "5br4ms": "Cybersécurité",
+  "1cc0fnh": "Cybersécurité web de base : comment j'ai protégé mon premier site web avec Security Headers",
+  "1tlc2wj": "Une première approche de la sécurité web, vue par un développeur junior.",
+  "fj2a42": "Design UX/UI",
+  "1oov9r": "Le minimalisme en design UX/UI",
+  "16ytrtc": "Une philosophie qui place la clarté, la fonction et l'expérience utilisateur avant le bruit visuel.",
+  "2j87p8": "Repenser le regard : que cache le changement de Google et son passage à la barre latérale ?",
+  "1sp1ju0": "Si vous utilisez Google ou naviguez souvent sur le web, vous avez sans doute remarqué un changement subtil mais profond dans l'interface. Google a décidé de déplacer les onglets horizontaux classiques du haut de la page (Images, Actualités, Vidéos, etc.) vers une colonne latérale à gauche, un mouvement qui fait aussi écho aux changements récents dans la gestion des interfaces et des navigateurs.",
+  "7lrssm": "Développement web",
+  "rlxgsl": "Est-ce que ça vaut la peine d'apprendre à coder en 2026 ?",
+  "1hpd5uc": "Si vous pensez à apprendre la programmation, il y a une question qui vous arrête net.",
+  "1vtpjkc": "Interview avec l'IA : allons-nous être remplacés ?",
+  "1kjy25": "Dans cette interview, différentes intelligences artificielles répondent à l'une des questions les plus controversées du XXIe siècle.",
+  "4hwl1l": "Qu'est-ce que le VibeCoding ?",
+  "flvfn5": "Programmer avec l'IA comme pont technique."
+ },
+ "html": {
+  "anwi3m": "Des notes sur l'<strong>intelligence artificielle</strong>, le <strong>développement web</strong>, le design et la cybersécurité. Ce que je teste dans mes projets, raconté sans détour pour que ça vous serve aussi.",
+  "dh8r5k": "<span class=\"pista-rueda\">// tournez la molette pour parcourir</span><span class=\"pista-dedo\">// faites glisser pour en voir plus</span>",
+  "10ufk34": "Vous voulez que votre entreprise <em>apparaisse</em> sur Google ?"
+ },
+ "attr": {
+  "19ecbg": "Tereré Estudio, aller à l'accueil",
+  "no2zmt": "Filtrer par thème",
+  "928rdo": "Articles du blog",
+  "13pdlfr": "Articles du blog, du plus récent au plus ancien. Utilisez les flèches pour les parcourir.",
+  "13ybfuv": "Articles précédents",
+  "fdu5hz": "Articles suivants",
+  "1ikkvyc": "Contact"
+ },
+ "ui": {
+  "cambiar": "Changer de langue",
+  "buscar": "Rechercher une langue…",
+  "sinIdioma": "Langue introuvable",
+  "beta": "beta"
+ }
+}

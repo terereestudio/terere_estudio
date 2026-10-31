@@ -1,0 +1,59 @@
+{
+ "idioma": "de",
+ "texto": {
+  "1mx2um0": "Zum Inhalt springen",
+  "vwdgci": "← startseite",
+  "1xgx7ec": "// was ich lerne, teile ich",
+  "fji0ow": "alle",
+  "1dwk7dh": "künstliche intelligenz",
+  "dveqqu": "webentwicklung",
+  "49q74i": "ux/ui-design",
+  "1chtjbo": "cybersicherheit",
+  "2sb6wx": "// zu diesem thema gibt es noch keine beiträge",
+  "iwjgw1": "Pakete ansehen →",
+  "m2ymnj": "lesen →",
+  "1i78t00": "mit KI gemacht",
+  "1c7o19x": "Künstliche Intelligenz",
+  "lre0ff": "Microduck: der kleine Roboter, der KI in die physische Welt bringt",
+  "dgn0zx": "Lerne Microduck kennen, den kleinen zweibeinigen Roboter von Pollen Robotics, der künstliche Intelligenz, bestärkendes Lernen und Open-Source-Software vereint.",
+  "mmo09b": "Die besten KI-Tools zum Programmieren von Apps im Jahr 2026",
+  "1cfgd09": "Künstliche Intelligenz verändert die Art, wie wir Software entwickeln. Heute gibt es Tools, die Code vorschlagen, ganze Projekte analysieren, Oberflächen generieren und Anwendungen aus Anweisungen in natürlicher Sprache bauen können.",
+  "86h8gp": "Kontext: die neue Währung der künstlichen Intelligenz",
+  "1mlp12h": "Nicht alles, was wir einer KI geben, ist gleich viel wert. Wer versteht, wie Kontext funktioniert, kann die Art, wie wir mit ihr arbeiten, komplett verändern.",
+  "5br4ms": "Cybersicherheit",
+  "1cc0fnh": "Grundlagen der Web-Cybersicherheit: wie ich meine erste Website mit Security Headers geschützt habe",
+  "1tlc2wj": "Ein erster Einstieg in die Websicherheit aus der Erfahrung eines Junior-Entwicklers.",
+  "fj2a42": "UX/UI-Design",
+  "1oov9r": "Minimalismus im UX/UI-Design",
+  "16ytrtc": "Eine Philosophie, die Klarheit, Funktion und Nutzererlebnis über visuelles Rauschen stellt.",
+  "2j87p8": "Den Blick neu gestalten: Was steckt hinter Googles Änderung und dem Wechsel zur Seitenleiste?",
+  "1sp1ju0": "Wenn du Google nutzt oder oft im Web unterwegs bist, ist dir wahrscheinlich eine subtile, aber tiefgreifende Änderung an der Oberfläche aufgefallen. Google hat die klassischen horizontalen Tabs oben (Bilder, News, Videos usw.) in eine Seitenspalte auf der linken Seite verschoben – ein Schritt, der auch zu den jüngsten Veränderungen bei der Gestaltung von Oberflächen und Browsern passt.",
+  "7lrssm": "Webentwicklung",
+  "rlxgsl": "Lohnt es sich 2026 noch, programmieren zu lernen?",
+  "1hpd5uc": "Wenn du überlegst, programmieren zu lernen, gibt es eine Frage, die dich sofort ausbremst.",
+  "1vtpjkc": "Interview mit der KI: Werden wir ersetzt?",
+  "1kjy25": "In diesem Interview beantworten verschiedene künstliche Intelligenzen eine der umstrittensten Fragen des 21. Jahrhunderts.",
+  "4hwl1l": "Was ist VibeCoding?",
+  "flvfn5": "Programmieren mit KI als technische Brücke."
+ },
+ "html": {
+  "anwi3m": "Notizen über <strong>künstliche Intelligenz</strong>, <strong>Webentwicklung</strong>, Design und Cybersicherheit. Was ich in meinen Projekten ausprobiere, ohne Umschweife erzählt, damit es auch dir etwas bringt.",
+  "dh8r5k": "<span class=\"pista-rueda\">// dreh am mausrad zum durchblättern</span><span class=\"pista-dedo\">// wische, um mehr zu sehen</span>",
+  "10ufk34": "Willst du, dass dein Unternehmen bei Google <em>auftaucht</em>?"
+ },
+ "attr": {
+  "19ecbg": "Tereré Estudio, zur Startseite",
+  "no2zmt": "Nach Thema filtern",
+  "928rdo": "Blogbeiträge",
+  "13pdlfr": "Blogbeiträge, vom neuesten zum ältesten. Nutze die Pfeile, um durchzublättern.",
+  "13ybfuv": "Vorherige Beiträge",
+  "fdu5hz": "Nächste Beiträge",
+  "1ikkvyc": "Kontakt"
+ },
+ "ui": {
+  "cambiar": "Sprache ändern",
+  "buscar": "Sprache suchen…",
+  "sinIdioma": "Sprache nicht gefunden",
+  "beta": "beta"
+ }
+}
