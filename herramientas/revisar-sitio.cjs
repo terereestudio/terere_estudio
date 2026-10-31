@@ -13,7 +13,7 @@ const cspPor = (ruta) => { const bloques = headers.split(/\n(?=\/)/); let csp = 
     const p = pat.trim(); const ok = p === ruta || (p.endsWith('*') && ruta.startsWith(p.slice(0, -1))) || (p === '/' && ruta === '/index.html'); if (ok) csp = l.split(': ').slice(1).join(': ').trim(); }
   return csp; };
 const paginas = [];
-const recorrer = d => fs.readdirSync(d).forEach(f => { const p = path.join(d, f); if (['v1','src','node_modules','.git','netlify','herramientas'].includes(f)) return; if (fs.statSync(p).isDirectory()) recorrer(p); else if (f.endsWith('.html')) paginas.push('/' + path.relative(R, p)); });
+const recorrer = d => fs.readdirSync(d).forEach(f => { const p = path.join(d, f); if (['v1','src','node_modules','.git','.claude','netlify','herramientas'].includes(f)) return; if (fs.statSync(p).isDirectory()) recorrer(p); else if (f.endsWith('.html')) paginas.push('/' + path.relative(R, p)); });
 recorrer(R);
 (async () => { const b = await chromium.launch(); const informe = [];
  for (const ruta of paginas) for (const [disp, w] of [['pc', 1440], ['cel', 390]]) {
