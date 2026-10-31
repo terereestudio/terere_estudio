@@ -217,20 +217,27 @@ function dibujarPlanes() {
   });
   irPlan(Math.min(planActual, idsVisibles.length - 1));
 }
+// Carrusel circular: después del último viene el primero. Las tarjetas de atrás se pueden tocar
+// para traerlas al frente (por eso no se desactivan: solo sus botones salen del orden del teclado).
+function posicionCircular(t, i, actual, total) {
+  let d = ((i - actual) % total + total) % total; if (d > total / 2) d -= total;
+  const antes = Number(t.style.getPropertyValue("--d") || d), ad = Math.abs(d);
+  // si la tarjeta cruza de un costado al otro, se apaga mientras pasa por detrás
+  if (Math.abs(d - antes) > 1) { t.style.setProperty("--op", 0); setTimeout(() => t.style.setProperty("--op", ad > 1 ? 0 : 1), 420); }
+  else t.style.setProperty("--op", ad > 1 ? 0 : 1);
+  t.style.setProperty("--d", d); t.style.setProperty("--ad", ad);
+  t.classList.toggle("activa", d === 0); t.setAttribute("aria-hidden", String(d !== 0));
+  t.querySelectorAll("button, a").forEach(b => { b.tabIndex = d === 0 ? 0 : -1; });
+}
 function irPlan(n) {
   const total = idsVisibles.length;
-  planActual = Math.max(0, Math.min(total - 1, n));
-  [...lista.children].forEach((t, i) => {
-    const d = i - planActual, ad = Math.abs(d);
-    t.style.setProperty("--d", d); t.style.setProperty("--ad", ad); t.style.setProperty("--op", ad > 1 ? 0 : 1);
-    t.classList.toggle("activa", d === 0); t.inert = d !== 0; t.setAttribute("aria-hidden", String(d !== 0));
-  });
+  planActual = ((n % total) + total) % total;
+  [...lista.children].forEach((t, i) => posicionCircular(t, i, planActual, total));
   [...$("cf-numeros").children].forEach((b, i) => { b.setAttribute("aria-selected", String(i === planActual)); b.tabIndex = i === planActual ? 0 : -1; });
   document.querySelector(".cf-barra").style.setProperty("--k", planActual);
   document.querySelector(".cf-barra i").style.width = `calc(100% / ${total})`;
   $("cf-n").textContent = "0" + (planActual + 1);
   document.querySelector(".cf-cuenta span").textContent = "/ 0" + total;
-  $("cf-ant").disabled = planActual === 0; $("cf-sig").disabled = planActual === total - 1;
   llenarDetalle();
 }
 function llenarDetalle() {
@@ -534,12 +541,12 @@ dibujarPlanes();
     const prods = [...prodLista.children];
     let prodActual = 0;
     const irProd = n => {
-      prodActual = Math.max(0, Math.min(prods.length - 1, n));
-      prods.forEach((t, i) => { const d = i - prodActual, ad = Math.abs(d); t.style.setProperty("--d", d); t.style.setProperty("--ad", ad); t.style.setProperty("--op", ad > 1 ? 0 : 1); t.classList.toggle("activa", d === 0); t.inert = d !== 0; t.setAttribute("aria-hidden", String(d !== 0)); });
+      prodActual = ((n % prods.length) + prods.length) % prods.length;
+      prods.forEach((t, i) => posicionCircular(t, i, prodActual, prods.length));
       [...$("prod-numeros").children].forEach((b, i) => { b.setAttribute("aria-selected", String(i === prodActual)); b.tabIndex = i === prodActual ? 0 : -1; });
       const barra = $("prod-barra"); barra.style.setProperty("--k", prodActual); barra.style.setProperty("--n", prods.length);
       $("prod-n").textContent = "0" + (prodActual + 1);
-      $("prod-ant").disabled = prodActual === 0; $("prod-sig").disabled = prodActual === prods.length - 1;
+
     };
     prods.forEach((t, i) => {
       const b = document.createElement("button"); b.type = "button"; b.setAttribute("role", "tab");
@@ -558,6 +565,29 @@ dibujarPlanes();
     irProd(0);
   }
   let x0 = null;
+  // Los planes giran solos cada 4,5 s mientras se ven; se frenan con el mouse encima, con foco,
+  // con el detalle o la ventana de contratar abiertos, y un rato después de que la persona los mueve.
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const zonaPlanes = lista.closest("section") || lista;
+    let visibles = false, quieto = 0, encima = false;
+    new IntersectionObserver(([e]) => { visibles = e.isIntersecting; }, { threshold: 0.35 }).observe(lista);
+    // se frena solo con el mouse sobre las tarjetas (no sobre el título u otras partes de la sección)
+    lista.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") encima = true; });
+    lista.addEventListener("pointerleave", () => { encima = false; });
+    const tocar = () => { quieto = Date.now() + 12000; };
+    ["pointerdown", "keydown", "focusin"].forEach(ev => zonaPlanes.addEventListener(ev, tocar));
+    setInterval(() => {
+      if (!visibles || encima || document.hidden || Date.now() < quieto || $("detalle").classList.contains("abierto") || $("ventana").open || zonaPlanes.contains(document.activeElement)) return;
+      irPlan(planActual + 1);
+    }, 4500);
+  }
+  // Con el trackpad, deslizar de costado sobre las tarjetas también las gira
+  let giroX = 0, giroT = 0;
+  lista.addEventListener("wheel", e => {
+    if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+    e.preventDefault(); giroX += e.deltaX;
+    if (Date.now() > giroT && Math.abs(giroX) > 60) { irPlan(planActual + (giroX > 0 ? 1 : -1)); giroX = 0; giroT = Date.now() + 450; }
+  }, { passive: false });
   lista.addEventListener("pointerdown", e => { x0 = e.clientX; });
   lista.addEventListener("pointerup", e => { if (x0 === null) return; const dx = e.clientX - x0; x0 = null; if (Math.abs(dx) > 40) irPlan(planActual + (dx < 0 ? 1 : -1)); });
 

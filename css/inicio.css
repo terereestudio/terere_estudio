@@ -31,7 +31,7 @@ img { max-width: 100%; }
 :focus-visible { outline: 2px solid var(--verde); outline-offset: 3px; }
 .envoltura { width: min(100%, var(--ancho)); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
 .mono { font-family: var(--f-mono); font-size: 0.82rem; color: var(--verde); letter-spacing: 0.02em; }
-.seccion { padding-block: clamp(72px, 9vw, 120px); }
+.seccion { padding-block: clamp(56px, 6.5vw, 88px); } /* PC: un poco menos de aire entre secciones */
 .encabezado { display: grid; gap: 14px; max-width: 60ch; margin-bottom: 44px; }
 .encabezado h2 { font-size: clamp(2rem, 4vw, 3rem); }
 .encabezado p { color: var(--suave); font-size: 1.1rem; }

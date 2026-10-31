@@ -39,6 +39,22 @@ const marcarInd = () => {
   [...ind.children].forEach((x, i) => x.classList.toggle("activo", i === mejor));
 };
 carpetas.addEventListener("scroll", () => requestAnimationFrame(marcarInd), { passive: true });
+// Ruedita del mouse: cuando hay más carpetas de las que entran, la ruedita las desliza de costado.
+// En los extremos se libera para que la página siga bajando normalmente.
+carpetas.addEventListener("wheel", e => {
+  if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+  const max = carpetas.scrollWidth - carpetas.clientWidth;
+  if (max < 4) return;
+  const izq = carpetas.scrollLeft;
+  if ((e.deltaY > 0 && izq >= max - 2) || (e.deltaY < 0 && izq <= 2)) return;
+  e.preventDefault();
+  // las carpetas encastran de a una: cada giro de la ruedita avanza una carpeta
+  if (Date.now() < pausaRueda) return;
+  pausaRueda = Date.now() + 380;
+  const paso = (carpetas.firstElementChild?.getBoundingClientRect().width || 300) + parseFloat(getComputedStyle(carpetas).columnGap || 0);
+  carpetas.scrollBy({ left: Math.sign(e.deltaY) * paso, behavior: reducido ? "auto" : "smooth" });
+}, { passive: false });
+let pausaRueda = 0;
 marcarInd();
 const T = (es, vars) => I18N.t(es, vars);
 I18N.registrar(["// pasá el mouse para espiar · hacé clic para abrir", "// deslizá para ver las carpetas · tocá para abrir", "← Volver a la ficha", "← Volver a las carpetas", "Descargar en Microsoft Store", "Disponible", "Se instala desde la Microsoft Store y se actualiza sola.", "Por ahora lector. está disponible para Windows y Android.", "Copiado", "Copiar"]);
