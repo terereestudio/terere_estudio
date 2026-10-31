@@ -7,23 +7,20 @@
   </div>
 </header>
 
-<main id="contenido">
+<!-- Escena del blog: en escritorio, un tercio a la izquierda (título, intro, filtros y, al pie, el llamado)
+     y dos tercios a la derecha con el carril horizontal de entradas, como en los artículos.
+     En móvil va todo en columna: portada, entradas y llamado. -->
+<main id="contenido" class="blog-escena">
+  <div class="codigo-fondo" aria-hidden="true"><div id="codigo"></div></div>
+
   <section class="portada" aria-labelledby="titulo-blog">
-    <div class="codigo-fondo" aria-hidden="true"><div id="codigo"></div></div>
-    <div class="envoltura">
-      <div>
-        <p class="palabra-etiqueta">&lt;section <b>id</b>="<b>blog</b>"&gt;</p>
-        <h1 class="palabra" id="titulo-blog" aria-label="Blog"><span>b</span><span>l</span><span>o</span><span>g</span><span class="punto">.</span><i class="cursor" aria-hidden="true"></i></h1>
-      </div>
+    <div class="portada-arriba">
+      <p class="palabra-etiqueta">&lt;section <b>id</b>="<b>blog</b>"&gt;</p>
+      <h1 class="palabra" id="titulo-blog" aria-label="Blog"><span>b</span><span>l</span><span>o</span><span>g</span><span class="punto">.</span><i class="cursor" aria-hidden="true"></i></h1>
       <div class="intro">
         <p class="mono">// lo que aprendo, lo comparto</p>
         <p>Notas sobre <strong>inteligencia artificial</strong>, <strong>desarrollo web</strong>, diseño y ciberseguridad. Lo que pruebo en mis proyectos, contado sin vueltas para que también te sirva a vos.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="entradas-zona" aria-label="Entradas del blog">
-    <div class="envoltura">
       <div class="filtros" role="group" aria-label="Filtrar por tema">
         <button class="filtro" type="button" data-filtro="todas" aria-pressed="true">todas</button>
         <button class="filtro" type="button" data-filtro="ia" aria-pressed="false">inteligencia artificial</button>
@@ -31,16 +28,23 @@
         <button class="filtro" type="button" data-filtro="diseno-ux" aria-pressed="false">diseño ux/ui</button>
         <button class="filtro" type="button" data-filtro="ciberseguridad" aria-pressed="false">ciberseguridad</button>
       </div>
-      <div class="entradas" id="entradas"></div>
-      <p class="vacio" id="vacio" hidden>// no hay entradas de este tema todavía</p>
+    </div>
+  </section>
+
+  <section class="entradas-zona" aria-label="Entradas del blog">
+    <div class="carril" id="entradas" tabindex="0" aria-label="Entradas del blog, de la más nueva a la más vieja. Usá las flechas para recorrerlas."></div>
+    <p class="vacio" id="vacio" hidden>// no hay entradas de este tema todavía</p>
+    <div class="carril-control">
+      <p class="pista mono" aria-hidden="true"><span class="pista-rueda">// girá la ruedita para recorrer</span><span class="pista-dedo">// deslizá para ver más</span></p>
+      <div class="progreso" aria-hidden="true"><span id="progreso"></span></div>
+      <button class="flecha" type="button" id="anterior" aria-label="Entradas anteriores">←</button>
+      <button class="flecha" type="button" id="siguiente" aria-label="Entradas siguientes">→</button>
     </div>
   </section>
 
   <section class="suscribir" aria-label="Contacto">
-    <div class="envoltura">
-      <h2>¿Querés que tu negocio <em>aparezca</em> en Google?</h2>
-      <a class="boton" href="index.html#planes">Ver los planes →</a>
-    </div>
+    <h2>¿Querés que tu negocio <em>aparezca</em> en Google?</h2>
+    <a class="boton" href="index.html#planes">Ver los planes →</a>
   </section>
 </main>
 <!--ld:blog-->

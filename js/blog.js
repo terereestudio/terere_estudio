@@ -1,5 +1,18 @@
 // Blog v2. Origen: prototipo blog.html
 "use strict";
+
+// ---------------------------------------------------------------------------
+// Textos visibles que arma este script (todo junto acá para poder traducirlo).
+// ---------------------------------------------------------------------------
+let LOCALE = "es-AR";
+const TEXTOS = {
+  leer: "leer →",
+  hechoIA: "hecho con IA",
+  formatoFecha: { day: "numeric", month: "short", year: "numeric" },
+};
+
+// Entradas del blog. El orden del arreglo no importa: se ordenan solas por fecha
+// (la más nueva primero, a la izquierda), así una entrada nueva cae en su lugar.
 const ENTRADAS = [
  {
   "cat": "ia",
@@ -92,21 +105,37 @@ const ENTRADAS = [
   "ia": true
  }
 ];
-const fechaLegible = f => new Date(f + "T12:00:00").toLocaleDateString("es-AR", { day: "numeric", month: "short", year: "numeric" });
-const cont = document.getElementById("entradas");
+
+const fechaLegible = f => new Date(f + "T12:00:00").toLocaleDateString(LOCALE, TEXTOS.formatoFecha);
+const porFechaDesc = (a, b) => b.fecha.localeCompare(a.fecha);
+
+const carril = document.getElementById("entradas");
+const zona = carril.closest(".entradas-zona");
+const escena = document.querySelector(".blog-escena");
+const barraAvance = document.getElementById("progreso");
+const btnAnterior = document.getElementById("anterior");
+const btnSiguiente = document.getElementById("siguiente");
+const escritorio = window.matchMedia("(min-width: 1024px)");
+const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)");
+let tarjetas = [];
+
+// ---------------------------------------------------------------------------
+// Tarjetas
+// ---------------------------------------------------------------------------
 function dibujar(filtro) {
-  cont.replaceChildren();
-  const lista = ENTRADAS.filter(e => filtro === "todas" || e.cat === filtro);
-  lista.forEach((e, i) => {
+  carril.replaceChildren();
+  const lista = ENTRADAS.filter(e => filtro === "todas" || e.cat === filtro).sort(porFechaDesc);
+  tarjetas = lista.map((e, i) => {
     const a = document.createElement("a");
     a.className = "entrada" + (i === 0 ? " destacada" : "");
     a.href = e.href || "#";
-    a.style.setProperty("--d", (-(i * 0.9) % 6) + "s");
-    a.style.animationDelay = (i * 0.06) + "s, " + (-(i * 0.9) % 6) + "s";
+    const flote = (-(i * 0.9) % 6) + "s";
+    a.style.setProperty("--d", flote);
+    a.style.animationDelay = (i * 0.06) + "s, " + flote;
     const fig = document.createElement("div"); fig.className = "entrada-img";
-    const img = document.createElement("img"); img.src = e.img; img.alt = ""; img.loading = i === 0 ? "eager" : "lazy"; img.decoding = "async"; img.width = 640; img.height = 400;
+    const img = document.createElement("img"); img.src = e.img; img.alt = ""; img.loading = i < 3 ? "eager" : "lazy"; img.decoding = "async"; img.width = 640; img.height = 400;
     fig.append(img);
-    if (e.ia) { const s = document.createElement("span"); s.className = "sello-ia"; s.textContent = "hecho con IA"; fig.append(s); }
+    if (e.ia) { const s = document.createElement("span"); s.className = "sello-ia"; s.textContent = TEXTOS.hechoIA; fig.append(s); }
     const c = document.createElement("div"); c.className = "entrada-cuerpo";
     const meta = document.createElement("div"); meta.className = "entrada-meta";
     const chip = document.createElement("span"); chip.className = "chip"; chip.textContent = e.et;
@@ -114,13 +143,99 @@ function dibujar(filtro) {
     meta.append(chip, t);
     const h = document.createElement("h2"); h.textContent = e.titulo;
     const p = document.createElement("p"); p.textContent = e.resumen;
-    const l = document.createElement("span"); l.className = "leer"; l.textContent = "leer →";
+    const l = document.createElement("span"); l.className = "leer"; l.textContent = TEXTOS.leer;
     c.append(meta, h, p, l);
     a.append(fig, c);
-    cont.append(a);
+    carril.append(a);
+    return a;
   });
   document.getElementById("vacio").hidden = lista.length > 0;
+  zona.classList.toggle("sin-entradas", lista.length === 0);
+  // Al cambiar de filtro, el carril vuelve al principio
+  detener();
+  carril.scrollLeft = 0;
+  actualizar();
 }
+
+// ---------------------------------------------------------------------------
+// Carril horizontal: ruedita, flechas, teclado y efecto de salida por los bordes
+// ---------------------------------------------------------------------------
+const maximo = () => Math.max(0, carril.scrollWidth - carril.clientWidth);
+const limitar = (v, a, b) => Math.min(b, Math.max(a, v));
+
+// Desplazamiento suave propio (se acumula con cada giro de la ruedita)
+let destino = null, cuadro = 0, moviendoNos = false;
+function detener() { cancelAnimationFrame(cuadro); cuadro = 0; destino = null; moviendoNos = false; }
+function irA(x) {
+  destino = limitar(x, 0, maximo());
+  if (sinMovimiento.matches) { carril.scrollLeft = destino; detener(); return; }
+  if (!cuadro) cuadro = requestAnimationFrame(paso);
+}
+function paso() {
+  const actual = carril.scrollLeft;
+  const falta = destino - actual;
+  if (Math.abs(falta) < 1) { moviendoNos = true; carril.scrollLeft = destino; detener(); return; }
+  moviendoNos = true;
+  carril.scrollLeft = actual + falta * 0.18;
+  cuadro = requestAnimationFrame(paso);
+}
+
+// La ruedita vertical mueve el carril de costado. Cuando llega a una punta,
+// suelta el evento para que la página siga bajando o subiendo como siempre.
+escena.addEventListener("wheel", ev => {
+  if (!escritorio.matches || ev.ctrlKey || tarjetas.length === 0) return;
+  if (Math.abs(ev.deltaX) > Math.abs(ev.deltaY)) { detener(); return; } // gesto horizontal del trackpad: nativo
+  const max = maximo();
+  if (max <= 0) return;
+  const unidad = ev.deltaMode === 1 ? 40 : ev.deltaMode === 2 ? carril.clientWidth : 1;
+  const delta = ev.deltaY * unidad;
+  const desde = destino ?? carril.scrollLeft;
+  if ((delta < 0 && desde <= 0.5) || (delta > 0 && desde >= max - 0.5)) return;
+  ev.preventDefault();
+  irA(desde + delta);
+}, { passive: false });
+
+// Paso de las flechas y del teclado: más o menos una tarjeta
+const pasoTarjeta = () => (tarjetas[1] ? tarjetas[1].offsetWidth + 18 : carril.clientWidth * 0.8);
+btnAnterior.addEventListener("click", () => irA((destino ?? carril.scrollLeft) - pasoTarjeta()));
+btnSiguiente.addEventListener("click", () => irA((destino ?? carril.scrollLeft) + pasoTarjeta()));
+carril.addEventListener("keydown", ev => {
+  if (ev.target !== carril) return;
+  const desde = destino ?? carril.scrollLeft;
+  const accion = { ArrowRight: desde + pasoTarjeta(), ArrowLeft: desde - pasoTarjeta(), Home: 0, End: maximo(), PageDown: desde + carril.clientWidth, PageUp: desde - carril.clientWidth }[ev.key];
+  if (accion === undefined) return;
+  ev.preventDefault();
+  irA(accion);
+});
+
+// Efecto: cada tarjeta se achica y se desvanece según cuánto sale del carril
+let pendiente = false;
+function actualizar() {
+  pendiente = false;
+  const izq = carril.scrollLeft, ancho = carril.clientWidth, max = maximo();
+  for (const c of tarjetas) {
+    const x = c.offsetLeft - izq, w = c.offsetWidth || 1;
+    const porIzq = Math.max(0, -x) / w, porDer = Math.max(0, x + w - ancho) / w;
+    const salida = Math.min(1, Math.max(porIzq, porDer));
+    c.style.setProperty("--salida", salida.toFixed(3));
+    c.style.setProperty("--origen", porIzq > porDer ? "right center" : "left center");
+  }
+  barraAvance.style.setProperty("--avance", max > 0 ? (izq / max).toFixed(3) : "1");
+  btnAnterior.disabled = izq <= 1;
+  btnSiguiente.disabled = izq >= max - 1;
+}
+function pedirActualizacion() { if (!pendiente) { pendiente = true; requestAnimationFrame(actualizar); } }
+carril.addEventListener("scroll", () => {
+  // Si el que movió fue el usuario (trackpad, dedo, tab), olvidamos nuestro destino
+  if (!moviendoNos && cuadro) detener();
+  moviendoNos = false;
+  pedirActualizacion();
+}, { passive: true });
+window.addEventListener("resize", pedirActualizacion);
+
+// ---------------------------------------------------------------------------
+// Filtros
+// ---------------------------------------------------------------------------
 dibujar("todas");
 document.querySelectorAll(".filtro").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll(".filtro").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
