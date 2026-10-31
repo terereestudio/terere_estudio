@@ -3,8 +3,9 @@
 const TODAS = [
   { id: "web", titulo: "Páginas", cursiva: " web", img: "img/v2/silkderma.webp", trabajos: [
     { nombre: "Silkderma Depilación Láser", tipo: "Página web con turnero", texto: "Sitio de servicios con reserva de turnos online.", img: "img/v2/silkderma.webp", href: "https://silkderma.com.ar" },
-    { nombre: "HR Estudio Jurídico", tipo: "Identidad y landing page", texto: "Identidad visual completa y landing page en código.", img: "img/v2/portfolio/hr-estudio-juridico-landing-chica.webp" },
-    { nombre: "Tereré Estudio v1", tipo: "Sitio propio", texto: "Primera versión de este sitio, validada por el W3C.", img: "img/v2/portfolio/terere-estudio-v1-chica.webp" }
+    { nombre: "Tereré Estudio v1", tipo: "Sitio propio · primera versión", texto: "La primera iteración de este sitio, hecha a mano para la UTN y validada por el W3C. Entrá y recorrela.", img: "img/v2/portfolio/terere-estudio-v1-chica.webp", href: "/v1/" }
+    /* Diseños disponibles: sitios terminados, sin la marca del cliente, listos para reservar.
+       Para sumar uno: { nombre: "Diseño Aurora", tipo: "Sitio web", texto: "Para estudios y consultorios.", img: "img/v2/portfolio/disponibles/aurora-chica.webp", disponible: true, demo: "/disenos/aurora/" } */
   ]},
   { id: "tienda", titulo: "Tienda", cursiva: " online", img: "img/v2/portfolio/algarrobo-negro-tienda-chica.webp", trabajos: [
     { nombre: "Algarrobo Negro", tipo: "Tienda online", texto: "Tienda online con catálogo, medios de pago y envíos.", img: "img/v2/portfolio/algarrobo-negro-tienda-chica.webp" }
@@ -13,7 +14,7 @@ const TODAS = [
     { nombre: "Tablero comercial (ejemplo)", tipo: "Tablero de datos", texto: "Ventas, pedidos y canales en una sola pantalla. Datos ficticios.", img: "" }
   ]},
   { id: "branding", titulo: "Bran", cursiva: "ding", img: "img/v2/portfolio/garete-bar-1-chica.webp", marcas: true, trabajos: [
-    { nombre: "HR Estudio Jurídico", tipo: "Cliente real", texto: "Logo, paleta, tipografía, tarjetas y piezas para redes.", logo: "img/v2/portfolio/branding/hr-estudio-juridico-logo.webp", galeria: ["img/v2/portfolio/branding/hr-estudio-juridico-1.webp", "img/v2/portfolio/branding/hr-estudio-juridico-2.webp", "img/v2/portfolio/branding/hr-estudio-juridico-3.webp", "img/v2/portfolio/branding/hr-estudio-juridico-4.webp", "img/v2/portfolio/branding/hr-estudio-juridico-5.webp", "img/v2/portfolio/branding/hr-estudio-juridico-6.webp", "img/v2/portfolio/branding/hr-estudio-juridico-7.webp", "img/v2/portfolio/branding/hr-estudio-juridico-8.webp", "img/v2/portfolio/branding/hr-estudio-juridico-9.webp"], pies: ["Logo", "Paleta de colores", "Tipografía", "Ícono para la web", "Tarjeta de presentación", "Perfil de Instagram", "Historias de efemérides", "Historias informativas", "Landing page"] },
+    { nombre: "HR Estudio Jurídico", tipo: "Cliente real", texto: "Logo, paleta, tipografía, tarjetas y piezas para redes.", logo: "img/v2/portfolio/branding/hr-estudio-juridico-logo.webp", galeria: ["img/v2/portfolio/branding/hr-estudio-juridico-1.webp", "img/v2/portfolio/branding/hr-estudio-juridico-2.webp", "img/v2/portfolio/branding/hr-estudio-juridico-3.webp", "img/v2/portfolio/branding/hr-estudio-juridico-4.webp", "img/v2/portfolio/branding/hr-estudio-juridico-5.webp", "img/v2/portfolio/branding/hr-estudio-juridico-6.webp", "img/v2/portfolio/branding/hr-estudio-juridico-7.webp", "img/v2/portfolio/branding/hr-estudio-juridico-8.webp"], pies: ["Logo", "Paleta de colores", "Tipografía", "Ícono para la web", "Tarjeta de presentación", "Perfil de Instagram", "Historias de efemérides", "Historias informativas"] },
     { nombre: "Garete Bar", tipo: "Marca ficticia", texto: "Bar con identidad manuscrita: logo, paleta, uniforme y promo.", logo: "img/v2/portfolio/branding/garete-bar-logo.webp", galeria: ["img/v2/portfolio/branding/garete-bar-1.webp", "img/v2/portfolio/branding/garete-bar-2.webp", "img/v2/portfolio/branding/garete-bar-3.webp", "img/v2/portfolio/branding/garete-bar-4.webp"], pies: ["Logo", "Paleta de colores", "Uniforme", "Flyer de promoción"] },
     { nombre: "Panadería Carmona", tipo: "Marca ficticia", texto: "Panadería de barrio: logo, tipografía, uniforme y packaging.", logo: "img/v2/portfolio/branding/panaderia-carmona-logo.webp", galeria: ["img/v2/portfolio/branding/panaderia-carmona-1.webp", "img/v2/portfolio/branding/panaderia-carmona-2.webp", "img/v2/portfolio/branding/panaderia-carmona-3.webp", "img/v2/portfolio/branding/panaderia-carmona-4.webp"], pies: ["Logo", "Tipografía", "Uniformes", "Bolsa de papel"] },
     { nombre: "R. E. San Francisco de Asís", tipo: "Marca ficticia", texto: "Reserva ecológica: logo, paleta, uniforme y cartelería.", logo: "img/v2/portfolio/branding/reserva-san-francisco-logo.webp", galeria: ["img/v2/portfolio/branding/reserva-san-francisco-1.webp", "img/v2/portfolio/branding/reserva-san-francisco-2.webp", "img/v2/portfolio/branding/reserva-san-francisco-3.webp", "img/v2/portfolio/branding/reserva-san-francisco-4.webp"], pies: ["Logo", "Paleta de colores", "Uniformes", "Cartelería"] },
@@ -47,7 +48,7 @@ const total = CATEGORIAS.reduce((n, c) => n + c.trabajos.length, 0);
 const T = (es, vars) => I18N.t(es, vars);
 // Textos que se muestran más tarde (al abrir paneles): se registran para poder traducirlos
 I18N.registrar([].concat(...TODAS.map(c => [c.titulo + c.cursiva, ...c.trabajos.flatMap(t => [t.nombre, t.tipo, t.texto, ...(t.pies || [])])])));
-I18N.registrar(["trabajos", "categorías", "trabajo", "próximamente", "imagen {a} de {b}", "Imagen anterior", "Imagen siguiente", "Cerrar ×", "Ver en grande: {x}", "Vista de {x}", "captura pendiente", "Pieza en grande", "Cerrar", "Pieza anterior", "Pieza siguiente", "{a} de {b}", "Logo de {x}", "Ver la identidad de {x}", "Cerrar y volver al carrusel", "{n} piezas", "Identidad de {x}", "pieza {n}"]);
+I18N.registrar(["trabajos", "categorías", "trabajo", "próximamente", "imagen {a} de {b}", "Imagen anterior", "Imagen siguiente", "Cerrar ×", "Ver en grande: {x}", "Vista de {x}", "captura pendiente", "Pieza en grande", "Cerrar", "Pieza anterior", "Pieza siguiente", "{a} de {b}", "Logo de {x}", "Ver la identidad de {x}", "Cerrar y volver al carrusel", "{n} piezas", "Identidad de {x}", "pieza {n}", "Diseño disponible", "libre para reservar", "Ver el diseño", "Reservar este diseño →", "Hola Leonardo, quiero reservar el diseño {x} para mi negocio."]);
 // Título de categoría: en español se respeta el corte original (Bran<em>ding</em>); en otros idiomas va en cursiva la última palabra
 function tituloCat(c, h) {
   h.replaceChildren();
@@ -143,9 +144,9 @@ function abrir(c, boton) {
   const lista = el("div", "trabajos" + (c.piezas ? " piezas" : "") + (c.marcas ? " marcas" : ""));
   const conVisor = c.trabajos.filter(t => t.grande);
   (c.marcas ? [] : c.trabajos).forEach(t => {
-    const a = t.imgs ? el("div", "trabajo") : t.grande ? el("button", "trabajo") : el("a", "trabajo");
+    const a = t.imgs || t.disponible ? el("div", "trabajo" + (t.disponible ? " disponible" : "")) : t.grande ? el("button", "trabajo") : el("a", "trabajo");
     if (t.grande) { a.type = "button"; a.setAttribute("aria-label", T("Ver en grande: {x}", { x: T(t.nombre) })); a.addEventListener("click", () => verPieza(conVisor, conVisor.indexOf(t), a)); }
-    else if (!t.imgs) { a.href = t.href || "#"; if (t.href) { a.target = "_blank"; a.rel = "noopener noreferrer"; } }
+    else if (!t.imgs && !t.disponible) { a.href = t.href || "#"; if (/^https?:/.test(t.href || "")) { a.target = "_blank"; a.rel = "noopener noreferrer"; } }
     let fig;
     if (t.video) {
       fig = el("div", "trabajo-img video");
@@ -160,7 +161,14 @@ function abrir(c, boton) {
       if (t.img) { const img = el("img"); img.src = t.img; img.alt = T("Vista de {x}", { x: T(t.nombre) }); img.loading = "lazy"; fig.append(img); } else fig.textContent = T("captura pendiente");
     }
     const meta = el("p", "mono"); meta.append(el("span", "", T(t.tipo)));
+    if (t.disponible) { fig.append(el("span", "sello-disponible", T("Diseño disponible"))); meta.append(el("span", "", T("libre para reservar"))); }
     a.append(fig, meta, el("h3", "", T(t.nombre)), el("p", "", T(t.texto)));
+    if (t.disponible) {
+      const acc = el("div", "disponible-acciones");
+      if (t.demo) { const v = el("a", "boton-borde", T("Ver el diseño")); v.href = t.demo; v.target = "_blank"; v.rel = "noopener"; acc.append(v); }
+      const r = el("a", "boton", T("Reservar este diseño →")); r.href = "https://wa.me/5493644328260?text=" + encodeURIComponent(T("Hola Leonardo, quiero reservar el diseño {x} para mi negocio.", { x: T(t.nombre) })); r.target = "_blank"; r.rel = "noopener noreferrer";
+      acc.append(r); a.append(acc);
+    }
     lista.append(a);
   });
   panel.append(cab, c.marcas ? carruselMarcas(c) : lista);
@@ -262,6 +270,10 @@ function carruselMarcas(c) {
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !detalle.hidden && !document.querySelector(".visor-pieza[open]")) volver(); });
   return escena;
 }
+
+// Enlace directo a una categoría: portfolio.html#web abre "Páginas web"
+const abrirDesdeAncla = () => { const id = decodeURIComponent(location.hash.slice(1)), c = CATEGORIAS.find(x => x.id === id), b = c && grilla.querySelector(`[data-cat="${id}"]`); if (b && abierta !== id) abrir(c, b); };
+abrirDesdeAncla(); addEventListener("hashchange", abrirDesdeAncla);
 
 // Cambio de idioma: se vuelven a dibujar las tarjetas, los datos y el panel abierto
 I18N.alCambiar(() => {

@@ -542,12 +542,21 @@ dibujarPlanes();
   if (prodLista) {
     const prods = [...prodLista.children];
     let prodActual = 0;
+    // Yacarés animados (SVG): solo se mueve el de la tarjeta del frente, con la sección en pantalla
+    // y si la persona no pidió movimiento reducido.
+    const yacs = prods.map(t => t.querySelector("svg.yac"));
+    const quieto = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let prodEnPantalla = false;
+    const moverYac = () => yacs.forEach((s, i) => { if (!s || !s.pauseAnimations) return; if (prodEnPantalla && !quieto.matches && i === prodActual) s.unpauseAnimations(); else s.pauseAnimations(); });
+    yacs.forEach(s => s && s.pauseAnimations && s.pauseAnimations());
+    new IntersectionObserver(([e]) => { prodEnPantalla = e.isIntersecting; moverYac(); }).observe(prodLista);
     const irProd = n => {
       prodActual = ((n % prods.length) + prods.length) % prods.length;
       prods.forEach((t, i) => posicionCircular(t, i, prodActual, prods.length));
       [...$("prod-numeros").children].forEach((b, i) => { b.setAttribute("aria-selected", String(i === prodActual)); b.tabIndex = i === prodActual ? 0 : -1; });
       const barra = $("prod-barra"); barra.style.setProperty("--k", prodActual); barra.style.setProperty("--n", prods.length);
       $("prod-n").textContent = "0" + (prodActual + 1);
+      moverYac();
 
     };
     prods.forEach((t, i) => {

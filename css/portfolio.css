@@ -108,6 +108,16 @@ p { margin: 0; }
 .trabajo h3 { font: 400 1.6rem/1.05 var(--f-display); }
 .trabajo p { color: var(--gris); font-size: 0.92rem; }
 .trabajo .mono { display: flex; justify-content: space-between; }
+/* Diseños disponibles: sitio sin marca, listo para reservar */
+.trabajo.disponible .trabajo-img { position: relative; border-color: #9FBD2B; }
+.trabajo.disponible .mono span:last-child { color: #9FBD2B; }
+.sello-disponible { position: absolute; top: 12px; left: 12px; padding: 6px 11px; border-radius: 999px; background: #9FBD2B; color: #231F20; font: 500 0.7rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; box-shadow: 0 6px 18px rgba(0,0,0,0.35); }
+.disponible-acciones { display: flex; flex-wrap: wrap; gap: 8px; }
+.disponible-acciones a { padding: 11px 16px; font-size: 0.72rem; }
+.disponible-acciones .boton { background: #9FBD2B; border-color: #9FBD2B; color: #231F20; }
+.disponible-acciones .boton:hover { background: #B6D43C; border-color: #B6D43C; }
+.disponible-acciones .boton-borde { display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid var(--linea); color: var(--tinta); text-decoration: none; font: 400 0.72rem/1 var(--f-mono); text-transform: uppercase; letter-spacing: 0.04em; }
+.disponible-acciones .boton-borde:hover { border-color: var(--tinta); }
 
 .trabajo-img.mini { position: relative; }
 .trabajo-img.video { background: #000; }

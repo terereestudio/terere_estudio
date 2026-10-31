@@ -11,10 +11,10 @@
 /soluciones.html      /404.html     404!
 /soluciones           /404.html     404!
 
-# Archivo de versiones: guardado para más adelante, todavía no se muestra
+# Archivo de versiones: la página que lista todas sigue guardada para más adelante.
+# La v1 sí está publicada: se entra desde el portfolio (Páginas web).
 /versiones.html        /404.html     404!
 /versiones             /404.html     404!
-/v1/*                  /404.html     404!
 
 # Archivos de trabajo que no hace falta publicar
 /src/*                 /404.html     404
