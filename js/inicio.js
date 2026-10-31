@@ -525,6 +525,7 @@ dibujarPlanes();
   new IntersectionObserver(([e]) => { enVista = e.isIntersecting; programar(); }, { threshold: 0.3 }).observe(cart);
   document.addEventListener("visibilitychange", programar);
   if (red) { pausadaUsuario = true; pausa.hidden = true; }
+  if (cart.hidden) { pausadaUsuario = true; limpiar(); programar(); } // cartelera oculta: no anima nada
   mostrar(0);
 
   // Clientes en onda 3D
