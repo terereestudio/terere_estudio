@@ -145,7 +145,8 @@
   "6k4k8u": "As agreed",
   "1ty9cro": "Bank transfer or cash. We'll sort it out on WhatsApp.",
   "cwv3fs": "// the message i get",
-  "1nek67j": "We couldn't connect to Mercado Pago. Try again or message me on WhatsApp."
+  "1nek67j": "We couldn't connect to Mercado Pago. Try again or message me on WhatsApp.",
+  "15wjrm6": "Your WhatsApp (optional)"
  },
  "html": {
   "rmyxbw": "<span>// from Corrientes to the world</span><span class=\"cursor\" aria-hidden=\"true\">&nbsp;</span>",
@@ -194,7 +195,10 @@
   "1fzhm9m": "Close notice",
   "8ghrun": "Open menu",
   "1sg0ox6": "Close",
-  "1azh871": "Steps"
+  "1azh871": "Steps",
+  "rljbg": "E.g.: 3794 123456",
+  "1u502va": "E.g.: hair salon, clothing, accounting firm",
+  "14kirts": "What you want to show, who you sell to, a website you like…"
  },
  "ui": {
   "verQueIncluye": "See what's included",

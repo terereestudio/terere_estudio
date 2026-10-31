@@ -145,7 +145,8 @@
   "6k4k8u": "Nach Absprache",
   "1ty9cro": "Überweisung oder bar. Wir klären das per WhatsApp.",
   "cwv3fs": "// nachricht, die bei mir ankommt",
-  "1nek67j": "Wir konnten keine Verbindung zu Mercado Pago herstellen. Versuch es noch mal oder schreib mir per WhatsApp."
+  "1nek67j": "Wir konnten keine Verbindung zu Mercado Pago herstellen. Versuch es noch mal oder schreib mir per WhatsApp.",
+  "15wjrm6": "Deine WhatsApp-Nummer (optional)"
  },
  "html": {
   "rmyxbw": "<span>// aus Corrientes in die Welt</span><span class=\"cursor\" aria-hidden=\"true\">&nbsp;</span>",
@@ -194,7 +195,10 @@
   "1fzhm9m": "Hinweis schließen",
   "8ghrun": "Menü öffnen",
   "1sg0ox6": "Schließen",
-  "1azh871": "Schritte"
+  "1azh871": "Schritte",
+  "rljbg": "Z. B.: 3794 123456",
+  "1u502va": "Z. B.: Friseursalon, Mode, Steuerbüro",
+  "14kirts": "Was du zeigen willst, an wen du verkaufst, eine Website, die dir gefällt …"
  },
  "ui": {
   "verQueIncluye": "Leistungen ansehen",

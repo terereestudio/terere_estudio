@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="img/marca/apple-touch-icon.png">
 <link rel="preload" as="image" href="img/v2/hero-leonardo-1600.webp" media="(min-width: 768px)" fetchpriority="high">
 <link rel="stylesheet" href="css/inicio.css?v=24583df9b7">
-<script src="js/inicio.js?v=55e8a59336" defer></script>
+<script src="js/inicio.js?v=a1319c1514" defer></script>
 
 
 </head>
@@ -45,7 +45,7 @@
             </span>
             <span id="idioma-actual" data-no-traducir>ES</span>
           </button>
-          <input class="idioma-buscar" id="idioma-buscar" type="search" autocomplete="off" spellcheck="false" aria-label="Buscar idioma" placeholder="Buscar idioma…" tabindex="-1">
+          <input class="idioma-buscar" id="idioma-buscar" data-no-traducir type="search" autocomplete="off" spellcheck="false" aria-label="Buscar idioma" placeholder="Buscar idioma…" tabindex="-1">
         </div>
         <div class="idioma-menu" id="idioma-menu" hidden>
           <ul class="idioma-lista" id="idioma-lista" data-no-traducir></ul>
@@ -442,6 +442,7 @@
 
     <form data-paso="2" id="form-datos" hidden novalidate>
       <label for="f-nombre">Nombre completo<input id="f-nombre" type="text" autocomplete="name" maxlength="80" required></label>
+      <label for="f-whatsapp">Tu WhatsApp (opcional)<input id="f-whatsapp" type="tel" autocomplete="tel" inputmode="tel" maxlength="30" placeholder="Ej.: 3794 123456"></label>
       <label for="f-rubro">Tu negocio o rubro<input id="f-rubro" type="text" maxlength="80" placeholder="Ej.: peluquería, ropa, estudio contable"></label>
       <label for="f-idea">Contame tu idea<textarea id="f-idea" maxlength="600" placeholder="Qué querés mostrar, a quién le vendés, alguna web que te guste…"></textarea></label>
       <label class="check" for="f-acepto"><input id="f-acepto" type="checkbox" required> Acepto que Tereré Estudio use estos datos solo para responder mi consulta, según la política de privacidad.</label>

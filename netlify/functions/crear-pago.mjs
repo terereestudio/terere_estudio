@@ -1,6 +1,7 @@
 // POST /api/crear-pago
 // Crea una preferencia de Checkout Pro y devuelve la URL donde el cliente paga.
-// Body JSON: { "plan": "emprendedor", "moneda": "ars" | "usd" }
+// Body JSON: { "plan": "emprendedor", "moneda": "ars" | "usd", "cliente": { nombre, rubro, idea, whatsapp, idioma } }
+// Los datos del cliente viajan en la metadata del pago y aparecen en el aviso por correo.
 
 import { randomBytes } from 'node:crypto';
 import { PLANES, montoEnArs } from '../lib/precios.mjs';
@@ -37,18 +38,32 @@ export default async (req, context) => {
   const base = new URL(req.url).origin;
 
   const referencia = `TE-${plan}-${Date.now()}-${randomBytes(3).toString('hex')}`;
+  // Datos que el cliente cargó en la página: se limpian y se recortan
+  const limpio = (v, max) => String(v ?? '').replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max);
+  const c = datos?.cliente || {};
+  const metadata = {
+    plan,
+    nombre: limpio(c.nombre, 80),
+    rubro: limpio(c.rubro, 80),
+    idea: String(c.idea ?? '').replace(/[\u0000-\u0009\u000b-\u001f\u007f]+/g, ' ').trim().slice(0, 600),
+    whatsapp: limpio(c.whatsapp, 30),
+    idioma: /^[a-z]{2}$/.test(c.idioma || '') ? c.idioma : 'es',
+  };
 
   const cuerpo = {
     items: [
       {
         id: plan,
         title: `${PLANES[plan].titulo} - Tereré Estudio`,
+        description: PLANES[plan].titulo,
         quantity: 1,
         currency_id: 'ARS',
         unit_price: monto,
       },
     ],
     external_reference: referencia,
+    metadata,
+    statement_descriptor: 'TERERE ESTUDIO',
     back_urls: {
       success: `${base}/pago-recibido.html?estado=aprobado`,
       pending: `${base}/pago-recibido.html?estado=pendiente`,

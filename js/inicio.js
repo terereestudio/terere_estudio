@@ -75,7 +75,9 @@ function atributos(el) { ATRIBUTOS.forEach(a => { const v = el.getAttribute(a); 
 function recolectar(el) {
   for (const n of [...el.childNodes]) {
     if (n.nodeType === 3) { if (el.children.length && LETRA.test(n.data)) UNIDADES.push({ modo: "nodo", nodo: n, es: n.data, clave: huella(normal(n.data)) }); continue; }
-    if (n.nodeType !== 1 || SALTEAR.has(n.tagName.toUpperCase()) || noTraducir(n)) continue;
+    if (n.nodeType !== 1 || noTraducir(n)) continue;
+    if (n.tagName === "INPUT" || n.tagName === "TEXTAREA") { atributos(n); continue; } // solo el texto de ejemplo (placeholder)
+    if (SALTEAR.has(n.tagName.toUpperCase())) continue;
     atributos(n);
     if (LETRA.test(n.textContent) && soloEnLinea(n)) {
       const html = n.innerHTML, modo = n.children.length ? "html" : "texto";
@@ -266,7 +268,7 @@ function abrirDetalle() {
 
 const ventana = document.getElementById("ventana");
 let actual = null;
-const datos = { nombre: "", rubro: "", idea: "" };
+const datos = { nombre: "", rubro: "", idea: "", whatsapp: "" };
 const $ = id => document.getElementById(id);
 const llenarLista = (el, items) => { el.replaceChildren(...items.map(t => { const li = document.createElement("li"); li.textContent = t; return li; })); };
 
@@ -296,7 +298,7 @@ $("form-datos").addEventListener("submit", e => {
   if (nombre.length < 3) { err.textContent = t("errNombre"); err.hidden = false; $("f-nombre").focus(); return; }
   if (!$("f-acepto").checked) { err.textContent = t("errAcepto"); err.hidden = false; return; }
   err.hidden = true;
-  datos.nombre = nombre; datos.rubro = $("f-rubro").value.trim(); datos.idea = $("f-idea").value.trim();
+  datos.nombre = nombre; datos.rubro = $("f-rubro").value.trim(); datos.idea = $("f-idea").value.trim(); datos.whatsapp = $("f-whatsapp").value.trim();
   irA(3);
 });
 $("form-pago").addEventListener("change", actualizarFinal);
@@ -424,7 +426,7 @@ const filtrarIdiomas = () => {
 };
 idiomaBuscar.addEventListener("input", filtrarIdiomas);
 idiomaBuscar.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); idiomaLista.querySelector("li[data-buscar]:not([hidden]) button")?.click(); } if (e.key === "ArrowDown") { e.preventDefault(); idiomaLista.querySelector("li[data-buscar]:not([hidden]) button")?.focus(); } });
-REFRESCAR.push(() => { idiomaBuscar.placeholder = t("buscarIdioma"); idiomaLista.querySelectorAll("[data-ui='beta']").forEach(e => { e.textContent = t("beta"); }); });
+REFRESCAR.push(() => { idiomaBuscar.placeholder = t("buscarIdioma"); idiomaBuscar.setAttribute("aria-label", t("buscarIdioma").replace("…", "")); idiomaLista.querySelectorAll("[data-ui='beta']").forEach(e => { e.textContent = t("beta"); }); });
 idiomaBuscar.placeholder = t("buscarIdioma");
 const cajaIdioma = document.querySelector(".idioma");
 const cerrarIdioma = () => {
@@ -748,7 +750,7 @@ $("link-pago").addEventListener("click", async (e) => {
     const r = await fetch("/api/crear-pago", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ plan: actual, moneda: monedaActual() })
+      body: JSON.stringify({ plan: actual, moneda: monedaActual(), cliente: { ...datos, idioma } })
     });
     const d = await r.json().catch(() => ({}));
     if (!r.ok || !d.url) throw new Error(d.error || "error");

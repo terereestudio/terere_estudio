@@ -130,6 +130,7 @@
   "8bcbqr": "Volver",
   "7yskhm": "Quiero este plan →",
   "7wkll1": "Nombre completo",
+  "15wjrm6": "Tu WhatsApp (opcional)",
   "1h77j9p": "Tu negocio o rubro",
   "15swo9c": "Contame tu idea",
   "19yhgrh": "Acepto que Tereré Estudio use estos datos solo para responder mi consulta, según la política de privacidad.",
@@ -194,7 +195,10 @@
   "1fzhm9m": "Cerrar aviso",
   "8ghrun": "Abrir menú",
   "1sg0ox6": "Cerrar",
-  "1azh871": "Pasos"
+  "1azh871": "Pasos",
+  "rljbg": "Ej.: 3794 123456",
+  "1u502va": "Ej.: peluquería, ropa, estudio contable",
+  "14kirts": "Qué querés mostrar, a quién le vendés, alguna web que te guste…"
  },
  "ui": {
   "verQueIncluye": "Ver qué incluye",

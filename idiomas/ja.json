@@ -145,7 +145,8 @@
   "6k4k8u": "要相談",
   "1ty9cro": "振込または現金。WhatsAppで調整します。",
   "cwv3fs": "// 私に届くメッセージ",
-  "1nek67j": "Mercado Pagoに接続できませんでした。もう一度お試しいただくか、WhatsAppでご連絡ください。"
+  "1nek67j": "Mercado Pagoに接続できませんでした。もう一度お試しいただくか、WhatsAppでご連絡ください。",
+  "15wjrm6": "WhatsApp 番号（任意）"
  },
  "html": {
   "rmyxbw": "<span>// Corrientesから世界へ</span><span class=\"cursor\" aria-hidden=\"true\">&nbsp;</span>",
@@ -194,7 +195,10 @@
   "1fzhm9m": "お知らせを閉じる",
   "8ghrun": "メニューを開く",
   "1sg0ox6": "閉じる",
-  "1azh871": "ステップ"
+  "1azh871": "ステップ",
+  "rljbg": "例：3794 123456",
+  "1u502va": "例：美容室、アパレル、会計事務所",
+  "14kirts": "見せたいもの、お客様、好きなサイトなど…"
  },
  "ui": {
   "verQueIncluye": "内容を見る",

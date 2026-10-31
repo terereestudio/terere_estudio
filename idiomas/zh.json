@@ -145,7 +145,8 @@
   "6k4k8u": "另行商定",
   "1ty9cro": "转账或现金。我们在 WhatsApp 上沟通。",
   "cwv3fs": "// 我会收到的消息",
-  "1nek67j": "无法连接 Mercado Pago。请再试一次，或在 WhatsApp 上联系我。"
+  "1nek67j": "无法连接 Mercado Pago。请再试一次，或在 WhatsApp 上联系我。",
+  "15wjrm6": "你的 WhatsApp（选填）"
  },
  "html": {
   "rmyxbw": "<span>// 从 Corrientes 走向世界</span><span class=\"cursor\" aria-hidden=\"true\">&nbsp;</span>",
@@ -194,7 +195,10 @@
   "1fzhm9m": "关闭提示",
   "8ghrun": "打开菜单",
   "1sg0ox6": "关闭",
-  "1azh871": "步骤"
+  "1azh871": "步骤",
+  "rljbg": "例如：3794 123456",
+  "1u502va": "例如：理发店、服装、会计事务所",
+  "14kirts": "你想展示什么、卖给谁、喜欢的网站……"
  },
  "ui": {
   "verQueIncluye": "查看包含内容",
