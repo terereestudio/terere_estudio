@@ -11,7 +11,7 @@ const json = (status, cuerpo) =>
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' },
   });
 
-export default async (req) => {
+export default async (req, context) => {
   if (req.method !== 'POST') return json(405, { error: 'Método no permitido' });
 
   const token = process.env.MP_ACCESS_TOKEN;
@@ -32,9 +32,9 @@ export default async (req) => {
   const monto = montoEnArs(plan, moneda);
   if (monto === null || !PLANES[plan]) return json(400, { error: 'Datos inválidos' });
 
-  // Base pública del sitio. En un deploy de rama, DEPLOY_PRIME_URL es la URL de esa rama.
-  const base = process.env.DEPLOY_PRIME_URL || process.env.URL;
-  if (!base) return json(500, { error: 'No pudimos iniciar el pago. Escribinos por WhatsApp.' });
+  // Base pública del sitio: la misma dirección desde la que se pidió el pago
+  // (terereestudio.com.ar en producción, la URL de la rama en un deploy de prueba).
+  const base = new URL(req.url).origin;
 
   const referencia = `TE-${plan}-${Date.now()}-${randomBytes(3).toString('hex')}`;
 
@@ -81,7 +81,10 @@ export default async (req) => {
 
   // Fuera de producción se usa la URL de sandbox. En Mercado Pago las credenciales de prueba
   // empiezan con APP_USR- igual que las de producción, así que se decide por el contexto de Netlify.
-  const esProduccion = process.env.CONTEXT === 'production';
+  // Ojo: process.env.CONTEXT solo existe mientras Netlify arma el sitio, no cuando corre la función;
+  // en ejecución el dato correcto es context.deploy.context.
+  const contexto = context?.deploy?.context ?? process.env.CONTEXT;
+  const esProduccion = contexto === 'production';
   const url = esProduccion ? datosMP.init_point : datosMP.sandbox_init_point;
   if (!url) {
     console.error('crear-pago: la respuesta no trae URL de pago', JSON.stringify(datosMP));
