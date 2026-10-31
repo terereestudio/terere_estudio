@@ -21,8 +21,8 @@
 <link rel="icon" href="img/marca/isotipo-verde.svg" type="image/svg+xml">
 <link rel="icon" href="img/marca/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="img/marca/apple-touch-icon.png">
-<link rel="stylesheet" href="css/laboratorio.css?v=2e51c90d1f">
-<script src="js/laboratorio.js?v=564f3cba84" defer></script>
+<link rel="stylesheet" href="css/laboratorio.css?v=9f35c5b8e6">
+<script src="js/laboratorio.js?v=2b6509075e" defer></script>
 
 
 </head>
@@ -122,29 +122,35 @@
       <span class="modal-ruta" id="ruta">lab / <b>neo-gestion</b> / ficha</span>
     </div>
     <div class="vista" id="vista-ficha">
+      <!-- Ficha de NEO: en PC entra entera en la ventana, sin scroll (cabecera + 3 columnas) -->
       <div class="ficha">
-        <div class="ficha-texto">
-          <p class="mono">Experimento 01 · Aplicación web</p>
-          <h2 id="neo-titulo"><img loading="lazy" src="img/v2/neo-logo.webp" width="400" height="280" alt="">NEO Gestión</h2>
-          <p class="lema">Vendé, cobrá y facturá desde tu celular.</p>
+        <header class="ficha-cab">
+          <img class="ficha-logo" loading="lazy" src="img/v2/neo-logo.webp" width="400" height="280" alt="">
+          <div class="ficha-titulos">
+            <p class="mono">Experimento 01 · Aplicación web</p>
+            <h2 id="neo-titulo">NEO Gestión</h2>
+            <p class="lema">Vendé, cobrá y facturá desde tu celular.</p>
+          </div>
           <span class="estado">En pruebas</span>
+        </header>
+        <div class="ficha-texto">
+          <p class="mono">Qué es</p>
           <p>Un sistema de gestión para negocios chicos: escaneás los productos con la cámara, cobrás y mandás el comprobante por WhatsApp. Un asesor te lo deja configurado.</p>
           <ul class="funciones">
             <li>Cargás un producto con una foto: la IA completa nombre, categoría y código.</li>
             <li>Cobrás sin computadora: QR, cuotas, Posnet o efectivo con vuelto automático.</li>
             <li>Factura electrónica de ARCA con CAE, a tu CUIT.</li>
           </ul>
-          <div class="acciones">
-            <button class="boton" type="button" id="ver-web">Ver la página web →</button>
-          </div>
+        </div>
+        <div class="ficha-cta">
           <div class="tester">
+            <p class="mono">Programa de testers</p>
             <h3>¿Quisieras sumarte como tester? Escribime.</h3>
-            <div class="acciones">
-              <a class="boton" href="mailto:neogestion.app@gmail.com?subject=Quiero%20ser%20tester%20de%20NEO%20Gesti%C3%B3n">Quiero ser tester →</a>
-              <span class="correo"><span id="correo">neogestion.app@gmail.com</span><button class="copiar" type="button" id="copiar">Copiar</button></span>
-            </div>
+            <a class="boton" href="mailto:neogestion.app@gmail.com?subject=Quiero%20ser%20tester%20de%20NEO%20Gesti%C3%B3n">Quiero ser tester →</a>
+            <span class="correo"><span id="correo">neogestion.app@gmail.com</span><button class="copiar" type="button" id="copiar">Copiar</button></span>
             <p class="aviso" id="aviso" role="status" hidden>Correo copiado</p>
           </div>
+          <button class="boton boton-borde" type="button" id="ver-web">Ver la página web →</button>
         </div>
         <div class="escena" aria-hidden="true">
           <div class="telefono">
@@ -159,14 +165,27 @@
     </div>
 
     <div class="vista" id="vista-lector" hidden>
+      <!-- Ficha de lector.: en PC entra entera en la ventana, sin scroll (cabecera + qué hace + 2 descargas) -->
       <div class="lector">
         <header class="lx-cabecera">
-          <h2 class="lx-logo">lector.</h2>
-          <p class="lx-frase">Abrí un archivo y leelo. Nada más.</p>
+          <h2 class="lx-logo" id="lx-titulo">lector.</h2>
+          <div class="lx-cab-texto">
+            <p class="lx-frase">Abrí un archivo y leelo. Nada más.</p>
+            <p class="lx-presentacion">Sin cuentas, sin publicidad, sin internet. PDF, Word, TXT y más.</p>
+          </div>
         </header>
         <div class="lx-cuerpo">
-          <p class="lx-presentacion"><span class="lx-presentacion-logo">lector.</span> — abrí el archivo y leelo. Sin cuentas, sin publicidad, sin internet. PDF, Word, TXT y más.</p>
-          <p class="lx-aviso-sistema" id="lx-aviso" hidden>Por ahora lector. está disponible para Android.</p>
+          <div class="lx-que">
+            <h4>Qué hace</h4>
+            <ul class="lx-lista">
+              <li>Abre PDF, DOCX, DOC, TXT, MD y RTF.</li>
+              <li>Funciona sin internet: el archivo nunca sale de tu dispositivo.</li>
+              <li>Sin cuentas y sin anuncios.</li>
+              <li>Podés elegirlo para abrir tus PDF y documentos ("Abrir con").</li>
+              <li>Es gratis.</li>
+            </ul>
+            <p class="lx-aviso-sistema" id="lx-aviso" hidden>Por ahora lector. está disponible para Android.</p>
+          </div>
           <div class="lx-descargas">
             <section class="lx-opcion" id="lx-android" data-estado="disponible" aria-labelledby="lx-t-and">
               <span class="lx-estado">Disponible</span>
@@ -176,11 +195,10 @@
                 Descargar para Android
               </a>
               <p class="lx-meta">Versión 2.0 · 1,9 MB · Android</p>
-              <p class="lx-instruccion">Las actualizaciones no son automáticas: para tener la última versión, volvé a descargarla desde acá. Próximamente en Google Play.</p>
-              <p class="lx-instruccion">Si Android lo pide, permití instalar apps desde tu navegador.</p>
+              <p class="lx-instruccion">Si Android lo pide, permití instalar apps desde tu navegador. No se actualiza sola: para tener la última versión, volvé a descargarla desde acá. Próximamente en Google Play.</p>
               <div class="lx-hash">
+                <p><b>SHA-256</b> · para verificar que el archivo no fue modificado.</p>
                 <div class="lx-hash-fila"><code>addf9e0579ab5aaf8a6e1c33e7bd0e91838a4aa09f7351824c2925d1e4186d3f</code><button class="lx-copiar" type="button">Copiar</button></div>
-                <p>SHA-256: sirve para verificar que el archivo no fue modificado.</p>
               </div>
             </section>
             <!-- Windows: para activarlo, cambiá data-estado="pronto" por "disponible". El enlace sale de data-store. -->
@@ -194,18 +212,10 @@
               <p class="lx-instruccion" id="lx-win-nota">Cuando esté aprobada, se va a instalar desde la Microsoft Store y se va a actualizar sola.</p>
             </section>
           </div>
-          <div>
-            <h4>Qué hace</h4>
-            <ul class="lx-lista">
-              <li>Abre PDF, DOCX, DOC, TXT, MD y RTF.</li>
-              <li>Funciona sin internet: el archivo nunca sale de tu dispositivo.</li>
-              <li>Sin cuentas y sin anuncios.</li>
-              <li>Podés elegirlo para abrir tus PDF y documentos ("Abrir con").</li>
-              <li>Es gratis.</li>
-            </ul>
-          </div>
-          <p class="lx-firma"><a href="lector/privacidad.html">Política de privacidad</a> · Desarrollado por Tereré Estudio</p>
-          <p class="lx-firma">El robot de Android se reproduce a partir de un trabajo creado y compartido por Google.</p>
+          <footer class="lx-firma">
+            <p><a href="lector/privacidad.html">Política de privacidad</a> · Desarrollado por Tereré Estudio</p>
+            <p>El robot de Android se reproduce a partir de un trabajo creado y compartido por Google.</p>
+          </footer>
         </div>
       </div>
     </div>
