@@ -19,6 +19,32 @@ const RAIZ = path.join(__dirname, '..');
     Object.entries(DETALLE).forEach(([id, v]) => { detalle[id] = { tag: v.tag, para: v.para, bajada: v.bajada, puntos: v.puntos, entrega: v.entrega }; });
     return { idioma: 'es', texto, html, attr, ui: solo(UI), planes, detalle };
   });
+  // Páginas internas (motor compartido js/idiomas.js): idiomas/<página>/es.json
+  for (const pagina of ['portfolio', 'laboratorio', 'blog']) {
+    const pg = await b.newPage();
+    await pg.goto(`http://localhost:8803/${pagina}.html`, { waitUntil: 'domcontentloaded' });
+    const ok = await pg.waitForFunction(() => typeof I18N !== 'undefined', null, { timeout: 4000 }).then(() => true).catch(() => false);
+    if (!ok) { console.log(`${pagina}: todavía no usa js/idiomas.js`); await pg.close(); continue; }
+    await pg.waitForTimeout(300);
+    const datos = await pg.evaluate(() => {
+      const { UNIDADES, ATRS, dinamicos, ui, huella, normal } = I18N._textos();
+      const texto = {}, html = {}, attr = {};
+      UNIDADES.forEach(u => { if (u.modo === 'html') html[u.clave] = normal(u.es); else texto[u.clave] = normal(u.es); });
+      dinamicos.forEach(s => { texto[huella(normal(s))] = normal(s); });
+      ATRS.forEach(a => { attr[a.clave] = normal(a.es); });
+      return { texto, html, attr, ui };
+    });
+    await pg.close();
+    const dirP = path.join(RAIZ, 'idiomas', pagina); fs.mkdirSync(dirP, { recursive: true });
+    fs.writeFileSync(path.join(dirP, 'es.json'), JSON.stringify({ idioma: 'es', ...datos }, null, 1) + '\n');
+    const n = o => Object.keys(o).length;
+    console.log(`${pagina}/es.json: ${n(datos.texto)} textos, ${n(datos.html)} con formato, ${n(datos.attr)} atributos`);
+    for (const f of fs.readdirSync(dirP).filter(f => f.endsWith('.json') && f !== 'es.json')) {
+      const d = JSON.parse(fs.readFileSync(path.join(dirP, f), 'utf8')); let faltan = 0;
+      for (const sec of ['texto', 'html', 'attr', 'ui']) for (const k of Object.keys(datos[sec])) if (!(d[sec] && k in d[sec])) faltan++;
+      console.log(`  ${f}: ${faltan ? 'faltan ' + faltan : 'completo'}`);
+    }
+  }
   await b.close();
   const dir = path.join(RAIZ, 'idiomas'); fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'es.json'), JSON.stringify(es, null, 1) + '\n');

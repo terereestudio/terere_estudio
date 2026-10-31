@@ -40,7 +40,10 @@ const marcarInd = () => {
 };
 carpetas.addEventListener("scroll", () => requestAnimationFrame(marcarInd), { passive: true });
 marcarInd();
-if (window.matchMedia("(hover: none)").matches) document.querySelector(".pista").textContent = "// deslizá para ver las carpetas · tocá para abrir";
+const T = (es, vars) => I18N.t(es, vars);
+I18N.registrar(["// pasá el mouse para espiar · hacé clic para abrir", "// deslizá para ver las carpetas · tocá para abrir", "← Volver a la ficha", "← Volver a las carpetas", "Descargar en Microsoft Store", "Disponible", "Se instala desde la Microsoft Store y se actualiza sola.", "Por ahora lector. está disponible para Windows y Android.", "Copiado", "Copiar"]);
+const textoPista = () => { document.querySelector(".pista").textContent = T(window.matchMedia("(hover: none)").matches ? "// deslizá para ver las carpetas · tocá para abrir" : "// pasá el mouse para espiar · hacé clic para abrir"); };
+textoPista();
 
 // Carpetas clasificadas: tiemblan y, a veces, pasa algo
 document.querySelectorAll(".carpeta.clasificada").forEach(c => {
@@ -153,7 +156,7 @@ const mostrarVista = v => {
   ventana.setAttribute("aria-labelledby", v === "lector" ? "lx-titulo" : "neo-titulo");
   const [carpeta, resto] = RUTAS[v];
   $("ruta").replaceChildren(document.createTextNode("lab / "), Object.assign(document.createElement("b"), { textContent: carpeta }), document.createTextNode(resto));
-  $("atras").textContent = v === "web" ? "← Volver a la ficha" : "← Volver a las carpetas";
+  $("atras").textContent = T(v === "web" ? "← Volver a la ficha" : "← Volver a las carpetas");
   vistaActual = v;
 };
 let vistaActual = "ficha";
@@ -172,10 +175,13 @@ if (!BLOQUEADA.lector) carpetaLector.addEventListener("click", () => {
   if (win.dataset.estado === "disponible") {
     wb.href = win.dataset.store; wb.target = "_blank"; wb.rel = "noopener noreferrer";
     wb.removeAttribute("aria-disabled"); wb.removeAttribute("role");
-    $("lx-win-texto").textContent = "Descargar en Microsoft Store";
-    win.querySelector(".lx-estado").textContent = "Disponible";
-    $("lx-win-nota").textContent = "Se instala desde la Microsoft Store y se actualiza sola.";
-    $("lx-aviso").textContent = "Por ahora lector. está disponible para Windows y Android.";
+    const textosWin = () => {
+      $("lx-win-texto").textContent = T("Descargar en Microsoft Store");
+      win.querySelector(".lx-estado").textContent = T("Disponible");
+      $("lx-win-nota").textContent = T("Se instala desde la Microsoft Store y se actualiza sola.");
+      $("lx-aviso").textContent = T("Por ahora lector. está disponible para Windows y Android.");
+    };
+    textosWin(); I18N.alCambiar(textosWin);
   } else {
     wb.addEventListener("click", e => e.preventDefault());
   }
@@ -187,7 +193,7 @@ if (!BLOQUEADA.lector) carpetaLector.addEventListener("click", () => {
   else if (ios || mac) $("lx-aviso").hidden = false;
   document.querySelectorAll(".lx-copiar").forEach(b => b.addEventListener("click", () => {
     const code = b.parentElement.querySelector("code");
-    const listo = () => { b.textContent = "Copiado"; setTimeout(() => { b.textContent = "Copiar"; }, 1800); };
+    const listo = () => { b.textContent = T("Copiado"); setTimeout(() => { b.textContent = T("Copiar"); }, 1800); };
     const sel = () => { const r = document.createRange(); r.selectNodeContents(code); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(code.textContent).then(listo).catch(sel); else sel();
   }));
@@ -206,3 +212,6 @@ $("copiar").addEventListener("click", () => {
 
 // Enlace directo: laboratorio.html#lector abre la ficha de descargas
 if (location.hash === "#lector" && !BLOQUEADA.lector) { mostrarVista("lector"); ventana.showModal(); }
+
+// Cambio de idioma: textos que arma este archivo
+I18N.alCambiar(() => { textoPista(); mostrarVista(vistaActual); });
