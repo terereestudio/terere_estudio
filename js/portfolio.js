@@ -114,7 +114,7 @@ function abrir(c, boton) {
     if (t.video) {
       fig = el("div", "trabajo-img video");
       const v = el("video"); v.muted = true; v.loop = true; v.playsInline = true; v.preload = "none"; v.poster = t.img; v.setAttribute("aria-label", t.nombre);
-      ["webm", "mp4"].forEach(ext => { const so = el("source"); so.src = t.video + "." + ext; so.type = "video/v2/" + ext; v.append(so); });
+      ["webm", "mp4"].forEach(ext => { const so = el("source"); so.src = t.video + "." + ext; so.type = "video/" + ext; v.append(so); });
       fig.append(v);
       if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.4 }).observe(v);
     }
