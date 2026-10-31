@@ -105,3 +105,13 @@ document.querySelectorAll("[data-podcast]").forEach(caja => {
   barra.addEventListener("input", () => { if (audio.duration) audio.currentTime = (barra.value / 100) * audio.duration; });
   caja.querySelectorAll("[data-saltar]").forEach(b => b.addEventListener("click", () => { audio.currentTime = Math.max(0, Math.min(audio.duration || 0, audio.currentTime + Number(b.dataset.saltar))); }));
 });
+
+// Sello "Exceso en IA": al tocarlo aparece el cartelito que explica qué significa
+(() => {
+  const sello = document.querySelector(".sello-ia"), nota = document.getElementById("sello-nota");
+  if (!sello || !nota) return;
+  const mostrar = si => { nota.hidden = !si; sello.setAttribute("aria-expanded", String(si)); };
+  sello.addEventListener("click", e => { e.stopPropagation(); mostrar(nota.hidden); });
+  document.addEventListener("click", e => { if (!nota.hidden && !e.target.closest(".sello-nota")) mostrar(false); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && !nota.hidden) { mostrar(false); sello.focus(); } });
+})();

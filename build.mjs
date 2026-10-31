@@ -109,7 +109,7 @@ for (const archivo of listarPaginas(join(SRC, 'paginas'))) {
   // Artículos del blog: plantilla v2 (título y portada fijos, texto a la derecha, audio y accesibilidad)
   if (meta.tipo === 'article') {
     const podcast = meta.podcast ? leer('partes/podcast.html') : '';
-    const sello = meta.selloIA ? '<p class="sello-ia">Texto generado con IA como práctica de prompting.</p>' : '';
+    const sello = meta.selloIA ? `<button class="sello-ia" type="button" aria-expanded="false" aria-controls="sello-nota"><img src="${raiz}img/v2/exceso-ia.webp" width="200" height="200" alt="Exceso en inteligencia artificial. Tocá para ver qué significa."></button><p class="sello-nota" id="sello-nota" hidden><strong>Exceso en IA</strong> Este texto fue generado con inteligencia artificial como práctica de prompting. El sello imita los octógonos de advertencia de los alimentos.</p>` : '';
     // Si el artículo abre con una figura de la misma imagen que la portada, se quita del texto
     // (la portada ya la muestra) y su epígrafe pasa a la portada.
     let epigrafe = '';

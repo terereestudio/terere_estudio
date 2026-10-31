@@ -23,10 +23,9 @@
 <main class="entrada">
   <aside class="lateral" aria-label="Datos de la entrada">
     <p class="meta"><span class="etiqueta">{{etiqueta}}</span><time datetime="{{fechaISO}}">{{fecha}}</time><span id="minutos"></span></p>
-    {{selloIA}}
     <h1>{{tituloArticulo}}<span class="cursor" aria-hidden="true"></span></h1>
     <p class="bajada">{{lead}}</p>
-    <figure class="portada" id="portada"><img src="{{raiz}}{{imagen}}" width="1200" height="750" alt="{{altImagen}}">{{epigrafe}}</figure>
+    <figure class="portada" id="portada"><img src="{{raiz}}{{imagen}}" width="1200" height="750" alt="{{altImagen}}">{{selloIA}}{{epigrafe}}</figure>
     <div class="lector-voz" id="voz" aria-label="Escuchar esta entrada">
       <div class="voz-fila">
         <button class="voz-play" type="button" id="voz-play" aria-pressed="false"><span class="ondas" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span id="voz-texto">Escuchar</span></button>
