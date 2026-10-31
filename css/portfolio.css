@@ -55,7 +55,7 @@ p { margin: 0; }
    Capas: botón (escenario, entra con "aparecer") > flota (vaivén continuo, desfasado por tarjeta con --i)
    > tarjeta (inclinación según el puntero con --mx/--my, que pone portfolio.js) > imagen, pie y brillo.
    La sombra en el "piso" acompaña el vaivén: cuando la tarjeta sube, se achica y se aclara. */
-.categorias { --acento: #9FBD2B; --crema: #F3E9DA; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; padding-block: 8px 56px; }
+.categorias { --acento: #9FBD2B; --crema: #F3E9DA; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; padding-block: 8px 56px; }
 .categoria { --i: 0; --mx: 0; --my: 0; --alza: 0px; --escala: 1; position: relative; display: block; padding: 0; border: 0; background: none; color: var(--tinta); text-align: left; cursor: pointer; font: inherit; animation: aparecer 0.7s both; -webkit-tap-highlight-color: transparent; }
 .categoria:nth-child(2) { animation-delay: 0.08s; } .categoria:nth-child(3) { animation-delay: 0.16s; } .categoria:nth-child(4) { animation-delay: 0.24s; }
 .categoria:focus-visible { outline: none; }
@@ -82,7 +82,9 @@ p { margin: 0; }
 .categoria-pie { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: end; gap: 16px; padding: 18px 20px; border-top: 1px solid rgba(237, 234, 227, 0.55); background: var(--papel); transition: background 0.3s, color 0.3s, border-color 0.3s; }
 .categoria:hover .categoria-pie, .categoria:focus-visible .categoria-pie { background: var(--crema); color: var(--papel); border-color: var(--crema); }
 .categoria[aria-expanded="true"] .categoria-pie { background: var(--acento); color: var(--papel); border-color: var(--acento); }
-.categoria h2 { font: 400 clamp(2rem, 3.6vw, 3rem)/1 var(--f-display); }
+.categoria h2 { font: 400 clamp(1.9rem, 2.7vw, 2.7rem)/1 var(--f-display); white-space: nowrap; }
+/* Todas las tarjetas con el mismo pie: título en un renglón y el contador debajo */
+@media (min-width: 641px) { .categoria-pie { flex-direction: column; align-items: start; gap: 10px; } }
 .categoria h2 em { font-style: italic; }
 .categoria .num { font: 400 0.8rem/1 var(--f-mono); white-space: nowrap; }
 .categoria .flecha { display: inline-block; transition: transform 0.3s; }
@@ -132,7 +134,7 @@ p { margin: 0; }
 .boton:hover { background: var(--papel); color: var(--tinta); }
 
 @media (max-width: 1100px) {
-  .categorias { grid-template-columns: repeat(2, 1fr); gap: 28px 22px; }
+  .categorias { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 22px; }
 }
 @media (max-width: 860px) {
   .portada .envoltura { grid-template-columns: 1fr; }
@@ -192,15 +194,17 @@ button.trabajo:focus-visible { outline: 2px solid currentColor; outline-offset: 
 .marcas-pista { display: flex; gap: 16px; width: max-content; animation: marcas-pasan calc(var(--n, 7) * 4.5s) linear infinite; }
 .marcas-cinta:hover .marcas-pista, .marcas-cinta:focus-within .marcas-pista { animation-play-state: paused; }
 @keyframes marcas-pasan { to { transform: translateX(calc(-50% - 8px)); } }
-.marca-logo { position: relative; flex: none; width: clamp(150px, 18vw, 220px); height: clamp(150px, 18vw, 220px); padding: 0; border: 0; border-radius: 14px; background: #D6D2CB; cursor: pointer; transition: background .3s, transform .3s cubic-bezier(.2,.8,.2,1); }
-.marca-logo img { position: absolute; inset: 15%; width: 70%; height: 70%; object-fit: contain; }
-.marca-logo:hover, .marca-logo:focus-visible { background: #E4E0D8; transform: translateY(-4px); }
-.marca-logo:focus-visible { outline: 2px solid #9FBD2B; outline-offset: 3px; }
+.marca-logo { position: relative; flex: none; width: clamp(150px, 18vw, 220px); height: clamp(150px, 18vw, 220px); padding: 0; border: 0; border-radius: 14px; background: none; cursor: pointer; transition: transform .35s cubic-bezier(.2,.8,.2,1); }
+/* Logo suelto, sin fondo: un borde de luz suave lo despega del fondo oscuro */
+.marca-logo img { position: absolute; inset: 15%; width: 70%; height: 70%; object-fit: contain; filter: drop-shadow(0 0 1px rgba(243,233,218,0.85)) drop-shadow(0 0 1px rgba(243,233,218,0.6)) drop-shadow(0 10px 18px rgba(0,0,0,0.55)); transition: filter .35s; }
+.marca-logo:hover, .marca-logo:focus-visible { transform: scale(1.1); }
+.marca-logo:hover img, .marca-logo:focus-visible img { filter: drop-shadow(0 0 1.5px #F3E9DA) drop-shadow(0 0 2px rgba(159,189,43,0.95)) drop-shadow(0 0 16px rgba(159,189,43,0.6)); }
+.marca-logo:focus-visible { outline: none; }
 @media (prefers-reduced-motion: reduce) { .marcas-pista { animation: none; } .marcas-cinta { overflow-x: auto; } }
 
 .marca-detalle { display: grid; grid-template-columns: clamp(220px, 24vw, 300px) minmax(0, 1fr); gap: 18px; align-items: start; }
-.marca-lado { position: sticky; top: 90px; aspect-ratio: 1; border-radius: 14px; background: #D6D2CB; }
-.marca-lado { overflow: hidden; } .marca-lado img { position: absolute; inset: 14%; width: 72%; height: 72%; object-fit: contain; }
+.marca-lado { position: sticky; top: 90px; aspect-ratio: 1; border-radius: 14px; background: radial-gradient(closest-side, rgba(159,189,43,0.10), transparent); }
+.marca-lado { overflow: visible; } .marca-lado img { position: absolute; inset: 14%; width: 72%; height: 72%; object-fit: contain; filter: drop-shadow(0 0 1.5px #F3E9DA) drop-shadow(0 0 2px rgba(159,189,43,0.9)) drop-shadow(0 0 18px rgba(159,189,43,0.45)); }
 .marca-lado { isolation: isolate; }
 .marca-panel { border-radius: 14px; background: #1E1C1D; border: 1px solid #2E2A2B; color: #EDEAE3; padding: 18px 20px 22px; }
 .marca-detalle.abriendo .marca-lado { animation: lado-entra .45s cubic-bezier(.2,.8,.2,1); }
@@ -224,3 +228,14 @@ button.trabajo:focus-visible { outline: 2px solid currentColor; outline-offset: 
   @keyframes panel-despliega { from { clip-path: inset(0 0 100% 0 round 14px); opacity: .3; } to { clip-path: inset(0 0 0 0 round 14px); opacity: 1; } }
 }
 @media (prefers-reduced-motion: reduce) { .marca-detalle.abriendo .marca-lado, .marca-detalle.abriendo .marca-panel { animation: none; } }
+
+/* Escritorio: la portada del portfolio (título, datos y las 4 tarjetas) entra en una sola pantalla */
+@media (min-width: 1025px) {
+  .portada .envoltura { padding-block: clamp(20px, 3vh, 40px) clamp(16px, 2.4vh, 28px); gap: 32px; }
+  .palabra { font-size: clamp(5rem, min(10vw, 17vh), 9.5rem); }
+  .intro { gap: 12px; }
+  .intro p:not(.mono) { font-size: 1rem; }
+  .cifras b { font-size: 1.9rem; }
+  .categorias { padding-block: 4px 40px; }
+  .categoria-tarjeta { min-height: clamp(230px, calc(100svh - 420px), 330px); }
+}
