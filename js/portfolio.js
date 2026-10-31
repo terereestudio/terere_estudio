@@ -35,8 +35,32 @@ const cifras = document.getElementById("cifras");
 const zona = document.getElementById("panel-zona");
 const grilla = document.getElementById("categorias");
 let abierta = null;
+// Inclinación 3D solo con mouse o lápiz (puntero fino) y si la persona no pidió menos movimiento
+const puedeInclinar = window.matchMedia("(hover: hover) and (pointer: fine)").matches && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function inclinable(b) {
+  let cuadro = 0, ultimo = null;
+  const limitar = n => Math.max(-1, Math.min(1, n));
+  b.addEventListener("pointermove", e => {
+    ultimo = e;
+    if (cuadro) return;
+    cuadro = requestAnimationFrame(() => {
+      cuadro = 0;
+      const r = b.getBoundingClientRect();
+      // --mx y --my van de -1 a 1: el CSS los traduce en giro, brillo y paralaje de la portada
+      b.style.setProperty("--mx", limitar(((ultimo.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+      b.style.setProperty("--my", limitar(((ultimo.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+      b.classList.add("inclinando");
+    });
+  });
+  b.addEventListener("pointerleave", () => {
+    cancelAnimationFrame(cuadro); cuadro = 0;
+    b.classList.remove("inclinando");
+    b.style.setProperty("--mx", "0"); b.style.setProperty("--my", "0");
+  });
+}
 CATEGORIAS.forEach((c, i) => {
   const b = el("button", "categoria"); b.type = "button"; b.setAttribute("aria-expanded", "false"); b.setAttribute("aria-controls", "panel-zona");
+  b.style.setProperty("--i", String(i)); // desfasa el vaivén de cada tarjeta
   const fig = el("div", "categoria-img" + (c.img ? "" : " vacia"));
   if (c.img) { const img = el("img"); img.src = c.img; img.alt = ""; img.loading = "eager"; /* las 4 portadas se ven al abrir la página */ fig.append(img); } else fig.append(el("span", "", "próximamente"));
   const pie = el("div", "categoria-pie");
@@ -44,7 +68,12 @@ CATEGORIAS.forEach((c, i) => {
   const h = el("h2"); h.append(document.createTextNode(c.titulo)); const em = el("em", "", c.cursiva); h.append(em); izq.append(h);
   const der = el("span", "num"); der.append(document.createTextNode(c.trabajos.length + (c.trabajos.length === 1 ? " trabajo " : " trabajos "))); der.append(el("span", "flecha", "→"));
   pie.append(izq, der);
-  b.append(fig, pie);
+  const flota = el("span", "categoria-flota"), tarjeta = el("span", "categoria-tarjeta");
+  tarjeta.append(fig, pie, el("span", "categoria-brillo"));
+  flota.append(tarjeta);
+  const sombra = el("span", "categoria-sombra"); sombra.setAttribute("aria-hidden", "true");
+  b.append(sombra, flota);
+  if (puedeInclinar) inclinable(b);
   b.addEventListener("click", () => abrir(c, b));
   grilla.append(b);
 });
