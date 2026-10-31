@@ -4,8 +4,15 @@ const fs = require('fs'), path = require('path');
 const dir = path.join(__dirname, '..', 'idiomas', process.argv[3] || '');
 const es = JSON.parse(fs.readFileSync(path.join(dir, 'es.json'), 'utf8'));
 const cod = process.argv[2];
+if (process.argv[3] === '--podar') process.argv.splice(3, 0, '');
 let d; try { d = JSON.parse(fs.readFileSync(path.join(dir, cod + '.json'), 'utf8')); } catch (e) { console.log('JSON inválido o inexistente:', e.message); process.exit(1); }
 const err = [];
+// --podar: quita del archivo traducido las claves que ya no existen en el español (textos que se borraron)
+if (process.argv.includes('--podar')) {
+  let quitadas = 0;
+  for (const sec of ['texto', 'html', 'attr', 'ui']) for (const k of Object.keys(d[sec] || {})) if (!(es[sec] && k in es[sec])) { delete d[sec][k]; quitadas++; }
+  if (quitadas) { fs.writeFileSync(path.join(dir, cod + '.json'), JSON.stringify(d, null, 1) + '\n'); console.log(`${cod}: quité ${quitadas} claves viejas`); }
+}
 const etiquetas = s => (String(s).match(/<\/?[a-z][^>]*>/gi) || []).map(x => x.replace(/\s+/g, ' ')).join('');
 const marcas = s => (String(s).match(/\{\w+\}/g) || []).sort().join(',');
 const comparar = (ruta, a, b) => {

@@ -106,7 +106,9 @@ const ENTRADAS = [
  }
 ];
 
-const fechaLegible = f => new Date(f + "T12:00:00").toLocaleDateString(LOCALE, TEXTOS.formatoFecha);
+const fechaLegible = f => new Date(f + "T12:00:00").toLocaleDateString(I18N.locale || LOCALE, TEXTOS.formatoFecha);
+const T = es => I18N.t(es);
+I18N.registrar([TEXTOS.leer, TEXTOS.hechoIA, ...ENTRADAS.flatMap(e => [e.et, e.titulo, e.resumen])]);
 const porFechaDesc = (a, b) => b.fecha.localeCompare(a.fecha);
 
 const carril = document.getElementById("entradas");
@@ -135,15 +137,15 @@ function dibujar(filtro) {
     const fig = document.createElement("div"); fig.className = "entrada-img";
     const img = document.createElement("img"); img.src = e.img; img.alt = ""; img.loading = i < 3 ? "eager" : "lazy"; img.decoding = "async"; img.width = 640; img.height = 400;
     fig.append(img);
-    if (e.ia) { const s = document.createElement("span"); s.className = "sello-ia"; s.textContent = TEXTOS.hechoIA; fig.append(s); }
+    if (e.ia) { const s = document.createElement("span"); s.className = "sello-ia"; s.textContent = T(TEXTOS.hechoIA); fig.append(s); }
     const c = document.createElement("div"); c.className = "entrada-cuerpo";
     const meta = document.createElement("div"); meta.className = "entrada-meta";
-    const chip = document.createElement("span"); chip.className = "chip"; chip.textContent = e.et;
+    const chip = document.createElement("span"); chip.className = "chip"; chip.textContent = T(e.et);
     const t = document.createElement("time"); t.className = "fecha"; t.dateTime = e.fecha; t.textContent = fechaLegible(e.fecha);
     meta.append(chip, t);
-    const h = document.createElement("h2"); h.textContent = e.titulo;
-    const p = document.createElement("p"); p.textContent = e.resumen;
-    const l = document.createElement("span"); l.className = "leer"; l.textContent = TEXTOS.leer;
+    const h = document.createElement("h2"); h.textContent = T(e.titulo);
+    const p = document.createElement("p"); p.textContent = T(e.resumen);
+    const l = document.createElement("span"); l.className = "leer"; l.textContent = T(TEXTOS.leer);
     c.append(meta, h, p, l);
     a.append(fig, c);
     carril.append(a);
@@ -237,6 +239,8 @@ window.addEventListener("resize", pedirActualizacion);
 // Filtros
 // ---------------------------------------------------------------------------
 dibujar("todas");
+// Cambio de idioma: se vuelven a dibujar las tarjetas con el filtro activo
+I18N.alCambiar(() => dibujar(document.querySelector('.filtro[aria-pressed="true"]')?.dataset.filtro || "todas"));
 document.querySelectorAll(".filtro").forEach(b => b.addEventListener("click", () => {
   document.querySelectorAll(".filtro").forEach(o => o.setAttribute("aria-pressed", String(o === b)));
   dibujar(b.dataset.filtro);
