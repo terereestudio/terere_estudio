@@ -72,7 +72,7 @@ p { margin: 0; }
 
 /* Llamado a la acción (al pie de la columna izquierda en escritorio) */
 .suscribir { position: relative; display: grid; gap: 14px; justify-items: start; margin: 0 var(--borde); padding: 28px 0 48px; border-top: 1px solid var(--linea); }
-.suscribir h2 { font-size: clamp(1.3rem, 2vw, 1.6rem); max-width: 20ch; }
+.suscribir h2 { font-size: clamp(1.3rem, 2vw, 1.6rem); max-width: 24ch; text-wrap: balance; } /* dos renglones parejos: "¿Querés que tu negocio / aparezca en Google?" */
 .suscribir h2 em { font-style: normal; color: var(--violeta); }
 .boton { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 999px; background: var(--violeta); color: var(--negro); font-weight: 700; text-decoration: none; }
 .boton:hover { background: var(--violeta-claro); }
@@ -149,7 +149,7 @@ p { margin: 0; }
   .codigo-fondo { right: 50%; opacity: 0.08; }
   .portada { grid-column: 1; grid-row: 1; padding: clamp(8px, 3vh, 32px) 8px 24px var(--borde); }
   .entradas-zona { grid-column: 2; grid-row: 1 / span 2; }
-  .suscribir { grid-column: 1; grid-row: 2; margin: 0 8px 0 var(--borde); padding: 20px 0 clamp(20px, 4vh, 40px); }
+  .suscribir { grid-column: 1; grid-row: 2; margin: 0 8px 0 var(--borde); padding: 20px 0 clamp(32px, 7vh, 64px); }
   .portada-arriba { gap: clamp(12px, 2.2vh, 20px); }
   .palabra { font-size: clamp(4.5rem, min(9.5vw, 17vh), 10.5rem); }
   .intro p:not(.mono) { font-size: 1rem; }
