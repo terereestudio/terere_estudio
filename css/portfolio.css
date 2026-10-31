@@ -164,3 +164,24 @@ p { margin: 0; }
 /* Enlace para saltar al contenido (teclado y lectores de pantalla) */
 .salto { position: absolute; left: -9999px; top: 12px; z-index: 100; padding: 10px 14px; border-radius: 999px; background: #F4F1FA; color: #0F0D12; font-weight: 700; }
 .salto:focus { left: 12px; }
+
+/* Contenido: cada pieza suelta, a color, y un visor para verla en grande */
+.trabajos.piezas { grid-template-columns: repeat(4, 1fr); gap: 24px 16px; }
+button.trabajo { padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: zoom-in; }
+.trabajo-img.pieza { aspect-ratio: 4 / 5; }
+.trabajo-img.pieza img { filter: none; }
+button.trabajo:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+@media (max-width: 900px) { .trabajos.piezas { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 640px) { .trabajos.piezas { grid-template-columns: repeat(2, 1fr); gap: 20px 12px; } .trabajos.piezas .trabajo > p:not(.mono) { display: none; } .trabajos.piezas h3 { font-size: 1rem; } }
+.visor-pieza { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgba(12,11,12,0.94); color: #F3E9DA; }
+.visor-pieza::backdrop { background: rgba(0,0,0,0.6); }
+.visor-pieza figure { height: 100%; margin: 0; display: grid; grid-template-rows: 1fr auto; place-items: center; gap: 12px; padding: 56px 16px 20px; }
+.visor-pieza img { max-width: min(92vw, 720px); max-height: calc(100dvh - 140px); width: auto; height: auto; object-fit: contain; box-shadow: 0 20px 60px rgba(0,0,0,0.6); }
+.visor-pieza figcaption { display: grid; gap: 4px; text-align: center; }
+.visor-pieza figcaption .mono { font-size: 0.72rem; opacity: .7; }
+.visor-cerrar, .visor-flecha { position: absolute; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(243,233,218,0.35); background: rgba(22,20,21,0.7); color: #F3E9DA; font-size: 1.3rem; cursor: pointer; }
+.visor-cerrar { top: 12px; right: 12px; }
+.visor-flecha { top: 50%; transform: translateY(-50%); }
+.visor-flecha.ant { left: 12px; } .visor-flecha.sig { right: 12px; }
+.visor-cerrar:hover, .visor-flecha:hover { border-color: #F3E9DA; }
+@media (max-width: 640px) { .visor-flecha { top: auto; bottom: 18px; transform: none; } }

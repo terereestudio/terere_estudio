@@ -20,8 +20,22 @@ const TODAS = [
     { nombre: "Supermercados Farelli", tipo: "Marca ficticia", texto: "Ejercicio de identidad visual y aplicaciones.", img: "img/v2/portfolio/supermercados-farelli-1-chica.webp", imgs: ["img/v2/portfolio/supermercados-farelli-1-chica.webp", "img/v2/portfolio/supermercados-farelli-2-chica.webp", "img/v2/portfolio/supermercados-farelli-3-chica.webp", "img/v2/portfolio/supermercados-farelli-4-chica.webp"] },
     { nombre: "Cardano Transporte", tipo: "Marca ficticia", texto: "Ejercicio de identidad visual y aplicaciones.", img: "img/v2/portfolio/cardano-transporte-1-chica.webp", imgs: ["img/v2/portfolio/cardano-transporte-1-chica.webp", "img/v2/portfolio/cardano-transporte-2-chica.webp", "img/v2/portfolio/cardano-transporte-3-chica.webp", "img/v2/portfolio/cardano-transporte-4-chica.webp"] }
   ]},
-  { id: "contenido", titulo: "Conte", cursiva: "nido", img: "img/v2/portfolio/pieza-01-chica.webp", trabajos: [
-    { nombre: "Flyers y piezas para redes", tipo: "Diseño gráfico · 12 piezas", texto: "Flyers e historias para redes, para clientes y proyectos propios.", img: "img/v2/portfolio/pieza-01-chica.webp", imgs: ["img/v2/portfolio/pieza-01-chica.webp", "img/v2/portfolio/pieza-02-chica.webp", "img/v2/portfolio/pieza-03-chica.webp", "img/v2/portfolio/pieza-04-chica.webp", "img/v2/portfolio/pieza-05-chica.webp", "img/v2/portfolio/pieza-06-chica.webp", "img/v2/portfolio/pieza-07-chica.webp", "img/v2/portfolio/pieza-08-chica.webp", "img/v2/portfolio/pieza-09-chica.webp", "img/v2/portfolio/pieza-10-chica.webp", "img/v2/portfolio/pieza-11-chica.webp", "img/v2/portfolio/pieza-12-chica.webp"] },
+  { id: "contenido", titulo: "Conte", cursiva: "nido", img: "img/v2/portfolio/pieza-01-chica.webp", piezas: true, trabajos: [
+    { nombre: "Basílica de Itatí", tipo: "Folleto · 4:5", texto: "Información para peregrinos: horarios de misas y servicios.", img: "img/v2/portfolio/contenido/basilica-itati-chica.webp", grande: "img/v2/portfolio/contenido/basilica-itati.webp" },
+    { nombre: "Mercado Municipal Navideño", tipo: "Historia · 9:16", texto: "Difusión del mercado navideño para redes.", img: "img/v2/portfolio/contenido/mercado-navideno-chica.webp", grande: "img/v2/portfolio/contenido/mercado-navideno.webp" },
+    { nombre: "Becas para pueblos originarios", tipo: "Folleto · 4:5", texto: "Pieza informativa sobre la convocatoria de becas.", img: "img/v2/portfolio/contenido/becas-pueblos-originarios-chica.webp", grande: "img/v2/portfolio/contenido/becas-pueblos-originarios.webp" },
+    { nombre: "Branding de YPF", tipo: "Folleto · 4:5", texto: "Portada para una nota del blog sobre identidad de marca.", img: "img/v2/portfolio/contenido/branding-ypf-chica.webp", grande: "img/v2/portfolio/contenido/branding-ypf.webp" },
+    { nombre: "24 de marzo", tipo: "Historia · 9:16", texto: "Efeméride: Día de la Memoria por la Verdad y la Justicia.", img: "img/v2/portfolio/contenido/efemerides-24-marzo-chica.webp", grande: "img/v2/portfolio/contenido/efemerides-24-marzo.webp" },
+    { nombre: "Bálsamos de frutilla", tipo: "Folleto · 4:5", texto: "Oferta de producto para redes.", img: "img/v2/portfolio/contenido/balsamos-frutilla-chica.webp", grande: "img/v2/portfolio/contenido/balsamos-frutilla.webp" },
+    { nombre: "Torno para uñas · City Girl", tipo: "Historia · 9:16", texto: "Promoción de aniversario con precios y descuentos.", img: "img/v2/portfolio/contenido/torno-city-girl-chica.webp", grande: "img/v2/portfolio/contenido/torno-city-girl.webp" },
+    { nombre: "Ofertas semanales", tipo: "Folleto · 4:5", texto: "Ofertas de la semana de accesorios y bijou.", img: "img/v2/portfolio/contenido/ofertas-semanales-chica.webp", grande: "img/v2/portfolio/contenido/ofertas-semanales.webp" },
+    { nombre: "Medios de pago · IPRI Bijou", tipo: "Historia · 9:16", texto: "Historia fija con los medios de pago de la tienda.", img: "img/v2/portfolio/contenido/medios-de-pago-ipri-chica.webp", grande: "img/v2/portfolio/contenido/medios-de-pago-ipri.webp" },
+    { nombre: "Anillos · IPRI Bijou", tipo: "Historia · 9:16", texto: "Mockup de producto para redes.", img: "img/v2/portfolio/contenido/anillos-ipri-chica.webp", grande: "img/v2/portfolio/contenido/anillos-ipri.webp" },
+    { nombre: "Esmalte Cherimoya", tipo: "Historia · 9:16", texto: "Pieza de producto para historias de Instagram.", img: "img/v2/portfolio/contenido/esmalte-cherimoya-chica.webp", grande: "img/v2/portfolio/contenido/esmalte-cherimoya.webp" },
+    { nombre: "Escarapelas · IPRI Bijou", tipo: "Folleto · 4:5", texto: "Producto para las fechas patrias.", img: "img/v2/portfolio/contenido/escarapelas-ipri-chica.webp", grande: "img/v2/portfolio/contenido/escarapelas-ipri.webp" },
+    { nombre: "Rebaja · Algarrobo Negro", tipo: "Folleto · 4:5", texto: "Promoción de remeras para la tienda online.", img: "img/v2/portfolio/contenido/remera-algarrobo-negro-chica.webp", grande: "img/v2/portfolio/contenido/remera-algarrobo-negro.webp" },
+    { nombre: "Piscina Party", tipo: "Folleto · 4:5", texto: "Flyer para un evento (ejercicio de diseño).", img: "img/v2/portfolio/contenido/piscina-party-chica.webp", grande: "img/v2/portfolio/contenido/piscina-party.webp" },
+    { nombre: "12 de octubre", tipo: "Historia · 9:16", texto: "Efeméride: Día del Respeto a la Diversidad Cultural.", img: "img/v2/portfolio/contenido/efemerides-12-octubre-chica.webp", grande: "img/v2/portfolio/contenido/efemerides-12-octubre.webp" },
     { nombre: "Historia: Sérum TEI", tipo: "Historia animada", texto: "Pieza animada para historias de Instagram.", video: "video/v2/historia-serum-tei", img: "video/v2/historia-serum-tei.webp" },
     { nombre: "Historia: Agua micelar Algabo", tipo: "Historia animada", texto: "Pieza animada para historias de Instagram.", video: "video/v2/historia-agua-micelar-algabo", img: "video/v2/historia-agua-micelar-algabo.webp" }
   ]}
@@ -106,10 +120,12 @@ function abrir(c, boton) {
   const h = el("h2"); h.append(document.createTextNode(c.titulo)); h.append(el("em", "", c.cursiva));
   const cerrar = el("button", "cerrar-panel", "Cerrar ×"); cerrar.type = "button"; cerrar.addEventListener("click", () => abrir(c, boton));
   cab.append(h, cerrar);
-  const lista = el("div", "trabajos");
+  const lista = el("div", "trabajos" + (c.piezas ? " piezas" : ""));
+  const conVisor = c.trabajos.filter(t => t.grande);
   c.trabajos.forEach(t => {
-    const a = t.imgs ? el("div", "trabajo") : el("a", "trabajo");
-    if (!t.imgs) { a.href = t.href || "#"; if (t.href) { a.target = "_blank"; a.rel = "noopener noreferrer"; } }
+    const a = t.imgs ? el("div", "trabajo") : t.grande ? el("button", "trabajo") : el("a", "trabajo");
+    if (t.grande) { a.type = "button"; a.setAttribute("aria-label", `Ver en grande: ${t.nombre}`); a.addEventListener("click", () => verPieza(conVisor, conVisor.indexOf(t), a)); }
+    else if (!t.imgs) { a.href = t.href || "#"; if (t.href) { a.target = "_blank"; a.rel = "noopener noreferrer"; } }
     let fig;
     if (t.video) {
       fig = el("div", "trabajo-img video");
@@ -120,7 +136,7 @@ function abrir(c, boton) {
     }
     else if (t.imgs) fig = carruselMini(t);
     else {
-      fig = el("div", "trabajo-img" + (t.img ? "" : " vacia"));
+      fig = el("div", "trabajo-img" + (t.img ? "" : " vacia") + (t.grande ? " pieza" : ""));
       if (t.img) { const img = el("img"); img.src = t.img; img.alt = "Vista de " + t.nombre; img.loading = "lazy"; fig.append(img); } else fig.textContent = "captura pendiente";
     }
     const meta = el("p", "mono"); meta.append(el("span", "", t.tipo));
@@ -131,3 +147,28 @@ function abrir(c, boton) {
   zona.append(panel);
   panel.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
 }
+
+// Visor de piezas de contenido: la imagen en grande, con anterior / siguiente
+const visor = document.createElement("dialog");
+visor.className = "visor-pieza";
+visor.setAttribute("aria-label", "Pieza en grande");
+visor.innerHTML = '<figure><img alt=""><figcaption><b></b><span class="mono"></span></figcaption></figure><button type="button" class="visor-cerrar" aria-label="Cerrar">×</button><button type="button" class="visor-flecha ant" aria-label="Pieza anterior">←</button><button type="button" class="visor-flecha sig" aria-label="Pieza siguiente">→</button>';
+document.body.append(visor);
+let visorLista = [], visorI = 0, visorOrigen = null;
+const mostrarPieza = n => {
+  visorI = (n + visorLista.length) % visorLista.length;
+  const t = visorLista[visorI], img = visor.querySelector("img");
+  img.src = t.grande; img.alt = `${t.nombre}. ${t.texto}`;
+  visor.querySelector("b").textContent = t.nombre;
+  visor.querySelector("figcaption .mono").textContent = `${t.tipo} · ${visorI + 1} de ${visorLista.length}`;
+};
+function verPieza(lista, i, origen) { visorLista = lista; visorOrigen = origen; mostrarPieza(i); visor.showModal(); }
+visor.querySelector(".visor-cerrar").addEventListener("click", () => visor.close());
+visor.querySelector(".ant").addEventListener("click", () => mostrarPieza(visorI - 1));
+visor.querySelector(".sig").addEventListener("click", () => mostrarPieza(visorI + 1));
+visor.addEventListener("click", e => { if (e.target === visor) visor.close(); });
+visor.addEventListener("keydown", e => { if (e.key === "ArrowRight") mostrarPieza(visorI + 1); if (e.key === "ArrowLeft") mostrarPieza(visorI - 1); });
+visor.addEventListener("close", () => { visor.querySelector("img").removeAttribute("src"); if (visorOrigen) visorOrigen.focus(); });
+let visorX = null;
+visor.addEventListener("pointerdown", e => { visorX = e.clientX; });
+visor.addEventListener("pointerup", e => { if (visorX === null) return; const dx = e.clientX - visorX; visorX = null; if (Math.abs(dx) > 50) mostrarPieza(visorI + (dx < 0 ? 1 : -1)); });
